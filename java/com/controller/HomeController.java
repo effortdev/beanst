@@ -7,7 +7,7 @@ public class HomeController implements Action {
 
     public String execute(HttpServletRequest request,
                           HttpServletResponse response) {
-        request.setAttribute("pageTitle", "메인페이지");
+        request.setAttribute("pageTitle", "Vinst Hotel");
         request.setAttribute("pageCss", "home_main");
         
         request.setAttribute("contentPage",

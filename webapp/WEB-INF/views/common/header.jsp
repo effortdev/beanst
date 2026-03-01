@@ -24,9 +24,7 @@
 			</div>
 			<div class="righItem">
 				<ul>
-					<li>
-						<p class="text en">Contact Us</p>
-					</li>
+					<li><a href=# id="reserv" class="text en">Contact Us</a></li>
 					<li><a
 						href="${pageContext.request.contextPath}/reservationMain.do"
 						id="reserv" class="ko">예약</a></li>

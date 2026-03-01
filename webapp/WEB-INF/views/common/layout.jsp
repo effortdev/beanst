@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>${pageTitle != null ? pageTitle : "My Hotel"}</title>
+<title>${pageTitle != null ? pageTitle : "Vinst Hotel"}</title>
 
 <!-- 공통 CSS -->
 <link rel="stylesheet"
