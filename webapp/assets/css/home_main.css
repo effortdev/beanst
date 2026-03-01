@@ -1,0 +1,350 @@
+@charset "UTF-8";
+
+
+/* hero 섹션 */
+#main_hero {
+	height: 100vh;
+}
+
+#main_hero .heroSwiper, #main_hero .swiper-slide {
+	height: 100%;
+}
+
+#main_hero .swiper-slide {
+	background-size: cover;
+	background-position: center;
+	position: relative;
+}
+
+#main_hero .swiper-slide::after {
+	content: "";
+	position: absolute;
+	inset: 0;
+	background: rgba(0, 0, 0, 0.4);
+}
+
+#main_hero .slide1 {
+	background-image: url("../images/main/main_hero.png");
+}
+
+#main_hero .slide2 {
+	background-image: url("../images/main/main_hero2.png");
+}
+
+#main_hero .slide3 {
+	background-image: url("../images/main/main_hero3.png");
+}
+
+#main_hero .hero-content {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	color: white;
+	text-align: center;
+	z-index: 2;
+	width: 95%;
+	max-width: 1400px;
+}
+
+#main_hero .brand-title {
+	font-size: 48px;
+	font-weight: 600;
+	margin-bottom: 15px;
+}
+
+#main_hero .brand-divider {
+	margin: 15px 0;
+	font-size: 20px;
+	color: #d4af37;
+}
+
+#main_hero .brand-subtitle {
+	font-size: 22px;
+	margin-bottom: 50px;
+}
+
+#main_hero .brand-desc {
+	font-size: 16px;
+}
+
+#main_hero .hero-content p {
+	margin: 10px 0;
+}
+
+/* about-Room 섹션 */
+#about_Room {
+	max-width: 1600px;
+	width: 90%;
+	padding: 100px 0;
+	margin: 0 auto;
+	user-select: none;
+}
+
+#about_Room .top_title h2 {
+	font-size: 48px;
+	margin-bottom: 30px;
+}
+
+#about_Room .top_title p {
+	font-size: 18px;
+	font-weight: 300;
+	position: relative;
+}
+
+#about_Room .top_title p::before {
+	position: absolute;
+	content: "";
+	bottom: -10px;
+	left: 0;
+	width: 100%;
+	height: 1px;
+	background: #ccc;
+}
+
+#about_Room .roomListSwiper {
+	padding-top: 100px;
+	width: 100%;
+	height: 550px;
+	position: relative;
+}
+
+#about_Room .roomListSwiper .swiper-wrapper, #about_Room .roomListSwiper .swiper-slide
+	{
+	height: 100%;
+}
+
+#about_Room .mySwiper.swiper-initialized {
+	visibility: visible;
+}
+
+#about_Room .swiper-slide {
+	position: relative;
+}
+
+#about_Room .swiper-slide .imgBox {
+	height: 100%;
+	overflow: hidden;
+	/* clip 유지 (transition 최소화) */
+	clip-path: inset(18% 18% 18% 18%);
+	transition: clip-path 0.6s ease;
+}
+
+#about_Room .swiper-slide .imgBox img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	display: block;
+	filter: brightness(0.4);
+	transition: filter 0.6s ease, transform 0.6s ease;
+}
+
+#about_Room .swiper-slide.swiper-slide-active .imgBox {
+	clip-path: inset(0% 0% 0% 0%);
+}
+
+#about_Room .swiper-slide.swiper-slide-active .imgBox img {
+	filter: brightness(0.85);
+}
+
+#about_Room .swiper-slide:hover .imgBox img {
+	transform: scale(1.05);
+}
+
+#about_Room .swiper-slide .textBox {
+	position: absolute;
+	z-index: 2;
+	right: 5%;
+	bottom: 0;
+	opacity: 0;
+	transition: opacity 0.4s ease, right 0.4s ease;
+	transition-delay: 0.1s;
+	border: none;
+	background-color: #111;
+	color: #fff;
+	padding: 20px 30px;
+}
+
+#about_Room .swiper-slide .textBox .title {
+	font-size: 32px;
+	margin-bottom: 1.5rem;
+	text-align: center;
+}
+
+#about_Room .swiper-slide .textBox .text {
+	font-size: 16px;
+	text-align: right;
+	color: #aaa;
+}
+
+#about_Room .swiper-slide.swiper-slide-active .textBox {
+	opacity: 1;
+	right: 0;
+	border-radius: 10px 0 0 0;
+}
+
+#about_Room .swiper-button-next, #about_Room .swiper-button-prev {
+	color: #111;
+}
+
+/* 슬라이드 버튼 */
+#about_Room .swiper-pagination {
+	bottom: 0;
+	text-align: right;
+	font-size: 16px;
+}
+
+/* about_Hotel 섹션 */
+#about_Hotel {
+	max-width: 1600px;
+	width: 90%;
+	padding: 200px 0;
+	margin: 0 auto;
+	user-select: none;
+	overflow: hidden;
+}
+
+#about_Hotel .top_title h2 {
+	font-size: 48px;
+	margin-bottom: 30px;
+}
+
+#about_Hotel .top_title p {
+	font-size: 18px;
+	font-weight: 300;
+	position: relative;
+}
+
+#about_Hotel .top_title p::before {
+	position: absolute;
+	content: "";
+	bottom: -10px;
+	left: 0;
+	width: 100%;
+	height: 1px;
+	background: #ccc;
+}
+
+.experienceSwiper {
+	margin-top: 100px;
+}
+
+.experienceSwiper .swiper-slide {
+	width: auto;
+}
+
+.experienceSwiper .list_item {
+	width: 500px;
+	height: 400px;
+	background: #111;
+	font-size: 20px;
+	font-weight: 500;
+	border-radius: 12px;
+	overflow: hidden;
+}
+
+@media (max-width: 1024px) {
+.experienceSwiper .list_item {
+    width: 500px;
+    height: 400px;
+  }
+}
+
+/* 모바일 */
+@media (max-width: 768px) {
+.experienceSwiper .list_item {
+    width: 400px;
+    height: 400px;
+    margin: 0 auto;
+  }
+}
+
+.experienceSwiper .list_item .imgBox {
+	overflow: hidden;
+	position: relative;
+	height: 350px;
+}
+
+.experienceSwiper .list_item .imgBox img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	display: block;
+	transition: all 0.4s ease;
+}
+
+
+
+.experienceSwiper .list_item .overlay {
+	position: absolute;
+	inset: 0;
+	background: linear-gradient(to bottom, rgba(0, 0, 0, 0.2),
+		rgba(0, 0, 0, 0.6));
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	opacity: 0;
+	transition: all 0.4s ease;
+}
+
+.experienceSwiper .list_item .overlay span {
+	color: #fff;
+	font-size: 18px;
+	letter-spacing: 2px;
+	font-weight: 500;
+}
+
+.experienceSwiper .list_item .imgBox:hover img {
+	filter: blur(4px);
+	transform: scale(1.05);
+}
+
+.experienceSwiper .list_item .imgBox:hover .overlay {
+	opacity: 1;
+}
+
+
+
+
+.experienceSwiper .list_item  .viewBtn {
+  padding: 12px 28px;
+  border: 1px solid #fff;
+  color: #fff;
+  text-decoration: none;
+  font-size: 14px;
+  letter-spacing: 2px;
+  transition: 0.3s ease;
+}
+
+.experienceSwiper .list_item  .viewBtn:hover {
+  background: #fff;
+  color: #000;
+}
+
+.experienceSwiper .list_item .imgBox.active img {
+  filter: blur(3px);
+  transform: scale(1.05);
+}
+
+.experienceSwiper .list_item .imgBox.active .overlay {
+  opacity: 1;
+}
+
+/* 컴퓨터 hover */
+@media (hover: hover) {
+  .experienceSwiper .list_item .imgBox:hover img {
+    filter: blur(3px);
+    transform: scale(1.05);
+  }
+
+  .experienceSwiper .list_item .imgBox:hover .overlay {
+    opacity: 1;
+  }
+}
+
+
+.experienceSwiper .list_item .textBox {
+	text-align: right;
+	padding: 15px;
+	color: #fff;
+}

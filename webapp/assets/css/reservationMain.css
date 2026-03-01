@@ -1,0 +1,159 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+}
+
+.wrap {
+    width: 100%;
+    text-align: center;
+    padding-top : 90px;
+}
+
+/* =========================
+   메인 영역
+========================= */
+.reservationMain {
+    width: 100%;
+    max-width: 1600px;
+    margin: 0 auto;
+}
+
+/* =========================
+   메뉴 리스트 (5개 고정)
+========================= */
+.menu-list {
+    list-style: none;
+    padding: 0px 2%;
+    margin: 0 0 0;
+
+    display: flex;
+    flex-wrap: nowrap;   /* 🔥 PC에서는 절대 안 내려감 */
+    width: 100%;
+}
+
+/* 5등분 자동 분배 */
+.menu-block {
+    flex: 1;
+    min-width: 0;
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+/* 카드 상승 효과 */
+.menu-block:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 25px 50px rgba(0,0,0,0.25);
+}
+
+/* =========================
+   이미지 영역
+========================= */
+.image-wrapper {
+    position: relative;
+    width: 100%;
+
+    aspect-ratio: 1 / 2;   /* 🔥 200% 대체 (세로 긴 비율 유지) */
+
+    overflow: hidden;
+    background-color: #ddd;
+}
+
+/* 이미지 */
+.image-wrapper img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+
+    transition: transform 0.6s ease;
+}
+
+/* 어두운 오버레이 */
+.image-wrapper::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+
+    background: rgba(0,0,0,0.55);
+    transition: background 0.5s ease;
+}
+
+/* 이미지 확대 */
+.menu-block:hover img {
+    transform: scale(1.12);
+}
+
+/* 오버레이 밝아짐 */
+.menu-block:hover .image-wrapper::after {
+    background: rgba(0,0,0,0.15);
+}
+
+/* =========================
+   텍스트
+========================= */
+.overlay-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    color: white;
+    font-size: 1.3rem;
+    font-weight: bold;
+    letter-spacing: 2px;
+
+    transition: top 0.4s ease, transform 0.4s ease;
+    z-index: 2;
+}
+
+/* 호버 시 중앙 정렬 */
+.menu-block:hover .overlay-text {
+    top: 12%;                 /* 🔥 위쪽으로 이동 */
+    transform: translateX(-50%);   /* Y축 이동 제거 */
+}
+h1 {
+    margin: 0;
+}
+h2{
+    margin: 0;
+}
+
+/* =========================
+   반응형
+========================= */
+
+/* 태블릿 */
+@media (max-width: 1200px) {
+    .menu-list {
+        flex-wrap: wrap;
+    }
+
+    .menu-block {
+        flex: 0 0 33.33%;
+    }
+}
+
+/* 모바일 */
+@media (max-width: 768px) {
+    .menu-block {
+        flex: 0 0 50%;
+    }
+}
+
+@media (hover: none) {
+
+    /* 텍스트 항상 상단 */
+    .overlay-text {
+        top: 10%;
+        transform: translateX(-50%);
+    }
+
+    /* 오버레이 밝게 */
+    .image-wrapper::after {
+        background: rgba(0,0,0,0.2);
+    }
+
+}

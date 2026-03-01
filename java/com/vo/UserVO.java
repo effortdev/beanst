@@ -1,0 +1,81 @@
+package com.vo;
+
+
+public class UserVO {
+
+	private String userId;
+	private String email;
+	private String password;
+	private String name;
+	private String phone;
+	private String role;
+	private String status;
+
+	public UserVO() {
+	}
+
+	// === Getter / Setter ===
+
+	public String getUserId() {
+		return userId;
+	}
+
+	public void setUserId(String userId) {
+		this.userId = userId;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	// 보안상 toString에 password는 안 넣는 게 좋음
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getPhone() {
+		return phone;
+	}
+
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
+
+	public String getRole() {
+		return role;
+	}
+
+	public void setRole(String role) {
+		this.role = role;
+	}
+
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
+
+	@Override
+	public String toString() {
+		return "UserDTO{" + "userId='" + userId + '\'' + ", email='" + email + '\'' + ", name='" + name + '\''
+				+ ", phone='" + phone + '\'' + ", role='" + role + '\'' + ", status='" + status + '}';
+	}
+}
