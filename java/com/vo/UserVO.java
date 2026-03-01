@@ -14,7 +14,7 @@ public class UserVO {
 	public UserVO() {
 	}
 
-	// === Getter / Setter ===
+
 
 	public String getUserId() {
 		return userId;
@@ -36,7 +36,7 @@ public class UserVO {
 		return password;
 	}
 
-	// 보안상 toString에 password는 안 넣는 게 좋음
+
 	public void setPassword(String password) {
 		this.password = password;
 	}

@@ -1,20 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
 <%@ taglib prefix="c" uri="jakarta.tags.core"%>
 
-<!DOCTYPE html>
-<html>
-
-<head>
-<meta charset="UTF-8">
-<title>My Hotel</title>
-
-<!-- 공통 CSS -->
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/assets/css/header.css">
-</head>
-
-<body>
-
 	<header id="hdr">
 		<div class="hdr_inner">
 			<div class="logo">

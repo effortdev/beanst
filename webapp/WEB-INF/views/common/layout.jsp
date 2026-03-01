@@ -12,6 +12,8 @@
 	href="${pageContext.request.contextPath}/assets/css/main.css">
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/assets/css/header.css">
 
 <!-- 페이지별 CSS -->
 <c:if test="${pageCss != null}">
