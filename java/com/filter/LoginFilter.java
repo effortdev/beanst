@@ -32,7 +32,6 @@ public class LoginFilter implements Filter {
                 path.equals("/") ||
                 path.startsWith("/resources/");
 
-        // 🔥 로그인 필요한 URL 패턴
         boolean needsLogin =
                 path.startsWith("/member/mypage") ||
                 path.startsWith("/reservations/new");
