@@ -5,21 +5,21 @@
 		<div class="swiper heroSwiper">
 			<div class="swiper-wrapper">
 				<div class="hero-content">
-					<h1 class="brand-title en">VIN'st Hotel</h1>
+					<h1 class="brand-title en fade-up">VIN'st Hotel</h1>
 
-					<div class="brand-divider" aria-hidden="true">◆</div>
+					<div class="brand-divider fade-up" aria-hidden="true">◆</div>
 
-					<h2 class="brand-subtitle ko">도심 속에서 만나는 프리미엄 휴식, 당신의 하루를 더
+					<h2 class="brand-subtitle ko fade-up">도심 속에서 만나는 프리미엄 휴식, 당신의 하루를 더
 						특별하게</h2>
 
-					<p class="brand-desc ko">
+					<p class="brand-desc ko fade-up">
 						<span class="title en">VIN'st Hotel</span>는 도시의 중심에서 자연의 여유를 느낄 수
 						있는 프리미엄 호텔입니다.
 					</p>
 
-					<p class="brand-desc-sub ko">감각적인 인테리어와 편안한 침구, 그리고 섬세한 서비스로
+					<p class="brand-desc-sub ko fade-up">감각적인 인테리어와 편안한 침구, 그리고 섬세한 서비스로
 						여행의 피로를 완벽하게 풀어드립니다.</p>
-					<p class="brand-desc-sub ko">다양한 객실 타입과 스위트룸, 라운지 &amp; 편의시설까지
+					<p class="brand-desc-sub ko fade-up">다양한 객실 타입과 스위트룸, 라운지 &amp; 편의시설까지
 						머무는 순간이 곧 쉼이 되도록 준비했습니다.</p>
 				</div>
 
@@ -34,7 +34,7 @@
 	</section>
 
 	<section id="about_Room">
-		<div class="top_title">
+		<div class="top_title fade-up">
 			<h2 class="en">Room Types</h2>
 			<p class="text">스탠다드부터 스위트까지, 품격 있는 선택의 폭을 제공합니다.</p>
 		</div>
@@ -115,7 +115,7 @@
 	</section>
 
 	<section id="about_Hotel">
-		<div class="top_title">
+		<div class="top_title  fade-up">
 			<h2 class="en">Hotel Experience</h2>
 			<p class="text">품격 있는 다이닝, 여유로운 라운지, 피트니스와 스파 등 다양한 부대시설을 통해 완성된
 				휴식을 제공합니다.</p>

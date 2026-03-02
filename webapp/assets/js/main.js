@@ -2,6 +2,30 @@
  * main jsp javaScript 입니다
  */
 
+document.addEventListener("DOMContentLoaded", function () {
+
+    const targets = document.querySelectorAll(".fade-up");
+
+    const observer = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+
+            if (entry.isIntersecting) {
+                entry.target.classList.add("show");
+
+                // 🔥 한 번만 실행하고 싶으면
+                observer.unobserve(entry.target);
+            }
+
+        });
+    }, {
+        threshold: 0.3   // 30% 보이면 실행
+    });
+
+    targets.forEach(target => {
+        observer.observe(target);
+    });
+
+});
 
 
 // hero섹션 js

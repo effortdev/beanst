@@ -36,9 +36,19 @@ public class FrontController extends HttpServlet {
 
 		request.setCharacterEncoding("UTF-8");
 
-		String path = request.getServletPath(); // ex) /main.do
+		String uri = request.getRequestURI();
+		String contextPath = request.getContextPath();
+		String path = uri.substring(contextPath.length());
+		if (path == null || path.equals("") || path.equals("/")) {
+			path = "/";
+		}
 
 		Action controller = mapper.getController(path);
+
+		if (controller == null) {
+			response.sendError(HttpServletResponse.SC_NOT_FOUND);
+			return;
+		}
 
 		String viewName = controller.execute(request, response);
 

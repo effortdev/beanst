@@ -1,6 +1,18 @@
 @charset "UTF-8";
 
 
+.fade-up {
+  opacity: 0;
+  transform: translateY(60px);
+  transition: all 1s ease;
+}
+
+/* 실행 상태 */
+.fade-up.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
 /* hero 섹션 */
 #main_hero {
 	height: 100vh;
@@ -48,7 +60,7 @@
 }
 
 #main_hero .brand-title {
-	font-size: 48px;
+	font-size: 56px;
 	font-weight: 600;
 	margin-bottom: 15px;
 }
@@ -87,7 +99,6 @@
 }
 
 #about_Room .top_title p {
-	font-size: 18px;
 	font-weight: 300;
 	position: relative;
 }
@@ -160,7 +171,7 @@
 	transition: opacity 0.4s ease, right 0.4s ease;
 	transition-delay: 0.1s;
 	border: none;
-	background-color: #111;
+	background-color: #0e0e0e;
 	color: #fff;
 	padding: 20px 30px;
 }
@@ -184,7 +195,7 @@
 }
 
 #about_Room .swiper-button-next, #about_Room .swiper-button-prev {
-	color: #111;
+	color: #0e0e0e;
 }
 
 /* 슬라이드 버튼 */
@@ -194,6 +205,61 @@
 	font-size: 16px;
 }
 
+#about_Room .swiper-pagination {
+	width: auto !important;
+	left: auto;
+	right: 60px;
+	bottom: 10px;
+	text-align: right;
+}
+
+#about_Room .swiper-pagination {
+	padding: 10px 26px;
+	border-radius: 50px;
+	background: #fff;
+	backdrop-filter: blur(12px);
+	-webkit-backdrop-filter: blur(12px);
+	border: 1px solid #ccc;
+	color: #000;
+	font-size: 14px;
+	letter-spacing: 3px;
+	font-weight: 500;
+	display: inline-block;
+	align-items: end;
+	gap: 6px;
+	transition: 0.4s ease;
+}
+
+#about_Room .swiper-pagination-current {
+	color: #000;
+	font-weight: 600;
+}
+
+#about_Room .swiper-pagination-total {
+	opacity: 0.6;
+}
+
+#about_Room .swiper-pagination:hover {
+	transform: translateY(-2px);
+}
+
+@media (max-width: 768px) {
+
+  #about_Room .swiper-pagination {
+    width: auto !important;
+
+    position: absolute;  
+    
+    top: 50px;        
+    right: 20px;     
+
+    bottom: auto;      
+    left: auto;       
+
+    text-align: right;
+  }
+
+}
 /* about_Hotel 섹션 */
 #about_Hotel {
 	max-width: 1600px;
@@ -210,7 +276,6 @@
 }
 
 #about_Hotel .top_title p {
-	font-size: 18px;
 	font-weight: 300;
 	position: relative;
 }
@@ -236,27 +301,27 @@
 .experienceSwiper .list_item {
 	width: 500px;
 	height: 400px;
-	background: #111;
+	background: #0e0e0e;
 	font-size: 20px;
 	font-weight: 500;
 	border-radius: 12px;
 	overflow: hidden;
 }
 
-@media (max-width: 1024px) {
-.experienceSwiper .list_item {
-    width: 500px;
-    height: 400px;
-  }
+@media ( max-width : 1024px) {
+	.experienceSwiper .list_item {
+		width: 500px;
+		height: 400px;
+	}
 }
 
 /* 모바일 */
-@media (max-width: 768px) {
-.experienceSwiper .list_item {
-    width: 400px;
-    height: 400px;
-    margin: 0 auto;
-  }
+@media ( max-width : 768px) {
+	.experienceSwiper .list_item {
+		width: 400px;
+		height: 400px;
+		margin: 0 auto;
+	}
 }
 
 .experienceSwiper .list_item .imgBox {
@@ -272,8 +337,6 @@
 	display: block;
 	transition: all 0.4s ease;
 }
-
-
 
 .experienceSwiper .list_item .overlay {
 	position: absolute;
@@ -303,45 +366,44 @@
 	opacity: 1;
 }
 
-
-
-
 .experienceSwiper .list_item  .viewBtn {
-  padding: 12px 28px;
-  border: 1px solid #fff;
-  color: #fff;
-  text-decoration: none;
-  font-size: 14px;
-  letter-spacing: 2px;
-  transition: 0.3s ease;
+	padding: 12px 28px;
+	border: 1px solid #fff;
+	color: #fff;
+	text-decoration: none;
+	font-size: 14px;
+	letter-spacing: 2px;
+	transition: 0.3s ease;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%,-50%);
 }
 
 .experienceSwiper .list_item  .viewBtn:hover {
-  background: #fff;
-  color: #000;
+	background: #fff;
+	color: #000;
 }
 
 .experienceSwiper .list_item .imgBox.active img {
-  filter: blur(3px);
-  transform: scale(1.05);
+	filter: blur(3px);
+	transform: scale(1.05);
 }
 
 .experienceSwiper .list_item .imgBox.active .overlay {
-  opacity: 1;
+	opacity: 1;
 }
 
 /* 컴퓨터 hover */
-@media (hover: hover) {
-  .experienceSwiper .list_item .imgBox:hover img {
-    filter: blur(3px);
-    transform: scale(1.05);
-  }
-
-  .experienceSwiper .list_item .imgBox:hover .overlay {
-    opacity: 1;
-  }
+@media ( hover : hover) {
+	.experienceSwiper .list_item .imgBox:hover img {
+		filter: blur(3px);
+		transform: scale(1.05);
+	}
+	.experienceSwiper .list_item .imgBox:hover .overlay {
+		opacity: 1;
+	}
 }
-
 
 .experienceSwiper .list_item .textBox {
 	text-align: right;

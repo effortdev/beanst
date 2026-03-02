@@ -7,6 +7,9 @@
 <meta charset="UTF-8">
 <title>${pageTitle != null ? pageTitle : "Vinst Hotel"}</title>
 
+<link rel="icon" type="image/x-icon"
+	href="${pageContext.request.contextPath}/assets/images/favicon_io/favicon-32x32.png">
+
 <!-- 공통 CSS -->
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/assets/css/main.css">
@@ -14,6 +17,8 @@
 	href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/assets/css/header.css">
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/assets/css/footer.css">
 
 <!-- 페이지별 CSS -->
 <c:if test="${pageCss != null}">
