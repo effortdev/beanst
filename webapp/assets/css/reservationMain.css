@@ -1,4 +1,4 @@
-
+/* ================= reservation ================= */
 
 #reservation {
     max-width: 1600px;
@@ -28,7 +28,7 @@
     background: #ccc;
 }
 
-
+/* ================= FLEX 영역 ================= */
 
 #flex {
     display: flex;
@@ -91,7 +91,7 @@
     letter-spacing: 2px;
 }
 
-
+/* ===== 880px 이하 반응형 ===== */
 @media screen and (max-width:880px) {
     .experienceSwiper .list_item {
         height: auto;
@@ -102,7 +102,7 @@
     }
 }
 
-
+/* ===== 640px 이하 → 텍스트만 카드 ===== */
 @media screen and (max-width:640px) {
     .experienceSwiper .list_item {
         height: 70px;
@@ -128,4 +128,45 @@
         letter-spacing: 2px;
         color: #fff;
     }
+}
+
+@media ( hover : hover) {
+	.experienceSwiper .list_item .imgBox:hover img {
+		filter: blur(3px);
+		transform: scale(1.05);
+	}
+	.experienceSwiper .list_item .imgBox:hover .overlay {
+		opacity: 1;
+	}
+}
+
+
+
+.experienceSwiper .list_item  .viewBtn {
+	padding: 12px 28px;
+	border: 1px solid #fff;
+	color: #fff;
+	text-decoration: none;
+	font-size: 14px;
+	letter-spacing: 2px;
+	transition: 0.3s ease;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%,-50%);
+	text-align : center;
+}
+
+
+
+.experienceSwiper .list_item .overlay {
+	position: absolute;
+	inset: 0;
+	background: linear-gradient(to bottom, rgba(0, 0, 0, 0.2),
+		rgba(0, 0, 0, 0.6));
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	opacity: 0;
+	transition: all 0.4s ease;
 }

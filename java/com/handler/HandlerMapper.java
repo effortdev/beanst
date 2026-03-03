@@ -8,6 +8,7 @@ import com.controller.MemberMypageController;
 import com.controller.ReservationMainController;
 import com.controller.admin.AdminDashboardController;
 import com.controller.admin.AdminLoginController;
+import com.controller.admin.AdminLogoutController;
 
 public class HandlerMapper {
 
@@ -19,6 +20,7 @@ public class HandlerMapper {
 		map.put("/reservationMain.do", new ReservationMainController());
 		map.put("/admin/login.do", new AdminLoginController());
 		map.put("/admin/dashboard.do", new AdminDashboardController());
+		map.put("/admin/logout.do", new AdminLogoutController());
 	}
 
 	public Action getController(String path) {
