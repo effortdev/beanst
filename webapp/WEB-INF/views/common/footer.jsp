@@ -19,8 +19,8 @@
 
 			<nav class="footer-nav en">
 				<ul>
-					<li><a href="${pageContext.request.contextPath}/faq">FAQ</a></li>
-					<li><a href="${pageContext.request.contextPath}/qna">Q&A</a></li>
+					<li class="en"><a href="${pageContext.request.contextPath}/faq">FAQ</a></li>
+					<li class="en"><a href="${pageContext.request.contextPath}/qna">Q&A</a></li>
 
 					<c:if test="${sessionScope.loginMember != null}">
 						<li><a
