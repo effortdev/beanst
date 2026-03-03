@@ -22,10 +22,13 @@
 			<p class="error">${errorMsg}</p>
 		</c:if>
 	</form>
-
-	<div class="atHome"><a href="${pageContext.request.contextPath}/main.do"> 메인홈으로 이동 </a></div>
-
 	<c:if test="${param.logout eq 'true'}">
-		<p>정상적으로 로그아웃 되었습니다.</p>
+		<p class="logout">정상적으로 로그아웃 되었습니다.</p>
 	</c:if>
+
+	<div class="atHome">
+		<a href="${pageContext.request.contextPath}/main.do"> 메인홈으로 이동 </a>
+	</div>
+
+
 </div>

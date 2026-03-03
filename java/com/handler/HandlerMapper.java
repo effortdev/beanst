@@ -2,6 +2,8 @@ package com.handler;
 
 import java.util.HashMap;
 
+import com.admin.facility.AdminFacilityListController;
+import com.admin.facility.AdminFacilityUpdateController;
 import com.controller.Action;
 import com.controller.HomeController;
 import com.controller.MemberMypageController;
@@ -21,6 +23,8 @@ public class HandlerMapper {
 		map.put("/admin/login.do", new AdminLoginController());
 		map.put("/admin/dashboard.do", new AdminDashboardController());
 		map.put("/admin/logout.do", new AdminLogoutController());
+		map.put("/admin/facility/list.do", new AdminFacilityListController());
+		map.put("/admin/facility/updateForm.do", new AdminFacilityUpdateController());
 	}
 
 	public Action getController(String path) {

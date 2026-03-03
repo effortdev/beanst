@@ -3,11 +3,86 @@
 
 <properties>
 
-    <entry key="adminLogin">
-        SELECT user_id, role
-        FROM users
-        WHERE user_id = ?
-        AND password = ?
-    </entry>
+	<entry key="adminLogin">
+		SELECT user_id, role
+		FROM users
+		WHERE user_id = ?
+		AND
+		password = ?
+	</entry>
+
+	<entry key="facilitySelectAll">
+		SELECT facility_id, facility_type, facility_name,
+		location, open_time
+		FROM hotel_facility
+		ORDER BY facility_id
+	</entry>
+
+
+	<entry key="facilityUpdate">
+		UPDATE hotel_facility
+		SET facility_name = ?,
+		facility_type = ?,
+		location = ?,
+		open_time = ?,
+		description = ?
+		WHERE
+		facility_id = ?
+	</entry>
+
+
+	<entry key="facilityImagePath">
+		SELECT image_path
+		FROM facility_image
+		WHERE image_id = ?
+	</entry>
+
+
+	<entry key="facilityImageDelete">
+		DELETE FROM facility_image
+		WHERE image_id = ?
+	</entry>
+
+
+	<entry key="facilityImageInsert">
+		INSERT INTO facility_image
+		(facility_id, image_path,
+		is_main)
+		VALUES (?, ?, ?)
+	</entry>
+
+
+	<entry key="facilityResetMain">
+		UPDATE facility_image
+		SET is_main = 'N'
+		WHERE
+		facility_id = ?
+	</entry>
+
+
+	<entry key="facilitySetMain">
+		UPDATE facility_image
+		SET is_main = 'Y'
+		WHERE image_id =
+		?
+	</entry>
+
+	<entry key="facilitySelectOne">
+		SELECT facility_id,
+		facility_type,
+		facility_name,
+		location,
+		open_time,
+		description
+		FROM hotel_facility
+		WHERE facility_id = ?
+	</entry>
+
+
+	<entry key="facilitySelectImages">
+		SELECT image_id, image_path, is_main
+		FROM facility_image
+		WHERE facility_id = ?
+	</entry>
 
 </properties>
