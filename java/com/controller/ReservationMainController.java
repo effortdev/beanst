@@ -13,6 +13,6 @@ public class ReservationMainController implements Action {
                 "/WEB-INF/views/reservation/reservationMain.jsp");
         request.setAttribute("pageCss", "reservationMain");
 
-        return "common/layout";
+        return "reservation/reservationMain";
     }
 }

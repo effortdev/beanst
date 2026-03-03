@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+
+<properties>
+
+    <entry key="adminLogin">
+        SELECT user_id, role
+        FROM users
+        WHERE user_id = ?
+        AND password = ?
+    </entry>
+
+</properties>

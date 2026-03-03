@@ -64,8 +64,10 @@ public class FrontController extends HttpServlet {
 		request.setAttribute("contentPage", "/WEB-INF/views/" + viewName + ".jsp");
 
 		String layout;
+		
+		System.out.println("viewName = [" + viewName + "]");
 
-		if (viewName.startsWith("/admin/")) {
+		if (viewName.startsWith("/admin/") || viewName.startsWith("admin/")) {
 			layout = "/WEB-INF/views/admin/layout.jsp";
 		} else {
 			layout = "/WEB-INF/views/common/layout.jsp";
