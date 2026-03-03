@@ -1,6 +1,17 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
 <%@ taglib prefix="c" uri="jakarta.tags.core"%>
 
+<script>
+	$(document).ready(function() {
+		$(".logout-btn").on("click", function(e) {
+			if (!confirm("로그아웃 하시겠습니까?")) {
+				e.preventDefault(); // '취소' 누르면 이동 안 함
+			}
+		});
+	});
+</script>
+
+
 <header id="hdr">
 	<div class="hdr_inner">
 		<div class="logo">
@@ -12,7 +23,12 @@
 		<div class="rightItem">
 			<ul>
 				<c:if test="${sessionScope.loginMember != null}">
-					<li><p>${sessionScope.loginMember.name} 님 환영합니다.</p></li>
+					<li><p>${sessionScope.loginMember.name}님 환영합니다.</p></li>
+
+					<li><a class="logout-btn"
+						href="${pageContext.request.contextPath}/logout.do" class="ko">로그아웃</a>
+					</li>
+
 				</c:if>
 				<li><a href=# id="reserv" class="text en">Contact Us</a></li>
 				<li><a

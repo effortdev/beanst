@@ -1,0 +1,139 @@
+@charset "UTF-8";
+
+.wrap {
+	background-color: #FAF8F5;
+}
+/* 섹션 전체 */
+#reservationLocation {
+	max-width: 1400px;
+	width: 88%;
+	padding: 180px 0;
+	margin: 0 auto;
+}
+
+/* 상단 타이틀 */
+#reservationLocation .top_title h2 {
+	font-family: 'Cormorant Garamond', serif;
+	font-size: 56px;
+	letter-spacing: 6px;
+	font-weight: 500;
+	margin-bottom: 20px;
+	text-align: center;
+	color: #3A2F2A;
+}
+
+#reservationLocation .top_title p {
+	font-size: 14px;
+	letter-spacing: 4px;
+	font-weight: 300;
+	text-align: center;
+	color: #7A6F67;
+	position: relative;
+	padding-bottom: 30px;
+}
+
+#reservationLocation .top_title p::before {
+	position: absolute;
+	content: "";
+	bottom: -10px;
+	left: 0;
+	width: 100%;
+	height: 1px;
+	background: #ccc;
+}
+
+/* 전체 가로 배치 */
+.Locationposition {
+	margin-top: 100px;
+	display: flex;
+	justify-content: center;
+	align-items: stretch;
+	gap: 0;
+}
+
+/* 왼쪽 묶음 */
+.LocationLeft {
+	width: 60%;
+	max-width: 760px;
+	display: flex;
+	flex-direction: column;
+	background: white;
+	border-radius: 16px 0 0 16px;
+	overflow: hidden;
+	box-shadow: 0 15px 40px rgba(0,0,0,0.05);
+}
+
+/* 지도 */
+.LocationMap {
+	width: 100%;
+	aspect-ratio: 16/9;
+	overflow: hidden;
+}
+
+/* 지도 이미지 */
+.mapImg {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	display: block;
+	filter: grayscale(20%);
+}
+
+/* 주소 */
+.Locationadress {
+	width: 100%;
+	background-color: white; /* 컬러 박스 제거 */
+	color: #3A2F2A;
+	padding: 40px 30px;
+	text-align: center;
+	border-top: 1px solid #eee;
+}
+
+/* 주소 텍스트 스타일 */
+.Locationadress h4 {
+	font-size: 26px;
+	font-weight: 500;
+	margin-bottom: 15px;
+	letter-spacing: 1px;
+}
+
+.Locationadress h5 {
+	font-size: 15px;
+	font-weight: 300;
+	color: #7A6F67;
+	margin-bottom: 8px;
+	line-height: 1.7;
+}
+
+/* 오른쪽 박스 */
+.LocationExtra {
+	width: 340px;
+	background: #E6D3A3; 
+	border-radius: 0 16px 16px 0;
+	padding: 50px 40px;
+	color: #4B433A;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	box-shadow: 0 15px 40px rgba(0,0,0,0.05);
+}
+
+/* 오른쪽 제목 */
+.LocationExtra h4 {
+	font-size: 22px;
+	letter-spacing: 3px;
+	font-weight: 500;
+	margin-bottom: 30px;
+	position: relative;
+}
+
+/* 골드 포인트 라인 */
+.LocationExtra h4::after {
+	content: "";
+	position: absolute;
+	bottom: -12px;
+	left: 0;
+	width: 40px;
+	height: 1px;
+	background: #B89B5E;
+}
