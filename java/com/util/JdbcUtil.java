@@ -12,7 +12,7 @@ public class JdbcUtil {
 		
 		try {
 			Context initCtx = new InitialContext();
-			DataSource ds = (DataSource)initCtx.lookup("java:comp/env/jdbc/MariaDB");
+			DataSource ds = (DataSource)initCtx.lookup("java:comp/env/jdbc/beanst");
 	  		
 			con = ds.getConnection();
 			con.setAutoCommit(false);

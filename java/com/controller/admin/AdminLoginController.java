@@ -30,6 +30,8 @@ public class AdminLoginController implements Action {
                     new AdminLoginService(request.getServletContext());
 
             AdminDTO admin = service.login(userId, password);
+            
+            System.out.println("AdminLoginController 진입");
 
             if (admin != null) {
                 HttpSession session = request.getSession();

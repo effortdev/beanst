@@ -17,6 +17,7 @@ public class AdminDAO {
 
 	public AdminDAO(ServletContext context) {
 		try {
+			System.out.println("AdminDAO 생성자 실행");
 			InputStream input = context.getResourceAsStream("/WEB-INF/config/adminMapper.xml");
 			props.loadFromXML(input);
 		} catch (Exception e) {
@@ -35,6 +36,8 @@ public class AdminDAO {
 
 			String sql = props.getProperty("adminLogin");
 			ps = conn.prepareStatement(sql);
+			
+			System.out.println("sql = " + sql);
 
 			ps.setString(1, userId);
 			ps.setString(2, password);

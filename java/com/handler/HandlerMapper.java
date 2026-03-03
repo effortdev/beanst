@@ -6,20 +6,22 @@ import com.controller.Action;
 import com.controller.HomeController;
 import com.controller.MemberMypageController;
 import com.controller.ReservationMainController;
+import com.controller.admin.AdminDashboardController;
 import com.controller.admin.AdminLoginController;
 
 public class HandlerMapper {
 
-    private HashMap<String, Action> map = new HashMap<>();
+	private HashMap<String, Action> map = new HashMap<>();
 
-    public HandlerMapper() {
-    	map.put("/main.do", new HomeController());         // 메인
-    	map.put("/member/mypage.do", new MemberMypageController());
-    	map.put("/reservationMain.do", new ReservationMainController());
-    	map.put("/admin/login.do", new AdminLoginController());
-    }
+	public HandlerMapper() {
+		map.put("/main.do", new HomeController()); // 메인
+		map.put("/member/mypage.do", new MemberMypageController());
+		map.put("/reservationMain.do", new ReservationMainController());
+		map.put("/admin/login.do", new AdminLoginController());
+		map.put("/admin/dashboard.do", new AdminDashboardController());
+	}
 
-    public Action getController(String path) {
-        return map.get(path);
-    }
+	public Action getController(String path) {
+		return map.get(path);
+	}
 }

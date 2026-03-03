@@ -7,8 +7,8 @@
 	</div>
 
 	<div class="admin-header-right">
-		<c:if test="${sessionScope.loginAdmin != null}">
-			<span class="admin-user"> ${sessionScope.adminId} </span>
+		<c:if test="${not empty sessionScope.admin}">
+			<span class="admin-user"> ${sessionScope.admin.role} 님 환영합니다.</span>
 			<a href="${pageContext.request.contextPath}/admin/logout.do"
 				class="admin-logout"> Logout </a>
 		</c:if>
