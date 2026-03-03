@@ -13,7 +13,7 @@ public class HomeController implements Action {
         request.setAttribute("contentPage",
                 "/WEB-INF/views/home/main.jsp");
 
-        return "common/layout"; // 이게 만든 화면을 layout.jsp 로 보내고 layout 은 그걸 브라우저로 출력하는 개념입니다
+        return "home/main"; // 이게 만든 화면을 layout.jsp 로 보내고 layout 은 그걸 브라우저로 출력하는 개념입니다
     }
 }
 

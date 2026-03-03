@@ -39,8 +39,9 @@ public class FrontController extends HttpServlet {
 		String uri = request.getRequestURI();
 		String contextPath = request.getContextPath();
 		String path = uri.substring(contextPath.length());
+
 		if (path == null || path.equals("") || path.equals("/")) {
-			path = "/";
+			path = "/main.do";
 		}
 
 		Action controller = mapper.getController(path);
@@ -52,13 +53,26 @@ public class FrontController extends HttpServlet {
 
 		String viewName = controller.execute(request, response);
 
-		// redirect 처리
+		if (viewName == null)
+			return;
+
 		if (viewName.startsWith("redirect:")) {
 			response.sendRedirect(request.getContextPath() + viewName.replace("redirect:", ""));
-		} else {
-			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/" + viewName + ".jsp");
-			rd.forward(request, response);
+			return;
 		}
+
+		request.setAttribute("contentPage", "/WEB-INF/views/" + viewName + ".jsp");
+
+		String layout;
+
+		if (viewName.startsWith("/admin/")) {
+			layout = "/WEB-INF/views/admin/layout.jsp";
+		} else {
+			layout = "/WEB-INF/views/common/layout.jsp";
+		}
+
+		RequestDispatcher rd = request.getRequestDispatcher(layout);
+		rd.forward(request, response);
 	}
 
 }
