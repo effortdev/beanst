@@ -81,6 +81,19 @@ function renderPreview(){
             img.src = e.target.result;
             img.width = 120;
 
+            // 대표 이미지 선택
+            const radio = document.createElement("input");
+            radio.type = "radio";
+            radio.name = "mainImageIndex";
+            radio.value = index;
+
+            if(index === 0){
+                radio.checked = true;
+            }
+
+            const label = document.createElement("div");
+            label.innerText = "대표";
+
             const delBtn = document.createElement("button");
             delBtn.type = "button";
             delBtn.innerText = "삭제";
@@ -91,6 +104,8 @@ function renderPreview(){
             };
 
             div.appendChild(img);
+            div.appendChild(radio);
+            div.appendChild(label);
             div.appendChild(delBtn);
 
             preview.appendChild(div);
@@ -99,7 +114,6 @@ function renderPreview(){
         reader.readAsDataURL(file);
     });
 }
-
 function removeImage(index){
 
     fileList.splice(index,1);

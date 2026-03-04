@@ -38,16 +38,19 @@
     gap: 10px;
 }
 
+/* 기본: 4개 */
 #flex .item {
     flex: 1 1 calc(20% - 10px);
 }
 
+/* 1400px 이하: 2개 */
 @media screen and (max-width:1400px) {
     #flex .item {
-        flex: 1 1 calc(33.333% - 10px);
+        flex: 1 1 calc(50% - 10px);
     }
 }
 
+/* 880px 이하: 1개 */
 @media screen and (max-width:880px) {
     #flex .item {
         flex: 1 1 100%;

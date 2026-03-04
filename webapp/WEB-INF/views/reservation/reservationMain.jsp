@@ -78,23 +78,6 @@
 						</div>
 					</div>
 				</div>
-
-				<div class="item">
-					<div class="list_item">
-						<div class="imgBox">
-							<img
-								src="${pageContext.request.contextPath}/assets/images/reservation/hotel-faq.png"
-								alt="hotel_list_Banquet">
-							<div class="overlay">
-								<a href="#" class="viewBtn en">자주하는 질문</a>
-							</div>
-						</div>
-						<div class="textBox">
-							<p class="text en">FAQ</p>
-						</div>
-					</div>
-				</div>
-
 			</div>
 		</div>
 	</section>
