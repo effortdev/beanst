@@ -7,7 +7,7 @@
 #reservationLocation {
 	max-width: 1400px;
 	width: 88%;
-	padding: 180px 0;
+	padding: 120px 0;
 	margin: 0 auto;
 }
 
@@ -42,9 +42,23 @@
 	background: #ccc;
 }
 
+p {
+	margin-top: 5px;
+	color: #7A6F67;
+}
+
+.localhotel h4::before {
+	position: absolute;
+	content: "";
+	bottom: -12px;
+	left: 0;
+	width: 100%;
+	height: 1px;
+	background: #B89B5E;
+}
 /* 전체 가로 배치 */
 .Locationposition {
-	margin-top: 100px;
+	margin-top: 50px;
 	display: flex;
 	justify-content: center;
 	align-items: stretch;
@@ -60,7 +74,7 @@
 	background: white;
 	border-radius: 16px 0 0 16px;
 	overflow: hidden;
-	box-shadow: 0 15px 40px rgba(0,0,0,0.05);
+	box-shadow: 0 15px 40px rgba(0, 0, 0, 0.05);
 }
 
 /* 지도 */
@@ -84,23 +98,14 @@
 	width: 100%;
 	background-color: white; /* 컬러 박스 제거 */
 	color: #3A2F2A;
-	padding: 40px 30px;
+	padding: 10px 5px;
 	text-align: center;
 	border-top: 1px solid #eee;
 }
 
-/* 주소 텍스트 스타일 */
-.Locationadress h4 {
-	font-size: 26px;
-	font-weight: 500;
-	margin-bottom: 15px;
-	letter-spacing: 1px;
-}
-
 .Locationadress h5 {
-	font-size: 15px;
+	font-size: 20px;
 	font-weight: 300;
-	color: #7A6F67;
 	margin-bottom: 8px;
 	line-height: 1.7;
 }
@@ -108,14 +113,14 @@
 /* 오른쪽 박스 */
 .LocationExtra {
 	width: 340px;
-	background: #E6D3A3; 
+	background: #E6D3A3;
 	border-radius: 0 16px 16px 0;
-	padding: 50px 40px;
+	padding: 20px 20px;
 	color: #4B433A;
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
-	box-shadow: 0 15px 40px rgba(0,0,0,0.05);
+	box-shadow: 0 15px 40px rgba(0, 0, 0, 0.05);
 }
 
 /* 오른쪽 제목 */
@@ -124,8 +129,18 @@
 	letter-spacing: 3px;
 	font-weight: 500;
 	margin-bottom: 30px;
+	margin-top: 10px;
 	position: relative;
 }
+
+/* 오시는 길 텍스트 스타일 */
+.localhotel h4 {
+	font-size: 30px;
+	font-weight: 500;
+	margin-bottom: 25px;
+	letter-spacing: 1px;
+}
+
 
 /* 골드 포인트 라인 */
 .LocationExtra h4::after {
@@ -136,4 +151,43 @@
 	width: 40px;
 	height: 1px;
 	background: #B89B5E;
+}
+
+
+@media (max-width: 1060px) {
+
+    /* 전체 세로 배치 */
+    .Locationposition {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    /* 왼쪽 묶음 해체 (자식들을 상위 flex로 끌어올림) */
+    .LocationLeft {
+        display: contents;
+    }
+
+    /* 순서 재정렬 */
+    .Locationadress {
+        order: 1;
+        width: 90%;
+        max-width: 600px;
+        border-radius: 12px 12px 0 0;
+/*         margin-bottom: 20px; */
+    }
+
+    .LocationMap {
+        order: 2;
+        width: 90%;
+        max-width: 600px;
+/*         border-radius: 16px; */
+/*         margin-bottom: 20px; */
+    }
+
+    .LocationExtra {
+        order: 3;
+        width: 90%;
+        max-width: 600px;
+        border-radius: 0 0 12px 12px;
+    }
 }

@@ -10,7 +10,9 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.annotation.MultipartConfig;
 
+@MultipartConfig(fileSizeThreshold = 1024 * 1024, maxFileSize = 1024 * 1024 * 10, maxRequestSize = 1024 * 1024 * 50)
 public class FrontController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private HandlerMapper mapper;
@@ -64,7 +66,6 @@ public class FrontController extends HttpServlet {
 		request.setAttribute("contentPage", "/WEB-INF/views/" + viewName + ".jsp");
 
 		String layout;
-		
 
 		if (viewName.startsWith("/admin/") || viewName.startsWith("admin/")) {
 			layout = "/WEB-INF/views/admin/layout.jsp";

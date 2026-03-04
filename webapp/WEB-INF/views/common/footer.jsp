@@ -18,9 +18,9 @@
 		<div class="footer-right">
 
 			<nav class="footer-nav en">
-				<ul>
-					<li class="en"><a href="${pageContext.request.contextPath}/faq">FAQ</a></li>
-					<li class="en"><a href="${pageContext.request.contextPath}/qna">Q&A</a></li>
+			<ul>
+					<li class="en"><a href="${pageContext.request.contextPath}/faqList.do">FAQ</a></li>
+					<li class="en"><a href="${pageContext.request.contextPath}/qnaList.do">Q&A</a></li>
 
 					<c:if test="${sessionScope.loginMember != null}">
 						<li><a
@@ -35,7 +35,7 @@
 				<ul>
 					<li class="en"><strong>팀명 :</strong> Beans't Developers</li>
 					<li><strong>팀장 :</strong> 김영훈</li>
-					<li><strong>팀원 :</strong> 강태준, 김현우, 곽해신, 채미숙</li>
+					<li><strong>팀원 :</strong> 강태준, 김현우, 송은설, 채미숙</li>
 				</ul>
 
 				<c:if

@@ -81,8 +81,16 @@
 
 	<entry key="facilitySelectImages">
 		SELECT image_id, image_path, is_main
-		FROM facility_image
+		FROM
+		facility_image
 		WHERE facility_id = ?
 	</entry>
 
+	<entry key="facilityInsert">
+    <![CDATA[
+        INSERT INTO hotel_facility
+        (facility_type, facility_name, location, open_time, description)
+        VALUES (?,?,?,?,?)
+    ]]>
+	</entry>
 </properties>

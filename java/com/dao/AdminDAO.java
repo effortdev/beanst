@@ -37,7 +37,6 @@ public class AdminDAO {
 			String sql = props.getProperty("adminLogin");
 			ps = conn.prepareStatement(sql);
 			
-			System.out.println("sql = " + sql);
 
 			ps.setString(1, userId);
 			ps.setString(2, password);

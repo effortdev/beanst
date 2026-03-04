@@ -9,6 +9,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.Properties;
+import java.sql.Statement;
 
 import jakarta.servlet.ServletContext;
 
@@ -196,5 +197,40 @@ public class AdminFacilityDAO {
 		close(conn);
 
 		return list;
+	}
+
+	public int insertFacility(Connection conn, AdminFacilityDTO dto) throws Exception {
+
+		int facilityId = 0;
+
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+
+		try {
+
+			String sql = props.getProperty("facilityInsert");
+
+			ps = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+
+			ps.setString(1, dto.getFacilityType());
+			ps.setString(2, dto.getFacilityName());
+			ps.setString(3, dto.getLocation());
+			ps.setString(4, dto.getOpenTime());
+			ps.setString(5, dto.getDescription());
+
+			ps.executeUpdate();
+
+			rs = ps.getGeneratedKeys();
+
+			if (rs.next()) {
+				facilityId = rs.getInt(1);
+			}
+
+		} finally {
+			close(rs);
+			close(ps);
+		}
+
+		return facilityId;
 	}
 }
