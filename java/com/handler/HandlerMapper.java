@@ -2,6 +2,7 @@ package com.handler;
 
 import java.util.HashMap;
 
+import com.admin.facility.AdminFacilityDeleteController;
 import com.admin.facility.AdminFacilityInsertController;
 import com.admin.facility.AdminFacilityInsertFormController;
 import com.admin.facility.AdminFacilityListController;
@@ -20,6 +21,8 @@ import com.controller.admin.AdminLogoutController;
 import com.controller.board.FaqListController;
 import com.controller.board.QnaDetailController;
 import com.controller.board.QnaListController;
+import com.controller.reservation.BookingController;
+import com.controller.reservation.ReservationCheckController;
 
 public class HandlerMapper {
 
@@ -35,6 +38,8 @@ public class HandlerMapper {
 		map.put("/faqList.do", new FaqListController());
 		map.put("/qnaList.do", new QnaListController());
 		map.put("/qnaDetail.do", new QnaDetailController());
+		map.put("/reservation/booking.do", new BookingController());
+		map.put("/reservation/check.do", new ReservationCheckController());
 
 		map.put("/admin/login.do", new AdminLoginController());
 		map.put("/admin/dashboard.do", new AdminDashboardController());
@@ -44,6 +49,7 @@ public class HandlerMapper {
 		map.put("/admin/facility/insert.do", new AdminFacilityInsertController());
 		map.put("/admin/facility/updateForm.do", new AdminFacilityUpdateFormController());
 		map.put("/admin/facility/update.do", new AdminFacilityUpdateController());
+		map.put("/admin/facility/delete.do", new AdminFacilityDeleteController());
 	}
 
 	public Action getController(String path) {

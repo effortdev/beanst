@@ -21,12 +21,9 @@ public class AdminFacilityInsertController implements Action {
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) {
 
-		System.out.println("시설 등록 컨트롤러 실행됨");
-
 		Connection conn = null;
 
 		try {
-
 
 			String facilityType = request.getParameter("facilityType");
 			String facilityName = request.getParameter("facilityName");
@@ -46,17 +43,14 @@ public class AdminFacilityInsertController implements Action {
 
 			conn = getConnection();
 
-
 			int facilityId = dao.insertFacility(conn, dto);
 
-
-			String uploadPath = context.getRealPath("/upload/facility");
+			final String uploadPath = "C:/hotelUploads/facility";
 
 			File dir = new File(uploadPath);
 			if (!dir.exists()) {
 				dir.mkdirs();
 			}
-
 
 			String mainIndexParam = request.getParameter("mainImageIndex");
 
@@ -65,7 +59,6 @@ public class AdminFacilityInsertController implements Action {
 			if (mainIndexParam != null && !mainIndexParam.isEmpty()) {
 				mainIndex = Integer.parseInt(mainIndexParam);
 			}
-
 
 			Collection<Part> parts = request.getParts();
 
@@ -82,7 +75,7 @@ public class AdminFacilityInsertController implements Action {
 					continue;
 
 
-				fileName = System.currentTimeMillis() + "_" + fileName;
+				fileName = java.util.UUID.randomUUID() + "_" + fileName;
 
 				String savePath = uploadPath + "/" + fileName;
 

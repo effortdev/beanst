@@ -1,26 +1,41 @@
-<%@ page contentType="text/html; charset=UTF-8" %>
+<%@ page contentType="text/html; charset=UTF-8"%>
 <%@ taglib prefix="c" uri="jakarta.tags.core"%>
 
-<div class="admin-login-container" style="padding-top: 120px;">
-    <h2 class="title">Login</h2>
+<div class="page-content">
 
-    <form action="${pageContext.request.contextPath}/login/login.do"
-          method="post">
+	<div class="container">
+		<div class="form-box">
+			<h2 class="title">로그인</h2>
 
-        <div class="form-group">
-            <label>ID</label>
-            <input type="text" name="user_id" required>
-        </div>
+			<c:if test="${not empty errorMsg}">
+				<p class="error-text text-center mb-20">${errorMsg}</p>
+			</c:if>
 
-        <div class="form-group">
-            <label>Password</label>
-            <input type="password" name="password" required>
-        </div>
+			<form action="${pageContext.request.contextPath}/login/login.do"
+				method="post">
 
-        <button type="submit">Login</button>
+				<div class="form-group">
+					<label>ID</label> <input type="text" name="user_id"
+						class="form-control" required placeholder="아이디를 입력하세요">
+				</div>
 
-        <c:if test="${not empty errorMsg}">
-            <p class="error">${errorMsg}</p>
-        </c:if>
-    </form>
+				<div class="form-group">
+					<label>Password</label> <input type="password" name="password"
+						class="form-control" required placeholder="비밀번호를 입력하세요">
+				</div>
+
+				<button type="submit" class="btn btn-primary btn-block btn-lg">로그인</button>
+
+
+
+				<div class="text-center mt-20" style="font-size: 13px">
+					<a href="${pageContext.request.contextPath}/findForm.do"
+						style="color: #888">아이디/비밀번호 찾기</a> | <a
+						href="${pageContext.request.contextPath}/joinForm.do"
+						style="color: #c9a96e">회원가입</a>
+				</div>
+
+			</form>
+		</div>
+	</div>
 </div>

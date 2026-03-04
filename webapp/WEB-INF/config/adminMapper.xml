@@ -93,4 +93,11 @@
         VALUES (?,?,?,?,?)
     ]]>
 	</entry>
+
+	<entry key="facilityDelete">
+<![CDATA[
+DELETE FROM hotel_facility
+WHERE facility_id = ?
+]]>
+	</entry>
 </properties>

@@ -233,4 +233,18 @@ public class AdminFacilityDAO {
 
 		return facilityId;
 	}
+	
+	
+	public void deleteFacility(Connection conn, int facilityId) throws Exception {
+
+		String sql = props.getProperty("facilityDelete");
+
+		PreparedStatement ps = conn.prepareStatement(sql);
+
+		ps.setInt(1, facilityId);
+
+		ps.executeUpdate();
+
+		ps.close();
+	}
 }

@@ -35,12 +35,16 @@ public class AdminFacilityUpdateController implements Action {
 		Connection conn = null;
 
 		try {
+
 			ServletContext context = request.getServletContext();
 
 			String uploadPath = "C:/hotelUploads/facility";
+
 			File uploadDir = new File(uploadPath);
-			if (!uploadDir.exists())
+			if (!uploadDir.exists()) {
 				uploadDir.mkdirs();
+			}
+
 			System.out.println("파일 저장 경로: " + uploadDir.getAbsolutePath());
 
 			if (!JakartaServletFileUpload.isMultipartContent(request)) {
@@ -49,7 +53,6 @@ public class AdminFacilityUpdateController implements Action {
 
 			FileItemFactory factory = DiskFileItemFactory.builder().get();
 			JakartaServletFileUpload upload = new JakartaServletFileUpload(factory);
-
 			upload.setFileSizeMax(MAX_FILE_SIZE);
 
 			List<FileItem> items = upload.parseRequest(request);
@@ -95,12 +98,30 @@ public class AdminFacilityUpdateController implements Action {
 					int deleteId = Integer.parseInt(item.getString());
 
 					String imagePath = dao.getImagePath(conn, deleteId);
+
 					dao.deleteImage(conn, deleteId);
 
-					if (imagePath != null) {
-						File file = new File(context.getRealPath(imagePath));
-						if (file.exists())
-							file.delete();
+					if (imagePath != null && !imagePath.isBlank()) {
+
+						String fileName = imagePath.substring(imagePath.lastIndexOf("/") + 1);
+
+						File file = new File(uploadPath + "/" + fileName);
+
+						System.out.println("삭제 대상 파일: " + file.getAbsolutePath());
+
+						if (file.exists()) {
+
+							boolean deleted = file.delete();
+
+							if (deleted) {
+								System.out.println("파일 삭제 성공");
+							} else {
+								System.out.println("파일 삭제 실패");
+							}
+
+						} else {
+							System.out.println("파일 없음");
+						}
 					}
 				}
 			}
@@ -109,12 +130,13 @@ public class AdminFacilityUpdateController implements Action {
 
 				if (!item.isFormField()) {
 
-					String fileName = item.getName();
+					String originalName = new File(item.getName()).getName();
 
-					if (fileName == null || fileName.isBlank())
+					if (originalName == null || originalName.isBlank()) {
 						continue;
+					}
 
-					String ext = fileName.substring(fileName.lastIndexOf(".")).toLowerCase();
+					String ext = originalName.substring(originalName.lastIndexOf(".")).toLowerCase();
 
 					if (!ALLOWED_EXT.contains(ext)) {
 						continue;
@@ -135,16 +157,21 @@ public class AdminFacilityUpdateController implements Action {
 			}
 
 			if (mainImageId != null && !mainImageId.isBlank()) {
+
 				dao.resetMainImage(conn, facilityId);
+
 				dao.setMainImage(conn, Integer.parseInt(mainImageId));
 			}
 
 			conn.commit();
 
 		} catch (Exception e) {
+
 			rollback(conn);
 			e.printStackTrace();
+
 		} finally {
+
 			close(conn);
 		}
 

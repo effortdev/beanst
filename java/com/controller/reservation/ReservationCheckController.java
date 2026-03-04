@@ -1,5 +1,6 @@
-package com.controller;
+package com.controller.reservation;
 
+import com.controller.Action;
 import com.service.LoginService;
 import com.vo.UserVO;
 
@@ -7,9 +8,9 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
-public class LoginController implements Action  {
-
-   @Override
+public class ReservationCheckController implements Action {
+	
+	@Override
     public String execute(HttpServletRequest request, HttpServletResponse response) {
 
         String method = request.getMethod();
@@ -45,4 +46,5 @@ public class LoginController implements Action  {
 
         return null;
     }
+
 }

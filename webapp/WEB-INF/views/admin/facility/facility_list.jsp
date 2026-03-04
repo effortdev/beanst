@@ -28,9 +28,9 @@
 				</tr>
 			</c:if>
 
-			<c:forEach var="f" items="${facilityList}">
+			<c:forEach var="f" items="${facilityList}" varStatus="status">
 				<tr>
-					<td>${f.facilityId}</td>
+					<td>${status.count}</td>
 					<td>${f.facilityType}</td>
 					<td>${f.facilityName}</td>
 					<td>${f.location}</td>

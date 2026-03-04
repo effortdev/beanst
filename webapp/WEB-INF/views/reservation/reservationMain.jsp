@@ -15,14 +15,14 @@
 		<div class="experienceSwiper">
 			<div id="flex">
 
-				<div class="item need-login">
+				<div class="item">
 					<div class="list_item">
 						<div class="imgBox">
 							<img
 								src="${pageContext.request.contextPath}/assets/images/reservation/hotel-booking.png"
 								alt="hotel_list_Dining">
 							<div class="overlay">
-								<a href="" class="viewBtn en">호텔 예약</a>
+								<a href="${pageContext.request.contextPath}/reservation/booking.do" class="viewBtn en">호텔 예약</a>
 							</div>
 						</div>
 						<div class="textBox">
@@ -31,14 +31,14 @@
 					</div>
 				</div>
 
-				<div class="item need-login">
+				<div class="item">
 					<div class="list_item">
 						<div class="imgBox">
 							<img
 								src="${pageContext.request.contextPath}/assets/images/reservation/hotel-reservation-check.png"
 								alt="hotel_list_Lounge">
 							<div class="overlay">
-								<a href="#" class="viewBtn en">예약 조회</a>
+								<a href="${pageContext.request.contextPath}/reservation/check.do" class="viewBtn en">예약 조회</a>
 							</div>
 						</div>
 						<div class="textBox">
@@ -47,14 +47,14 @@
 					</div>
 				</div>
 
-				<div class="item need-login">
+				<div class="item">
 					<div class="list_item">
 						<div class="imgBox">
 							<img
 								src="${pageContext.request.contextPath}/assets/images/reservation/hotel-room-check.png"
 								alt="hotel_list_Fitness">
 							<div class="overlay">
-								<a href="#" class="viewBtn en">객실 조회</a>
+								<a href="" class="viewBtn en">객실 조회</a>
 							</div>
 						</div>
 						<div class="textBox">
@@ -101,24 +101,3 @@
 
 </div>
 <script src="${pageContext.request.contextPath}/assets/js/main.js"></script>
-<script>
-$(document).ready(function() {
-
-    $(".need-login").on("click", function(e) {
-
-        e.preventDefault();
-
-        const isLogin = "${sessionScope.login != null}" === "true";
-        const contextPath = "${pageContext.request.contextPath}";
-
-        if (isLogin) {
-            location.href = contextPath + "/reservationMain.do";
-        } else {
-            location.href = contextPath + "/login/login.do";
-        }
-    });
-
-});
-</script>
-
-

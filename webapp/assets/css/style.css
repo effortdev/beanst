@@ -18,7 +18,7 @@ body{font-family:'Noto Sans KR',sans-serif;color:#3D2314;line-height:1.7;backgro
 a{text-decoration:none;color:inherit}ul,ol{list-style:none}img{max-width:100%;height:auto}
 input,select,textarea,button{font-family:inherit;font-size:inherit}
 .container{max-width:1200px;margin:0 auto;padding:100px 20px 0}
-.page-content{min-height:calc(100vh - 300px);padding:40px 0}
+.page-content{min-height:calc(100vh - 300px);padding:120px 0 40px}
 
 /* Header - 커피콩 다크 톤 */
 .header{background:linear-gradient(180deg,#2C1810 0%,#1a0f0a 100%);color:#F5E6D3;position:sticky;top:0;z-index:1000;box-shadow:0 4px 20px rgba(44,24,16,.3)}
