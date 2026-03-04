@@ -9,7 +9,7 @@ import jakarta.servlet.http.HttpSession;
 
 public class LoginController implements Action  {
 
-   @Override
+	@Override
     public String execute(HttpServletRequest request, HttpServletResponse response) {
 
         String method = request.getMethod();
@@ -35,9 +35,18 @@ public class LoginController implements Action  {
             if (login != null) {
                 HttpSession session = request.getSession();
                 session.setAttribute("loginMember", login);
+                
+             // 2. 로그인 성공 시 원래 가려던 곳으로 보냄
+                String dest = request.getParameter("dest");
+                if (dest != null && !dest.isEmpty()) {
+                    return "redirect:" + dest; 
+                }
 
                 return "redirect:/reservationMain.do";
             } else {
+            	// 로그인 실패 시 dest를 유지하기 위해 다시 전달
+                String dest = request.getParameter("dest");
+                request.setAttribute("dest", dest);
                 request.setAttribute("errorMsg", "아이디 또는 비밀번호가 틀렸습니다.");
                 return "login/login";
             }

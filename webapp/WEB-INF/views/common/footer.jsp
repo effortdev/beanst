@@ -20,7 +20,7 @@
 			<nav class="footer-nav en">
 			<ul>
 					<li class="en"><a href="${pageContext.request.contextPath}/faqList.do">FAQ</a></li>
-					<li class="en"><a href="${pageContext.request.contextPath}/qnaList.do">Q&A</a></li>
+					<li><a href="${pageContext.request.contextPath}/qnaList.do">1:1 문의</a></li>
 
 					<c:if test="${sessionScope.loginMember != null}">
 						<li><a
