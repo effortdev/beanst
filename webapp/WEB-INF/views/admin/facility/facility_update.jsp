@@ -39,9 +39,7 @@
 	<h3>새 이미지 추가</h3>
 
 	<input type="file" id="newImages" name="newImages" multiple
-		accept="image/*"> <br>
-	<br>
-
+		accept="image/*">
 	<div id="imagePreview"></div>
 
 	<button type="submit">수정 완료</button>
@@ -55,12 +53,16 @@ const preview = document.getElementById("imagePreview");
 
 let fileList = [];
 
+
+
 input.addEventListener("change", function(){
 
     fileList = Array.from(this.files);
     renderPreview();
 
 });
+
+
 
 function renderPreview(){
 
@@ -81,31 +83,40 @@ function renderPreview(){
             img.src = e.target.result;
             img.width = 120;
 
-            // 대표 이미지 선택
+
+
             const radio = document.createElement("input");
             radio.type = "radio";
-            radio.name = "mainImageIndex";
+            radio.name = "mainNewImage";
             radio.value = index;
 
             if(index === 0){
                 radio.checked = true;
             }
 
-            const label = document.createElement("div");
-            label.innerText = "대표";
+
+            radio.addEventListener("change", function(){
+
+                document.querySelectorAll("input[name='mainImageId']")
+                    .forEach(r => r.checked = false);
+
+            });
+
+
 
             const delBtn = document.createElement("button");
             delBtn.type = "button";
             delBtn.innerText = "삭제";
-            delBtn.style.display = "block";
 
             delBtn.onclick = function(){
                 removeImage(index);
             };
 
+
             div.appendChild(img);
+            div.appendChild(document.createElement("br"));
             div.appendChild(radio);
-            div.appendChild(label);
+            div.appendChild(document.createTextNode("대표 "));
             div.appendChild(delBtn);
 
             preview.appendChild(div);
@@ -113,7 +124,11 @@ function renderPreview(){
 
         reader.readAsDataURL(file);
     });
+
 }
+
+
+
 function removeImage(index){
 
     fileList.splice(index,1);
@@ -128,6 +143,19 @@ function removeImage(index){
 
     renderPreview();
 }
+
+
+
+document.querySelectorAll("input[name='mainImageId']").forEach(radio => {
+
+    radio.addEventListener("change", function(){
+
+        document.querySelectorAll("input[name='mainImageIndex']")
+            .forEach(r => r.checked = false);
+
+    });
+
+});
 
 </script>
 

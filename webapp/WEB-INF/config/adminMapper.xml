@@ -100,4 +100,72 @@ DELETE FROM hotel_facility
 WHERE facility_id = ?
 ]]>
 	</entry>
+
+
+
+	<entry key="setFirstImage">
+<![CDATA[
+UPDATE facility_image
+SET is_main = 'Y'
+WHERE image_id = (
+    SELECT image_id
+    FROM facility_image
+    WHERE facility_id = ?
+    LIMIT 1
+)
+]]>
+	</entry>
+
+	<entry key="facilitySetNewMain">
+<![CDATA[
+UPDATE facility_image
+SET is_main='Y'
+WHERE image_id = (
+    SELECT image_id
+    FROM (
+        SELECT image_id
+        FROM facility_image
+        WHERE facility_id = ?
+        ORDER BY image_id DESC
+        LIMIT ?,1
+    ) AS tmp
+)
+]]>
+	</entry>
+
+
+
+
+
+	<entry key="adminRoomManage">
+		SELECT * FROM room_manage
+	</entry>
+	<entry key="updateRoom">
+		UPDATE room_manage
+		SET room_name = ?,
+		capacity = ?,
+		room_location = ?,
+		room_description = ?,
+		updated_at = NOW()
+		WHERE room_no = ?
+	</entry>
+	<entry key="deleteRoom">
+		DELETE FROM room_manage
+		WHERE room_no = ?
+	</entry>
+	<entry key="deleteRoomImage">
+		DELETE FROM room_image
+		WHERE room_no = ?
+	</entry>
+	<entry key="insertRoom">
+		INSERT INTO room_manage(room_no,room_name, capacity, room_location,
+		room_description, created_at)
+		VALUES (?,?, ?, ?, ?, NOW())
+	</entry>
+	<entry key="insertRoomImage">
+		INSERT INTO room_image (room_no, image_path, is_main, display_order,
+		created_at)
+		VALUES (?, ?, ?, ?, NOW())
+	</entry>
+
 </properties>

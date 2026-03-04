@@ -233,8 +233,31 @@ public class AdminFacilityDAO {
 
 		return facilityId;
 	}
-	
-	
+
+	public void setNewImageMain(Connection conn, int facilityId, int index) throws Exception {
+
+	    String sql = props.getProperty("facilitySetNewMain");
+
+	    PreparedStatement ps = conn.prepareStatement(sql);
+
+	    ps.setInt(1, facilityId);
+	    ps.setInt(2, index);
+
+	    ps.executeUpdate();
+
+	    ps.close();
+	}
+
+	public void setFirstImageMain(Connection conn, int facilityId) throws Exception {
+
+		String sql = props.getProperty("setFirstImage");
+
+		PreparedStatement ps = conn.prepareStatement(sql);
+		ps.setInt(1, facilityId);
+		ps.executeUpdate();
+		ps.close();
+	}
+
 	public void deleteFacility(Connection conn, int facilityId) throws Exception {
 
 		String sql = props.getProperty("facilityDelete");

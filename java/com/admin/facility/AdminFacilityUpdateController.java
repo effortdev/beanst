@@ -26,155 +26,179 @@ import jakarta.servlet.http.HttpServletResponse;
 
 public class AdminFacilityUpdateController implements Action {
 
-	private static final long MAX_FILE_SIZE = 10 * 1024 * 1024;
-	private static final Set<String> ALLOWED_EXT = Set.of(".jpg", ".jpeg", ".png", ".webp");
+    private static final long MAX_FILE_SIZE = 10 * 1024 * 1024;
+    private static final Set<String> ALLOWED_EXT = Set.of(".jpg", ".jpeg", ".png", ".webp");
 
-	@Override
-	public String execute(HttpServletRequest request, HttpServletResponse response) {
+    @Override
+    public String execute(HttpServletRequest request, HttpServletResponse response) {
 
-		Connection conn = null;
+        Connection conn = null;
 
-		try {
+        try {
 
-			ServletContext context = request.getServletContext();
+            ServletContext context = request.getServletContext();
 
-			String uploadPath = "C:/hotelUploads/facility";
+            String uploadPath = "C:/hotelUploads/facility";
 
-			File uploadDir = new File(uploadPath);
-			if (!uploadDir.exists()) {
-				uploadDir.mkdirs();
-			}
+            File uploadDir = new File(uploadPath);
+            if (!uploadDir.exists()) {
+                uploadDir.mkdirs();
+            }
 
-			System.out.println("파일 저장 경로: " + uploadDir.getAbsolutePath());
+            if (!JakartaServletFileUpload.isMultipartContent(request)) {
+                return "redirect:/admin/facility/list.do";
+            }
 
-			if (!JakartaServletFileUpload.isMultipartContent(request)) {
-				return "redirect:/admin/facility/list.do";
-			}
+            FileItemFactory factory = DiskFileItemFactory.builder().get();
+            JakartaServletFileUpload upload = new JakartaServletFileUpload(factory);
+            upload.setFileSizeMax(MAX_FILE_SIZE);
 
-			FileItemFactory factory = DiskFileItemFactory.builder().get();
-			JakartaServletFileUpload upload = new JakartaServletFileUpload(factory);
-			upload.setFileSizeMax(MAX_FILE_SIZE);
+            List<FileItem> items = upload.parseRequest(request);
 
-			List<FileItem> items = upload.parseRequest(request);
+            int facilityId = 0;
+            String facilityName = null;
+            String facilityType = null;
+            String location = null;
+            String openTime = null;
+            String description = null;
 
-			int facilityId = 0;
-			String facilityName = null;
-			String facilityType = null;
-			String location = null;
-			String openTime = null;
-			String description = null;
-			String mainImageId = null;
+            String mainImageId = null;
+            String mainImageIndex = null;
 
-			conn = getConnection();
-			conn.setAutoCommit(false);
+            conn = getConnection();
+            conn.setAutoCommit(false);
 
-			AdminFacilityDAO dao = new AdminFacilityDAO(context);
+            AdminFacilityDAO dao = new AdminFacilityDAO(context);
 
-			for (FileItem item : items) {
+            /* =========================
+               Form 데이터 파싱
+            ========================= */
 
-				if (item.isFormField()) {
+            for (FileItem item : items) {
 
-					String fieldName = item.getFieldName();
-					String value = item.getString(StandardCharsets.UTF_8);
+                if (item.isFormField()) {
 
-					switch (fieldName) {
-					case "facilityId" -> facilityId = Integer.parseInt(value);
-					case "facilityName" -> facilityName = value;
-					case "facilityType" -> facilityType = value;
-					case "location" -> location = value;
-					case "openTime" -> openTime = value;
-					case "description" -> description = value;
-					case "mainImageId" -> mainImageId = value;
-					}
-				}
-			}
+                    String fieldName = item.getFieldName();
+                    String value = item.getString(StandardCharsets.UTF_8);
 
-			dao.updateFacility(conn, facilityId, facilityName, facilityType, location, openTime, description);
+                    switch (fieldName) {
+                        case "facilityId" -> facilityId = Integer.parseInt(value);
+                        case "facilityName" -> facilityName = value;
+                        case "facilityType" -> facilityType = value;
+                        case "location" -> location = value;
+                        case "openTime" -> openTime = value;
+                        case "description" -> description = value;
+                        case "mainImageId" -> mainImageId = value;
+                        case "mainImageIndex" -> mainImageIndex = value;
+                    }
+                }
+            }
 
-			for (FileItem item : items) {
+            /* =========================
+               시설 정보 수정
+            ========================= */
 
-				if (item.isFormField() && "deleteImageIds".equals(item.getFieldName())) {
+            dao.updateFacility(conn, facilityId, facilityName, facilityType, location, openTime, description);
 
-					int deleteId = Integer.parseInt(item.getString());
+            /* =========================
+               이미지 삭제
+            ========================= */
 
-					String imagePath = dao.getImagePath(conn, deleteId);
+            for (FileItem item : items) {
 
-					dao.deleteImage(conn, deleteId);
+                if (item.isFormField() && "deleteImageIds".equals(item.getFieldName())) {
 
-					if (imagePath != null && !imagePath.isBlank()) {
+                    int deleteId = Integer.parseInt(item.getString());
 
-						String fileName = imagePath.substring(imagePath.lastIndexOf("/") + 1);
+                    String imagePath = dao.getImagePath(conn, deleteId);
 
-						File file = new File(uploadPath + "/" + fileName);
+                    dao.deleteImage(conn, deleteId);
 
-						System.out.println("삭제 대상 파일: " + file.getAbsolutePath());
+                    if (imagePath != null && !imagePath.isBlank()) {
 
-						if (file.exists()) {
+                        String fileName = imagePath.substring(imagePath.lastIndexOf("/") + 1);
 
-							boolean deleted = file.delete();
+                        File file = new File(uploadPath + "/" + fileName);
 
-							if (deleted) {
-								System.out.println("파일 삭제 성공");
-							} else {
-								System.out.println("파일 삭제 실패");
-							}
+                        if (file.exists()) {
+                            file.delete();
+                        }
+                    }
+                }
+            }
 
-						} else {
-							System.out.println("파일 없음");
-						}
-					}
-				}
-			}
+            /* =========================
+               새 이미지 업로드
+            ========================= */
 
-			for (FileItem item : items) {
+            int uploadIndex = 0;
 
-				if (!item.isFormField()) {
+            for (FileItem item : items) {
 
-					String originalName = new File(item.getName()).getName();
+                if (!item.isFormField() && "newImages".equals(item.getFieldName())) {
 
-					if (originalName == null || originalName.isBlank()) {
-						continue;
-					}
+                    String originalName = new File(item.getName()).getName();
 
-					String ext = originalName.substring(originalName.lastIndexOf(".")).toLowerCase();
+                    if (originalName == null || originalName.isBlank()) {
+                        continue;
+                    }
 
-					if (!ALLOWED_EXT.contains(ext)) {
-						continue;
-					}
+                    String ext = originalName.substring(originalName.lastIndexOf(".")).toLowerCase();
 
-					if (item.getSize() > MAX_FILE_SIZE) {
-						continue;
-					}
+                    if (!ALLOWED_EXT.contains(ext)) {
+                        continue;
+                    }
 
-					String newName = UUID.randomUUID() + ext;
+                    if (item.getSize() > MAX_FILE_SIZE) {
+                        continue;
+                    }
 
-					File file = new File(uploadDir, newName);
+                    String newName = UUID.randomUUID() + ext;
 
-					item.write(Path.of(file.getAbsolutePath()));
+                    File file = new File(uploadDir, newName);
 
-					dao.insertImage(conn, facilityId, "/upload/facility/" + newName, "N");
-				}
-			}
+                    item.write(Path.of(file.getAbsolutePath()));
 
-			if (mainImageId != null && !mainImageId.isBlank()) {
+                    dao.insertImage(conn, facilityId, "/upload/facility/" + newName, "N");
 
-				dao.resetMainImage(conn, facilityId);
+                    uploadIndex++;
+                }
+            }
 
-				dao.setMainImage(conn, Integer.parseInt(mainImageId));
-			}
+            /* =========================
+               대표 이미지 설정
+            ========================= */
 
-			conn.commit();
+            if (mainImageId != null && !mainImageId.isBlank()) {
 
-		} catch (Exception e) {
+                dao.resetMainImage(conn, facilityId);
+                dao.setMainImage(conn, Integer.parseInt(mainImageId));
 
-			rollback(conn);
-			e.printStackTrace();
+            } else if (mainImageIndex != null && !mainImageIndex.isBlank()) {
 
-		} finally {
+                dao.resetMainImage(conn, facilityId);
 
-			close(conn);
-		}
+                int index = Integer.parseInt(mainImageIndex);
+                dao.setNewImageMain(conn, facilityId, index);
 
-		return "redirect:/admin/facility/list.do";
-	}
+            } else {
+
+                dao.resetMainImage(conn, facilityId);
+                dao.setFirstImageMain(conn, facilityId);
+            }
+
+            conn.commit();
+
+        } catch (Exception e) {
+
+            rollback(conn);
+            e.printStackTrace();
+
+        } finally {
+
+            close(conn);
+        }
+
+        return "redirect:/admin/facility/list.do";
+    }
 }

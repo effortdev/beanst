@@ -18,6 +18,12 @@ import com.controller.ReservationMainController;
 import com.controller.admin.AdminDashboardController;
 import com.controller.admin.AdminLoginController;
 import com.controller.admin.AdminLogoutController;
+import com.controller.admin.AdminRoomAddController;
+import com.controller.admin.AdminRoomDeleteController;
+import com.controller.admin.AdminRoomDetailController;
+import com.controller.admin.AdminRoomInsertController;
+import com.controller.admin.AdminRoomManageController;
+import com.controller.admin.AdminRoomUpdateController;
 import com.controller.board.FaqListController;
 import com.controller.board.QnaDetailController;
 import com.controller.board.QnaListController;
@@ -50,6 +56,12 @@ public class HandlerMapper {
 		map.put("/admin/facility/updateForm.do", new AdminFacilityUpdateFormController());
 		map.put("/admin/facility/update.do", new AdminFacilityUpdateController());
 		map.put("/admin/facility/delete.do", new AdminFacilityDeleteController());
+		map.put("/admin/roomManage.do", new AdminRoomManageController());
+		map.put("/admin/roomDetail.do", new AdminRoomDetailController());
+		map.put("/admin/roomUpdate.do", new AdminRoomUpdateController());
+		map.put("/admin/roomDelete.do", new AdminRoomDeleteController());
+		map.put("/admin/roomInsert.do", new AdminRoomInsertController());
+		map.put("/admin/roomAdd.do", new AdminRoomAddController());
 	}
 
 	public Action getController(String path) {
