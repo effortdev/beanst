@@ -270,4 +270,24 @@ public class AdminFacilityDAO {
 
 		ps.close();
 	}
+	public int insertImageReturnId(Connection conn, int facilityId, String imagePath, String isMain) throws Exception {
+
+	    String sql = props.getProperty("facilityImageInsert");
+	    PreparedStatement ps = conn.prepareStatement(sql, java.sql.Statement.RETURN_GENERATED_KEYS);
+
+	    ps.setInt(1, facilityId);
+	    ps.setString(2, imagePath);
+	    ps.setString(3, isMain);
+
+	    ps.executeUpdate();
+
+	    int newId = 0;
+	    ResultSet rs = ps.getGeneratedKeys();
+	    if (rs.next()) newId = rs.getInt(1);
+
+	    rs.close();
+	    ps.close();
+
+	    return newId;
+	}
 }

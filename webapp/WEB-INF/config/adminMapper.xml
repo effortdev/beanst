@@ -103,7 +103,7 @@ WHERE facility_id = ?
 
 
 
-	<entry key="setFirstImage">
+<entry key="setFirstImage">
 <![CDATA[
 UPDATE facility_image
 SET is_main = 'Y'
@@ -111,10 +111,11 @@ WHERE image_id = (
     SELECT image_id
     FROM facility_image
     WHERE facility_id = ?
+    ORDER BY image_id DESC
     LIMIT 1
 )
 ]]>
-	</entry>
+</entry>
 
 	<entry key="facilitySetNewMain">
 <![CDATA[
