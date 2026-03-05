@@ -1,0 +1,64 @@
+package com.facility;
+
+public class FacilityDTO {
+
+	private int facilityId;
+	private String facilityType;
+	private String facilityName;
+	private String description;
+	private String openTime;
+	private String location;
+
+	public int getFacilityId() {
+		return facilityId;
+	}
+
+	public void setFacilityId(int facilityId) {
+		this.facilityId = facilityId;
+	}
+
+	public String getFacilityType() {
+		return facilityType;
+	}
+
+	public void setFacilityType(String facilityType) {
+		this.facilityType = facilityType;
+	}
+
+	public String getFacilityName() {
+		return facilityName;
+	}
+
+	public void setFacilityName(String facilityName) {
+		this.facilityName = facilityName;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public String getOpenTime() {
+		return openTime;
+	}
+
+	public void setOpenTime(String openTime) {
+		this.openTime = openTime;
+	}
+
+	public String getLocation() {
+		return location;
+	}
+
+	public void setLocation(String location) {
+		this.location = location;
+	}
+
+	@Override
+	public String toString() {
+		return "FacilityDTO [facilityId=" + facilityId + ", facilityName=" + facilityName + "]";
+	}
+}

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+
+<properties>
+
+	<entry key="selectMainFacility">
+		SELECT
+		f.facility_id,
+		f.facility_name,
+		f.description,
+		fi.image_path
+		FROM hotel_facility f
+		JOIN facility_image fi
+		ON f.facility_id = fi.facility_id
+		WHERE fi.is_main='Y'
+		ORDER BY f.facility_id
+	</entry>
+
+</properties>
