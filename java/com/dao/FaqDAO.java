@@ -2,15 +2,32 @@ package com.dao;
 
 import static com.util.JdbcUtil.*;
 
+import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Properties;
 
 import com.dto.FaqDTO;
 
+import jakarta.servlet.ServletContext;
+
 public class FaqDAO {
+
+	private Properties props = new Properties();
+
+	public FaqDAO(ServletContext context) {
+		try {
+			System.out.println("FaqDAO 생성자 실행");
+			// AdminDAO와 동일한 방식으로 Mapper XML을 로드
+			InputStream input = context.getResourceAsStream("/WEB-INF/config/faqMapper.xml");
+			props.loadFromXML(input);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 
 	public List<FaqDTO> selectFaqList(String category) {
 
@@ -23,18 +40,16 @@ public class FaqDAO {
 		try {
 			conn = getConnection();
 
-			StringBuilder sql = new StringBuilder();
-			sql.append("SELECT faq_no, category, question, answer, sort_order, status, reg_date ");
-			sql.append("FROM faq ");
-			sql.append("WHERE status = 'ACTIVE' ");
+			// 기본 SELECT 문은 faqMapper.xml에 정의
+			String sql = props.getProperty("faqlist");
 
 			if (category != null && !category.isEmpty()) {
-				sql.append("AND category = ? ");
+				sql += " AND category = ? ";
 			}
 
-			sql.append("ORDER BY sort_order, faq_no");
+			sql += " ORDER BY sort_order, faq_no";
 
-			ps = conn.prepareStatement(sql.toString());
+			ps = conn.prepareStatement(sql);
 
 			if (category != null && !category.isEmpty()) {
 				ps.setString(1, category);

@@ -33,7 +33,7 @@
         <div class="text-center mt-20" style="font-size: 13px">
          <a href="${pageContext.request.contextPath}/findForm.do"
             style="color: #888">아이디/비밀번호 찾기</a> | <a
-            href="${pageContext.request.contextPath}/joinForm.do"
+            href="${pageContext.request.contextPath}/member/join.do"
             style="color: #c9a96e">회원가입</a>
       </div>
         

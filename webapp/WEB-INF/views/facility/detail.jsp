@@ -8,7 +8,7 @@
 		<div class="breadcrumb fade-up">
 			<a href="${pageContext.request.contextPath}/main.do" class="en">Home</a>
 			> <a href="${pageContext.request.contextPath}/facilityList.do">호텔
-				정보</a>
+				정보</a> > <span class="selectNone">${facility.facilityName}</span>
 		</div>
 
 		<h1 class="title en fade-up">${facility.facilityName}</h1>

@@ -26,7 +26,7 @@ public class QnaDetailController implements Action {
 			return "redirect:/qnaList.do";
 		}
 
-		QnaDAO dao = new QnaDAO();
+		QnaDAO dao = new QnaDAO(request.getServletContext());
 		QnaDTO qna = dao.selectQna(no);
 
 		if (qna == null) {
@@ -75,7 +75,7 @@ public class QnaDetailController implements Action {
 
 		request.setAttribute("qna", qna);
 		request.setAttribute("pageTitle", "Q&A 상세");
-		request.setAttribute("pageCss", "style");
+		request.setAttribute("pageCss", "board");
 		request.setAttribute("contentPage", "/WEB-INF/views/board/qna/detail.jsp");
 
 		return "board/qna/detail";

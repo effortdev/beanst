@@ -1,40 +1,57 @@
 package com.dao;
 
+import java.io.InputStream;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.util.Properties;
+import jakarta.servlet.ServletContext;
+import com.util.JdbcUtil;
+import com.vo.UserVO;
+
 public class UserDAO {
+	private Properties props = new Properties();
+
+	public UserDAO(ServletContext context) {
+		try {
+			InputStream input = context.getResourceAsStream("/WEB-INF/config/memberMapper.xml");
+			props.loadFromXML(input);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	public boolean insertUser(UserVO vo) {
+		boolean isSuccess = false;
+		Connection con = null;
+		PreparedStatement pstmt = null;
+
+		try {
+			con = JdbcUtil.getConnection();
+			String sql = props.getProperty("insertUser");
+
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, vo.getUserId());
+			pstmt.setString(2, vo.getPassword()); // 실무에서는 여기서 비밀번호 암호화(Hash)를 거칩니다
+			pstmt.setString(3, vo.getEmail());
+			pstmt.setString(4, vo.getName());
+			pstmt.setString(5, vo.getPhone());
+
+			int result = pstmt.executeUpdate();
+
+			if (result > 0) {
+				isSuccess = true;
+				JdbcUtil.commit(con);
+			} else {
+				JdbcUtil.rollback(con);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			if (con != null)
+				JdbcUtil.rollback(con);
+		} finally {
+			JdbcUtil.close(pstmt);
+			JdbcUtil.close(con);
+		}
+		return isSuccess;
+	}
 }
-
-
-
-// sql 사용법 입니다!
-// String sql = SqlManager.get("hotel.popular"); <-이거 WEB-INF/config/sql.properties 의 내용을 넣어주시면 댑니당 >
-
-
-/*
- * 로그인 예시
- * public MemberDTO selectMember(String id) {
-
-    String sql = SqlManager.get("member.login"); <- 이거에요!
-
-    try (Connection conn = DBConn.getConnection();
-         PreparedStatement ps = conn.prepareStatement(sql)) {
-
-        ps.setString(1, id);
-
-        try (ResultSet rs = ps.executeQuery()) {
-            if (rs.next()) {
-                MemberDTO dto = new MemberDTO();
-                dto.아이디(rs.getString(아이디));
-                dto.비밀번호(rs.getString(비밀번호));
-                return dto;
-            }
-        }
-
-    } catch (Exception e) {
-        e.printStackTrace();
-    }
-
-    return null;
-}
- * 
- * 
- */

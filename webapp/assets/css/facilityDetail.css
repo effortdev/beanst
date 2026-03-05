@@ -29,6 +29,11 @@
 	margin-bottom: 80px;
 }
 
+
+.facilityHeader .selectNone {
+	user-select: none;
+}
+
 .facilityHeader .title {
 	font-size: 56px;
 	margin-bottom: 80px;
@@ -112,6 +117,7 @@ section.bgImg {
 	position: relative;
 	overflow: hidden;
 	border-radius: 6px;
+	cursor: pointer;
 }
 
 .galleryItem img {

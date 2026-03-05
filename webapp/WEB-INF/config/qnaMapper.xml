@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+
+<properties>
+
+	<!-- QnA 전체 개수 기본 쿼리 (로그인 사용자 + 검색어 조건은 DAO에서 동적으로 추가) -->
+	<entry key="qnaCountBase">
+		SELECT COUNT(*)
+		FROM qna q
+		WHERE 1 = 1
+	</entry>
+
+	<!-- QnA 목록 조회 기본 쿼리 (로그인 사용자 + 검색어, 페이징은 DAO에서 동적으로 추가) -->
+	<entry key="qnaListBase">
+		SELECT q.*,
+		u.user_id AS member_id,
+		u.name AS member_name
+		FROM qna q
+		JOIN users u ON q.user_id = u.user_id
+		WHERE 1 = 1
+	</entry>
+
+	<!-- QnA 상세 조회 쿼리 -->
+	<entry key="qnaSelect">
+		SELECT q.*,
+		u.user_id AS member_id,
+		u.name AS member_name
+		FROM qna q
+		JOIN users u ON q.user_id = u.user_id
+		WHERE q.qna_no = ?
+	</entry>
+
+	<!-- QnA 조회수 증가 쿼리 -->
+	<entry key="qnaUpdateViewCount">
+		UPDATE qna
+		SET view_count = view_count + 1
+		WHERE qna_no = ?
+	</entry>
+
+	<!-- QnA 등록 쿼리 -->
+	<entry key="qnaInsert">
+		INSERT INTO qna (user_id, title, content, status, view_count, reg_date)
+		VALUES (?, ?, ?, 'WAITING', 0, NOW())
+	</entry>
+
+</properties>

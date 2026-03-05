@@ -1,0 +1,243 @@
+@charset "UTF-8";
+
+/* join.css - 로그인 화면과 동일하게 맞춤 */
+
+/* 1. 중앙 정렬 컨테이너 */
+.join-container {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	padding: 80px 0;
+	background-color: #fdfaf7; /* 배경색이 있다면 맞춰주세요 */
+}
+
+/* 2. 회원가입 박스 (로그인 박스와 동일하게) */
+.join-wrap {
+	width: 100%;
+	max-width: 450px;
+	padding: 40px;
+	background: #fff;
+	border: 1px solid #eedfc8;
+	border-radius: 8px;
+	box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+}
+
+/* 3. 타이틀 폰트 */
+.join-title {
+	text-align: center;
+	font-family: 'Cormorant Garamond', serif;
+	color: #2C1810;
+	margin-bottom: 30px;
+	font-size: 32px;
+	font-weight: 600;
+}
+
+/* 4. 입력창 및 라벨 */
+/* .form-group { */
+/*     margin-bottom: 15px; */
+/* } */
+
+/* .form-group label { */
+/*     display: block; */
+/*     margin-bottom: 8px; */
+/*     color: #6F4E37; */
+/*     font-weight: 500; */
+/* } */
+
+/* 5. 실시간 메시지 영역 */
+.val-msg {
+	font-size: 12px;
+	margin-top: 5px;
+	min-height: 18px;
+}
+
+.text-success {
+	color: #28a745 !important;
+}
+
+.text-danger {
+	color: #dc3545 !important;
+}
+
+/* 6. 버튼 (로그인 버튼과 동일하게) */
+.join-btn {
+	width: 100%;
+	padding: 15px;
+	font-size: 16px;
+	font-weight: 600;
+	margin-top: 10px;
+	cursor: pointer;
+}
+
+/* 7. 하단 링크 */
+.join-footer {
+	text-align: center;
+	margin-top: 20px;
+	font-size: 14px;
+	color: #888;
+}
+
+.join-footer a {
+	color: #C9A962;
+	font-weight: bold;
+	text-decoration: none;
+}
+
+/* Buttons - 카라멜/에스프레소 톤 */
+.btn {
+	display: inline-block;
+	padding: 12px 28px;
+	border-radius: 6px;
+	font-size: 14px;
+	font-weight: 500;
+	cursor: pointer;
+	transition: .3s;
+	border: none;
+	text-align: center
+}
+
+.btn-primary {
+	background: linear-gradient(135deg, #C9A962, #B8954A);
+	color: #fff;
+	box-shadow: 0 4px 12px rgba(201, 169, 98, .3)
+}
+
+.btn-primary:hover {
+	background: linear-gradient(135deg, #B8954A, #A68238);
+	box-shadow: 0 6px 16px rgba(201, 169, 98, .4)
+}
+
+.btn-secondary {
+	background: #5D4037;
+	color: #F5E6D3 !important
+}
+
+.btn-secondary:hover {
+	background: #4A3728
+}
+
+.btn-outline {
+	border: 1px solid #C9A962;
+	color: #6F4E37;
+	background: transparent
+}
+
+.btn-outline:hover {
+	background: #C9A962;
+	color: #fff
+}
+
+.btn-danger {
+	background: #8B4513;
+	color: #fff
+}
+
+.btn-danger:hover {
+	background: #6F4E37
+}
+
+.btn-sm {
+	padding: 8px 16px;
+	font-size: 13px
+}
+
+.btn-lg {
+	padding: 16px 40px;
+	font-size: 16px;
+	border-radius: 8px
+}
+
+.btn-block {
+	display: block;
+	width: 100%
+}
+
+/* Forms */
+.form-group {
+	margin-bottom: 20px
+}
+
+.form-group label {
+	display: block;
+	font-size: 14px;
+	font-weight: 600;
+	margin-bottom: 6px;
+	color: #444
+}
+
+.form-control {
+	width: 100%;
+	padding: 10px 14px;
+	border: 1px solid #ddd;
+	border-radius: 4px;
+	font-size: 14px;
+	transition: .3s
+}
+
+.form-control:focus {
+	outline: none;
+	border-color: #C9A962;
+	box-shadow: 0 0 0 3px rgba(201, 169, 98, .2)
+}
+
+textarea.form-control {
+	min-height: 120px;
+	resize: vertical
+}
+
+.input-group {
+	display: flex;
+	gap: 8px
+}
+
+.input-group .form-control {
+	flex: 1
+}
+
+.form-check {
+	display: flex;
+	align-items: center;
+	gap: 8px
+}
+
+.form-check input[type="checkbox"] {
+	width: 18px;
+	height: 18px
+}
+
+.error-text {
+	color: #dc3545;
+	font-size: 13px;
+	margin-top: 4px
+}
+
+.success-text {
+	color: #28a745;
+	font-size: 13px;
+	margin-top: 4px
+}
+
+.form-box {
+	max-width: 500px;
+	margin: 0 auto;
+	background: #fff;
+	padding: 40px;
+	border-radius: 8px;
+	box-shadow: 0 2px 8px rgba(0, 0, 0, .08)
+}
+
+.form-box h2 {
+	text-align: center;
+	margin-bottom: 30px;
+	font-size: 24px;
+	color: #2C1810
+}
+
+.form-box h2::after {
+	content: '';
+	display: block;
+	width: 40px;
+	height: 3px;
+	background: #C9A962;
+	margin: 10px auto 0
+}

@@ -30,7 +30,7 @@
 					</li>
 
 				</c:if>
-				<li><a href="${pageContext.request.contextPath}/contact.do"
+				<li><a href="${pageContext.request.contextPath}/qnaList.do"
 					id="reserv" class="text">1:1 문의하기</a></li>
 				<li><a
 					href="${pageContext.request.contextPath}/reservationMain.do"

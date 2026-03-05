@@ -1,16 +1,15 @@
 @charset "UTF-8";
 
-
 .fade-up {
-  opacity: 0;
-  transform: translateY(60px);
-  transition: all 1s ease;
+	opacity: 0;
+	transform: translateY(60px);
+	transition: all 1s ease;
 }
 
 /* 실행 상태 */
 .fade-up.show {
-  opacity: 1;
-  transform: translateY(0);
+	opacity: 1;
+	transform: translateY(0);
 }
 
 /* hero 섹션 */
@@ -243,22 +242,16 @@
 	transform: translateY(-2px);
 }
 
-@media (max-width: 768px) {
-
-  #about_Room .swiper-pagination {
-    width: auto !important;
-
-    position: absolute;  
-    
-    top: 50px;        
-    right: 20px;     
-
-    bottom: auto;      
-    left: auto;       
-
-    text-align: right;
-  }
-
+@media ( max-width : 768px) {
+	#about_Room .swiper-pagination {
+		width: auto !important;
+		position: absolute;
+		top: 50px;
+		right: 20px;
+		bottom: auto;
+		left: auto;
+		text-align: right;
+	}
 }
 /* about_Hotel 섹션 */
 #about_Hotel {
@@ -277,10 +270,15 @@
 
 #about_Hotel .top_title p {
 	font-weight: 300;
+}
+
+#about_Hotel .top_textBox {
+	display: flex;
+	justify-content: space-between;
 	position: relative;
 }
 
-#about_Hotel .top_title p::before {
+#about_Hotel .top_textBox::before {
 	position: absolute;
 	content: "";
 	bottom: -10px;
@@ -377,7 +375,7 @@
 	position: absolute;
 	top: 50%;
 	left: 50%;
-	transform: translate(-50%,-50%);
+	transform: translate(-50%, -50%);
 }
 
 .experienceSwiper .list_item  .viewBtn:hover {

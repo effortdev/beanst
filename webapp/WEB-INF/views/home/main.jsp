@@ -108,11 +108,13 @@
 	<section id="about_Hotel">
 		<div class="top_title  fade-up">
 			<h2 class="en">Hotel Experience</h2>
-			<p class="text">품격 있는 다이닝, 여유로운 라운지, 피트니스와 스파 등 다양한 부대시설을 통해 완성된
-				휴식을 제공합니다.</p>
-			<span><a
-				href="${pageContext.request.contextPath}/facilityList.do"> 시설 전체
-					보기 </a></span>
+			<div class="top_textBox">
+				<p class="text">품격 있는 다이닝, 여유로운 라운지, 피트니스와 스파 등 다양한 부대시설을 통해 완성된
+					휴식을 제공합니다.</p>
+				<span><a
+					href="${pageContext.request.contextPath}/facilityList.do"> 시설
+						전체 보기 </a></span>
+			</div>
 		</div>
 		<div class="experienceSwiper swiper">
 			<div class="swiper-wrapper">
