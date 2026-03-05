@@ -11,9 +11,25 @@
 		fi.image_path
 		FROM hotel_facility f
 		JOIN facility_image fi
-		ON f.facility_id = fi.facility_id
+		ON
+		f.facility_id = fi.facility_id
 		WHERE fi.is_main='Y'
-		ORDER BY f.facility_id
+		ORDER BY
+		f.facility_id
+	</entry>
+
+
+	<entry key="selectFacility">
+		SELECT *
+		FROM hotel_facility
+		WHERE facility_id=?
+	</entry>
+
+	<entry key="selectFacilityImages">
+		SELECT *
+		FROM facility_image
+		WHERE facility_id=?
+		ORDER BY display_order
 	</entry>
 
 </properties>

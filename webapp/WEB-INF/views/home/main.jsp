@@ -121,8 +121,7 @@
 
 							<div class="imgBox">
 
-								<img
-									src="${f.imagePath}"
+								<img src="${f.imagePath}?v=${f.facilityId}"
 									alt="${f.facilityName}">
 
 								<div class="overlay">
