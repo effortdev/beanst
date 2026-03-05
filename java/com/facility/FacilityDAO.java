@@ -96,6 +96,8 @@ public class FacilityDAO {
 				dto.setFacilityId(rs.getInt("facility_id"));
 				dto.setFacilityName(rs.getString("facility_name"));
 				dto.setDescription(rs.getString("description"));
+				dto.setLocation(rs.getString("location"));
+				dto.setOpenTime(rs.getString("open_time"));
 			}
 
 		} catch (Exception e) {
@@ -108,47 +110,89 @@ public class FacilityDAO {
 
 		return dto;
 	}
-	
-	
+
 	public List<FacilityImageDTO> selectFacilityImages(int facilityId) {
 
-	    List<FacilityImageDTO> list = new ArrayList<>();
+		List<FacilityImageDTO> list = new ArrayList<>();
 
-	    Connection conn = null;
-	    PreparedStatement ps = null;
-	    ResultSet rs = null;
+		Connection conn = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
 
-	    try {
+		try {
 
-	        String sql = props.getProperty("selectFacilityImages");
+			String sql = props.getProperty("selectFacilityImages");
 
-	        conn = getConnection();
-	        ps = conn.prepareStatement(sql);
-	        ps.setInt(1, facilityId);
+			conn = getConnection();
+			ps = conn.prepareStatement(sql);
+			ps.setInt(1, facilityId);
 
-	        rs = ps.executeQuery();
+			rs = ps.executeQuery();
 
-	        while (rs.next()) {
+			while (rs.next()) {
 
-	            FacilityImageDTO dto = new FacilityImageDTO();
+				FacilityImageDTO dto = new FacilityImageDTO();
 
-	            dto.setImageId(rs.getInt("image_id"));
-	            dto.setFacilityId(rs.getInt("facility_id"));
-	            dto.setImagePath(rs.getString("image_path"));
-	            dto.setIsMain(rs.getString("is_main"));
-	            dto.setDisplayOrder(rs.getInt("display_order"));
+				dto.setImageId(rs.getInt("image_id"));
+				dto.setFacilityId(rs.getInt("facility_id"));
+				dto.setImagePath(rs.getString("image_path"));
+				dto.setIsMain(rs.getString("is_main"));
+				dto.setDisplayOrder(rs.getInt("display_order"));
 
-	            list.add(dto);
-	        }
+				list.add(dto);
+			}
 
-	    } catch (Exception e) {
-	        e.printStackTrace();
-	    } finally {
-	        close(rs);
-	        close(ps);
-	        close(conn);
-	    }
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(rs);
+			close(ps);
+			close(conn);
+		}
 
-	    return list;
+		return list;
 	}
+
+	public List<FacilityMainDTO> selectFacilityList() {
+
+		List<FacilityMainDTO> list = new ArrayList<>();
+
+		Connection conn = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+
+		try {
+
+			String sql = props.getProperty("selectFacilityList");
+
+			conn = getConnection();
+			ps = conn.prepareStatement(sql);
+
+			rs = ps.executeQuery();
+
+			while (rs.next()) {
+
+				FacilityMainDTO dto = new FacilityMainDTO();
+
+				dto.setFacilityId(rs.getInt("facility_id"));
+				dto.setFacilityName(rs.getString("facility_name"));
+				dto.setDescription(rs.getString("description"));
+				dto.setLocation(rs.getString("location"));
+				dto.setOpenTime(rs.getString("open_time"));
+				dto.setImagePath(rs.getString("image_path"));
+
+				list.add(dto);
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(rs);
+			close(ps);
+			close(conn);
+		}
+
+		return list;
+	}
+
 }

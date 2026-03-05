@@ -10,6 +10,7 @@ import com.admin.facility.AdminFacilityUpdateController;
 import com.admin.facility.AdminFacilityUpdateFormController;
 import com.controller.Action;
 import com.controller.FacilityDetailController;
+import com.controller.FacilityListController;
 import com.controller.HomeController;
 import com.controller.LoginController;
 import com.controller.LogoutController;
@@ -47,6 +48,7 @@ public class HandlerMapper {
 		map.put("/qnaList.do", new QnaListController());
 		map.put("/qnaDetail.do", new QnaDetailController());
 		map.put("/facilityDetail.do", new FacilityDetailController());
+		map.put("/facilityList.do", new FacilityListController());
 
 		map.put("/reservationLocation.do", new ReservationLocationController());
 		map.put("/reservationMain.do", new ReservationMainController());

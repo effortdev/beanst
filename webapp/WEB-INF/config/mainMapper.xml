@@ -29,7 +29,24 @@
 		SELECT *
 		FROM facility_image
 		WHERE facility_id=?
-		ORDER BY display_order
+		ORDER BY
+		display_order
+	</entry>
+
+
+	<entry key="selectFacilityList">
+		SELECT
+		f.facility_id,
+		f.facility_name,
+		f.description,
+		f.location,
+		f.open_time,
+		fi.image_path
+		FROM hotel_facility f
+		LEFT JOIN facility_image fi
+		ON f.facility_id = fi.facility_id
+		AND fi.is_main = 'Y'
+		ORDER BY f.facility_id
 	</entry>
 
 </properties>

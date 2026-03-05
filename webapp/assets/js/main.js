@@ -12,13 +12,13 @@ document.addEventListener("DOMContentLoaded", function () {
             if (entry.isIntersecting) {
                 entry.target.classList.add("show");
 
-                // 🔥 한 번만 실행하고 싶으면
+
                 observer.unobserve(entry.target);
             }
 
         });
     }, {
-        threshold: 0.3   // 30% 보이면 실행
+        threshold: 0.3  
     });
 
     targets.forEach(target => {
