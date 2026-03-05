@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+
+<properties>
+
+    <entry key="insertReservation">        
+        INSERT INTO reservation (user_id, room_id, room_name, name, check_in, check_out, adult_count, child_count, total_price, status)
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, '예약완료')
+    </entry>
+    <entry key="isRoomAvailable">        
+        <![CDATA[
+        SELECT COUNT(*) FROM reservation
+        WHERE room_id = ?
+        AND status = '예약완료'
+        AND (check_in < ? AND check_out > ?)
+        ]]>
+    </entry>
+    <entry key="getReservedDates">        
+        SELECT room_id, check_in, check_out 
+        FROM reservation 
+        WHERE status = '예약완료' AND check_out >= CURDATE()
+    </entry>
+
+</properties>

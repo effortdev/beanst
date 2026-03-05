@@ -1,0 +1,57 @@
+@charset "UTF-8";
+
+/* =========================================
+   예약 완료 페이지 전용 스타일 (complete.css)
+========================================= */
+.complete-wrap {
+    padding: 120px 20px;
+    min-height: 60vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.complete-icon {
+    width: 100px;
+    height: 100px;
+    background: #C9A962;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 30px;
+    box-shadow: 0 10px 30px rgba(201,169,98,0.3);
+}
+
+.complete-icon span {
+    color: #fff;
+    font-size: 50px;
+    font-weight: bold;
+}
+
+.complete-title {
+    font-size: 40px;
+    color: #2C1810;
+    font-family: 'Cormorant Garamond', serif;
+    margin-bottom: 20px;
+    font-weight: 600;
+}
+
+.complete-desc {
+    font-size: 18px;
+    color: #6F4E37;
+    margin-bottom: 50px;
+    line-height: 1.8;
+}
+
+.complete-btns {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+}
+
+/* 버튼의 넓이만 완료 페이지에 맞게 조정 (나머지 색상 등은 공통 style.css를 따름) */
+.complete-btns .btn {
+    width: 200px;
+}

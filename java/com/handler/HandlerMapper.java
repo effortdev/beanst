@@ -30,6 +30,7 @@ import com.controller.board.QnaDetailController;
 import com.controller.board.QnaListController;
 import com.controller.reservation.BookingController;
 import com.controller.reservation.ReservationCheckController;
+import com.controller.reservation.ReservationCompleteController;
 
 public class HandlerMapper {
 
@@ -38,17 +39,20 @@ public class HandlerMapper {
 	public HandlerMapper() {
 		map.put("/main.do", new HomeController()); // 메인
 		map.put("/member/mypage.do", new MemberMypageController());
-		map.put("/reservationMain.do", new ReservationMainController());
+
 		map.put("/login/login.do", new LoginController());
 		map.put("/logout.do", new LogoutController());
-		map.put("/reservationLocation.do", new ReservationLocationController());
+
 		map.put("/faqList.do", new FaqListController());
 		map.put("/qnaList.do", new QnaListController());
 		map.put("/qnaDetail.do", new QnaDetailController());
-		map.put("/reservation/booking.do", new BookingController());
-		map.put("/reservation/check.do", new ReservationCheckController());
 		map.put("/facilityDetail.do", new FacilityDetailController());
 
+		map.put("/reservationLocation.do", new ReservationLocationController());
+		map.put("/reservationMain.do", new ReservationMainController());
+		map.put("/reservation/booking.do", new BookingController());
+		map.put("/reservation/check.do", new ReservationCheckController());
+		map.put("/reservation/complete.do", new ReservationCompleteController());
 
 		map.put("/admin/login.do", new AdminLoginController());
 		map.put("/admin/dashboard.do", new AdminDashboardController());
