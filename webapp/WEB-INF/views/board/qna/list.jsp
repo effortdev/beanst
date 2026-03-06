@@ -50,15 +50,16 @@
 							</tr>
 						</c:when>
 						<c:otherwise>
-							<c:forEach var="q" items="${list}" varStatus="status">
+							<c:forEach items="${list}" varStatus="status">
 								<tr>
 									<td>${status.count}</td>
 									<td class="text-left"><a
-										href="${pageContext.request.contextPath}/qnaDetail.do?no=${q.qnaNo}">${q.title}</a>
+										href="${pageContext.request.contextPath}/qnaDetail.do?no=${status.current.qnaNo}">${status.current.title}</a>
 									</td>
-									<td>${fn:substring(q.memberId, 0, 3)}***</td>
-									<td><span class="badge badge-${fn:toLowerCase(q.status)}">${q.status == 'WAITING' ? '답변대기' : '답변완료'}</span></td>
-									<td><fmt:formatDate value="${q.regDate}"
+									<td>${fn:substring(status.current.userId, 0, 3)}***</td>
+									<td><span
+										class="badge badge-${fn:toLowerCase(status.current.status)}">${status.current.status == 'WAITING' ? '답변대기' : '답변완료'}</span></td>
+									<td><fmt:formatDate value="${status.current.regDate}"
 											pattern="yyyy-MM-dd" /></td>
 								</tr>
 							</c:forEach>
@@ -108,12 +109,11 @@
 		</c:if>
 
 
-		<c:if
-			test="${not empty sessionScope.loginMember && sessionScope.loginMember.role != 'ADMIN'}">
-			<div class="text-right mb-10">
-				<a href="${pageContext.request.contextPath}/qnaWriteForm.do"
-					class="btn btn-primary btn-sm">문의 작성</a>
-			</div>
-		</c:if>
+
+		<div class="text-right mb-10">
+			<a href="${pageContext.request.contextPath}/qnaWriteForm.do"
+				class="btn btn-primary btn-sm">문의 작성</a>
+		</div>
+
 	</div>
 </div>

@@ -1,21 +1,15 @@
-package com.dto;
+package com.admin.qna;
 
 import java.sql.Timestamp;
 
-/**
- * QnA 게시글 DTO (qna 테이블 + users 테이블 JOIN 시 작성자명) qna: qna_no, user_id, title,
- * content, answer, answer_date, status, view_count, reg_date
- */
-public class QnaDTO {
+public class AdminQnaDTO {
 
 	private int qnaNo;
-	private String userId; // qna.user_id (작성자 아이디)
-	private String writerName; // users.name (목록/상세 표시용, JOIN으로 조회)
-
+	private String userId;
 	private String title;
 	private String content;
 	private String answer;
-	private String status; // WAITING, ANSWERED
+	private String status;
 	private int viewCount;
 
 	private Timestamp answerDate;
@@ -35,22 +29,6 @@ public class QnaDTO {
 
 	public void setUserId(String userId) {
 		this.userId = userId;
-	}
-
-	public String getWriterName() {
-		return writerName;
-	}
-
-	public void setWriterName(String writerName) {
-		this.writerName = writerName;
-	}
-
-	public int getViewCount() {
-		return viewCount;
-	}
-
-	public void setViewCount(int viewCount) {
-		this.viewCount = viewCount;
 	}
 
 	public String getTitle() {
@@ -83,6 +61,14 @@ public class QnaDTO {
 
 	public void setStatus(String status) {
 		this.status = status;
+	}
+
+	public int getViewCount() {
+		return viewCount;
+	}
+
+	public void setViewCount(int viewCount) {
+		this.viewCount = viewCount;
 	}
 
 	public Timestamp getAnswerDate() {

@@ -12,6 +12,7 @@ public class HomeService {
 	public List<FacilityMainDTO> getFacilityList(ServletContext context) {
 
 		FacilityDAO dao = new FacilityDAO(context);
+		
 
 		return dao.selectMainFacility();
 	}

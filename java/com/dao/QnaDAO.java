@@ -117,6 +117,7 @@ public class QnaDAO {
 			while (rs.next()) {
 				QnaDTO q = new QnaDTO();
 				q.setQnaNo(rs.getInt("qna_no"));
+				q.setUserId(rs.getString("user_id"));
 				q.setTitle(rs.getString("title"));
 				q.setContent(rs.getString("content"));
 				q.setAnswer(rs.getString("answer"));
@@ -124,12 +125,7 @@ public class QnaDAO {
 				q.setStatus(rs.getString("status"));
 				q.setViewCount(rs.getInt("view_count"));
 				q.setRegDate(rs.getTimestamp("reg_date"));
-				try {
-					q.setMemberId(rs.getString("member_id"));
-					q.setMemberName(rs.getString("member_name"));
-				} catch (Exception ignore) {
-				}
-
+				q.setWriterName(rs.getString("member_name"));
 				list.add(q);
 			}
 
@@ -179,6 +175,7 @@ public class QnaDAO {
 			if (rs.next()) {
 				QnaDTO q = new QnaDTO();
 				q.setQnaNo(rs.getInt("qna_no"));
+				q.setUserId(rs.getString("user_id"));
 				q.setTitle(rs.getString("title"));
 				q.setContent(rs.getString("content"));
 				q.setAnswer(rs.getString("answer"));
@@ -186,11 +183,7 @@ public class QnaDAO {
 				q.setStatus(rs.getString("status"));
 				q.setViewCount(rs.getInt("view_count"));
 				q.setRegDate(rs.getTimestamp("reg_date"));
-				try {
-					q.setMemberId(rs.getString("member_id"));
-					q.setMemberName(rs.getString("member_name"));
-				} catch (Exception ignore) {
-				}
+				q.setWriterName(rs.getString("member_name"));
 
 				if (viewUpdated) {
 					commit(conn);

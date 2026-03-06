@@ -225,19 +225,31 @@ WHERE image_id = (
 
 
 
-
-
-
-
 	<entry key="adminQnaList">
-		SELECT qna_no, user_id, title, status, reg_date
-		FROM
-		qna
-		ORDER BY qna_no DESC
+		SELECT
+		qna_no,
+		user_id,
+		title,
+		status,
+		view_count,
+		reg_date
+		FROM qna
+		ORDER BY qna_no
 	</entry>
 
+
+
 	<entry key="adminQnaDetail">
-		SELECT *
+		SELECT
+		qna_no,
+		user_id,
+		title,
+		content,
+		answer,
+		status,
+		view_count,
+		reg_date,
+		answer_date
 		FROM qna
 		WHERE qna_no = ?
 	</entry>

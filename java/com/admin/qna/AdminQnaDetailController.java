@@ -6,7 +6,6 @@ import static com.util.JdbcUtil.getConnection;
 import java.sql.Connection;
 
 import com.controller.Action;
-import com.dto.QnaDTO;
 
 import jakarta.servlet.ServletContext;
 import jakarta.servlet.http.HttpServletRequest;
@@ -29,7 +28,7 @@ public class AdminQnaDetailController implements Action {
 
 			AdminQnaDAO dao = new AdminQnaDAO(context);
 
-			QnaDTO qna = dao.selectQnaDetail(conn, qnaNo);
+			AdminQnaDTO qna = dao.selectQnaDetail(conn, qnaNo);
 
 			request.setAttribute("qna", qna);
 
