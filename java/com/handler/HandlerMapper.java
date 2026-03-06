@@ -8,6 +8,8 @@ import com.admin.facility.AdminFacilityInsertFormController;
 import com.admin.facility.AdminFacilityListController;
 import com.admin.facility.AdminFacilityUpdateController;
 import com.admin.facility.AdminFacilityUpdateFormController;
+import com.admin.qna.AdminQnaDetailController;
+import com.admin.qna.AdminQnaListController;
 import com.controller.Action;
 import com.controller.FacilityDetailController;
 import com.controller.FacilityListController;
@@ -25,6 +27,7 @@ import com.controller.admin.AdminLogoutController;
 import com.controller.admin.AdminRoomAddController;
 import com.controller.admin.AdminRoomDeleteController;
 import com.controller.admin.AdminRoomDetailController;
+import com.controller.admin.AdminRoomImageDeleteController;
 import com.controller.admin.AdminRoomInsertController;
 import com.controller.admin.AdminRoomManageController;
 import com.controller.admin.AdminRoomUpdateController;
@@ -43,62 +46,48 @@ public class HandlerMapper {
 
 	public HandlerMapper() {
 		map.put("/main.do", new HomeController()); // 메인
-		map.put("/member/mypage.do", 		new MemberMypageController());
-		
-		
-		
+		map.put("/member/mypage.do", new MemberMypageController());
 
-		map.put("/login/login.do", 			new LoginController()); // 로그인
-		map.put("/logout.do", 				new LogoutController());
-		map.put("/member/join.do", 			new JoinController());
-		map.put("/member/joinComplete.do", 	new JoinCompleteController());
-		
-		
-		
+		map.put("/login/login.do", new LoginController()); // 로그인
+		map.put("/logout.do", new LogoutController());
+		map.put("/member/join.do", new JoinController());
+		map.put("/member/joinComplete.do", new JoinCompleteController());
 
+		map.put("/faqList.do", new FaqListController()); // 게시판
+		map.put("/qnaList.do", new QnaListController());
+		map.put("/qnaDetail.do", new QnaDetailController());
+		map.put("/qnaWriteForm.do", new QnaWriteController());
+		map.put("/qnaInsert.do", new QnaInsertController());
 
-		map.put("/faqList.do",             new FaqListController()); // 게시판
-		map.put("/qnaList.do",             new QnaListController());
-		map.put("/qnaDetail.do",           new QnaDetailController());
-		map.put("/qnaWriteForm.do",        new QnaWriteController());
-		map.put("/qnaInsert.do",           new QnaInsertController());
-		
-		
-		
-		
+		map.put("/facilityDetail.do", new FacilityDetailController()); // 호텔정보 관련
+		map.put("/facilityList.do", new FacilityListController());
 
-		map.put("/facilityDetail.do", 		new FacilityDetailController()); // 호텔정보 관련
-		map.put("/facilityList.do", 		new FacilityListController());
-		
-		
-		
-
-		map.put("/reservationLocation.do", 	new ReservationLocationController()); // 예약관련
-		map.put("/reservationMain.do", 		new ReservationMainController());
-		map.put("/reservation/booking.do", 	new BookingController());
-		map.put("/reservation/check.do", 	new ReservationCheckController());
+		map.put("/reservationLocation.do", new ReservationLocationController()); // 예약관련
+		map.put("/reservationMain.do", new ReservationMainController());
+		map.put("/reservation/booking.do", new BookingController());
+		map.put("/reservation/check.do", new ReservationCheckController());
 		map.put("/reservation/complete.do", new ReservationCompleteController());
 
-		
-		
-		
-		
-		
-		map.put("/admin/login.do", 			new AdminLoginController()); // 관리자
-		map.put("/admin/dashboard.do", 		new AdminDashboardController());
-		map.put("/admin/logout.do", 		new AdminLogoutController());
-		map.put("/admin/facility/list.do", 	new AdminFacilityListController());
+		map.put("/admin/login.do", new AdminLoginController()); // 관리자
+		map.put("/admin/dashboard.do", new AdminDashboardController());
+		map.put("/admin/logout.do", new AdminLogoutController());
+		map.put("/admin/facility/list.do", new AdminFacilityListController());
 		map.put("/admin/facility/insertForm.do", new AdminFacilityInsertFormController());
 		map.put("/admin/facility/insert.do", new AdminFacilityInsertController());
 		map.put("/admin/facility/updateForm.do", new AdminFacilityUpdateFormController());
 		map.put("/admin/facility/update.do", new AdminFacilityUpdateController());
 		map.put("/admin/facility/delete.do", new AdminFacilityDeleteController());
-		map.put("/admin/roomManage.do", new AdminRoomManageController());
 		map.put("/admin/roomDetail.do", new AdminRoomDetailController());
+		map.put("/admin/deleteRoomImage.do", new AdminRoomImageDeleteController());
 		map.put("/admin/roomUpdate.do", new AdminRoomUpdateController());
 		map.put("/admin/roomDelete.do", new AdminRoomDeleteController());
 		map.put("/admin/roomInsert.do", new AdminRoomInsertController());
 		map.put("/admin/roomAdd.do", new AdminRoomAddController());
+		map.put("/admin/roomAdd.do", new AdminRoomAddController());
+		map.put("/admin/roomManage.do", new AdminRoomManageController());
+		map.put("/admin/qna/list.do", new AdminQnaListController());
+		map.put("/admin/qna/detail.do", new AdminQnaDetailController());
+
 	}
 
 	public Action getController(String path) {

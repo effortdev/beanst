@@ -103,7 +103,7 @@ WHERE facility_id = ?
 
 
 
-<entry key="setFirstImage">
+	<entry key="setFirstImage">
 <![CDATA[
 UPDATE facility_image
 SET is_main = 'Y'
@@ -115,7 +115,7 @@ WHERE image_id = (
     LIMIT 1
 )
 ]]>
-</entry>
+	</entry>
 
 	<entry key="facilitySetNewMain">
 <![CDATA[
@@ -138,6 +138,17 @@ WHERE image_id = (
 
 
 
+
+
+
+
+
+
+
+
+
+
+
 	<entry key="adminRoomManage">
 		SELECT * FROM room_manage
 	</entry>
@@ -147,26 +158,89 @@ WHERE image_id = (
 		capacity = ?,
 		room_location = ?,
 		room_description = ?,
+		usage_time =?,
+		amenity = ?,
+		minibar = ?,
 		updated_at = NOW()
-		WHERE room_no = ?
+		WHERE room_id = ?
 	</entry>
 	<entry key="deleteRoom">
 		DELETE FROM room_manage
-		WHERE room_no = ?
+		WHERE room_id = ?
 	</entry>
 	<entry key="deleteRoomImage">
 		DELETE FROM room_image
-		WHERE room_no = ?
+		WHERE room_id = ?
 	</entry>
 	<entry key="insertRoom">
-		INSERT INTO room_manage(room_no,room_name, capacity, room_location,
-		room_description, created_at)
-		VALUES (?,?, ?, ?, ?, NOW())
+		INSERT INTO room_manage(room_id,room_name, capacity,
+		room_location,
+		room_description, usage_time,amenity,minibar,created_at)
+		VALUES (?,?, ?, ?, ?,?,?,?, NOW())
 	</entry>
 	<entry key="insertRoomImage">
-		INSERT INTO room_image (room_no, image_path, is_main, display_order,
+		INSERT INTO room_image (room_id, image_path, is_main,
+		display_order,
 		created_at)
 		VALUES (?, ?, ?, ?, NOW())
 	</entry>
+	<entry key="selectRoomByNo">
+		SELECT * FROM room_manage WHERE room_id = ?
+	</entry>
+	<entry key="selectRoomImages">
+		SELECT * FROM room_image WHERE room_id = ?
+	</entry>
+
+	<entry key="updateRoomMainImage">
+		UPDATE room_image
+		SET is_main =
+		CASE
+		WHEN image_no = ?
+		THEN 'Y'
+		ELSE 'N'
+		END
+		WHERE room_id = ?
+	</entry>
+
+	<entry key="deleteRoomImageDB">
+		DELETE FROM room_image WHERE image_no = ?
+	</entry>
+	<entry key="selectRoomImagePath">
+		SELECT image_path FROM room_image WHERE image_no = ?
+	</entry>
+
+	<entry key="deleteRoomImageByPath">
+		DELETE FROM room_image WHERE image_path = ?
+	</entry>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	<entry key="adminQnaList">
+		SELECT qna_no, user_id, title, status, reg_date
+		FROM
+		qna
+		ORDER BY qna_no DESC
+	</entry>
+
+	<entry key="adminQnaDetail">
+		SELECT *
+		FROM qna
+		WHERE qna_no = ?
+	</entry>
+
 
 </properties>

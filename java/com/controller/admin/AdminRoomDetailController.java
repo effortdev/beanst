@@ -1,25 +1,30 @@
 package com.controller.admin;
 
+import java.util.List;
+
 import com.controller.Action;
 import com.dao.AdminDAO;
-import com.vo.RoomVO;
+import com.vo.RoomImageVO;
+import com.vo.RoomManegeVO;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 public class AdminRoomDetailController implements Action {
 
-    @Override
-    public String execute(HttpServletRequest request,
-                          HttpServletResponse response) {
+	@Override
+	public String execute(HttpServletRequest request, HttpServletResponse response) {
 
-        int roomNo = Integer.parseInt(request.getParameter("room_no"));
+		int roomId = Integer.parseInt(request.getParameter("room_id"));
 
-        AdminDAO dao = new AdminDAO(request.getServletContext());
-        RoomVO vo = dao.selectRoomByNo(roomNo);  
+		AdminDAO dao = new AdminDAO(request.getServletContext());
 
-        request.setAttribute("vo", vo);
+		RoomManegeVO vo = dao.selectRoomByNo(roomId);
+		List<RoomImageVO> imageVO = dao.selectRoomImages(roomId);
 
-        return "admin/room/roomDetail";
-    }
+		request.setAttribute("vo", vo);
+		request.setAttribute("imageVO", imageVO);
+
+		return "admin/room/roomDetail";
+	}
 }

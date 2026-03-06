@@ -5,7 +5,7 @@ import java.sql.Timestamp;
 public class QnaDTO {
 
 	private int qnaNo;
-	private int memberNo;
+	private String userId;
 	private int viewCount;
 
 	private String title;
@@ -26,12 +26,12 @@ public class QnaDTO {
 		this.qnaNo = qnaNo;
 	}
 
-	public int getMemberNo() {
-		return memberNo;
+	public String getUserId() {
+		return userId;
 	}
 
-	public void setMemberNo(int memberNo) {
-		this.memberNo = memberNo;
+	public void setUserId(String userId) {
+		this.userId = userId;
 	}
 
 	public int getViewCount() {

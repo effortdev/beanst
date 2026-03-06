@@ -21,7 +21,7 @@
 			href="${pageContext.request.contextPath}/admin/memberManage.do">
 				회원 관리</a></li>
 		<li><a
-			href="${pageContext.request.contextPath}/admin/memberManage.do">
-				Q&A 관리</a></li>
+			href="${pageContext.request.contextPath}/admin/qna/list.do"> 1:1 문의 
+				관리 </a></li>
 	</ul>
 </aside>

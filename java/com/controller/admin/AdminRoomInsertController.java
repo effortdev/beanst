@@ -5,84 +5,88 @@ import java.util.UUID;
 
 import com.controller.Action;
 import com.dao.AdminDAO;
-import com.vo.RoomVO;
+import com.vo.RoomManegeVO;
 
+import jakarta.servlet.annotation.MultipartConfig;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.Part;
 
+@MultipartConfig
 public class AdminRoomInsertController implements Action {
 
-    @Override
-    public String execute(HttpServletRequest request,
-                          HttpServletResponse response) {
+	@Override
+	public String execute(HttpServletRequest request, HttpServletResponse response) {
 
-        try {
+		try {
 
-            int room_no = Integer.parseInt(request.getParameter("room_no"));
-            String room_name = request.getParameter("room_name");
-            String capacity = request.getParameter("capacity");
-            String room_location = request.getParameter("room_location");
-            String room_description = request.getParameter("room_description");
+			int room_id = Integer.parseInt(request.getParameter("room_id"));
+			String room_name = request.getParameter("room_name");
+			String capacity = request.getParameter("capacity");
+			String room_location = request.getParameter("room_location");
+			String room_description = request.getParameter("room_description");
+			String usage_time = request.getParameter("usage_time");
+			String amenity = request.getParameter("amenity");
+			String minibar = request.getParameter("minibar");
 
-            Part filePart = request.getPart("room_img");
+			RoomManegeVO vo = new RoomManegeVO();
+			vo.setRoom_id(room_id);
+			vo.setRoom_name(room_name);
+			vo.setCapacity(capacity);
+			vo.setRoom_location(room_location);
+			vo.setRoom_description(room_description);
+			vo.setUsage_time(usage_time);
+			vo.setAmenity(amenity);
+			vo.setMinibar(minibar);
 
-            String uploadPath = "C:/hotelUploads/room";
+			Part filePart = request.getPart("room_img");
 
-            String savedFileName = filePart.getSubmittedFileName();
-            if (filePart != null && filePart.getSize() > 0) {
+			String uploadPath = "C:/hotelUploads/room";
 
-                String originalFileName = filePart.getSubmittedFileName();
-                File uploadDir = new File(uploadPath);
-                if (!uploadDir.exists()) {
-                    uploadDir.mkdir();
-                }
-                File targetFile = new File(uploadPath, originalFileName);
+			File uploadDir = new File(uploadPath);
+			if (!uploadDir.exists()) {
+				uploadDir.mkdirs();
+			}
 
-                if (targetFile.exists()) {
-                    String extension = "";
-                    int dotIndex = originalFileName.lastIndexOf(".");
-                    if (dotIndex != -1) {
-                        extension = originalFileName.substring(dotIndex);
-                        originalFileName = originalFileName.substring(0, dotIndex);
-                    }
+			AdminDAO dao = new AdminDAO(request.getServletContext());
+			dao.insertRoom(vo);
 
-                    savedFileName = originalFileName + "_" + UUID.randomUUID() + extension;
-                } else {
-                    savedFileName = originalFileName;
-                }
+			int order = 1;
 
-                filePart.write(uploadPath + File.separator + savedFileName);
-            
-            }
+			for (Part part : request.getParts()) {
 
-            RoomVO vo = new RoomVO();
-            vo.setRoom_no(room_no);
-            vo.setRoom_name(room_name);
-            vo.setCapacity(capacity);
-            vo.setRoom_location(room_location);
-            vo.setRoom_description(room_description);
-            vo.setRoom_image(savedFileName);
+				if ("room_img".equals(part.getName()) && part.getSize() > 0) {
 
-            System.out.println("savedFileName : "+savedFileName);
-            System.out.println("filePart size = " + filePart.getSize());
-            AdminDAO dao = new AdminDAO(request.getServletContext());
-            dao.insertRoom(vo);
-         // 2️⃣ room_image 저장
-            if (savedFileName != null) {
+					String originalFileName = part.getSubmittedFileName();
+					String savedFileName = originalFileName;
 
-                String imagePath = "/upload/room/" + savedFileName;
+					File targetFile = new File(uploadPath, originalFileName);
 
-                dao.insertRoomImage(
-                        room_no,
-                        imagePath,
-                        "Y",    // 대표이미지
-                        1       // 순서
-                );
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return "redirect:/admin/roomManage.do";
-    }
+					if (targetFile.exists()) {
+
+						String extension = "";
+						int dotIndex = originalFileName.lastIndexOf(".");
+
+						if (dotIndex != -1) {
+							extension = originalFileName.substring(dotIndex);
+							originalFileName = originalFileName.substring(0, dotIndex);
+						}
+
+						savedFileName = originalFileName + "_" + UUID.randomUUID() + extension;
+					}
+
+					part.write(uploadPath + File.separator + savedFileName);
+
+					String imagePath = "/upload/room/" + savedFileName;
+
+					dao.insertRoomImage(room_id, imagePath, "N", order);
+
+					order++;
+				}
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return "redirect:/admin/roomManage.do";
+	}
 }
