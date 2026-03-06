@@ -275,4 +275,90 @@ public class ReservationDAO {
 
 		return success;
 	}
+
+	// 1. 달력용: 내 예약 제외하고 날짜 가져오기
+	public List<ReservationVO> getReservedDatesExcludingSelf(int resId) {
+		List<ReservationVO> list = new ArrayList<>();
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try {
+			con = JdbcUtil.getConnection();
+			pstmt = con.prepareStatement(props.getProperty("getReservedDatesExcludingSelf"));
+			pstmt.setInt(1, resId);
+			rs = pstmt.executeQuery();
+			while (rs.next()) {
+				ReservationVO vo = new ReservationVO();
+				vo.setRoomId(rs.getInt("room_id"));
+				vo.setCheckIn(rs.getString("check_in"));
+				vo.setCheckOut(rs.getString("check_out"));
+				list.add(vo);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			JdbcUtil.close(rs);
+			JdbcUtil.close(pstmt);
+			JdbcUtil.close(con);
+		}
+		return list;
+	}
+
+	// 2. 중복 방지용: 수정 시 겹치는 예약이 있는지 확인
+	public boolean isRoomAvailableForUpdate(int roomId, String checkIn, String checkOut, int resId) {
+		boolean isAvailable = false;
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try {
+			con = JdbcUtil.getConnection();
+			pstmt = con.prepareStatement(props.getProperty("isRoomAvailableForUpdate"));
+			pstmt.setInt(1, roomId);
+			pstmt.setInt(2, resId); // 내 예약번호 제외
+			pstmt.setString(3, checkOut); // (check_in < checkOut)
+			pstmt.setString(4, checkIn); // (check_out > checkIn)
+			rs = pstmt.executeQuery();
+			if (rs.next() && rs.getInt(1) == 0) {
+				isAvailable = true; // 겹치는 예약이 0개면 예약 가능!
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			JdbcUtil.close(rs);
+			JdbcUtil.close(pstmt);
+			JdbcUtil.close(con);
+		}
+		return isAvailable;
+	}
+
+	// 3. 진짜 업데이트 실행
+	public boolean updateReservation(ReservationVO vo) {
+		int result = 0;
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		try {
+			con = JdbcUtil.getConnection();
+			pstmt = con.prepareStatement(props.getProperty("updateReservation"));
+			pstmt.setInt(1, vo.getRoomId());
+			pstmt.setString(2, vo.getRoomName());
+			pstmt.setString(3, vo.getCheckIn());
+			pstmt.setString(4, vo.getCheckOut());
+			pstmt.setInt(5, vo.getAdultCount());
+			pstmt.setInt(6, vo.getChildCount());
+			pstmt.setInt(7, vo.getTotalPrice());
+			pstmt.setInt(8, vo.getReservationId());
+
+			result = pstmt.executeUpdate();
+			if (result > 0)
+				JdbcUtil.commit(con);
+		} catch (Exception e) {
+			e.printStackTrace();
+			JdbcUtil.rollback(con);
+		} finally {
+			JdbcUtil.close(pstmt);
+			JdbcUtil.close(con);
+		}
+		return result > 0;
+	}
+
 }

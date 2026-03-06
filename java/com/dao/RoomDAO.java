@@ -32,7 +32,7 @@ public class RoomDAO {
 			e.printStackTrace();
 		}
 	}
-	
+
 	public List<RoomVO> getAllRooms() {
 		List<RoomVO> list = new ArrayList<>();
 		Connection con = null;
@@ -65,14 +65,15 @@ public class RoomDAO {
 		}
 		return list;
 	}
-	//객실 목록보기 수정중
+
+	// 객실 목록보기 수정중
 	public List<RoomMainDTO> selectRoomList() {
 
 		List<RoomMainDTO> list = new ArrayList<>();
 		Connection conn = null;
 		PreparedStatement ps = null;
 		ResultSet rs = null;
-		
+
 		try {
 			String sql = props.getProperty("selectRoomList");
 
@@ -108,8 +109,8 @@ public class RoomDAO {
 
 		return list;
 	}
-	
-	//객실 목록 보기 
+
+	// 객실 목록 보기
 	public List<RoomMainDTO> selectMainRoom() {
 
 		List<RoomMainDTO> list = new ArrayList<>();
@@ -154,86 +155,85 @@ public class RoomDAO {
 		}
 		return list;
 	}
-	
-	
-	// 객실 상세보기 
-		public RoomManageVO selectRoom(int roomId) {
-			System.out.println("selectRoom 실행");
-			RoomManageVO vo = null;
-			Connection conn = null;
-			PreparedStatement ps = null;
-			ResultSet rs = null;
 
-			try {
-				conn = getConnection();
+	// 객실 상세보기
+	public RoomManageVO selectRoom(int roomId) {
+		System.out.println("selectRoom 실행");
+		RoomManageVO vo = null;
+		Connection conn = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
 
-				String sql = props.getProperty("selectRoom");
-				ps = conn.prepareStatement(sql);
-				ps.setInt(1, roomId);
+		try {
+			conn = getConnection();
 
-				rs = ps.executeQuery();
+			String sql = props.getProperty("selectRoom");
+			ps = conn.prepareStatement(sql);
+			ps.setInt(1, roomId);
 
-				if (rs.next()) {
-					vo = new RoomManageVO();
-					vo.setRoom_id(rs.getInt("room_id"));
-					vo.setRoom_name(rs.getString("room_name"));
-					vo.setCapacity(rs.getString("capacity"));
-					vo.setRoom_location(rs.getString("room_location"));
-					vo.setRoom_description(rs.getString("room_description"));
-					vo.setUsage_time(rs.getString("usage_time"));
-					vo.setAmenity(rs.getString("amenity"));
-					vo.setMinibar(rs.getString("minibar"));
-					vo.setCreated_at(rs.getTimestamp("created_at"));
-					vo.setUpdated_at(rs.getTimestamp("updated_at"));
-				}
+			rs = ps.executeQuery();
 
-			} catch (Exception e) {
-				e.printStackTrace();
-			} finally {
-				close(rs);
-				close(ps);
-				close(conn);
+			if (rs.next()) {
+				vo = new RoomManageVO();
+				vo.setRoom_id(rs.getInt("room_id"));
+				vo.setRoom_name(rs.getString("room_name"));
+				vo.setCapacity(rs.getString("capacity"));
+				vo.setRoom_location(rs.getString("room_location"));
+				vo.setRoom_description(rs.getString("room_description"));
+				vo.setUsage_time(rs.getString("usage_time"));
+				vo.setAmenity(rs.getString("amenity"));
+				vo.setMinibar(rs.getString("minibar"));
+				vo.setCreated_at(rs.getTimestamp("created_at"));
+				vo.setUpdated_at(rs.getTimestamp("updated_at"));
 			}
 
-			return vo;
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(rs);
+			close(ps);
+			close(conn);
 		}
-	
-		//객실이미지보기
-		public List<RoomImageVO> selectRoomImages(int roomId) {
-			System.out.println("selectRoomImages실행");
-			Connection conn = null;
-			PreparedStatement ps = null;
-			ResultSet rs = null;
-			List<RoomImageVO> list = new ArrayList<>();
 
-			try {
-				conn = getConnection();
+		return vo;
+	}
 
-				String sql = props.getProperty("selectRoomImages");
-				ps = conn.prepareStatement(sql);
-				ps.setInt(1, roomId);
+	// 객실이미지보기
+	public List<RoomImageVO> selectRoomImages(int roomId) {
+		System.out.println("selectRoomImages실행");
+		Connection conn = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		List<RoomImageVO> list = new ArrayList<>();
 
-				rs = ps.executeQuery();
+		try {
+			conn = getConnection();
 
-				while (rs.next()) {
-					RoomImageVO imageVO = new RoomImageVO();
-					imageVO.setImage_no(rs.getInt("image_no"));
-					imageVO.setRoom_id(rs.getInt("room_id"));
-					imageVO.setImage_path(rs.getString("image_path"));
-					imageVO.setIs_main(rs.getString("is_main"));
-					imageVO.setDisplay_order(rs.getInt("display_order"));
+			String sql = props.getProperty("selectRoomImages");
+			ps = conn.prepareStatement(sql);
+			ps.setInt(1, roomId);
 
-					list.add(imageVO);
-				}
+			rs = ps.executeQuery();
 
-			} catch (Exception e) {
-				e.printStackTrace();
-			} finally {
-				close(rs);
-				close(ps);
-				close(conn);
+			while (rs.next()) {
+				RoomImageVO imageVO = new RoomImageVO();
+				imageVO.setImage_no(rs.getInt("image_no"));
+				imageVO.setRoom_id(rs.getInt("room_id"));
+				imageVO.setImage_path(rs.getString("image_path"));
+				imageVO.setIs_main(rs.getString("is_main"));
+				imageVO.setDisplay_order(rs.getInt("display_order"));
+
+				list.add(imageVO);
 			}
-			return list;
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(rs);
+			close(ps);
+			close(conn);
 		}
-	
+		return list;
+	}
+
 }
