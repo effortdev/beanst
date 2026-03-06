@@ -284,4 +284,40 @@ WHERE image_id = (
 	</entry>
 
 
+
+
+	<entry key="adminFaqList">
+		SELECT *
+		FROM faq
+		ORDER BY sort_order ASC, faq_no DESC
+	</entry>
+
+	<entry key="adminFaqInsert">
+		INSERT INTO faq
+		(category, question, answer, sort_order, status)
+		VALUES (?, ?, ?, ?, ?)
+	</entry>
+
+	<entry key="adminFaqDetail">
+		SELECT *
+		FROM faq
+		WHERE faq_no = ?
+	</entry>
+
+	<entry key="adminFaqUpdate">
+		UPDATE faq
+		SET
+		category = ?,
+		question = ?,
+		answer = ?,
+		sort_order = ?,
+		status = ?
+		WHERE faq_no = ?
+	</entry>
+
+	<entry key="adminFaqDelete">
+		DELETE FROM faq
+		WHERE faq_no = ?
+	</entry>
+
 </properties>

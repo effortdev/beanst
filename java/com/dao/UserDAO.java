@@ -3,6 +3,7 @@ package com.dao;
 import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.util.Properties;
 import jakarta.servlet.ServletContext;
 import com.util.JdbcUtil;
@@ -53,5 +54,77 @@ public class UserDAO {
 			JdbcUtil.close(con);
 		}
 		return isSuccess;
+	}
+
+	// 아이디 찾기
+	public String findId(String name, String email) {
+		String userId = null;
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try {
+			con = JdbcUtil.getConnection();
+			pstmt = con.prepareStatement(props.getProperty("findId"));
+			pstmt.setString(1, name);
+			pstmt.setString(2, email);
+			rs = pstmt.executeQuery();
+			if (rs.next())
+				userId = rs.getString("user_id");
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			JdbcUtil.close(rs);
+			JdbcUtil.close(pstmt);
+			JdbcUtil.close(con);
+		}
+		return userId;
+	}
+
+	// 사용자 존재 여부 확인
+	public boolean checkUserForPw(String userId, String name, String email) {
+		boolean isExist = false;
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try {
+			con = JdbcUtil.getConnection();
+			pstmt = con.prepareStatement(props.getProperty("checkUserForPw"));
+			pstmt.setString(1, userId);
+			pstmt.setString(2, name);
+			pstmt.setString(3, email);
+			rs = pstmt.executeQuery();
+			if (rs.next() && rs.getInt("cnt") > 0)
+				isExist = true;
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			JdbcUtil.close(rs);
+			JdbcUtil.close(pstmt);
+			JdbcUtil.close(con);
+		}
+		return isExist;
+	}
+
+	// 비밀번호 업데이트
+	public boolean updatePassword(String userId, String newPw) {
+		int result = 0;
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		try {
+			con = JdbcUtil.getConnection();
+			pstmt = con.prepareStatement(props.getProperty("updatePassword"));
+			pstmt.setString(1, newPw);
+			pstmt.setString(2, userId);
+			result = pstmt.executeUpdate();
+			if (result > 0)
+				JdbcUtil.commit(con);
+		} catch (Exception e) {
+			e.printStackTrace();
+			JdbcUtil.rollback(con);
+		} finally {
+			JdbcUtil.close(pstmt);
+			JdbcUtil.close(con);
+		}
+		return result > 0;
 	}
 }

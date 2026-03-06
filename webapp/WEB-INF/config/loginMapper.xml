@@ -4,7 +4,7 @@
 <properties>
 
 	<entry key="Login">
-		SELECT user_id,name
+		SELECT user_id,name,role
 		FROM users
 		WHERE user_id = ?
 		AND password = ?

@@ -46,6 +46,7 @@ public class LoginDAO {
 				UserVO dto = new UserVO();
 				dto.setUserId(rs.getString("user_id"));
 				dto.setName(rs.getString("name"));
+				dto.setRole(rs.getString("role"));
 				return dto;
 			}
 

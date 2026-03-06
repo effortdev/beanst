@@ -8,6 +8,12 @@ import com.admin.facility.AdminFacilityInsertFormController;
 import com.admin.facility.AdminFacilityListController;
 import com.admin.facility.AdminFacilityUpdateController;
 import com.admin.facility.AdminFacilityUpdateFormController;
+import com.admin.faq.AdminFaqDeleteController;
+import com.admin.faq.AdminFaqEditController;
+import com.admin.faq.AdminFaqInsertController;
+import com.admin.faq.AdminFaqListController;
+import com.admin.faq.AdminFaqUpdateController;
+import com.admin.faq.AdminFaqWriteController;
 import com.admin.qna.AdminQnaAnswerController;
 import com.admin.qna.AdminQnaDeleteController;
 import com.admin.qna.AdminQnaDetailController;
@@ -16,6 +22,8 @@ import com.admin.qna.AdminQnaWaitingController;
 import com.controller.Action;
 import com.controller.FacilityDetailController;
 import com.controller.FacilityListController;
+import com.controller.FindIdController;
+import com.controller.FindPwController;
 import com.controller.HomeController;
 import com.controller.JoinCompleteController;
 import com.controller.JoinController;
@@ -24,6 +32,8 @@ import com.controller.LogoutController;
 import com.controller.MemberMypageController;
 import com.controller.ReservationLocationController;
 import com.controller.ReservationMainController;
+import com.controller.ResetCompleteController;
+import com.controller.ResetPwController;
 import com.controller.admin.AdminDashboardController;
 import com.controller.admin.AdminLoginController;
 import com.controller.admin.AdminLogoutController;
@@ -55,6 +65,11 @@ public class HandlerMapper {
 		map.put("/logout.do", new LogoutController());
 		map.put("/member/join.do", new JoinController());
 		map.put("/member/joinComplete.do", new JoinCompleteController());
+
+		map.put("/member/findId.do", new FindIdController());
+		map.put("/member/findPw.do", new FindPwController());
+		map.put("/member/resetPw.do", new ResetPwController());
+		map.put("/member/resetComplete.do", new ResetCompleteController());
 
 		map.put("/faqList.do", new FaqListController()); // 게시판
 		map.put("/qnaList.do", new QnaListController());
@@ -93,6 +108,12 @@ public class HandlerMapper {
 		map.put("/admin/qna/answer.do", new AdminQnaAnswerController());
 		map.put("/admin/qna/delete.do", new AdminQnaDeleteController());
 		map.put("/admin/qna/waiting.do", new AdminQnaWaitingController());
+		map.put("/admin/faq/list.do", new AdminFaqListController());
+		map.put("/admin/faq/write.do", new AdminFaqWriteController());
+		map.put("/admin/faq/insert.do", new AdminFaqInsertController());
+		map.put("/admin/faq/edit.do", new AdminFaqEditController());
+		map.put("/admin/faq/update.do", new AdminFaqUpdateController());
+		map.put("/admin/faq/delete.do", new AdminFaqDeleteController());
 
 	}
 
