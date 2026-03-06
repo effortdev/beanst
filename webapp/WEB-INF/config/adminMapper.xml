@@ -294,7 +294,8 @@ WHERE image_id = (
 
 	<entry key="adminFaqInsert">
 		INSERT INTO faq
-		(category, question, answer, sort_order, status)
+		(category, question, answer,
+		sort_order, status)
 		VALUES (?, ?, ?, ?, ?)
 	</entry>
 
@@ -319,5 +320,52 @@ WHERE image_id = (
 		DELETE FROM faq
 		WHERE faq_no = ?
 	</entry>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	<entry key="adminReservationList">
+		SELECT *
+		FROM reservation
+		ORDER BY reservation_id DESC
+	</entry>
+
+	<entry key="adminReservationConfirm">
+		UPDATE reservation
+		SET status = '예약확정'
+		WHERE reservation_id = ?
+	</entry>
+
+	<entry key="adminReservationCancel">
+		UPDATE reservation
+		SET status = '예약취소'
+		WHERE reservation_id = ?
+	</entry>
+
+
+
+
+
+
+
+
+
+
+
+
 
 </properties>

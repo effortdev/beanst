@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.facility.FacilityMainDTO;
 import com.home.HomeService;
+import com.room.RoomMainDTO;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -18,9 +19,10 @@ public class HomeController implements Action {
 		HomeService service = new HomeService();
 
 		List<FacilityMainDTO> facilityList = service.getFacilityList(request.getServletContext());
+		List<RoomMainDTO> roomList = service.getRoomList(request.getServletContext());
 
 		request.setAttribute("facilityList", facilityList);
-
+		request.setAttribute("roomList", roomList);
 		return "home/main";
 	}
 }

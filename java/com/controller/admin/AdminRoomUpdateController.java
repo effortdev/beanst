@@ -2,11 +2,13 @@ package com.controller.admin;
 
 import java.io.File;
 import java.util.Collection;
+import java.util.List;
 import java.util.UUID;
 
 import com.controller.Action;
 import com.dao.AdminDAO;
-import com.vo.RoomManegeVO;
+import com.vo.RoomImageVO;
+import com.vo.RoomManageVO;
 
 import jakarta.servlet.ServletContext;
 import jakarta.servlet.http.HttpServletRequest;
@@ -32,11 +34,12 @@ public class AdminRoomUpdateController implements Action {
 		String minibar = request.getParameter("minibar");
 		if (method.equals("GET")) {
 
-			RoomManegeVO room = dao.selectRoomByNo(roomId);
+			RoomManageVO vo = dao.selectRoomByNo(roomId);
+			List<RoomImageVO> imageVO = dao.selectRoomImages(roomId);
+			request.setAttribute("vo", vo);
+			request.setAttribute("imageVO", imageVO);
 
-			request.setAttribute("room", room);
-
-			return "admin/room/roomDetail";
+			return "admin/room/roomUpdate";
 		}
 
 		if (method.equals("POST")) {
@@ -45,7 +48,7 @@ public class AdminRoomUpdateController implements Action {
 
 				System.out.println("=== 수정 실행 ===");
 
-				RoomManegeVO vo = new RoomManegeVO();
+				RoomManageVO vo = new RoomManageVO();
 				vo.setRoom_id(roomId);
 				vo.setRoom_name(roomName);
 				vo.setCapacity(capacity);
@@ -90,7 +93,7 @@ public class AdminRoomUpdateController implements Action {
 				Collection<Part> parts = request.getParts();
 
 				String uploadPath = "C:/hotelUploads/room";
-				int order = 1;
+				int order = dao.getNextDisplayOrder(roomId);
 
 				for (Part part : request.getParts()) {
 
@@ -137,7 +140,7 @@ public class AdminRoomUpdateController implements Action {
 				e.printStackTrace();
 			}
 
-			return "redirect:/admin/roomDetail.do?room_id=" + roomId;
+			return "redirect:/admin/roomUpdate.do?room_id=" + roomId;
 		}
 
 		return null;

@@ -16,7 +16,7 @@ import java.util.Properties;
 
 import com.dto.AdminDTO;
 import com.vo.RoomImageVO;
-import com.vo.RoomManegeVO;
+import com.vo.RoomManageVO;
 
 import jakarta.servlet.ServletContext;
 
@@ -72,9 +72,9 @@ public class AdminDAO {
 	}
 
 	// 객실 목록보기
-	public List<RoomManegeVO> selectRoomList() {
+	public List<RoomManageVO> selectRoomList() {
 		System.out.println("selectRoomList 실행");
-		List<RoomManegeVO> list = new ArrayList<>();
+		List<RoomManageVO> list = new ArrayList<>();
 		Connection conn = null;
 		Statement st = null;
 		ResultSet rs = null;
@@ -87,7 +87,7 @@ public class AdminDAO {
 			rs = st.executeQuery(sql);
 
 			while (rs.next()) {
-				RoomManegeVO room = new RoomManegeVO();
+				RoomManageVO room = new RoomManageVO();
 				room.setRoom_id(rs.getInt("room_id"));
 				room.setRoom_name(rs.getString("room_name"));
 				room.setCapacity(rs.getString("capacity"));
@@ -111,9 +111,9 @@ public class AdminDAO {
 	}
 
 	// 객실 상세보기
-	public RoomManegeVO selectRoomByNo(int roomId) {
+	public RoomManageVO selectRoomByNo(int roomId) {
 		System.out.println("selectRoomByNo 실행");
-		RoomManegeVO vo = null;
+		RoomManageVO vo = null;
 		Connection conn = null;
 		PreparedStatement ps = null;
 		ResultSet rs = null;
@@ -128,7 +128,7 @@ public class AdminDAO {
 			rs = ps.executeQuery();
 
 			if (rs.next()) {
-				vo = new RoomManegeVO();
+				vo = new RoomManageVO();
 				vo.setRoom_id(rs.getInt("room_id"));
 				vo.setRoom_name(rs.getString("room_name"));
 				vo.setCapacity(rs.getString("capacity"));
@@ -153,7 +153,7 @@ public class AdminDAO {
 	}
 
 	// 객실 정보 변경
-	public void updateRoom(RoomManegeVO vo) {
+	public void updateRoom(RoomManageVO vo) {
 		System.out.println("updateRoom 실행");
 		Connection conn = null;
 		PreparedStatement ps = null;
@@ -348,7 +348,7 @@ public class AdminDAO {
 		}
 	}
 
-	public void insertRoom(RoomManegeVO vo) {
+	public void insertRoom(RoomManageVO vo) {
 
 		Connection conn = null;
 		PreparedStatement ps = null;
@@ -379,7 +379,6 @@ public class AdminDAO {
 	}
 
 	public int insertRoomImage(int roomId, String imagePath, String isMain, int displayOrder) {
-		
 
 		Connection conn = null;
 		PreparedStatement ps = null;
@@ -430,7 +429,7 @@ public class AdminDAO {
 				imageVO.setRoom_id(rs.getInt("room_id"));
 				imageVO.setImage_path(rs.getString("image_path"));
 				imageVO.setIs_main(rs.getString("is_main"));
-				imageVO.setDisplay_order(rs.getString("display_order"));
+				imageVO.setDisplay_order(rs.getInt("display_order"));
 
 				list.add(imageVO);
 			}
@@ -443,6 +442,38 @@ public class AdminDAO {
 			close(conn);
 		}
 		return list;
+	}
+
+	public int getNextDisplayOrder(int roomId) {
+
+		Connection conn = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		int order = 1;
+
+		try {
+
+			conn = getConnection();
+
+			String sql = "SELECT COALESCE(MAX(display_order),0) + 1 FROM room_image WHERE room_id=?";
+			ps = conn.prepareStatement(sql);
+			ps.setInt(1, roomId);
+
+			rs = ps.executeQuery();
+
+			if (rs.next()) {
+				order = rs.getInt(1);
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(rs);
+			close(ps);
+			close(conn);
+		}
+
+		return order;
 	}
 
 }

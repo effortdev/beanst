@@ -5,7 +5,7 @@ public class RoomImageVO {
 	private int room_id;
 	private String image_path;
 	private String is_main;
-	private String display_order;
+	private int display_order;
 
 	public int getImage_no() {
 		return image_no;
@@ -39,11 +39,11 @@ public class RoomImageVO {
 		this.is_main = is_main;
 	}
 
-	public String getDisplay_order() {
+	public int getDisplay_order() {
 		return display_order;
 	}
 
-	public void setDisplay_order(String display_order) {
+	public void setDisplay_order(int display_order) {
 		this.display_order = display_order;
 	}
 

@@ -36,6 +36,8 @@ import com.controller.ReservationLocationController;
 import com.controller.ReservationMainController;
 import com.controller.ResetCompleteController;
 import com.controller.ResetPwController;
+import com.controller.RoomDetailController;
+import com.controller.RoomListController;
 import com.controller.admin.AdminDashboardController;
 import com.controller.admin.AdminLoginController;
 import com.controller.admin.AdminLogoutController;
@@ -77,16 +79,23 @@ public class HandlerMapper {
 		map.put("/qnaDetail.do", new QnaDetailController());
 		map.put("/qnaWriteForm.do", new QnaWriteController());
 		map.put("/qnaInsert.do", new QnaInsertController());
+		
+		
 
 		map.put("/facilityDetail.do", new FacilityDetailController()); // 호텔정보 관련
 		map.put("/facilityList.do", new FacilityListController());
+		map.put("/roomDetail.do", new RoomDetailController());// 객실정보 상세보기
+		map.put("/roomList.do", new RoomListController());// 객실 리스트 보기
 
+		
+		
+		
 		map.put("/reservationLocation.do", new ReservationLocationController()); // 예약관련
 		map.put("/reservationMain.do", new ReservationMainController());
 		map.put("/reservation/booking.do", new BookingController());
 		map.put("/reservation/check.do", new ReservationCheckController());
 		map.put("/reservation/complete.do", new ReservationCompleteController());
-		map.put("/reservation/cancel.do",    new ReservationCancelController());
+		map.put("/reservation/cancel.do", new ReservationCancelController());
 
 		map.put("/admin/login.do", new AdminLoginController()); // 관리자
 		map.put("/admin/dashboard.do", new AdminDashboardController());

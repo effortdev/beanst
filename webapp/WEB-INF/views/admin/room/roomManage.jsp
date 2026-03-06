@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ page import="java.util.List"%>
 <%@ page import="com.dao.AdminDAO"%>
-<%@ page import="com.vo.RoomManegeVO"%>
+<%@ page import="com.vo.RoomManageVO"%>
 <%@ taglib prefix="c" uri="jakarta.tags.core"%>
 
 
@@ -30,7 +30,7 @@
 			<td>${room.room_description}</td>
 			<td>
 				<form
-					action="${pageContext.request.contextPath}/admin/roomDetail.do"
+					action="${pageContext.request.contextPath}/admin/roomUpdate.do"
 					method="get" style="display: inline;">
 
 					<input type="hidden" name="room_id" value="${room.room_id}">

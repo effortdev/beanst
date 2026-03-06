@@ -49,4 +49,57 @@
 		ORDER BY f.facility_id
 	</entry>
 
+
+
+
+
+
+	<entry key="selectMainRoom">
+		SELECT
+		rm.room_id,
+		rm.room_name,
+		rm.capacity,
+		rm.room_location,
+		rm.room_description,
+		rm.usage_time,
+		rm.amenity,
+		rm.minibar,
+		ri.image_path
+		FROM room_manage rm
+		JOIN room_image ri
+		ON
+		rm.room_id = ri.room_id
+		WHERE ri.is_main='Y'
+		ORDER BY
+		rm.room_id
+	</entry>
+		<entry key="selectRoomList">
+		SELECT
+		rm.room_id,
+		rm.room_name,
+		rm.capacity,
+		rm.room_location,
+		rm.room_description,
+		rm.usage_time,
+		rm.amenity,
+		rm.minibar,
+		ri.image_path
+		FROM room_manage rm
+		LEFT JOIN room_image ri
+		ON rm.room_id = ri.room_id
+		AND ri.is_main = 'Y'
+		ORDER BY rm.room_id
+	</entry>
+		<entry key="selectRoom">
+		SELECT *
+		FROM room_manage
+		WHERE room_id=?
+	</entry>
+	<entry key="selectRoomImages">
+		SELECT *
+		FROM room_image
+		WHERE room_id=?
+		ORDER BY
+		display_order
+	</entry>
 </properties>

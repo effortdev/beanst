@@ -1,12 +1,13 @@
 package com.service;
 
 import java.util.List;
-import jakarta.servlet.ServletContext;
 
 import com.dao.ReservationDAO;
 import com.dao.RoomDAO;
 import com.vo.ReservationVO;
 import com.vo.RoomVO;
+
+import jakarta.servlet.ServletContext;
 
 public class BookingService {
 
@@ -21,7 +22,7 @@ public class BookingService {
     public List<RoomVO> getAllRooms() {
         // 기존 패턴과 동일하게 DAO를 생성하여 호출합니다.
         // (만약 RoomDAO에서도 context가 필요하다면 넘겨줄 수 있도록 구조를 맞췄습니다)
-        RoomDAO dao = new RoomDAO(); 
+        RoomDAO dao = new RoomDAO(context); 
         return dao.getAllRooms();
     }
     
