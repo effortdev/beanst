@@ -9,7 +9,7 @@
 
 		<a class="btn-add"
 			href="${pageContext.request.contextPath}/admin/faq/write.do">
-			<p class="text">FAQ 등록</p>
+			<span class="text">FAQ 등록</span>
 		</a>
 
 	</div>
@@ -31,11 +31,11 @@
 
 		<tbody>
 
-			<c:forEach var="f" items="${faqList}">
+			<c:forEach var="f" items="${faqList}" varStatus="status">
 
 				<tr>
 
-					<td>${f.faqNo}</td>
+					<td>${status.count}</td>
 
 					<td>${f.category}</td>
 

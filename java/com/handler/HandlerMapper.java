@@ -30,6 +30,8 @@ import com.controller.JoinController;
 import com.controller.LoginController;
 import com.controller.LogoutController;
 import com.controller.MemberMypageController;
+import com.controller.ReservationCancelController;
+import com.controller.ReservationCheckController;
 import com.controller.ReservationLocationController;
 import com.controller.ReservationMainController;
 import com.controller.ResetCompleteController;
@@ -50,7 +52,6 @@ import com.controller.board.QnaInsertController;
 import com.controller.board.QnaListController;
 import com.controller.board.QnaWriteController;
 import com.controller.reservation.BookingController;
-import com.controller.reservation.ReservationCheckController;
 import com.controller.reservation.ReservationCompleteController;
 
 public class HandlerMapper {
@@ -85,6 +86,7 @@ public class HandlerMapper {
 		map.put("/reservation/booking.do", new BookingController());
 		map.put("/reservation/check.do", new ReservationCheckController());
 		map.put("/reservation/complete.do", new ReservationCompleteController());
+		map.put("/reservation/cancel.do",    new ReservationCancelController());
 
 		map.put("/admin/login.do", new AdminLoginController()); // 관리자
 		map.put("/admin/dashboard.do", new AdminDashboardController());

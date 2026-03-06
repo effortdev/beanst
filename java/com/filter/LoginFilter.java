@@ -10,7 +10,7 @@ import java.io.PrintWriter;
 
 import com.vo.UserVO;
 
-@WebFilter(urlPatterns = { "/reservation/*" })
+@WebFilter(urlPatterns = { "/reservation/*" , "/reservationMain.do" , "/qnaList.do" })
 public class LoginFilter implements Filter {
 
 	@Override

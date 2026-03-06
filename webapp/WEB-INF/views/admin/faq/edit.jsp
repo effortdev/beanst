@@ -33,13 +33,11 @@
 		<div class="form-group">
 			<label>상태</label> <select name="status">
 
-				<option value="ACTIVE"
-					<c:if test="${faq.status eq 'ACTIVE'}">selected</c:if>>사용
-				</option>
+				<option value="ACTIVE" ${faq.status eq 'ACTIVE' ? 'selected' : ''}>
+					사용</option>
 
 				<option value="INACTIVE"
-					<c:if test="${faq.status eq 'INACTIVE'}">selected</c:if>>
-					숨김</option>
+					${faq.status eq 'INACTIVE' ? 'selected' : ''}>숨김</option>
 
 			</select>
 
