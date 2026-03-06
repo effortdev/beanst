@@ -10,7 +10,7 @@
 		name, check_in, check_out, adult_count,
 		child_count, total_price,
 		status)
-		VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, '예약완료')
+		VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, '2')
 	</entry>
 
 	<!-- 객실 예약 가능 여부 -->
@@ -19,7 +19,7 @@
         SELECT COUNT(*) 
         FROM reservation
         WHERE room_id = ?
-        AND status = '예약완료'
+        AND status = '2'
         AND (check_in < ? AND check_out > ?)
         ]]>
 	</entry>
@@ -28,7 +28,7 @@
 	<entry key="getReservedDates">
 		SELECT room_id, check_in, check_out
 		FROM reservation
-		WHERE status = '예약완료'
+		WHERE status = '2'
 		AND check_out >= CURDATE()
 	</entry>
 
@@ -51,14 +51,14 @@
 		SELECT *
 		FROM reservation
 		WHERE user_id = ?
-		AND status != '예약 취소'
+		AND status != '4'
 		ORDER BY reservation_id DESC
 	</entry>
 
 	<!-- 예약 취소 요청 -->
 	<entry key="cancelReservation">
 		UPDATE reservation
-		SET status = '예약 취소 요청'
+		SET status = '3'
 		WHERE
 		reservation_id = ?
 	</entry>

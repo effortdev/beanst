@@ -14,8 +14,8 @@
 				호텔 정보 관리 </a></li>
 
 		<li><a
-			href="${pageContext.request.contextPath}/admin/reservationManage.do">
-				예약 관리</a></li>
+			href="${pageContext.request.contextPath}/admin/reservation/list.do">
+				예약 관리 </a></li>
 
 		<li><a
 			href="${pageContext.request.contextPath}/admin/memberManage.do">

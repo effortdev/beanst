@@ -341,19 +341,30 @@ WHERE image_id = (
 	<entry key="adminReservationList">
 		SELECT *
 		FROM reservation
-		ORDER BY reservation_id DESC
+		ORDER BY reservation_id
 	</entry>
 
 	<entry key="adminReservationConfirm">
 		UPDATE reservation
-		SET status = '예약확정'
-		WHERE reservation_id = ?
+		SET status = '2'
+		WHERE
+		reservation_id
+		= ?
 	</entry>
 
 	<entry key="adminReservationCancel">
 		UPDATE reservation
-		SET status = '예약취소'
-		WHERE reservation_id = ?
+		SET status = '4'
+		WHERE
+		reservation_id
+		= ?
+	</entry>
+
+	<entry key="adminReservationActiveList">
+		SELECT *
+		FROM reservation
+		WHERE status != '4'
+		ORDER BY reservation_id DESC
 	</entry>
 
 

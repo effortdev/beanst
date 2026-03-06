@@ -19,6 +19,10 @@ import com.admin.qna.AdminQnaDeleteController;
 import com.admin.qna.AdminQnaDetailController;
 import com.admin.qna.AdminQnaListController;
 import com.admin.qna.AdminQnaWaitingController;
+import com.admin.reservation.AdminReservationActiveController;
+import com.admin.reservation.AdminReservationCancelController;
+import com.admin.reservation.AdminReservationConfirmController;
+import com.admin.reservation.AdminReservationListController;
 import com.controller.Action;
 import com.controller.FacilityDetailController;
 import com.controller.FacilityListController;
@@ -61,6 +65,7 @@ public class HandlerMapper {
 	private HashMap<String, Action> map = new HashMap<>();
 
 	public HandlerMapper() {
+
 		map.put("/main.do", new HomeController()); // 메인
 		map.put("/member/mypage.do", new MemberMypageController());
 
@@ -79,17 +84,12 @@ public class HandlerMapper {
 		map.put("/qnaDetail.do", new QnaDetailController());
 		map.put("/qnaWriteForm.do", new QnaWriteController());
 		map.put("/qnaInsert.do", new QnaInsertController());
-		
-		
 
 		map.put("/facilityDetail.do", new FacilityDetailController()); // 호텔정보 관련
 		map.put("/facilityList.do", new FacilityListController());
 		map.put("/roomDetail.do", new RoomDetailController());// 객실정보 상세보기
 		map.put("/roomList.do", new RoomListController());// 객실 리스트 보기
 
-		
-		
-		
 		map.put("/reservationLocation.do", new ReservationLocationController()); // 예약관련
 		map.put("/reservationMain.do", new ReservationMainController());
 		map.put("/reservation/booking.do", new BookingController());
@@ -125,6 +125,10 @@ public class HandlerMapper {
 		map.put("/admin/faq/edit.do", new AdminFaqEditController());
 		map.put("/admin/faq/update.do", new AdminFaqUpdateController());
 		map.put("/admin/faq/delete.do", new AdminFaqDeleteController());
+		map.put("/admin/reservation/list.do", new AdminReservationListController());
+		map.put("/admin/reservation/confirm.do", new AdminReservationConfirmController());
+		map.put("/admin/reservation/cancel.do", new AdminReservationCancelController());
+		map.put("/admin/reservation/active.do", new AdminReservationActiveController());
 
 	}
 

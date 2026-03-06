@@ -38,72 +38,42 @@
 	<section id="about_Room">
 		<div class="top_title fade-up">
 			<h2 class="en">Room Types</h2>
-			<p class="text">스탠다드부터 스위트까지, 품격 있는 선택의 폭을 제공합니다.</p>
+			<div class="top_textBox">
+				<p class="text">스탠다드부터 스위트까지, 품격 있는 선택의 폭을 제공합니다.</p>
+				<span><a
+					href="${pageContext.request.contextPath}/roomList.do"> 객실 전체 보기
+				</a></span>
+			</div>
 		</div>
 		<div class="swiper roomListSwiper">
-			<div class="swiper-wrapper">
-				<div class="swiper-slide slide1">
-					<div class="imgBox">
-						<img
-							src="${pageContext.request.contextPath}/assets/images/main/roomList/roomList_02.jpg"
-							alt="roomList_02">
-					</div>
-					<div class="textBox">
-						<p class="title en">City View Deluxe</p>
-						<p class="text">도심의 야경을 감각적으로 담아낸 세련된 공간</p>
-					</div>
-				</div>
-				<div class="swiper-slide slide2">
-					<div class="imgBox">
-						<img
-							src="${pageContext.request.contextPath}/assets/images/main/roomList/roomList_03.jpg"
-							alt="roomList_03">
-					</div>
-					<div class="textBox">
-						<p class="title en">Skyline Corner Suite</p>
-						<p class="text">전면 코너 창으로 파노라마 시티뷰를 감상할 수 있는 특별한 객실</p>
-					</div>
-				</div>
-				<div class="swiper-slide slide3">
-					<div class="imgBox">
-						<img
-							src="${pageContext.request.contextPath}/assets/images/main/roomList/roomList_04.jpg"
-							alt="roomList_04">
-					</div>
-					<div class="textBox">
-						<p class="title en">Classic Signature</p>
-						<p class="text">안락함과 세련미를 동시에 담은 클래식 스타일 객실</p>
-					</div>
-				</div>
-				<div class="swiper-slide slide4">
-					<div class="imgBox">
-						<img
-							src="${pageContext.request.contextPath}/assets/images/main/roomList/roomList_05.jpg"
-							alt="roomList_05">
-					</div>
-					<div class="textBox">
-						<p class="title en">Garden Terrace Suite</p>
-						<p class="text">자연 채광과 테라스 감성이 어우러진 여유로운 휴식 공간</p>
-					</div>
-				</div>
-				<div class="swiper-slide slide5">
-					<div class="imgBox">
-						<img
-							src="${pageContext.request.contextPath}/assets/images/main/roomList/roomList_06.jpg"
-							alt="roomList_06">
-					</div>
-					<div class="textBox">
-						<p class="title en">White Twin Deluxe</p>
-						<p class="text">밝고 깔끔한 화이트 톤과 트윈 베드가 조화를 이루는 편안한 객실</p>
-					</div>
-				</div>
-			</div>
 
+			<div class="swiper-wrapper">
+
+				<c:forEach var="room" items="${roomList}">
+					<div class="swiper-slide">
+						<div class="list_item">
+							<div class="imgBox">
+								<a href="roomDetail.do?id=${room.room_id}" class="viewBtn en">
+									<img src="${room.image_path}?v=${room.room_id}"
+									alt="${room.room_name}">
+								</a>
+							</div>
+
+							<div class="textBox">
+								<p class="text en">${room.room_name}</p>
+								<p class="text">${room.room_location}</p>
+							</div>
+
+						</div>
+					</div>
+				</c:forEach>
+			</div>
 			<div class="swiper-button-prev"></div>
 			<div class="swiper-button-next"></div>
 			<div class="swiper-pagination"></div>
 		</div>
 	</section>
+
 
 	<section id="about_Hotel">
 		<div class="top_title  fade-up">

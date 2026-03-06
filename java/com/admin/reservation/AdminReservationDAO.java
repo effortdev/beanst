@@ -97,14 +97,13 @@ public class AdminReservationDAO {
 
 		return result;
 	}
-	
-	
-	public int cancelReservation(Connection conn, int reservationId){
+
+	public int cancelReservation(Connection conn, int reservationId) {
 
 		PreparedStatement ps = null;
 		int result = 0;
 
-		try{
+		try {
 
 			String sql = props.getProperty("adminReservationCancel");
 
@@ -114,13 +113,55 @@ public class AdminReservationDAO {
 
 			result = ps.executeUpdate();
 
-		}catch(Exception e){
+		} catch (Exception e) {
 			e.printStackTrace();
-		}finally{
+		} finally {
 			close(ps);
 		}
 
 		return result;
+	}
+
+	public List<AdminReservationDTO> selectActiveReservationList(Connection conn) {
+
+		List<AdminReservationDTO> list = new ArrayList<>();
+
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+
+		try {
+
+			String sql = props.getProperty("adminReservationActiveList");
+
+			ps = conn.prepareStatement(sql);
+
+			rs = ps.executeQuery();
+
+			while (rs.next()) {
+
+				AdminReservationDTO r = new AdminReservationDTO();
+
+				r.setReservationId(rs.getInt("reservation_id"));
+				r.setName(rs.getString("name"));
+				r.setRoomName(rs.getString("room_name"));
+				r.setCheckIn(rs.getDate("check_in"));
+				r.setCheckOut(rs.getDate("check_out"));
+				r.setAdultCount(rs.getInt("adult_count"));
+				r.setChildCount(rs.getInt("child_count"));
+				r.setTotalPrice(rs.getInt("total_price"));
+				r.setStatus(rs.getString("status"));
+
+				list.add(r);
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(rs);
+			close(ps);
+		}
+
+		return list;
 	}
 
 }

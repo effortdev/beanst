@@ -26,7 +26,7 @@
 
 					<c:if test="${sessionScope.loginMember != null}">
 						<li><a
-							href="${pageContext.request.contextPath}/member/mypage.do">
+							href="${pageContext.request.contextPath}/member/myPage.do">
 								MY PAGE </a></li>
 					</c:if>
 				</ul>

@@ -36,7 +36,7 @@ public class BookingController implements Action {
             
             request.setAttribute("bookedListJson", sb.toString());
             request.setAttribute("roomList", roomList);
-            request.setAttribute("pageCss", "style"); 
+            request.setAttribute("pageCss", "reservationSub"); 
             return "reservation/booking";
         }
 

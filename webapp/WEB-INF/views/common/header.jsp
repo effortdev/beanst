@@ -23,7 +23,9 @@
 		<div class="rightItem">
 			<ul>
 				<c:if test="${sessionScope.loginMember != null}">
-					<li><p>${sessionScope.loginMember.name}님환영합니다.</p></li>
+					<li><a
+						href="${pageContext.request.contextPath}/member/myPage.do">
+							${sessionScope.loginMember.name}님 환영합니다. </a></li>
 
 					<li><a class="logout-btn"
 						href="${pageContext.request.contextPath}/logout.do" class="ko">로그아웃</a>
