@@ -1,39 +1,68 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
 <%@ taglib prefix="c" uri="jakarta.tags.core"%>
 
-<h2>Q&A 관리</h2>
+<div class="admin-qna">
 
-<table border="1">
+	<h2 class="admin-title">1:1 문의 관리</h2>
 
-	<tr>
-		<th>번호</th>
-		<th>작성자</th>
-		<th>제목</th>
-		<th>상태</th>
-		<th>조회수</th>
-		<th>작성일</th>
-	</tr>
+	<div class="qna-filter">
 
-	<c:forEach var="q" items="${qnaList}">
+		<a href="${pageContext.request.contextPath}/admin/qna/list.do">
+			전체보기 </a> <a
+			href="${pageContext.request.contextPath}/admin/qna/waiting.do">
+			답변대기만 보기 </a>
 
-		<tr>
+	</div>
 
-			<td>${q.qnaNo}</td>
+	<table class="admin-table">
 
-			<td>${q.userId}</td>
+		<thead>
+			<tr>
+				<th>번호</th>
+				<th>작성자</th>
+				<th>제목</th>
+				<th>상태</th>
+				<th>조회수</th>
+				<th>작성일</th>
+			</tr>
+		</thead>
 
-			<td><a
-				href="${pageContext.request.contextPath}/admin/qna/detail.do?qna_no=${q.qnaNo}">
-					${q.title} </a></td>
+		<tbody>
 
-			<td>${q.status}</td>
+			<c:forEach var="q" items="${qnaList}" varStatus="status">
 
-			<td>${q.viewCount}</td>
+				<tr>
 
-			<td>${q.regDate}</td>
+					<td>${status.count}</td>
 
-		</tr>
+					<td>${q.userId}</td>
 
-	</c:forEach>
+					<td class="title"><a
+						href="${pageContext.request.contextPath}/admin/qna/detail.do?qna_no=${q.qnaNo}">
+							${q.title} </a></td>
 
-</table>
+					<td><c:choose>
+
+							<c:when test="${q.status eq 'WAITING'}">
+								<span class="status waiting">답변대기</span>
+							</c:when>
+
+							<c:otherwise>
+								<span class="status done">답변완료</span>
+							</c:otherwise>
+
+						</c:choose></td>
+
+					<td>${q.viewCount}</td>
+
+					<td>${q.regDate}</td>
+
+				</tr>
+
+			</c:forEach>
+
+		</tbody>
+
+	</table>
+
+</div>

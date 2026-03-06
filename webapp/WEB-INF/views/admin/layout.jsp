@@ -7,11 +7,17 @@
 <title>Admin | Vinst Hotel</title>
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/assets/css/admin/admin.css">
-	
-	
-	
+
+
+
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/assets/css/main.css">
+
+
+<c:if test="${not empty pageCss}">
+	<link rel="stylesheet"
+		href="${pageContext.request.contextPath}/assets/css/admin/${pageCss}.css">
+</c:if>
 </head>
 
 

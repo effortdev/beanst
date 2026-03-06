@@ -17,6 +17,7 @@ public class AdminQnaListController implements Action {
 	public String execute(HttpServletRequest request, HttpServletResponse response) {
 
 		Connection conn = null;
+		request.setAttribute("pageCss", "admin-qna");
 
 		try {
 

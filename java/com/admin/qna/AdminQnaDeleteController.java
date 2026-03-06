@@ -10,13 +10,12 @@ import jakarta.servlet.ServletContext;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-public class AdminQnaDetailController implements Action {
+public class AdminQnaDeleteController implements Action {
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) {
 
 		Connection conn = null;
-		request.setAttribute("pageCss", "admin-qna");
 
 		try {
 
@@ -28,16 +27,21 @@ public class AdminQnaDetailController implements Action {
 
 			AdminQnaDAO dao = new AdminQnaDAO(context);
 
-			AdminQnaDTO qna = dao.selectQnaDetail(conn, qnaNo);
+			int result = dao.deleteQna(conn, qnaNo);
 
-			request.setAttribute("qna", qna);
+			if (result > 0) {
+				commit(conn);
+			} else {
+				rollback(conn);
+			}
 
 		} catch (Exception e) {
 			e.printStackTrace();
+			rollback(conn);
 		} finally {
 			close(conn);
 		}
 
-		return "/admin/qna/qnaDetail";
+		return "redirect:/admin/qna/list.do";
 	}
 }

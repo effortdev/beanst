@@ -10,17 +10,18 @@ import jakarta.servlet.ServletContext;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-public class AdminQnaDetailController implements Action {
+public class AdminQnaAnswerController implements Action {
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) {
 
 		Connection conn = null;
-		request.setAttribute("pageCss", "admin-qna");
+
 
 		try {
 
 			int qnaNo = Integer.parseInt(request.getParameter("qna_no"));
+			String answer = request.getParameter("answer");
 
 			conn = getConnection();
 
@@ -28,16 +29,21 @@ public class AdminQnaDetailController implements Action {
 
 			AdminQnaDAO dao = new AdminQnaDAO(context);
 
-			AdminQnaDTO qna = dao.selectQnaDetail(conn, qnaNo);
+			int result = dao.updateAnswer(conn, answer, qnaNo);
 
-			request.setAttribute("qna", qna);
+			if (result > 0) {
+				commit(conn);
+			} else {
+				rollback(conn);
+			}
 
 		} catch (Exception e) {
 			e.printStackTrace();
+			rollback(conn);
 		} finally {
 			close(conn);
 		}
 
-		return "/admin/qna/qnaDetail";
+		return "redirect:/admin/qna/detail.do?qna_no=" + request.getParameter("qna_no");
 	}
 }

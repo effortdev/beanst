@@ -8,8 +8,11 @@ import com.admin.facility.AdminFacilityInsertFormController;
 import com.admin.facility.AdminFacilityListController;
 import com.admin.facility.AdminFacilityUpdateController;
 import com.admin.facility.AdminFacilityUpdateFormController;
+import com.admin.qna.AdminQnaAnswerController;
+import com.admin.qna.AdminQnaDeleteController;
 import com.admin.qna.AdminQnaDetailController;
 import com.admin.qna.AdminQnaListController;
+import com.admin.qna.AdminQnaWaitingController;
 import com.controller.Action;
 import com.controller.FacilityDetailController;
 import com.controller.FacilityListController;
@@ -87,6 +90,9 @@ public class HandlerMapper {
 		map.put("/admin/roomManage.do", new AdminRoomManageController());
 		map.put("/admin/qna/list.do", new AdminQnaListController());
 		map.put("/admin/qna/detail.do", new AdminQnaDetailController());
+		map.put("/admin/qna/answer.do", new AdminQnaAnswerController());
+		map.put("/admin/qna/delete.do", new AdminQnaDeleteController());
+		map.put("/admin/qna/waiting.do", new AdminQnaWaitingController());
 
 	}
 

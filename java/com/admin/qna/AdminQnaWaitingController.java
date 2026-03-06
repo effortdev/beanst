@@ -3,6 +3,7 @@ package com.admin.qna;
 import static com.util.JdbcUtil.*;
 
 import java.sql.Connection;
+import java.util.List;
 
 import com.controller.Action;
 
@@ -10,7 +11,7 @@ import jakarta.servlet.ServletContext;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-public class AdminQnaDetailController implements Action {
+public class AdminQnaWaitingController implements Action {
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) {
@@ -20,17 +21,15 @@ public class AdminQnaDetailController implements Action {
 
 		try {
 
-			int qnaNo = Integer.parseInt(request.getParameter("qna_no"));
-
 			conn = getConnection();
 
 			ServletContext context = request.getServletContext();
 
 			AdminQnaDAO dao = new AdminQnaDAO(context);
 
-			AdminQnaDTO qna = dao.selectQnaDetail(conn, qnaNo);
+			List<AdminQnaDTO> list = dao.selectWaitingList(conn);
 
-			request.setAttribute("qna", qna);
+			request.setAttribute("qnaList", list);
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -38,6 +37,6 @@ public class AdminQnaDetailController implements Action {
 			close(conn);
 		}
 
-		return "/admin/qna/qnaDetail";
+		return "/admin/qna/qnaList";
 	}
 }

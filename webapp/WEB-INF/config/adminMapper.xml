@@ -255,4 +255,33 @@ WHERE image_id = (
 	</entry>
 
 
+	<entry key="adminQnaAnswer">
+		UPDATE qna
+		SET
+		answer = ?,
+		answer_date = NOW(),
+		status =
+		'ANSWERED'
+		WHERE qna_no = ?
+	</entry>
+
+	<entry key="adminQnaDelete">
+		DELETE FROM qna
+		WHERE qna_no = ?
+	</entry>
+
+	<entry key="adminQnaWaitingList">
+		SELECT
+		qna_no,
+		user_id,
+		title,
+		status,
+		view_count,
+		reg_date
+		FROM qna
+		WHERE status = 'WAITING'
+		ORDER BY qna_no DESC
+	</entry>
+
+
 </properties>

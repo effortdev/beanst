@@ -1,40 +1,56 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
 <%@ taglib prefix="c" uri="jakarta.tags.core"%>
 
-<h2>Q&A 상세</h2>
+<div class="admin-qna-detail">
 
-<p>
-	<b>작성자</b> : ${qna.userId}
-</p>
-<p>
-	<b>제목</b> : ${qna.title}
-</p>
+	<h2 class="admin-title">1:1 문의 상세</h2>
 
-<hr>
+	<div class="qna-meta">
 
-<h3>질문 내용</h3>
+		<p>
+			<b>작성자</b> : ${qna.userId}
+		</p>
+		<p>
+			<b>제목</b> : ${qna.title}
+		</p>
 
-<div style="border: 1px solid #ccc; padding: 15px;">
-	${qna.content}</div>
+	</div>
 
-<hr>
+	<div class="qna-question">
 
-<h3>관리자 답변</h3>
+		<h3>질문 내용</h3>
 
-<form action="${pageContext.request.contextPath}/admin/qna/answer.do"
-	method="post">
+		<div class="question-box">${qna.content}</div>
 
-	<input type="hidden" name="qna_no" value="${qna.qnaNo}">
+	</div>
 
-	<textarea name="answer" rows="6" style="width: 100%">${qna.answer}</textarea>
+	<div class="qna-answer">
 
-	<br>
-	<br>
+		<h3>관리자 답변</h3>
 
-	<button type="submit">답변 등록</button>
+		<form action="${pageContext.request.contextPath}/admin/qna/answer.do"
+			method="post">
 
-	<a
-		href="${pageContext.request.contextPath}/admin/qna/delete.do?qna_no=${qna.qnaNo}">
-		삭제 </a>
+			<input type="hidden" name="qna_no" value="${qna.qnaNo}">
 
-</form>
+			<textarea name="answer">${qna.answer}</textarea>
+
+			<div class="answer-buttons">
+
+				<button type="submit" class="btn-save"
+					onclick="return confirm('정말 등록하시겠습니까?')">답변 등록</button>
+
+				<a class="btn-delete"
+					href="${pageContext.request.contextPath}/admin/qna/delete.do?qna_no=${qna.qnaNo}"
+					onclick="return confirm('정말 삭제하시겠습니까?')"> 삭제 </a> <a
+					class="btn-list"
+					href="${pageContext.request.contextPath}/admin/qna/list.do">
+					목록보기 </a>
+
+			</div>
+
+		</form>
+
+	</div>
+
+</div>
