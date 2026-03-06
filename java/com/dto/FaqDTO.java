@@ -67,4 +67,11 @@ public class FaqDTO {
 	public void setRegDate(Timestamp regDate) {
 		this.regDate = regDate;
 	}
+
+	@Override
+	public String toString() {
+		return "FaqDTO [faqNo=" + faqNo + ", sortOrder=" + sortOrder + ", category=" + category + ", question="
+				+ question + ", answer=" + answer + ", status=" + status + ", regDate=" + regDate + "]";
+	}
+
 }
