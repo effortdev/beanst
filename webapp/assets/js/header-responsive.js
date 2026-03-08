@@ -1,6 +1,7 @@
-/**
- * header js 
- */
+/* ================================================
+   header.js 에 아래 코드를 추가하거나
+   별도 header-responsive.js 로 사용하세요
+   ================================================ */
 
 document.addEventListener("DOMContentLoaded", () => {
 
@@ -8,20 +9,11 @@ document.addEventListener("DOMContentLoaded", () => {
 	const hamburger = document.querySelector(".hamburger");
 	const mobileNav = document.querySelector(".mobile-nav");
 
-	const header = document.querySelector("header");
-	setTimeout(() => {
-		header.classList.add("show");
-	}, 100);
-
-
-
 	/* ── 1. 스크롤 시 헤더 배경 전환 ────────────── */
 	let lastScroll = 0;
 
 	window.addEventListener("scroll", () => {
 		const current = window.scrollY;
-
-
 
 		// 일정 높이 내려가면 배경 적용
 		if (current > 60) {

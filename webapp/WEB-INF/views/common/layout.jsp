@@ -4,7 +4,9 @@
 <!DOCTYPE html>
 <html>
 <head>
+
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>${pageTitle != null ? pageTitle : "Vinst Hotel"}</title>
 
 <link rel="icon" type="image/x-icon"
@@ -12,7 +14,7 @@
 
 <!-- 공통 CSS -->
 <link rel="stylesheet"
-	href="${pageContext.request.contextPath}/assets/css/main.css">
+	href="${pageContext.request.contextPath}/assets/css/common.css">
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
 <link rel="stylesheet"

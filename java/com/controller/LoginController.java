@@ -13,7 +13,7 @@ public class LoginController implements Action  {
     public String execute(HttpServletRequest request, HttpServletResponse response) {
 
         String method = request.getMethod();
-        request.setAttribute("pageCss", "style");
+        request.setAttribute("pageCss", "login");
 
     
         if (method.equals("GET")) {

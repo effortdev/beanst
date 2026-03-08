@@ -1,11 +1,11 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
 <%@ taglib prefix="c" uri="jakarta.tags.core"%>
 
-<div class="page-content">
+<div class="page-content login-page">
 
 	<div class="container">
 		<div class="form-box">
-			<h2 class="title">로그인</h2>
+			<h2 class="title en">로그인</h2>
 
 			<c:if test="${not empty errorMsg}">
 				<p class="error-text text-center mb-20">${errorMsg}</p>
@@ -31,11 +31,10 @@
 
 
 
-				<div class="text-center mt-20" style="font-size: 13px">
-					<a href="${pageContext.request.contextPath}/member/findId.do"
-						style="color: #888">아이디/비밀번호 찾기</a> | <a
-						href="${pageContext.request.contextPath}/member/join.do"
-						style="color: #c9a96e">회원가입</a>
+				<div class="text-center mt-20 login-links">
+					<a href="${pageContext.request.contextPath}/findForm.do">아이디/비밀번호
+						찾기</a> | <a href="${pageContext.request.contextPath}/member/join.do"
+						class="join-link">회원가입</a>
 				</div>
 
 			</form>

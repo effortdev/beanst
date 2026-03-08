@@ -1,64 +1,19 @@
 @charset "UTF-8";
 
-@import
-	url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Noto+Sans+KR:wght@300;400;500;600;700&display=swap')
-	;
-
-:root {
-	--espresso: #2C1810;
-	--dark-roast: #3D2314;
-	--coffee: #5D4037;
-	--caramel: #C9A962;
-	--cream: #F5E6D3;
-	--warm-cream: #FDF8F3;
-	--latte: #E8D5B7;
-	--mocha: #6F4E37;
-}
-
-* {
-	margin: 0;
-	padding: 0;
-	box-sizing: border-box
-}
-
-body {
-	font-family: 'Pretendard', sans-serif;
-	color: #3D2314;
-	line-height: 1.7;
-	background: #FDF8F3
-}
-
-a {
-	text-decoration: none;
-	color: inherit
-}
-
-ul, ol {
-	list-style: none
-}
-
-img {
-	max-width: 100%;
-	height: auto
-}
-
-input, select, textarea, button {
-	font-family: inherit;
-	font-size: inherit
-}
-
 .container {
 	max-width: 1200px;
-	margin: 0 auto;
-	padding: 100px 20px 0
+	margin: 90px auto 0;
+	width: 90%;
 }
 
 .page-content {
 	min-height: calc(100vh - 200px);
-	padding: 60px 0 60px;
+	padding: 60px 0;
 }
 
-/* Buttons - 카라멜/에스프레소 톤 */
+/* ================================================
+   [COMMON] 버튼
+   ================================================ */
 .btn {
 	display: inline-block;
 	padding: 12px 28px;
@@ -68,90 +23,77 @@ input, select, textarea, button {
 	cursor: pointer;
 	transition: .3s;
 	border: none;
-	text-align: center
+	text-align: center;
 }
 
-.btn-primary {
-	background: linear-gradient(135deg, #412e05, #77560f);
-	color: #ffffff !important;
-	box-shadow: 0 4px 12px 1px rgb(77 75 72/ 30%);
-	border: 1px solid #5d5b5b;
+/* Primary / Secondary — 같은 스타일이므로 공통화 */
+.btn-primary, .btn-secondary {
+	background: linear-gradient(135deg, var(--dark-roast), var(--coffee));
+	color: var(--cream) !important;
+	box-shadow: 0 4px 12px 1px rgba(77, 75, 72, .30);
+	border: 1px solid var(--mocha);
 }
 
-.btn-primary:hover {
-	background: linear-gradient(135deg, #B8954A, #A68238);
-	box-shadow: 0 6px 16px rgba(201, 169, 98, .4)
-}
-
-.btn-secondary {
-	background: linear-gradient(135deg, #412e05, #77560f);
-	color: #F5E6D3 !important
-}
-
-.btn-secondary:hover {
-	background: linear-gradient(135deg, #B8954A, #A68238)
+.btn-primary:hover, .btn-secondary:hover {
+	background: linear-gradient(135deg, #B8954A, var(--caramel));
+	box-shadow: 0 6px 16px rgba(201, 169, 98, .4);
 }
 
 .btn-outline {
-	border: 1px solid #C9A962;
-	color: #6F4E37;
-	background: transparent
+	border: 1px solid var(--caramel);
+	color: var(--mocha);
+	background: transparent;
 }
 
 .btn-outline:hover {
-	background: #C9A962;
-	color: #fff
+	background: var(--caramel);
+	color: var(--warm-cream);
 }
 
 .btn-danger {
-	background: #8B4513;
-	color: #fff
+	background: var(--coffee);
+	color: var(--cream);
 }
 
 .btn-danger:hover {
-	background: #6F4E37
+	background: var(--mocha);
 }
 
 .btn-sm {
 	padding: 8px 16px;
-	font-size: 13px
+	font-size: 13px;
 }
 
 .btn-lg {
 	padding: 16px 40px;
 	font-size: 16px;
-	border-radius: 8px
+	border-radius: 8px;
 }
 
 .btn-block {
 	display: block;
-	width: 100%
+	width: 100%;
 }
 
-/* Section - 커피콩 컬러 */
+/* ================================================
+   [COMMON] 섹션
+   ================================================ */
 .section {
 	padding: 70px 0;
-	background: #FDF8F3
+	background: var(--warm-cream);
 }
 
 .section-title {
 	text-align: center;
-	margin-bottom: 48px
+	margin-bottom: 48px;
 }
 
 .section-title h2 {
-	font-family: 'Cormorant Garamond', serif;
 	font-size: 34px;
 	font-weight: 600;
-	color: #2C1810;
+	color: var(--espresso);
 	margin-bottom: 12px;
-	letter-spacing: 2px
-}
-
-.section-title p {
-	color: #6F4E37;
-	font-size: 16px;
-	font-weight: 400
+	letter-spacing: 2px;
 }
 
 .section-title h2::after {
@@ -159,14 +101,22 @@ input, select, textarea, button {
 	display: block;
 	width: 60px;
 	height: 3px;
-	background: linear-gradient(90deg, #C9A962, #5d4037);
+	background: linear-gradient(90deg, var(--caramel), var(--coffee));
 	margin: 14px auto 0;
-	border-radius: 2px
+	border-radius: 2px;
 }
 
-/* Forms */
+.section-title p {
+	color: var(--mocha);
+	font-size: 16px;
+	font-weight: 400;
+}
+
+/* ================================================
+   [COMMON] 폼
+   ================================================ */
 .form-group {
-	margin-bottom: 20px
+	margin-bottom: 20px;
 }
 
 .form-group label {
@@ -174,75 +124,75 @@ input, select, textarea, button {
 	font-size: 14px;
 	font-weight: 600;
 	margin-bottom: 6px;
-	color: #444
+	color: var(--dark-roast);
 }
 
 .form-control {
 	width: 100%;
 	padding: 10px 14px;
-	border: 1px solid #ddd;
+	border: 1px solid var(--latte);
 	border-radius: 4px;
 	font-size: 14px;
-	transition: .3s
+	transition: .3s;
 }
 
 .form-control:focus {
 	outline: none;
-	border-color: #C9A962;
-	box-shadow: 0 0 0 3px rgba(201, 169, 98, .2)
+	border-color: var(--caramel);
+	box-shadow: 0 0 0 3px var(--border);
 }
 
 textarea.form-control {
 	min-height: 120px;
-	resize: vertical
+	resize: vertical;
 }
 
 .input-group {
 	display: flex;
-	gap: 8px
+	gap: 8px;
 }
 
 .input-group .form-control {
-	flex: 1
+	flex: 1;
 }
 
 .form-check {
 	display: flex;
 	align-items: center;
-	gap: 8px
+	gap: 8px;
 }
 
 .form-check input[type="checkbox"] {
 	width: 18px;
-	height: 18px
+	height: 18px;
 }
 
 .error-text {
 	color: #dc3545;
 	font-size: 13px;
-	margin-top: 4px
+	margin-top: 4px;
 }
 
 .success-text {
 	color: #28a745;
 	font-size: 13px;
-	margin-top: 4px
+	margin-top: 4px;
 }
 
 .form-box {
 	max-width: 500px;
 	margin: 0 auto;
-	background: #fff;
+	background: var(--warm-cream);
 	padding: 40px;
 	border-radius: 8px;
-	box-shadow: 0 2px 8px rgba(0, 0, 0, .08)
+	box-shadow: 0 2px 8px rgba(0, 0, 0, .08);
 }
 
 .form-box h2 {
 	text-align: center;
 	margin-bottom: 30px;
 	font-size: 24px;
-	color: #2C1810
+	color: var(--espresso);
 }
 
 .form-box h2::after {
@@ -250,84 +200,88 @@ textarea.form-control {
 	display: block;
 	width: 40px;
 	height: 3px;
-	background: #C9A962;
-	margin: 10px auto 0
+	background: var(--caramel);
+	margin: 10px auto 0;
 }
 
-/* Table */
+/* ================================================
+   [COMMON] 테이블
+   ================================================ */
 .table-wrap {
-	overflow-x: auto
+	overflow-x: auto;
 }
 
 table {
 	width: 100%;
 	border-collapse: collapse;
-	background: #fff
+	background: #fff;
 }
 
 table th, table td {
 	padding: 12px 15px;
 	text-align: center;
-	border-bottom: 1px solid #eee;
-	font-size: 14px
+	border-bottom: 1px solid var(--latte);
+	font-size: 14px;
 }
 
 table th {
-	background: #796a62;
-	color: #F5E6D3;
-	font-weight: 500
+	background: var(--coffee);
+	color: var(--cream);
+	font-weight: 500;
 }
 
 table tbody tr:hover {
-	background: #f8f8f8
+	background: var(--warm-cream);
 }
 
 table .text-left {
-	text-align: left
+	text-align: left;
 }
 
-/* QnA Table */
+/* QnA 테이블 열 너비 */
 .qna-table th:nth-child(1) {
-	width: 80px
+	width: 80px;
 }
 
 .qna-table th:nth-child(3) {
-	width: 100px
+	width: 100px;
 }
 
 .qna-table th:nth-child(4) {
-	width: 100px
+	width: 100px;
 }
 
 .qna-table th:nth-child(5) {
-	width: 120px
+	width: 120px;
 }
 
 .qna-empty {
-	padding: 40px
+	padding: 40px;
 }
 
-/* 목록 하단 건수 표시 */
+/* 목록 건수 표시 */
 .paging-info {
 	margin-top: 20px;
 	text-align: right;
 	padding: 10px;
 	font-size: 14px;
-	color: #6F4E37;
+	color: var(--mocha);
 }
 
 .paging-info strong {
-	color: #2C1810
+	color: var(--espresso);
 }
 
-/* Pagination */
+/* ================================================
+   [COMMON] 페이지네이션
+   ================================================ */
 .pagination {
 	display: flex;
 	justify-content: center;
 	align-items: center;
 	gap: 5px;
 	margin-top: 16px;
-	flex-wrap: wrap
+	flex-wrap: wrap;
 }
 
 .pagination a, .pagination span {
@@ -336,81 +290,79 @@ table .text-left {
 	justify-content: center;
 	width: 36px;
 	height: 36px;
-	border: 1px solid #ddd;
+	border: 1px solid var(--latte);
 	border-radius: 4px;
 	font-size: 14px;
-	transition: .3s
+	transition: .3s;
 }
 
 .pagination a:hover {
-	background: #C9A962;
-	color: #fff;
-	border-color: #C9A962
+	background: var(--caramel);
+	color: var(--warm-cream);
+	border-color: var(--caramel);
 }
 
 .pagination .active {
-	background: #C9A962;
-	color: #fff;
-	border-color: #C9A962;
-	font-weight: 700
+	background: var(--caramel);
+	color: var(--warm-cream);
+	border-color: var(--caramel);
+	font-weight: 700;
 }
 
 .pagination .disabled {
-	color: #ccc;
-	background: #e9e9e9;
-	border-color: #eee;
+	color: var(--latte);
+	background: var(--warm-cream);
+	border-color: var(--latte);
 	cursor: default;
-	pointer-events: none
+	pointer-events: none;
 }
 
-.pagination .disabled:hover {
-	background: #f5f5f5;
-	color: #ccc;
-	border-color: #eee
-}
-
-/* Board */
+/* ================================================
+   [COMMON] 게시판
+   ================================================ */
 .board-header {
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
 	margin-bottom: 20px;
 	flex-wrap: wrap;
-	gap: 10px
+	gap: 10px;
 }
 
 .board-header h3 {
-	font-size: 22px
+	font-size: 22px;
+	color: var(--espresso);
 }
 
 .search-box {
 	display: flex;
-	gap: 8px
+	gap: 8px;
 }
 
 .search-box input {
-	width: 250px
+	width: 250px;
 }
 
 .board-view {
 	background: #fff;
 	border-radius: 8px;
 	padding: 30px;
-	box-shadow: 0 2px 8px rgba(0, 0, 0, .08)
+	box-shadow: 0 2px 8px rgba(0, 0, 0, .08);
 }
 
 .board-view .view-title {
 	font-size: 22px;
 	font-weight: 600;
-	margin-bottom: 10px
+	margin-bottom: 10px;
+	color: var(--espresso);
 }
 
 .board-view .view-info {
-	color: #999;
+	color: var(--mocha);
 	font-size: 13px;
 	margin-bottom: 20px;
 	padding-bottom: 15px;
-	border-bottom: 1px solid #eee;
+	border-bottom: 1px solid var(--latte);
 	display: flex;
 	gap: 20px;
 	justify-content: space-between;
@@ -420,43 +372,45 @@ table .text-left {
 	min-height: 200px;
 	line-height: 1.8;
 	white-space: pre-wrap;
-	border: 1px solid #ddd;
+	border: 1px solid var(--latte);
 	padding: 25px;
 	border-radius: 20px;
-	background-color: #e5e3e1;
+	background-color: var(--warm-cream);
 }
 
 .board-nav {
 	margin-top: 20px;
-	border-top: 1px solid #eee;
-	padding-top: 15px
+	border-top: 1px solid var(--latte);
+	padding-top: 15px;
 }
 
 .board-nav a {
 	display: block;
 	padding: 8px 0;
-	color: #555;
-	font-size: 14px
+	color: var(--mocha);
+	font-size: 14px;
 }
 
 .board-nav a:hover {
-	color: #6F4E37
+	color: var(--dark-roast);
 }
 
 .board-actions {
 	display: flex;
 	justify-content: center;
 	gap: 10px;
-	margin-top: 30px
+	margin-top: 30px;
 }
 
-/* QnA 답변 표시 (사용자) */
+/* ================================================
+   [COMMON] QnA 답변 영역
+   ================================================ */
 .qna-answer-section {
 	margin-top: 25px;
-	border: 2px solid #C9A962;
+	border: 2px solid var(--caramel);
 	border-radius: 12px;
 	overflow: hidden;
-	background: #fff
+	background: #fff;
 }
 
 .qna-answer-header {
@@ -464,19 +418,19 @@ table .text-left {
 	align-items: center;
 	gap: 10px;
 	padding: 14px 20px;
-	background: linear-gradient(135deg, #f9f3e8, #f5e6d3);
-	border-bottom: 1px solid #e8d5b7;
-	font-size: 14px
+	background: linear-gradient(135deg, var(--warm-cream), var(--cream));
+	border-bottom: 1px solid var(--latte);
+	font-size: 14px;
 }
 
 .qna-answer-icon {
-	font-size: 18px
+	font-size: 18px;
 }
 
 .qna-answer-date {
 	margin-left: auto;
-	color: #999;
-	font-size: 12px
+	color: var(--mocha);
+	font-size: 12px;
 }
 
 .qna-answer-body {
@@ -484,52 +438,18 @@ table .text-left {
 	line-height: 1.8;
 	white-space: pre-wrap;
 	font-size: 14px;
-	color: #3D2314
+	color: var(--dark-roast);
 }
 
-/* QnA 답변 표시 (사용자) */
-.qna-answer-section {
-	margin-top: 25px;
-	border: 2px solid #C9A962;
-	border-radius: 12px;
-	overflow: hidden;
-	background: #fff
-}
-
-.qna-answer-header {
-	display: flex;
-	align-items: center;
-	gap: 10px;
-	padding: 14px 20px;
-	background: linear-gradient(135deg, #f9f3e8, #f5e6d3);
-	border-bottom: 1px solid #e8d5b7;
-	font-size: 14px
-}
-
-.qna-answer-icon {
-	font-size: 18px
-}
-
-.qna-answer-date {
-	margin-left: auto;
-	color: #999;
-	font-size: 12px
-}
-
-.qna-answer-body {
-	padding: 20px;
-	line-height: 1.8;
-	white-space: pre-wrap;
-	font-size: 14px;
-	color: #3D2314
-}
-
-/* FAQ */
+/* ================================================
+   [COMMON] FAQ
+   ================================================ */
 .faq-item {
-	border: 1px solid #eee;
+	border: 1px solid var(--border);
 	border-radius: 8px;
 	margin-bottom: 10px;
-	overflow: hidden
+	box-sizing: border-box;
+	overflow: hidden;
 }
 
 .faq-question {
@@ -540,29 +460,36 @@ table .text-left {
 	justify-content: space-between;
 	align-items: center;
 	font-weight: 500;
-	transition: .3s
+	transition: .3s;
 }
 
 .faq-question:hover {
-	background: #FDF8F3
+	background: var(--warm-cream);
+}
+
+.faq-question.active {
+	border-color: var(--border-hover);
+	z-index: 1;
+	position: relative;
+	background-color: var(--latte);
 }
 
 .faq-question .category-badge {
-	background: #816935;
-	color: #fff;
+	background: var(--mocha);
+	color: var(--cream);
 	padding: 2px 10px;
 	border-radius: 12px;
 	font-size: 12px;
-	margin-right: 12px
+	margin-right: 12px;
 }
 
 .faq-question .arrow {
 	transition: .3s;
-	font-size: 12px
+	font-size: 12px;
 }
 
 .faq-question.active .arrow {
-	transform: rotate(180deg)
+	transform: rotate(180deg);
 }
 
 .faq-answer {
@@ -570,235 +497,116 @@ table .text-left {
 	max-height: 0;
 	overflow: hidden;
 	transition: .4s;
-	background: #fafafa;
-	line-height: 1.8
+	background: var(--warm-cream);
+	line-height: 1.8;
 }
 
 .faq-answer.show {
 	padding: 18px 20px;
-	max-height: 500px
+	max-height: 500px;
 }
 
-/* Badges */
-.badge {
-	display: inline-block;
-	padding: 5px 10px 4px;
-	border-radius: 8px;
-	font-size: 12px;
-	font-weight: 300;
-	border: 1px solid #bf9a49
+.faq-item:has(>.faq-question.active) {
+	border-left: 3px solid var(--dark-roast);
 }
 
-.badge-pending {
-	background: #fff3cd;
-	color: #856404
-}
-
-.badge-paid {
-	background: #d4edda;
-	color: #155724
-}
-
-.badge-confirmed {
-	background: #cce5ff;
-	color: #004085
-}
-
-.badge-cancelled {
-	background: #f8d7da;
-	color: #721c24
-}
-
-.badge-waiting {
-	background: #d7b978;
-	color: #fff;
-}
-
-.badge-answered {
-	background: #344b3c;
-	color: #eee;
-}
-
-.badge-active {
-	background: #d4edda;
-	color: #155724
-}
-
-.badge-blocked {
-	background: #f8d7da;
-	color: #721c24
-}
-
-.badge-inactive {
-	background: #e2e3e5;
-	color: #383d41
-}
-
-.badge-secret {
-	background: #e2e3e5;
-	color: #383d41
-}
-
-/* Alert Overlay */
-.alert-overlay {
-	position: fixed;
-	top: 0;
-	left: 0;
-	width: 100%;
-	height: 100%;
-	background: rgba(0, 0, 0, .5);
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	z-index: 9999;
-	animation: fadeIn .2s
-}
-
-@keyframes fadeIn {
-	from {opacity: 0
-}
-
-to {
-	opacity: 1
-}
-
-}
-
-/* Utilities */
-.text-center {
-	text-align: center
-}
-
-.text-right {
-	text-align: right
-}
-
-.text-gold {
-	color: #C9A962
-}
-
-.mt-10 {
-	margin-top: 10px
-}
-
-.mt-20 {
-	margin-top: 20px
-}
-
-.mt-30 {
-	margin-top: 30px
-}
-
-.mb-10 {
-	margin-bottom: 10px
-}
-
-.mb-20 {
-	margin-bottom: 20px
-}
-
-.bg-white {
-	background: #fff
-}
-
-.rounded {
-	border-radius: 8px
-}
-
-.shadow {
-	box-shadow: 0 2px 8px rgba(0, 0, 0, .08)
-}
-
-.flex {
-	display: flex
-}
-
-.flex-between {
-	display: flex;
-	justify-content: space-between;
-	align-items: center
-}
-
-.gap-10 {
-	gap: 10px
-}
-
-.w-100 {
-	width: 100%
-}
-
-.no-data {
-	text-align: center;
-	padding: 60px 20px;
-	color: #999
-}
-
-.no-data p {
-	font-size: 16px
-}
-
-.tab-btns {
-	display: flex;
-	gap: 10px;
-	margin-bottom: 20px
-}
-
-.tab-btns a {
-	padding: 8px 20px;
-	border: 1px solid #ddd;
-	border-radius: 20px;
-	font-size: 14px;
-	transition: .3s
-}
-
-.tab-btns a:hover, .tab-btns a.active {
-	background: #3d2314;
-	color: #fff;
-	border-color: #4d3707
-}
-
-.rsv-grid {
-	display: grid;
-	grid-template-columns: 1fr 1fr;
-	gap: 30px
-}
-
-@media ( max-width :768px) {
+/* ================================================
+   [RESPONSIVE] 768px 이하
+   ================================================ */
+@media ( max-width : 768px) {
 	.header .container {
 		flex-wrap: wrap;
 		height: auto;
-		padding: 15px 20px
+		padding: 15px 20px;
 	}
 	.gnb {
 		gap: 15px;
-		font-size: 13px
+		font-size: 13px;
 	}
 	.hero {
 		height: 420px;
-		min-height: 420px
+		min-height: 420px;
 	}
 	.hero-content h1 {
-		font-size: 32px
+		font-size: 32px;
 	}
 	.hero-prev, .hero-next {
-		display: none
+		display: none;
 	}
 	.card-grid {
-		grid-template-columns: 1fr
+		grid-template-columns: 1fr;
 	}
 	.mypage-wrap {
-		grid-template-columns: 1fr
+		grid-template-columns: 1fr;
 	}
 	.admin-wrap {
-		grid-template-columns: 1fr
+		grid-template-columns: 1fr;
 	}
 	.admin-sidebar {
-		display: none
+		display: none;
 	}
 	.dash-grid {
-		grid-template-columns: 1fr
+		grid-template-columns: 1fr;
 	}
 	.rsv-grid {
-		grid-template-columns: 1fr
+		grid-template-columns: 1fr;
+	}
+}
+
+/* ================================================
+   TABLET  768px ~ 1024px
+   ================================================ */
+@media ( min-width : 768px) and (max-width: 1024px) {
+	.page-content .search-box .form-control {
+		width: 180px;
+	}
+}
+
+/* ================================================
+   MOBILE  ~ 767px
+   ================================================ */
+@media ( max-width : 767px) {
+	.badge {
+		font-size: 9px;
+	}
+	/* board-header 세로 스택 */
+	.page-content .board-header {
+		flex-direction: column;
+		align-items: flex-start;
+	}
+
+	/* 검색박스 전체 너비 */
+	.page-content .search-box {
+		width: 100%;
+	}
+	.page-content .search-box .form-control {
+		flex: 1;
+		width: auto;
+	}
+
+	/* 번호 · 작성자 · 등록일 숨김 → 제목 + 상태만 표시 */
+	.page-content .qna-table th:nth-child(1), .page-content .qna-table td:nth-child(1),
+		.page-content .qna-table th:nth-child(3), .page-content .qna-table td:nth-child(3),
+		.page-content .qna-table th:nth-child(5), .page-content .qna-table td:nth-child(5)
+		{
+		display: none;
+	}
+
+	/* 상태 열 너비 축소 */
+	.page-content .qna-table th:nth-child(4), .page-content .qna-table td:nth-child(4)
+		{
+		width: 88px;
+	}
+}
+
+/* ================================================
+   SMALL  ~ 480px
+   ================================================ */
+@media ( max-width : 480px) {
+	/* 문의작성 버튼 전체 너비 */
+	.page-content .text-right.mb-10 .btn {
+		display: block;
+		width: 100%;
+		text-align: center;
 	}
 }

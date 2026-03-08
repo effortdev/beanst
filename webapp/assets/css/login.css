@@ -1,0 +1,283 @@
+@charset "UTF-8";
+
+/* ================================================
+   VIN'st Hotel — login.css
+   로그인 페이지 전용 스타일
+   기준 선택자 : .page-content.login-page
+
+   Breakpoints:
+     - Desktop  : 1025px 이상
+     - Tablet   : 768px ~ 1024px
+     - Mobile   : ~ 767px
+     - Small    : ~ 480px
+   ================================================ */
+
+/* ── 1. 페이지 전체 레이아웃 ─────────────────────
+   common.css .page-content 덮어쓰기
+   ─────────────────────────────────────────────── */
+.page-content.login-page {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	min-height: calc(100vh - 90px);
+	padding: 60px 20px;
+}
+
+/* ── common.css .container 의 padding:100px 덮어쓰기 ── */
+.page-content.login-page .container {
+	padding: 0;
+	max-width: 480px; /* form-box 너비에 맞춤 */
+	width: 100%;
+	margin: 0 auto;
+	display: block; /* flex 해제 — 내부 요소 수축 방지 */
+}
+
+/* ── 2. form-box ─────────────────────────────── */
+.page-content.login-page .form-box {
+	width: 100%;
+	max-width: 480px;
+	padding: 56px 48px;
+	border: 1px solid rgba(201, 169, 98, 0.18);
+	border-radius: 4px;
+	box-shadow: 0 2px 8px rgba(44, 24, 16, 0.04), 0 20px 60px
+		rgba(44, 24, 16, 0.08);
+	background: #fff;
+	animation: loginFadeUp 0.55s cubic-bezier(0.4, 0, 0.2, 1) both;
+}
+
+@keyframes loginFadeUp {from { opacity:0;
+	transform: translateY(20px);
+}
+
+to {
+	opacity: 1;
+	transform: translateY(0);
+}
+
+}
+
+/* ── 3. 제목 ─────────────────────────────────── */
+.page-content.login-page .form-box .title {
+	font-size: 28px;
+	font-weight: 600;
+	letter-spacing: 0.12em;
+	color: #2C1810;
+	text-align: center;
+	margin-bottom: 36px;
+}
+
+/* common.css h2::after 덮어쓰기 */
+.page-content.login-page .form-box .title::after {
+	content: '';
+	display: block;
+	width: 36px;
+	height: 2px;
+	background: #C9A962;
+	margin: 12px auto 0;
+	border-radius: 1px;
+}
+
+/* ── 4. form 태그 ────────────────────────────── */
+.page-content.login-page .form-box form {
+	width: 100%; /* ← 핵심: form 너비 명시 */
+	display: block;
+}
+
+/* ── 5. form-group ───────────────────────────── */
+.page-content.login-page .form-group {
+	width: 100%;
+	margin-bottom: 20px;
+}
+
+.page-content.login-page .form-group label {
+	display: block;
+	font-family: 'Poppins', sans-serif;
+	font-size: 11px;
+	font-weight: 600;
+	letter-spacing: 0.12em;
+	text-transform: uppercase;
+	color: #5D4037;
+	margin-bottom: 8px;
+}
+
+/* ── 6. 인풋 ─────────────────────────────────── */
+.page-content.login-page .form-control {
+	display: block; /* ← inline 요소 수축 방지 */
+	width: 100% !important; /* ← 강제 전체 너비 */
+	height: 48px;
+	padding: 0 16px;
+	border: 1px solid #E8DFD0;
+	border-radius: 3px;
+	font-size: 15px;
+	color: #2C1810;
+	background: #FDFAF7;
+	box-sizing: border-box; /* ← padding 포함 너비 계산 */
+	transition: border-color 0.3s, box-shadow 0.3s, background 0.3s;
+}
+
+.page-content.login-page .form-control::placeholder {
+	color: #B4A99E;
+	font-size: 14px;
+	font-weight: 300;
+}
+
+.page-content.login-page .form-control:focus {
+	outline: none;
+	background: #fff;
+	border-color: #C9A962;
+	box-shadow: 0 0 0 3px rgba(201, 169, 98, 0.12);
+}
+
+/* 마지막 form-group 여백 */
+.page-content.login-page .form-group:last-of-type {
+	margin-bottom: 28px;
+}
+
+/* ── 7. 로그인 버튼 ──────────────────────────── */
+.page-content.login-page .btn.btn-primary.btn-block, .page-content.login-page button.btn-primary
+	{
+	display: block !important; /* ← block 강제 */
+	width: 100% !important; /* ← 전체 너비 강제 */
+	height: 52px;
+	padding: 0;
+	font-family: 'Pretendard', sans-serif;
+	font-size: 15px;
+	font-weight: 600;
+	letter-spacing: 0.14em;
+	border-radius: 3px;
+	border: none;
+	cursor: pointer;
+	background: linear-gradient(135deg, #C9A962 0%, #A8833A 100%);
+	color: #fff;
+	box-shadow: 0 4px 16px rgba(201, 169, 98, 0.28);
+	box-sizing: border-box;
+	transition: background 0.3s, box-shadow 0.3s, transform 0.15s;
+}
+
+.page-content.login-page .btn.btn-primary.btn-block:hover, .page-content.login-page button.btn-primary:hover
+	{
+	background: linear-gradient(135deg, #B8954A 0%, #8A6B2E 100%);
+	box-shadow: 0 6px 20px rgba(201, 169, 98, 0.40);
+	transform: translateY(-1px);
+}
+
+.page-content.login-page .btn.btn-primary.btn-block:active,
+	.page-content.login-page button.btn-primary:active {
+	transform: translateY(0);
+	box-shadow: 0 2px 8px rgba(201, 169, 98, 0.30);
+}
+
+/* ── 8. 하단 링크 ────────────────────────────── */
+.page-content.login-page .login-links {
+	margin-top: 20px;
+	text-align: center;
+	font-size: 13px;
+	color: #8A7D74;
+}
+
+.page-content.login-page .login-links a {
+	color: #8A7D74;
+	text-decoration: none;
+	transition: color 0.25s;
+}
+
+.page-content.login-page .login-links a:hover {
+	color: #C9A962;
+}
+
+.page-content.login-page .login-links .join-link {
+	color: #C9A962;
+	font-weight: 500;
+}
+
+.page-content.login-page .login-links .join-link:hover {
+	color: #A8833A;
+}
+
+/* ── 9. 에러 메시지 ──────────────────────────── */
+.page-content.login-page .login-error {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+	padding: 12px 16px;
+	margin-bottom: 20px;
+	border-radius: 3px;
+	background: rgba(181, 64, 42, 0.06);
+	border: 1px solid rgba(181, 64, 42, 0.18);
+	color: #B5402A;
+	font-size: 13px;
+	width: 100%;
+}
+
+.page-content.login-page .login-error::before {
+	content: "!";
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	flex-shrink: 0;
+	width: 18px;
+	height: 18px;
+	border-radius: 50%;
+	border: 1.5px solid #B5402A;
+	font-size: 11px;
+	font-weight: 700;
+}
+
+/* ================================================
+   TABLET  768px ~ 1024px
+   ================================================ */
+@media ( min-width : 768px) and (max-width: 1024px) {
+	.page-content.login-page .container {
+		max-width: 440px;
+	}
+	.page-content.login-page .form-box {
+		max-width: 440px;
+		padding: 48px 40px;
+	}
+}
+
+/* ================================================
+   MOBILE  ~ 767px
+   ================================================ */
+@media ( max-width : 767px) {
+	.page-content.login-page .form-box {
+		max-width: 100%;
+		padding: 40px 24px;
+		box-shadow: 0 8px 32px rgba(44, 24, 16, 0.10);
+	}
+	.page-content.login-page .form-box .title {
+		font-size: 24px;
+		margin-bottom: 28px;
+	}
+	.page-content.login-page .form-control {
+		height: 46px;
+		font-size: 16px; /* iOS 줌 방지 */
+	}
+	.page-content.login-page .btn.btn-primary.btn-block, .page-content.login-page button.btn-primary
+		{
+		height: 50px;
+		font-size: 14px;
+	}
+}
+
+/* ================================================
+   SMALL  ~ 480px
+   ================================================ */
+@media ( max-width : 480px) {
+	.page-content.login-page {
+		padding: 24px 12px;
+	}
+	.page-content.login-page .form-box {
+		padding: 32px 20px;
+	}
+	.page-content.login-page .form-box .title {
+		font-size: 22px;
+		margin-bottom: 24px;
+	}
+	.page-content.login-page .form-group label {
+		font-size: 10px;
+	}
+	.page-content.login-page .login-links {
+		font-size: 12px;
+	}
+}

@@ -29,7 +29,6 @@
 	margin-bottom: 80px;
 }
 
-
 .facilityHeader .selectNone {
 	user-select: none;
 }
@@ -75,12 +74,22 @@ section.bgImg {
 }
 
 .facilityInfoTable th {
+	position: relative;
 	width: 180px;
 	text-align: left;
-	padding: 20px 0;
+	padding: 20px 20px 20px 30px;
 	font-weight: 600;
 	color: #222;
 	font-size: 16px;
+}
+
+.facilityInfoTable th:before {
+	content: '|';
+	font-size: 40px;
+	color: var(--point2);
+	position: absolute;
+	left: 0;
+	top: 5px;
 }
 
 .facilityInfoTable td {
@@ -102,7 +111,7 @@ section.bgImg {
 
 .Gallery {
 	width: 100%;
-	padding: 60px 20px;
+	padding: 0 20px 80px;
 }
 
 .facilityGallery {
@@ -110,14 +119,15 @@ section.bgImg {
 	margin: 0 auto;
 	display: grid;
 	grid-template-columns: repeat(2, 1fr);
-	gap: 20px;
+	gap: 60px;
 }
 
 .galleryItem {
 	position: relative;
 	overflow: hidden;
-	border-radius: 6px;
+	border-radius: 16px;
 	cursor: pointer;
+	border: 3px solid #ddddddcf;
 }
 
 .galleryItem img {

@@ -1,28 +1,91 @@
 @charset "UTF-8";
 
-header {
-	transform: translateY(-100%);
-	opacity: 0;
-	transition: transform 0.8s ease, opacity 0.8s ease;
+/* ── CSS 변수 ────────────────────────────────── */
+:root {
+	--gold: #C9A962;
+	--gold-dark: #a8833a;
+	--hdr-h: 90px;
+	--hdr-h-mob: 64px;
+	--txt-dark: #1a1614;
+	--txt-mid: #4a4540;
+	--transition: 0.45s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-header.show {
+/* ── 헤더 기본 ───────────────────────────────── */
+header#hdr {
+	width: 100%;
+	height: var(--hdr-h);
+	position: fixed;
+	top: 0;
+	left: 0;
+	z-index: 9999;
+	border-bottom: 1px solid transparent;
+}
+
+header#hdr {
+	transform: translateY(-100%);
+	opacity: 0;
+	background: radial-gradient(ellipse 110% 270% at -51% 12%, #eee 49%, transparent
+		120%), rgba(255, 255, 255, 0.6);
+}
+
+header {
+	position: relative;
+}
+
+header:before, header:after {
+	z-index: -1;
+	position: absolute;
+	content: "";
+	bottom: 0px;
+	left: -8px;
+	width: 50%;
+	top: 99%;
+	/* max-width: 300px; */
+	background: rgba(201, 169, 98, 0.3);
+	-webkit-box-shadow: 0 15px 10px #777;
+	-moz-box-shadow: 0 15px 12px #777;
+	box-shadow: 0 6px 9px #777;
+	-webkit-transform: rotate(-0deg);
+	-moz-transform: rotate(-0deg);
+	-o-transform: rotate(-0deg);
+	-ms-transform: rotate(-0deg);
+	transform: rotate(0deg);
+}
+
+header:after {
+	-webkit-transform: rotate(0deg);
+	-moz-transform: rotate(0deg);
+	-o-transform: rotate(0deg);
+	-ms-transform: rotate(0deg);
+	transform: rotate(0deg);
+	right: 0;
+	left: auto;
+}
+
+header#hdr.show {
 	transform: translateY(0);
 	opacity: 1;
 }
 
-header {
-	width: 100%;
-	height: 90px;
-	border-bottom: 1px solid #eee;
-	line-height: 90px;
-	background: #fff;
-	position: fixed;
-	top: 0;
-	z-index: 9999;
-	user-select: none;
+/* 스크롤 내려가면 JS로 .scrolled 클래스 추가 */
+header#hdr.scrolled {
+	background: rgba(255, 255, 255, 0.97);
+	border-bottom-color: #e8e0d4;
+	box-shadow: 0 4px 32px rgba(26, 22, 20, 0.08);
+	transition: all 0.3s ease-out;
 }
 
+/* 숨김 (스크롤 다운 시) */
+header#hdr.hide {
+	transform: translateY(-100%);
+}
+
+header#hdr.active {
+	transform: translateY(0);
+}
+
+/* ── 내부 래퍼 ───────────────────────────────── */
 header .hdr_inner {
 	max-width: 1600px;
 	width: 90%;
@@ -31,56 +94,355 @@ header .hdr_inner {
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
-	overflow: hidden;
-}
-
-header {
-	transition: transform 0.4s ease;
-}
-
-header.hide {
-	transform: translateY(-100%);
-}
-
-header.active {
-	transform: translateY(0%);
-}
-
-header .hdr_inner .rightItem ul {
-	display: flex;
-	gap: 20px;
-}
-
-header .hdr_inner .logo {
-	width: 100px;
 	position: relative;
-	display: inline-block;
+}
+
+/* ── 로고 ────────────────────────────────────── */
+header .hdr_inner .logo {
+	width: 110px;
+	flex-shrink: 0;
+	display: flex;
+	align-items: center;
 }
 
 header .hdr_inner .logo img {
 	width: 100%;
-	position: absolute;
-	top: 50%;
-	left: 50%;
-	transform: translate(-50%, -50%);
+	height: auto;
+	display: block;
+	filter: brightness(60%);
+	transition: filter var(--transition);
 }
 
-header .rightItem ul li .text {
+header .hdr_inner .logo img:hover {
+	filter: brightness(45%);
+}
+
+/* ── 오른쪽 메뉴 ─────────────────────────────── */
+header .hdr_inner .rightItem {
+	display: flex;
+	align-items: center;
+}
+
+header .hdr_inner .rightItem ul {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+header .hdr_inner .rightItem ul li {
 	position: relative;
-	display: inline-block; 
 }
 
-header .rightItem ul li .text::before {
+/* 구분선 (li 사이) */
+header .hdr_inner .rightItem ul li+li::before {
 	content: "";
 	position: absolute;
-	left: 0;
-	bottom: 30px;
-	width: 0;
-	height: 1px;
-	background: #000;
-	transition: width 0.4s ease;
+	left: -4px;
+	top: 50%;
+	transform: translateY(-50%);
+	width: 1px;
+	height: 12px;
+	background: #ccc;
 }
 
-header .rightItem ul li .text:hover::before {
+/* 텍스트 링크 */
+header .rightItem ul li .text, header .rightItem ul li a {
+	position: relative;
+	display: inline-block;
+	padding: 6px 14px;
+	font-size: 14px;
+	font-weight: 500;
+	color: var(--color2);
+	letter-spacing: 0.06em;
+	text-decoration: none;
+	white-space: nowrap;
+	transition: color var(--transition);
+}
+
+/* 골드 슬라이딩 언더라인 */
+header .rightItem ul li .text::after, header .rightItem ul li a:not(.btn-reserve)::after
+	{
+	content: "";
+	position: absolute;
+	left: 14px;
+	bottom: 2px;
+	width: 0;
+	height: 1px;
+	background: var(--gold);
+	transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+header .rightItem ul li .text:hover::after, header .rightItem ul li a:not(.btn-reserve):hover::after
+	{
+	width: calc(100% - 28px);
+}
+
+header .rightItem ul li .text:hover, header .rightItem ul li a:not(.btn-reserve):hover
+	{
+	color: var(--gold-dark)
+}
+
+/* 예약 버튼 (마지막 li) */
+header .rightItem ul li a.btn-reserve, header .rightItem ul li:last-child a,
+	header .rightItem ul li:last-child .text {
+	background: var(--gold);
+	color: #fff;
+	padding: 8px 20px;
+	border-radius: 2px;
+	font-weight: 600;
+	letter-spacing: 0.08em;
+	transition: background var(--transition), transform 0.2s;
+}
+
+header .rightItem ul li a.btn-reserve:hover, header .rightItem ul li:last-child a:hover,
+	header .rightItem ul li:last-child .text:hover {
+	background: var(--gold-dark);
+	transform: translateY(-1px);
+	color: #fff;
+}
+
+header .rightItem ul li a.btn-reserve::after, header .rightItem ul li:last-child a::after,
+	header .rightItem ul li:last-child .text::after {
+	display: none; /* 예약 버튼엔 언더라인 없음 */
+}
+
+/* 구분선도 예약 버튼 바로 앞 li에서 숨김 */
+header .rightItem ul li:last-child::before {
+	display: none;
+}
+
+/* ── 사용자 인사말 (로그인 시) ───────────────── */
+header .rightItem ul li .greeting, header .rightItem ul li span.user-name
+	{
+	font-size: 13px;
+	color: var(--txt-mid);
+	font-weight: 400;
+	letter-spacing: 0.03em;
+	padding: 6px 14px;
+}
+
+/* ── 햄버거 버튼 (모바일 전용) ───────────────── */
+.hamburger {
+	display: none;
+	flex-direction: column;
+	justify-content: center;
+	gap: 5px;
+	width: 36px;
+	height: 36px;
+	cursor: pointer;
+	padding: 4px;
+	background: none;
+	border: none;
+	z-index: 10001;
+}
+
+.hamburger span {
+	display: block;
 	width: 100%;
+	height: 1.5px;
+	background: var(--txt-dark);
+	border-radius: 2px;
+	transition: transform 0.4s ease, opacity 0.3s ease, width 0.3s ease;
+	transform-origin: center;
+}
+
+/* 열린 상태 (X) */
+.hamburger.open span:nth-child(1) {
+	transform: translateY(6.5px) rotate(45deg);
+}
+
+.hamburger.open span:nth-child(2) {
+	opacity: 0;
+	width: 0;
+}
+
+.hamburger.open span:nth-child(3) {
+	transform: translateY(-6.5px) rotate(-45deg);
+}
+
+/* ── 모바일 드로어 메뉴 ───────────────────────── */
+.mobile-nav {
+	display: none;
+	position: fixed;
+	top: var(--hdr-h-mob);
+	left: 0;
+	width: 100%;
+	height: calc(100vh - var(--hdr-h-mob));
+	background: rgba(250, 248, 245, 0.98);
+	backdrop-filter: blur(16px);
+	-webkit-backdrop-filter: blur(16px);
+	z-index: 9998;
+	flex-direction: column;
+	align-items: center;
+	gap: 0;
+	opacity: 0;
+	transform: translateY(-12px);
+	pointer-events: none;
+	transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+.mobile-nav.open {
+	opacity: 1;
+	transform: translateY(0);
+	pointer-events: all;
+}
+
+.mobile-nav ul {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	text-align: center;
+	width: 100%;
+}
+
+.mobile-nav ul li {
+	border-bottom: 1px solid #e8e0d4;
+	opacity: 0;
+	transform: translateY(16px);
+	transition: opacity 0.35s ease, transform 0.35s ease;
+}
+
+/* 열릴 때 순서대로 등장 */
+.mobile-nav.open ul li:nth-child(1) {
+	opacity: 1;
+	transform: none;
+	transition-delay: 0.05s;
+}
+
+.mobile-nav.open ul li:nth-child(2) {
+	opacity: 1;
+	transform: none;
+	transition-delay: 0.10s;
+}
+
+.mobile-nav.open ul li:nth-child(3) {
+	opacity: 1;
+	transform: none;
+	transition-delay: 0.15s;
+}
+
+.mobile-nav.open ul li:nth-child(4) {
+	opacity: 1;
+	transform: none;
+	transition-delay: 0.20s;
+}
+
+.mobile-nav.open ul li:nth-child(5) {
+	opacity: 1;
+	transform: none;
+	transition-delay: 0.25s;
+}
+
+.mobile-nav ul li a, .mobile-nav ul li .text {
+	display: block;
+	padding: 20px 0;
+	font-size: 16px;
+	font-weight: 500;
+	color: var(--txt-mid);
+	letter-spacing: 0.08em;
+	text-decoration: none;
+	transition: color 0.3s, letter-spacing 0.3s;
+}
+
+.mobile-nav ul li a:hover, .mobile-nav ul li .text:hover {
+	color: var(--gold);
+	letter-spacing: 0.14em;
+}
+
+/* 모바일 예약 버튼 */
+.mobile-nav ul li a.btn-reserve, .mobile-nav ul li .text.btn-reserve {
+	color: var(--gold);
+	font-weight: 700;
+	font-size: 17px;
+	border-bottom: none;
+}
+
+/* 골드 장식선 */
+.mobile-nav::before {
+	content: "";
+	display: block;
+	width: 40px;
+	height: 1px;
+	background: var(--gold);
+	margin-bottom: 48px;
+}
+
+/* ================================================
+   TABLET  768px ~ 1024px
+   ================================================ */
+@media ( max-width : 1024px) {
+	:root {
+		--hdr-h: 80px;
+	}
+	header .hdr_inner {
+		width: 94%;
+	}
+	header .hdr_inner .logo {
+		width: 96px;
+	}
+	header .rightItem ul li .text, header .rightItem ul li a {
+		padding: 6px 10px;
+		font-size: 13px;
+	}
+	header .rightItem ul li a::after, header .rightItem ul li .text::after {
+		left: 10px;
+	}
+}
+
+/* ================================================
+   MOBILE  767px 이하  →  햄버거 메뉴
+   ================================================ */
+@media ( max-width : 767px) {
+	:root {
+		--hdr-h: var(--hdr-h-mob);
+	}
+	header#hdr {
+		height: var(--hdr-h-mob);
+		background: rgba(255, 255, 255, 0.97) !important;
+		border-bottom-color: #e8e0d4;
+		box-shadow: 0 2px 16px rgba(26, 22, 20, 0.07);
+	}
+	header .hdr_inner {
+		width: 92%;
+	}
+	header .hdr_inner .logo {
+		width: 84px;
+	}
+
+	/* 기존 데스크탑 메뉴 숨김 */
+	header .hdr_inner .rightItem {
+		display: none;
+	}
+
+	/* 햄버거 버튼 표시 */
+	.hamburger {
+		display: flex;
+	}
+
+	/* 모바일 드로어 표시 */
+	.mobile-nav {
+		display: flex;
+	}
+}
+
+/* ================================================
+   SMALL MOBILE  480px 이하
+   ================================================ */
+@media ( max-width : 480px) {
+	header .hdr_inner {
+		width: 88%;
+	}
+	.mobile-nav ul li a, .mobile-nav ul li .text {
+		padding: 18px 0;
+		font-size: 15px;
+	}
+}
+
+@media screen and (max-width: 320px) {
+	body {
+		min-width: 320px;
+	}
 }
