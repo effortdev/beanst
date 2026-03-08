@@ -32,6 +32,9 @@ public class AdminDashboardController implements Action {
 			request.setAttribute("reservationRequest", dao.getCount(conn, "adminReservationRequest"));
 			request.setAttribute("cancelRequest", dao.getCount(conn, "adminCancelRequest"));
 			request.setAttribute("qnaWaiting", dao.getCount(conn, "adminQnaWaiting"));
+			request.setAttribute("roomChartLabels", dao.getRoomChartLabels(conn));
+
+			request.setAttribute("roomChartData", dao.getRoomChartData(conn));
 
 			request.setAttribute("recentReservations", dao.getRecentReservations(conn));
 

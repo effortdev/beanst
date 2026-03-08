@@ -209,4 +209,70 @@ public class AdminDashboardDAO {
 
 	}
 
+	// ===============================
+	// 객실 점유율 Labels
+	// ===============================
+
+	public List<String> getRoomChartLabels(Connection conn) {
+
+		List<String> labels = new ArrayList<>();
+
+		try {
+
+			String sql = props.getProperty("adminRoomOccupancy");
+
+			PreparedStatement ps = conn.prepareStatement(sql);
+
+			ResultSet rs = ps.executeQuery();
+
+			while (rs.next()) {
+
+				labels.add("'" + rs.getString("room_name") + "'");
+
+			}
+
+			rs.close();
+			ps.close();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return labels;
+
+	}
+
+	// ===============================
+	// 객실 점유율 Data
+	// ===============================
+
+	public List<Integer> getRoomChartData(Connection conn) {
+
+		List<Integer> data = new ArrayList<>();
+
+		try {
+
+			String sql = props.getProperty("adminRoomOccupancy");
+
+			PreparedStatement ps = conn.prepareStatement(sql);
+
+			ResultSet rs = ps.executeQuery();
+
+			while (rs.next()) {
+
+				data.add(rs.getInt("cnt"));
+
+			}
+
+			rs.close();
+			ps.close();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return data;
+
+	}
+
 }

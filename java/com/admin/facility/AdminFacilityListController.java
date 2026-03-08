@@ -25,6 +25,7 @@ public class AdminFacilityListController implements Action {
 
 
             request.setAttribute("facilityList", list);
+            request.setAttribute("pageCss", "admin-facility");
 
         } catch (Exception e) {
             e.printStackTrace();

@@ -1,28 +1,46 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<div class="admin-room-update">
+	<h2 class="admin-title">객실 추가</h2>
 
-<h2>객실 추가</h2>
-
-<form action="${pageContext.request.contextPath}/admin/roomInsert.do"
-	method="post" enctype="multipart/form-data">
-	<!-- 		객실번호: <input type="text" name="room_id"><br>  -->
-	객실명: <input type="text" name="room_name"><br> 정원: <input
-		type="text" name="capacity"><br> 위치: <input type="text"
-		name="room_location"><br> 룸구성: <input type="text"
-		name="room_description"><br> 이용시간: <input type="text"
-		name="usage_time"><br> 어매니티: <input type="text"
-		name="amenity"><br> 미니바: <input type="text"
-		name="minibar"><br> 이미지: <input type="file" id="room_img"
-		name="room_img" id="room_img" multiple accept="image/*"
-		onchange="previewImages(event)"><br>
-	<div id="preview"></div>
-	<hr>
-	<button type="submit">등록</button>
-	<button type="button"
-		onclick="location.href='${pageContext.request.contextPath}/admin/roomManage.do'">
-		뒤로가기</button>
-</form>
-
+	<form action="${pageContext.request.contextPath}/admin/roomInsert.do"
+		method="post" enctype="multipart/form-data">
+		<!--       객실번호: <input type="text" name="room_id"><br>  -->
+		<div class="form-group">
+			<label>객실명</label> <input type="text" name="room_name">
+		</div>
+		<div class="form-group">
+			<label>정원</label> <input type="text" name="capacity">
+		</div>
+		<div class="form-group">
+			<label>위치</label> <input type="text" name="room_location">
+		</div>
+		<div class="form-group">
+			<label>룸구성</label> <input type="text" name="room_description">
+		</div>
+		<div class="form-group">
+			<label>이용시간</label> <input type="text" name="usage_time">
+		</div>
+		<div class="form-group">
+			<label>어매니티</label> <input type="text" name="amenity">
+		</div>
+		<div class="form-group">
+			<label>미니바</label> <input type="text" name="minibar">
+		</div>
+		<div class="form-group">
+			<label>이미지</label> <input type="file" id="room_img" name="room_img"
+				id="room_img" multiple accept="image/*"
+				onchange="previewImages(event)">
+		</div>
+		<div id="preview"></div>
+		<div class="form-buttons">
+			<button type="submit" class="btn-save">등록</button>
+			<a class="btn-list"
+				href='${pageContext.request.contextPath}/admin/roomManage.do'">
+				목록</a>
+		</div>
+	</form>
+</div>
 <script>
 
 let selectedFiles = [];
@@ -85,8 +103,8 @@ function renderPreview() {
             wrapper.appendChild(img);
             wrapper.appendChild(document.createElement("br"));
 
-			wrapper.appendChild(removeCheck);
-			wrapper.appendChild(document.createTextNode(" 등록취소"));
+         wrapper.appendChild(removeCheck);
+         wrapper.appendChild(document.createTextNode(" 등록취소"));
 
             preview.appendChild(wrapper);
         };

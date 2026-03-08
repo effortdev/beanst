@@ -1,40 +1,64 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="jakarta.tags.core"%>
+<div class="admin-room-write">
+	<h2 class="admin-title">객실 수정</h2>
 
-<h2>객실 수정</h2>
+	<form action="${pageContext.request.contextPath}/admin/roomUpdate.do"
+		method="post" enctype="multipart/form-data">
+		<input type="hidden" name="room_id" value="${vo.room_id}">
 
-<form action="${pageContext.request.contextPath}/admin/roomUpdate.do"
-	method="post" enctype="multipart/form-data">
-	<input type="hidden" name="room_id" value="${vo.room_id}"> 객실명:
-	<input type="text" name="room_name" value="${vo.room_name}"><br>
-	정원: <input type="text" name="capacity" value="${vo.capacity}"><br>
-	위치: <input type="text" name="room_location" value="${vo.room_location}"><br>
-	룸구성:
-	<textarea name="room_description">${vo.room_description}</textarea>
-	<br> 이용시간: <input type="text" name="usage_time"
-		value="${vo.usage_time}"><br> 어매니티: <input type="text"
-		name="amenity" value="${vo.amenity}"><br> 미니바: <input
-		type="text" name="minibar" value="${vo.minibar}"><br>
-	이미지: <input type="file" id="room_img" name="room_img" id="room_img"
-		multiple accept="image/*" onchange="previewImages(event)"><br>
-	<div id="preview"></div>
-	<hr>
+		<div class="form-group">
+			<label>객실명</label> <input type="text" name="room_name"
+				value="${vo.room_name}">
+		</div>
+		<div class="form-group">
+			<label>정원</label> <input type="text" name="capacity"
+				value="${vo.capacity}">
+		</div>
+		<div class="form-group">
+			<label>위치</label> <input type="text" name="room_location"
+				value="${vo.room_location}">
+		</div>
+		<div class="form-group">
+			<label>룸구성</label>
+			<textarea name="room_description">${vo.room_description}</textarea>
+		</div>
+		<div class="form-group">
+			<label>이용시간</label> <input type="text" name="usage_time"
+				value="${vo.usage_time}">
+		</div>
+		<div class="form-group">
+			<label>어매니티</label> <input type="text" name="amenity"
+				value="${vo.amenity}">
+		</div>
+		<div class="form-group">
+			<label>미니바</label> <input type="text" name="minibar"
+				value="${vo.minibar}">
+		</div>
+		<div class="form-group">
+			<label>이미지</label> <input type="file" id="room_img" name="room_img"
+				id="room_img" multiple accept="image/*"
+				onchange="previewImages(event)">
+		</div>
+		<div id="preview"></div>
+		<hr>
 
-	기존이미지<br>
-	<c:forEach var="image" items="${imageVO}">
-		<img src="${image.image_path}" width="200">
-		<input type="radio" name="main_image" value="${image.image_no}"
-			${image.is_main eq 'Y' ? 'checked' : ''}>대표이미지
+		<label class="saveImage">기존이미지</label><br>
+		<c:forEach var="image" items="${imageVO}">
+			<img src="${image.image_path}" width="200">
+			<input type="radio" name="main_image" value="${image.image_no}"
+				${image.is_main eq 'Y' ? 'checked' : ''}>대표이미지
 		<input type="checkbox" name="delete_images" value="${image.image_no}">삭제<br>
-	</c:forEach>
-
-	<button type="submit">수정</button>
-	<button type="button"
-		onclick="location.href='${pageContext.request.contextPath}/admin/roomManage.do'">
-		뒤로가기</button>
-</form>
-
+		</c:forEach>
+		<div class="form-buttons">
+			<button type="submit" class="btn-save">수정</button>
+			<a class="btn-list"
+				href='${pageContext.request.contextPath}/admin/roomManage.do'">
+				목록</a>
+		</div>
+	</form>
+</div>
 <script>
 
 let selectedFiles = [];

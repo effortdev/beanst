@@ -1,5 +1,8 @@
 @charset "UTF-8";
 
+/* =========================
+   기본 레이아웃
+========================= */
 .admin-body {
 	background: #FAF8F5;
 }
@@ -9,6 +12,9 @@
 	min-height: 100vh;
 }
 
+/* =========================
+   헤더
+========================= */
 .admin-header {
 	height: 60px;
 	background: #0e0e0e;
@@ -17,10 +23,14 @@
 	justify-content: space-between;
 	align-items: center;
 	padding: 0 30px;
+	position: sticky;
+	top: 0;
+	z-index: 1000;
 }
 
 .admin-header h1 {
 	font-size: 18px;
+	letter-spacing: 0.5px;
 }
 
 .admin-header-right {
@@ -35,13 +45,27 @@
 	padding: 6px 12px;
 	border: 1px solid #fff;
 	border-radius: 4px;
+	font-size: 13px;
+	transition: all 0.2s ease;
 }
 
+.admin-logout:hover {
+	background: #fff;
+	color: #0e0e0e;
+}
+
+/* =========================
+   사이드바
+========================= */
 .admin-sidebar {
 	width: 220px;
 	background: #0e0e0e;
 	color: #fff;
 	padding-top: 30px;
+	position: sticky;
+	top: 60px;
+	height: calc(100vh - 60px);
+	overflow-y: auto;
 }
 
 .admin-sidebar ul {
@@ -51,26 +75,42 @@
 }
 
 .admin-sidebar li {
-	margin-bottom: 15px;
+	margin-bottom: 8px;
 }
 
 .admin-sidebar a {
 	color: #fff;
 	text-decoration: none;
-	padding: 10px 20px;
+	padding: 12px 20px;
 	display: block;
+	font-size: 14px;
+	transition: all 0.2s ease;
 }
 
 .admin-sidebar a:hover {
 	background: #3a3a55;
+	padding-left: 24px;
 }
 
+/* 현재 메뉴 */
+.admin-sidebar a.active {
+	background: #3a3a55;
+	font-weight: 600;
+}
+
+/* =========================
+   콘텐츠 영역
+========================= */
 .admin-content {
 	flex: 1;
 	padding: 40px;
 	background: #ffffff;
+	min-height: calc(100vh - 60px);
 }
 
+/* =========================
+   로그인 페이지
+========================= */
 .admin-login-container {
 	width: 400px;
 	margin: 120px auto;
@@ -79,6 +119,7 @@
 	box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
 	border-radius: 8px;
 }
+
 .admin-login-container form {
 	margin-bottom: 30px;
 }
@@ -86,6 +127,7 @@
 .admin-login-container .title {
 	font-size: 24px;
 	margin-bottom: 30px;
+	font-weight: 600;
 }
 
 .admin-login-container .atHome {
@@ -95,8 +137,15 @@
 
 .admin-login-container .atHome a {
 	display: inline-block;
-	padding: 10px 5px;
+	padding: 10px 15px;
 	border: 1px solid #000;
+	text-decoration: none;
+	transition: all 0.2s ease;
+}
+
+.admin-login-container .atHome a:hover {
+	background: #000;
+	color: #fff;
 }
 
 .admin-login-container .error {
@@ -108,20 +157,25 @@
 	margin-bottom: 20px;
 }
 
+/* =========================
+   폼
+========================= */
 .form-group {
 	margin-bottom: 20px;
-	overflow: hidden;
 	display: flex;
-	justify-content: start;
-	flex: 1;
+	align-items: center;
 }
 
 .form-group label {
 	width: 30%;
+	font-size: 14px;
 }
 
 .form-group input {
 	width: 70%;
+	padding: 8px;
+	border: 1px solid #ddd;
+	border-radius: 4px;
 }
 
 button {
@@ -131,82 +185,11 @@ button {
 	color: #fff;
 	border: none;
 	cursor: pointer;
+	border-radius: 4px;
+	transition: background 0.2s ease;
 }
 
-/* ===== 호텔 정보 리스트 css ===== */
-
-.facility-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 30px;
+button:hover {
+	background: #333;
 }
-
-.facility-header h2 {
-    font-size: 22px;
-    font-weight: 600;
-}
-
-.facility-add-btn {
-    padding: 8px 16px;
-    background: transparent;
-    color: #fff;
-    border-radius: 4px;
-    text-decoration: none;
-    font-size: 14px;
-}
-
-.facility-add-btn:hover {
-    background: #0e0e0e;
-    color: #fff;
-}
-
-.facility-table {
-    width: 100%;
-    border-collapse: collapse;
-    background: #fff;
-}
-
-.facility-table th {
-    background: #0e0e0e;
-    color: #fff;
-    padding: 14px;
-    font-size: 14px;
-}
-
-.facility-table td {
-    padding: 14px;
-    border-bottom: 1px solid #eee;
-    text-align: center;
-    font-size: 14px;
-}
-
-.facility-table tbody tr:hover {
-    background: #f4f4f4;
-}
-
-.facility-btn-edit {
-    padding: 6px 10px;
-    background: #d4af37;
-    color: #fff;
-    text-decoration: none;
-    border-radius: 3px;
-    font-size: 12px;
-}
-
-.facility-btn-delete {
-    padding: 6px 10px;
-    background: #e74c3c;
-    color: #fff;
-    text-decoration: none;
-    border-radius: 3px;
-    font-size: 12px;
-}
-
-.facility-empty {
-    text-align: center;
-    padding: 30px;
-    color: #999;
-}
-
 

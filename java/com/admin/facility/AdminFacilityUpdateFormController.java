@@ -25,6 +25,7 @@ public class AdminFacilityUpdateFormController implements Action {
 
             request.setAttribute("facility", facility);
             request.setAttribute("imageList", imageList);
+            request.setAttribute("pageCss", "admin-facility");
 
         } catch (Exception e) {
             e.printStackTrace();

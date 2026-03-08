@@ -42,12 +42,26 @@
 	</div>
 
 
-	<!-- 예약 그래프 -->
-	<div class="dashboard-chart">
+	<div class="dashboard-charts">
 
-		<h3>최근 7일 예약 현황</h3>
+		<!-- 예약 그래프 -->
+		<div class="dashboard-chart">
 
-		<canvas id="reservationChart"></canvas>
+			<h3>최근 7일 예약 현황</h3>
+
+			<canvas id="reservationChart"></canvas>
+
+		</div>
+
+
+		<!-- 객실 점유율 -->
+		<div class="dashboard-chart">
+
+			<h3>객실 점유율</h3>
+
+			<canvas id="roomChart"></canvas>
+
+		</div>
 
 	</div>
 
@@ -176,6 +190,31 @@ new Chart(ctx, {
 		plugins: {
 			legend: {
 				display:false
+			}
+		}
+	}
+});
+
+const roomCtx = document.getElementById('roomChart');
+
+new Chart(roomCtx, {
+	type: 'doughnut',
+	data: {
+		labels: ${roomChartLabels},
+		datasets: [{
+			data: ${roomChartData},
+			backgroundColor: [
+				'#3498db',
+				'#2ecc71',
+				'#f39c12',
+				'#9b59b6'
+			]
+		}]
+	},
+	options:{
+		plugins:{
+			legend:{
+				position:'bottom'
 			}
 		}
 	}

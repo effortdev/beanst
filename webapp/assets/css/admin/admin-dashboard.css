@@ -101,9 +101,15 @@
 /* =========================
    차트
 ========================= */
+.dashboard-charts {
+	display: grid;
+	grid-template-columns: 2fr 1fr;
+	gap: 20px;
+	margin-bottom: 40px;
+}
+
 .dashboard-chart {
 	background: white;
-	padding: 30px;
 	border-radius: 14px;
 	box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
 	margin-bottom: 40px;
@@ -116,12 +122,15 @@
 	color: #222;
 }
 
+.dashboard-chart canvas {
+	max-height: 280px;
+}
+
 /* =========================
    테이블 영역
 ========================= */
 .dashboard-table {
 	background: white;
-	padding: 30px;
 	border-radius: 14px;
 	box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
 	margin-bottom: 40px;

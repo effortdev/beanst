@@ -489,7 +489,8 @@ WHERE image_id = (
 		title,
 		status
 		FROM qna
-		ORDER BY qna_no DESC
+		ORDER BY
+		qna_no DESC
 		LIMIT 5
 
 	</entry>
@@ -504,6 +505,17 @@ WHERE image_id = (
 		WHERE check_in >= DATE_SUB(CURDATE(),INTERVAL 7
 		DAY)
 		GROUP BY day
+
+	</entry>
+
+	<entry key="adminRoomOccupancy">
+
+		SELECT rm.room_name,
+		COUNT(*) AS cnt
+		FROM reservation r
+		JOIN room rm ON r.room_id = rm.room_id
+		WHERE r.status = '2'
+		GROUP BY rm.room_name
 
 	</entry>
 

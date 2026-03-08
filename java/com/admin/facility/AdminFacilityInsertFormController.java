@@ -9,7 +9,7 @@ public class AdminFacilityInsertFormController implements Action {
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) {
-
+		request.setAttribute("pageCss", "admin-facility");
 		return "admin/facility/facility_insertForm";
 
 	}
