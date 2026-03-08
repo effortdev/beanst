@@ -28,4 +28,10 @@
 	<entry key="updatePassword">
 		UPDATE users SET password = ? WHERE user_id = ?
 	</entry>
+	
+		<entry key="checkPassword">
+		SELECT COUNT(*) AS cnt
+		FROM users
+		WHERE user_id = ? AND password = ?
+	</entry>
 </properties>

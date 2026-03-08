@@ -14,7 +14,7 @@
 				객실 상세 관리 </a></li>
 		<li><a
 			href="${pageContext.request.contextPath}/admin/facility/list.do">
-				호텔 정보 관리 </a></li>
+				호텔 시설 관리 </a></li>
 
 		<li><a
 			href="${pageContext.request.contextPath}/admin/reservation/list.do">

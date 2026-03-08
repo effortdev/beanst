@@ -5,13 +5,18 @@
 <html>
 <head>
 <title>Admin | Vinst Hotel</title>
+
+
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/assets/css/admin/admin-common.css">
+	
+	
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/assets/css/admin/admin.css">
 
 
 
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/assets/css/admin/admin-common.css">
+
 
 
 <c:if test="${not empty pageCss}">

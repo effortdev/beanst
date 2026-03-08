@@ -1,9 +1,9 @@
 @charset "UTF-8";
 
 /* =========================
-   시설 페이지 전체
+   시설 페이지 공통 레이아웃
 ========================= */
-.admin-content {
+.admin-facility {
 	max-width: 1400px;
 	margin: 40px auto;
 	padding: 0 20px;
@@ -40,12 +40,15 @@
 }
 
 /* =========================
-   시설 테이블
+   시설 목록 테이블
 ========================= */
 .facility-table {
 	width: 100%;
 	border-collapse: collapse;
 	background: #fff;
+	border-radius: 8px;
+	overflow: hidden;
+	box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
 }
 
 .facility-table thead {
@@ -72,8 +75,12 @@
 	background: #fafafa;
 }
 
+.facility-table tbody tr:last-child td {
+	border-bottom: none;
+}
+
 /* =========================
-   버튼
+   관리 버튼
 ========================= */
 .facility-btn-edit {
 	background: #000;
@@ -83,7 +90,6 @@
 	text-decoration: none;
 	font-size: 12px;
 	margin-right: 6px;
-	transition: all 0.2s ease;
 }
 
 .facility-btn-edit:hover {
@@ -97,7 +103,6 @@
 	border-radius: 6px;
 	text-decoration: none;
 	font-size: 12px;
-	transition: all 0.2s ease;
 }
 
 .facility-btn-delete:hover {
@@ -112,4 +117,164 @@
 	padding: 30px;
 	color: #999;
 	font-size: 14px;
+}
+
+/* =========================
+   시설 등록 / 수정 폼
+========================= */
+.admin-facility-form {
+	max-width: 900px;
+	margin: 40px auto;
+	background: #fff;
+	padding: 35px 40px;
+	border-radius: 8px;
+	box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+.admin-facility-form h2 {
+	font-size: 28px;
+	font-weight: 700;
+	margin-bottom: 25px;
+}
+
+/* =========================
+   입력 폼
+========================= */
+.facility-form-group {
+	margin-bottom: 18px;
+}
+
+.facility-form-group label {
+	display: block;
+	font-size: 14px;
+	font-weight: 600;
+	margin-bottom: 6px;
+}
+
+.facility-form-group input, .facility-form-group textarea {
+	width: 100%;
+	padding: 10px 12px;
+	border: 1px solid #ddd;
+	border-radius: 6px;
+	font-size: 14px;
+}
+
+.facility-form-group textarea {
+	min-height: 120px;
+	resize: vertical;
+}
+
+/* =========================
+   이미지 영역
+========================= */
+.facility-image-title {
+	margin: 25px 0 10px 0;
+	font-size: 16px;
+	font-weight: 600;
+}
+
+/* =========================
+   이미지 카드 레이아웃
+========================= */
+.image-grid {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 14px;
+	margin-top: 10px;
+}
+
+/* 이미지 카드 */
+.image-card {
+	width: 150px;
+	background: #fafafa;
+	border: 1px solid #eee;
+	border-radius: 8px;
+	padding: 10px;
+	text-align: center;
+	box-sizing: border-box;
+}
+
+/* 이미지 */
+.image-card img {
+	width: 100%;
+	height: 110px;
+	object-fit: cover;
+	border-radius: 4px;
+	margin-bottom: 8px;
+}
+
+/* 카드 컨트롤 */
+.image-controls {
+	font-size: 12px;
+	display: flex;
+	justify-content: center;
+	gap: 6px;
+	flex-wrap: wrap;
+}
+
+/* 삭제 버튼 */
+.image-controls button {
+	background: #e53935;
+	color: #fff;
+	border: none;
+	border-radius: 4px;
+	padding: 3px 6px;
+	font-size: 11px;
+	cursor: pointer;
+}
+
+.image-controls button:hover {
+	background: #c62828;
+}
+
+
+.delete-check {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	padding: 4px 8px;
+	background: #e53935;
+	color: #fff;
+	border-radius: 4px;
+	cursor: pointer;
+	font-size: 11px;
+	line-height: 1;
+	position: relative;
+}
+
+.delete-check:hover {
+	background: #c62828;
+}
+
+.delete-check input[type="checkbox"] {
+	position: absolute;
+	opacity: 0;
+	pointer-events: none;
+}
+
+.delete-check:has(input[type="checkbox"]:checked) {
+	background: #b71c1c;
+}
+/* =========================
+   대표 이미지 radio
+========================= */
+.image-controls input[type="radio"] {
+	margin-right: 4px;
+}
+
+/* =========================
+   저장 버튼
+========================= */
+.btn-save {
+	margin-top: 20px;
+	background: #000;
+	color: #fff;
+	border: none;
+	padding: 10px 18px;
+	border-radius: 6px;
+	cursor: pointer;
+}
+
+.btn-save:hover {
+	background: #333;
 }

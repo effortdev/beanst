@@ -1,42 +1,64 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
 
-<h2>시설 등록</h2>
+<div class="admin-facility-form">
 
-<form
-	action="${pageContext.request.contextPath}/admin/facility/insert.do"
-	method="post" enctype="multipart/form-data">
+	<h2>시설 등록</h2>
 
-	시설 타입 <input type="text" name="facilityType" list="facilityTypes"
-		placeholder="예: Pool, Spa, KidsZone" required>
+	<form
+		action="${pageContext.request.contextPath}/admin/facility/insert.do"
+		method="post" enctype="multipart/form-data">
 
-	<datalist id="facilityTypes">
-		<option value="Pool">
-		<option value="Spa">
-		<option value="Gym">
-		<option value="Restaurant">
-		<option value="Lounge">
-	</datalist>
+		<div class="facility-form-group">
+			<label>시설 타입</label> <input type="text" name="facilityType"
+				list="facilityTypes" placeholder="예: Pool, Spa, KidsZone" required>
 
-	<br> 시설 이름 <input type="text" name="facilityName" required>
-	<br> 위치 <input type="text" name="location"> <br> 운영시간
-	<input type="text" name="openTime" placeholder="예: 06:00 - 22:00">
-	<br> 설명
-	<textarea name="description"></textarea>
+			<datalist id="facilityTypes">
+				<option value="Pool">
+
+					<option value="Spa"><opti on value="Gym">
+			
+				<option value="Restaurant">
+			
+				<option value="Lounge">
+		
+			</datalist>
+	</div>
+
+	<div class="facility-form-group">
+		<label>시설 이름</label>
+		<input type="text" name="facilityName" required>
+	</div>
+
+	<div class="facility-form-group">
+		<label>위치</label>
+		<input type="text" name="location">
+	</div>
+
+	<div class="facility-form-group">
+		<label>운영시간</label>
+		<input type="text" name="openTime" placeholder="예: 06:00 - 22:00">
+	</div>
+
+	<div class="facility-form-group">
+		<label>설명</label>
+		<textarea name="description"></textarea>
+	</div>
 
 	<hr>
 
-	<h3>시설 이미지</h3>
+	<h3 class="facility-image-title">시설 이미지</h3>
 
 	<input type="file" id="imageInput" name="images" multiple
-		accept="image/*">
+			accept="image/*">
 
 	<div id="previewContainer"></div>
 
-	<br>
-
-	<button type="submit">시설 등록</button>
+	<button type="submit" class="btn-save">시설 등록</button>
 
 </form>
+
+</div>
+
 <script>
 
 const input = document.getElementById("imageInput");

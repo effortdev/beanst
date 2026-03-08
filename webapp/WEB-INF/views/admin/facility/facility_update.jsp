@@ -1,50 +1,83 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
 <%@ taglib prefix="c" uri="jakarta.tags.core"%>
 
-<h2>시설 수정</h2>
+<div class="admin-facility-form">
 
-<form
-	action="${pageContext.request.contextPath}/admin/facility/update.do"
-	method="post" enctype="multipart/form-data">
+	<h2>시설 수정</h2>
 
-	<input type="hidden" name="facilityId" value="${facility.facilityId}" />
+	<form
+		action="${pageContext.request.contextPath}/admin/facility/update.do"
+		method="post" enctype="multipart/form-data">
 
-	타입: <input type="text" name="facilityType"
-		value="${facility.facilityType}"><br> 이름: <input
-		type="text" name="facilityName" value="${facility.facilityName}"><br>
+		<input type="hidden" name="facilityId" value="${facility.facilityId}" />
 
-	위치: <input type="text" name="location" value="${facility.location}"><br>
-
-	운영시간: <input type="text" name="openTime" value="${facility.openTime}"><br>
-
-	설명:
-	<textarea name="description">${facility.description}</textarea>
-	<br>
-
-	<hr>
-
-	<h3>기존 이미지</h3>
-
-	<c:forEach var="img" items="${imageList}">
-		<div>
-			<img src="${img.imagePath}" width="120"> 대표: <input
-				type="radio" name="mainImageId" value="${img.imageId}"
-				${img.isMain == 'Y' ? 'checked' : ''}> 삭제: <input
-				type="checkbox" name="deleteImageIds" value="${img.imageId}">
+		<div class="facility-form-group">
+			<label>시설 타입</label> <input type="text" name="facilityType"
+				value="${facility.facilityType}">
 		</div>
-	</c:forEach>
 
-	<hr>
+		<div class="facility-form-group">
+			<label>시설 이름</label> <input type="text" name="facilityName"
+				value="${facility.facilityName}">
+		</div>
 
-	<h3>새 이미지 추가</h3>
+		<div class="facility-form-group">
+			<label>위치</label> <input type="text" name="location"
+				value="${facility.location}">
+		</div>
 
-	<input type="file" id="newImages" name="newImages" multiple
-		accept="image/*">
-	<div id="imagePreview"></div>
+		<div class="facility-form-group">
+			<label>운영시간</label> <input type="text" name="openTime"
+				value="${facility.openTime}">
+		</div>
 
-	<button type="submit">수정 완료</button>
+		<div class="facility-form-group">
+			<label>설명</label>
+			<textarea name="description">${facility.description}</textarea>
+		</div>
 
-</form>
+		<hr>
+
+		<h3 class="facility-image-title">기존 이미지</h3>
+
+		<div class="image-grid">
+
+			<c:forEach var="img" items="${imageList}">
+				<div class="image-card">
+
+					<img src="${img.imagePath}">
+
+					<div class="image-controls">
+
+						<label> <input type="radio" name="mainImageId"
+							value="${img.imageId}" ${img.isMain == 'Y' ? 'checked' : ''}>
+							대표
+						</label> <label class="delete-check"> <input type="checkbox"
+							name="deleteImageIds" value="${img.imageId}"> 삭제
+						</label>
+
+					</div>
+
+				</div>
+			</c:forEach>
+
+		</div>
+
+		<hr>
+
+		<h3 class="facility-image-title">새 이미지 추가</h3>
+
+		<input type="file" id="newImages" name="newImages" multiple
+			accept="image/*">
+
+		<div id="imagePreview" class="image-grid"></div>
+
+		<button type="submit" class="btn-save">수정 완료</button>
+
+	</form>
+
+</div>
+
 
 <script>
 
@@ -53,15 +86,12 @@ const preview = document.getElementById("imagePreview");
 
 let fileList = [];
 
-
-
 input.addEventListener("change", function(){
 
     fileList = Array.from(this.files);
     renderPreview();
 
 });
-
 
 
 function renderPreview(){
@@ -75,15 +105,13 @@ function renderPreview(){
         reader.onload = function(e){
 
             const div = document.createElement("div");
-            div.style.display = "inline-block";
-            div.style.margin = "10px";
-            div.style.textAlign = "center";
+            div.className = "image-card";
 
             const img = document.createElement("img");
             img.src = e.target.result;
-            img.width = 120;
 
-
+            const controls = document.createElement("div");
+            controls.className = "image-controls";
 
             const radio = document.createElement("input");
             radio.type = "radio";
@@ -94,15 +122,12 @@ function renderPreview(){
                 radio.checked = true;
             }
 
-
             radio.addEventListener("change", function(){
 
                 document.querySelectorAll("input[name='mainImageId']")
                     .forEach(r => r.checked = false);
 
             });
-
-
 
             const delBtn = document.createElement("button");
             delBtn.type = "button";
@@ -112,21 +137,24 @@ function renderPreview(){
                 removeImage(index);
             };
 
+            const label = document.createElement("label");
+            label.appendChild(radio);
+            label.appendChild(document.createTextNode("대표"));
+
+            controls.appendChild(label);
+            controls.appendChild(delBtn);
 
             div.appendChild(img);
-            div.appendChild(document.createElement("br"));
-            div.appendChild(radio);
-            div.appendChild(document.createTextNode("대표 "));
-            div.appendChild(delBtn);
+            div.appendChild(controls);
 
             preview.appendChild(div);
+
         };
 
         reader.readAsDataURL(file);
     });
 
 }
-
 
 
 function removeImage(index){
@@ -145,12 +173,11 @@ function removeImage(index){
 }
 
 
-
 document.querySelectorAll("input[name='mainImageId']").forEach(radio => {
 
     radio.addEventListener("change", function(){
 
-        document.querySelectorAll("input[name='mainImageIndex']")
+        document.querySelectorAll("input[name='mainNewImage']")
             .forEach(r => r.checked = false);
 
     });
@@ -158,4 +185,3 @@ document.querySelectorAll("input[name='mainImageId']").forEach(radio => {
 });
 
 </script>
-

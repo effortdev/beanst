@@ -1,8 +1,9 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
 <%@ taglib prefix="c" uri="jakarta.tags.core"%>
 
-<div class="admin-content">
 
+
+<div class="admin-facility">
 	<div class="facility-header">
 		<h2>호텔 시설 관리</h2>
 		<a
@@ -39,11 +40,11 @@
 						href="${pageContext.request.contextPath}/admin/facility/updateForm.do?id=${f.facilityId}"
 						class="facility-btn-edit">수정</a> <a
 						href="${pageContext.request.contextPath}/admin/facility/delete.do?id=${f.facilityId}"
-						onclick="return confirm('정말 삭제하시겠습니까?');" class="facility-btn-delete">삭제</a>
-					</td>
+						onclick="return confirm('정말 삭제하시겠습니까?');"
+						class="facility-btn-delete">삭제</a></td>
 				</tr>
 			</c:forEach>
 		</tbody>
 	</table>
-
 </div>
+
