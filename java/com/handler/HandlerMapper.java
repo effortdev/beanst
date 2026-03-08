@@ -23,6 +23,9 @@ import com.admin.reservation.AdminReservationActiveController;
 import com.admin.reservation.AdminReservationCancelController;
 import com.admin.reservation.AdminReservationConfirmController;
 import com.admin.reservation.AdminReservationListController;
+import com.admin.room.AdminRoomDetailController;
+import com.admin.room.AdminRoomDetailListController;
+import com.admin.room.AdminRoomDetailUpdateController;
 import com.controller.Action;
 import com.controller.FacilityDetailController;
 import com.controller.FacilityListController;
@@ -47,7 +50,6 @@ import com.controller.admin.AdminLoginController;
 import com.controller.admin.AdminLogoutController;
 import com.controller.admin.AdminRoomAddController;
 import com.controller.admin.AdminRoomDeleteController;
-import com.controller.admin.AdminRoomDetailController;
 import com.controller.admin.AdminRoomImageDeleteController;
 import com.controller.admin.AdminRoomInsertController;
 import com.controller.admin.AdminRoomManageController;
@@ -114,6 +116,14 @@ public class HandlerMapper {
 		map.put("/admin/roomAdd.do", new AdminRoomAddController());
 		map.put("/admin/roomAdd.do", new AdminRoomAddController());
 		map.put("/admin/roomManage.do", new AdminRoomManageController());
+		
+		map.put("/admin/room/detailList.do", new AdminRoomDetailListController());
+		map.put("/admin/room/edit.do", new AdminRoomDetailController());
+		map.put("/admin/room/update.do", new AdminRoomDetailUpdateController());
+		
+		
+		
+		
 		map.put("/admin/qna/list.do", new AdminQnaListController());
 		map.put("/admin/qna/detail.do", new AdminQnaDetailController());
 		map.put("/admin/qna/answer.do", new AdminQnaAnswerController());

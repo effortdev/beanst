@@ -53,7 +53,6 @@ public class RoomDAO {
 				vo.setMaxCapacity(rs.getInt("max_capacity"));
 				vo.setBasePrice(rs.getInt("base_price"));
 				vo.setExtraCharge(rs.getInt("extra_charge"));
-				vo.setRoomImg(rs.getString("room_img"));
 				list.add(vo);
 			}
 		} catch (Exception e) {
