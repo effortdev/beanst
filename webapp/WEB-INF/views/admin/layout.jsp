@@ -11,7 +11,7 @@
 
 
 <link rel="stylesheet"
-	href="${pageContext.request.contextPath}/assets/css/main.css">
+	href="${pageContext.request.contextPath}/assets/css/admin/admin-common.css">
 
 
 <c:if test="${not empty pageCss}">

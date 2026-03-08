@@ -27,16 +27,18 @@ public class AdminDashboardController implements Action {
 			AdminDashboardDAO dao = new AdminDashboardDAO(context);
 
 			request.setAttribute("todayCheckIn", dao.getCount(conn, "adminTodayCheckIn"));
-
 			request.setAttribute("todayCheckOut", dao.getCount(conn, "adminTodayCheckOut"));
-
 			request.setAttribute("currentStay", dao.getCount(conn, "adminCurrentStay"));
-
 			request.setAttribute("reservationRequest", dao.getCount(conn, "adminReservationRequest"));
-
 			request.setAttribute("cancelRequest", dao.getCount(conn, "adminCancelRequest"));
-
 			request.setAttribute("qnaWaiting", dao.getCount(conn, "adminQnaWaiting"));
+
+			request.setAttribute("recentReservations", dao.getRecentReservations(conn));
+
+			request.setAttribute("recentQna", dao.getRecentQna(conn));
+
+			request.setAttribute("chartLabels", dao.getReservationChartLabels(conn));
+			request.setAttribute("chartData", dao.getReservationChartData(conn));
 
 			request.setAttribute("pageCss", "admin-dashboard");
 

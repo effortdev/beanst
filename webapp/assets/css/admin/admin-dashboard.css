@@ -1,6 +1,8 @@
 @charset "UTF-8";
 
-/* 전체 */
+/* =========================
+   전체
+========================= */
 .admin-dashboard {
 	max-width: 1400px;
 	margin: 40px auto;
@@ -10,13 +12,16 @@
 
 /* 제목 */
 .admin-title {
-	font-size: 28px;
+	font-size: 30px;
 	font-weight: 700;
-	margin-bottom: 30px;
+	margin-bottom: 35px;
 	color: #111;
+	letter-spacing: -0.5px;
 }
 
-/* 카드 */
+/* =========================
+   카드 영역
+========================= */
 .dashboard-cards {
 	display: grid;
 	grid-template-columns: repeat(3, 1fr);
@@ -26,15 +31,15 @@
 
 .card {
 	background: white;
-	padding: 25px;
-	border-radius: 12px;
-	box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+	padding: 26px;
+	border-radius: 14px;
+	box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
 	transition: all 0.25s ease;
 	position: relative;
 	overflow: hidden;
 }
 
-/* 카드 왼쪽 포인트 라인 */
+/* 왼쪽 라인 */
 .card::before {
 	content: "";
 	position: absolute;
@@ -48,23 +53,24 @@
 /* hover */
 .card:hover {
 	transform: translateY(-6px);
-	box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12);
+	box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12);
 }
 
 /* 카드 제목 */
 .card h3 {
-	font-size: 14px;
-	color: #777;
-	margin-bottom: 10px;
+	font-size: 13px;
+	color: #888;
+	margin-bottom: 12px;
 	font-weight: 500;
+	text-transform: uppercase;
+	letter-spacing: 0.5px;
 }
 
 /* 카드 숫자 */
 .card p {
-	font-size: 36px;
+	font-size: 40px;
 	font-weight: 700;
 	color: #111;
-	letter-spacing: 1px;
 }
 
 /* 카드 색상 포인트 */
@@ -92,12 +98,14 @@
 	background: #34495e;
 }
 
-/* 차트 */
+/* =========================
+   차트
+========================= */
 .dashboard-chart {
 	background: white;
 	padding: 30px;
-	border-radius: 12px;
-	box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+	border-radius: 14px;
+	box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
 	margin-bottom: 40px;
 }
 
@@ -108,18 +116,22 @@
 	color: #222;
 }
 
-/* 테이블 */
+/* =========================
+   테이블 영역
+========================= */
 .dashboard-table {
 	background: white;
 	padding: 30px;
-	border-radius: 12px;
-	box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+	border-radius: 14px;
+	box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+	margin-bottom: 40px;
 }
 
 .dashboard-table h3 {
 	font-size: 18px;
 	font-weight: 600;
 	margin-bottom: 20px;
+	color: #222;
 }
 
 /* 테이블 */
@@ -149,22 +161,36 @@
 
 /* hover */
 .dashboard-table tbody tr:hover {
-	background: #f8f9fb;
+	background: #f5f7fb;
 	transition: 0.2s;
 }
 
-/* 상태 스타일 예시 */
-.status-complete {
+/* =========================
+   상태 Badge
+========================= */
+.badge {
+	padding: 4px 10px;
+	border-radius: 20px;
+	font-size: 12px;
+	font-weight: 600;
+}
+
+.badge-confirm {
+	background: rgba(46, 204, 113, 0.15);
 	color: #2ecc71;
-	font-weight: 600;
 }
 
-.status-wait {
+.badge-wait {
+	background: rgba(243, 156, 18, 0.15);
 	color: #f39c12;
-	font-weight: 600;
 }
 
-.status-cancel {
+.badge-cancel {
+	background: rgba(231, 76, 60, 0.15);
 	color: #e74c3c;
-	font-weight: 600;
+}
+
+.badge-answer {
+	background: rgba(52, 152, 219, 0.15);
+	color: #3498db;
 }

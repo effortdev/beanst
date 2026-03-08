@@ -466,5 +466,48 @@ WHERE image_id = (
 	</entry>
 
 
+	<entry key="adminRecentReservations">
+
+		SELECT r.reservation_id,
+		r.user_id,
+		rm.room_name,
+		r.check_in,
+		r.status
+		FROM reservation r
+		JOIN room rm ON r.room_id =
+		rm.room_id
+		ORDER BY r.reservation_id DESC
+		LIMIT 5
+
+	</entry>
+
+
+	<entry key="adminRecentQna">
+
+		SELECT qna_no,
+		user_id,
+		title,
+		status
+		FROM qna
+		ORDER BY qna_no DESC
+		LIMIT 5
+
+	</entry>
+
+
+	<entry key="adminReservationChart">
+
+		SELECT DATE_FORMAT(check_in,'%m-%d') day,
+		COUNT(*)
+		count
+		FROM reservation
+		WHERE check_in >= DATE_SUB(CURDATE(),INTERVAL 7
+		DAY)
+		GROUP BY day
+
+	</entry>
+
+
+
 
 </properties>
