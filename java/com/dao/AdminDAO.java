@@ -17,6 +17,7 @@ import java.util.Properties;
 import com.dto.AdminDTO;
 import com.vo.RoomImageVO;
 import com.vo.RoomManageVO;
+import com.vo.UserVO;
 
 import jakarta.servlet.ServletContext;
 
@@ -474,6 +475,139 @@ public class AdminDAO {
 		}
 
 		return order;
+	}
+
+	public List<UserVO> adminUserList() {
+		System.out.println("adminUserList 실행");
+		List<UserVO> list = new ArrayList<>();
+		Connection conn = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+
+		try {
+			conn = getConnection();
+			String sql = props.getProperty("adminUserList");
+			ps = conn.prepareStatement(sql);
+			rs = ps.executeQuery();
+
+			while (rs.next()) {
+				UserVO vo = new UserVO();
+				vo.setUserId(rs.getString("user_id"));
+				vo.setEmail(rs.getString("email"));
+				vo.setName(rs.getString("name"));
+				vo.setPhone(rs.getString("phone"));
+				vo.setRole(rs.getString("role"));
+				vo.setStatus(rs.getString("status"));
+				list.add(vo);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(rs);
+			close(ps);
+			close(conn);
+		}
+		return list;
+	}
+
+	// 2. 특정 회원 상세 정보 조회 (수정 폼 데이터 바인딩용)
+	public UserVO adminUserDetail(String userId) {
+		System.out.println("adminUserDetail 실행");
+		UserVO vo = null;
+		Connection conn = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+
+		try {
+			conn = getConnection();
+			String sql = props.getProperty("adminUserDetail");
+			ps = conn.prepareStatement(sql);
+			ps.setString(1, userId);
+			rs = ps.executeQuery();
+
+			if (rs.next()) {
+				vo = new UserVO();
+				vo.setUserId(rs.getString("user_id"));
+				vo.setEmail(rs.getString("email"));
+				vo.setName(rs.getString("name"));
+				vo.setPhone(rs.getString("phone"));
+				vo.setRole(rs.getString("role"));
+				vo.setStatus(rs.getString("status"));
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(rs);
+			close(ps);
+			close(conn);
+		}
+		return vo;
+	}
+
+	// 3. 회원 정보 수정 (업데이트)
+	public boolean adminUserUpdate(UserVO vo) {
+		System.out.println("adminUserUpdate 실행");
+		boolean isSuccess = false;
+		Connection conn = null;
+		PreparedStatement ps = null;
+
+		try {
+			conn = getConnection();
+			String sql = props.getProperty("adminUserUpdate");
+			ps = conn.prepareStatement(sql);
+
+			ps.setString(1, vo.getName());
+			ps.setString(2, vo.getEmail());
+			ps.setString(3, vo.getPhone());
+			ps.setString(4, vo.getRole());
+			ps.setString(5, vo.getStatus());
+			ps.setString(6, vo.getUserId());
+
+			int result = ps.executeUpdate();
+			if (result > 0) {
+				isSuccess = true;
+				commit(conn);
+			} else {
+				rollback(conn);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			rollback(conn);
+		} finally {
+			close(ps);
+			close(conn);
+		}
+		return isSuccess;
+	}
+
+	// 4. 회원 탈퇴 승인 (status 값을 '3'으로 변경)
+	public boolean adminUserWithdrawApprove(String userId) {
+		System.out.println("adminUserWithdrawApprove 실행");
+		boolean isSuccess = false;
+		Connection conn = null;
+		PreparedStatement ps = null;
+
+		try {
+			conn = getConnection();
+			String sql = props.getProperty("adminUserWithdrawApprove");
+			ps = conn.prepareStatement(sql);
+			ps.setString(1, userId);
+
+			int result = ps.executeUpdate();
+			if (result > 0) {
+				isSuccess = true;
+				commit(conn);
+			} else {
+				rollback(conn);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			rollback(conn);
+		} finally {
+			close(ps);
+			close(conn);
+		}
+		return isSuccess;
 	}
 
 }

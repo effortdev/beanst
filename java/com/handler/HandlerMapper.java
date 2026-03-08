@@ -56,6 +56,7 @@ import com.controller.admin.AdminRoomImageDeleteController;
 import com.controller.admin.AdminRoomInsertController;
 import com.controller.admin.AdminRoomManageController;
 import com.controller.admin.AdminRoomUpdateController;
+import com.controller.admin.AdminUserController;
 import com.controller.board.FaqListController;
 import com.controller.board.QnaDetailController;
 import com.controller.board.QnaInsertController;
@@ -140,6 +141,7 @@ public class HandlerMapper {
 		map.put("/admin/reservation/confirm.do", new AdminReservationConfirmController());
 		map.put("/admin/reservation/cancel.do", new AdminReservationCancelController());
 		map.put("/admin/reservation/active.do", new AdminReservationActiveController());
+		map.put("/admin/memberManage.do", new AdminUserController());
 
 	}
 

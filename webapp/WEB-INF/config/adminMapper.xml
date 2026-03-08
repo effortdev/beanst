@@ -399,19 +399,22 @@ WHERE image_id = (
 	<entry key="adminTodayCheckIn">
 		SELECT COUNT(*)
 		FROM reservation
-		WHERE check_in = CURDATE()
+		WHERE check_in =
+		CURDATE()
 	</entry>
 
 	<entry key="adminTodayCheckOut">
 		SELECT COUNT(*)
 		FROM reservation
-		WHERE check_out = CURDATE()
+		WHERE check_out =
+		CURDATE()
 	</entry>
 
 	<entry key="adminCurrentStay">
 		SELECT COUNT(*)
 		FROM reservation
-		WHERE CURDATE() BETWEEN check_in AND check_out
+		WHERE CURDATE() BETWEEN
+		check_in AND check_out
 		AND status = '2'
 	</entry>
 
@@ -431,6 +434,35 @@ WHERE image_id = (
 		SELECT COUNT(*)
 		FROM qna
 		WHERE status = 'WAITING'
+	</entry>
+
+
+
+	<entry key="adminUserList">
+		SELECT user_id, email, name, phone, role, status
+		FROM
+		users
+		ORDER BY user_id
+	</entry>
+
+	<entry key="adminUserDetail">
+		SELECT user_id, email, name, phone, role, status
+		FROM
+		users
+		WHERE user_id = ?
+	</entry>
+
+	<entry key="adminUserUpdate">
+		UPDATE users
+		SET name = ?, email = ?, phone = ?, role =
+		?, status = ?
+		WHERE user_id = ?
+	</entry>
+
+	<entry key="adminUserWithdrawApprove">
+		UPDATE users
+		SET status = '3'
+		WHERE user_id = ?
 	</entry>
 
 
