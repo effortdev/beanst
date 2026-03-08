@@ -1,5 +1,6 @@
 package com.vo;
 
+import java.sql.Timestamp;
 
 public class UserVO {
 
@@ -10,11 +11,10 @@ public class UserVO {
 	private String phone;
 	private String role;
 	private String status;
+	private Timestamp createdAt;
 
 	public UserVO() {
 	}
-
-
 
 	public String getUserId() {
 		return userId;
@@ -35,7 +35,6 @@ public class UserVO {
 	public String getPassword() {
 		return password;
 	}
-
 
 	public void setPassword(String password) {
 		this.password = password;
@@ -73,9 +72,18 @@ public class UserVO {
 		this.status = status;
 	}
 
+	public Timestamp getCreatedAt() {
+		return createdAt;
+	}
+
+	public void setCreatedAt(Timestamp createdAt) {
+		this.createdAt = createdAt;
+	}
+
 	@Override
 	public String toString() {
 		return "UserDTO{" + "userId='" + userId + '\'' + ", email='" + email + '\'' + ", name='" + name + '\''
-				+ ", phone='" + phone + '\'' + ", role='" + role + '\'' + ", status='" + status + '}';
+				+ ", phone='" + phone + '\'' + ", role='" + role + '\'' + ", status='" + status + '\'' + ", createdAt='"
+				+ createdAt + '\'' + '}';
 	}
 }

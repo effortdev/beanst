@@ -5,9 +5,11 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.Properties;
-import jakarta.servlet.ServletContext;
+
 import com.util.JdbcUtil;
 import com.vo.UserVO;
+
+import jakarta.servlet.ServletContext;
 
 public class UserDAO {
 	private Properties props = new Properties();
@@ -21,6 +23,7 @@ public class UserDAO {
 		}
 	}
 
+	// 회원 가입
 	public boolean insertUser(UserVO vo) {
 		boolean isSuccess = false;
 		Connection con = null;
@@ -32,7 +35,7 @@ public class UserDAO {
 
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, vo.getUserId());
-			pstmt.setString(2, vo.getPassword()); // 실무에서는 여기서 비밀번호 암호화(Hash)를 거칩니다
+			pstmt.setString(2, vo.getPassword());
 			pstmt.setString(3, vo.getEmail());
 			pstmt.setString(4, vo.getName());
 			pstmt.setString(5, vo.getPhone());
@@ -40,19 +43,20 @@ public class UserDAO {
 			int result = pstmt.executeUpdate();
 
 			if (result > 0) {
-				isSuccess = true;
 				JdbcUtil.commit(con);
+				isSuccess = true;
 			} else {
 				JdbcUtil.rollback(con);
 			}
+
 		} catch (Exception e) {
 			e.printStackTrace();
-			if (con != null)
-				JdbcUtil.rollback(con);
+			JdbcUtil.rollback(con);
 		} finally {
 			JdbcUtil.close(pstmt);
 			JdbcUtil.close(con);
 		}
+
 		return isSuccess;
 	}
 
@@ -62,14 +66,17 @@ public class UserDAO {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
+
 		try {
 			con = JdbcUtil.getConnection();
 			pstmt = con.prepareStatement(props.getProperty("findId"));
 			pstmt.setString(1, name);
 			pstmt.setString(2, email);
 			rs = pstmt.executeQuery();
-			if (rs.next())
+
+			if (rs.next()) {
 				userId = rs.getString("user_id");
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
@@ -77,15 +84,17 @@ public class UserDAO {
 			JdbcUtil.close(pstmt);
 			JdbcUtil.close(con);
 		}
+
 		return userId;
 	}
 
-	// 사용자 존재 여부 확인
+	// 사용자 존재 여부 확인 (비밀번호 찾기용)
 	public boolean checkUserForPw(String userId, String name, String email) {
 		boolean isExist = false;
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
+
 		try {
 			con = JdbcUtil.getConnection();
 			pstmt = con.prepareStatement(props.getProperty("checkUserForPw"));
@@ -93,8 +102,10 @@ public class UserDAO {
 			pstmt.setString(2, name);
 			pstmt.setString(3, email);
 			rs = pstmt.executeQuery();
+
 			if (rs.next() && rs.getInt("cnt") > 0)
 				isExist = true;
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
@@ -102,22 +113,61 @@ public class UserDAO {
 			JdbcUtil.close(pstmt);
 			JdbcUtil.close(con);
 		}
+
 		return isExist;
+	}
+
+	// 비밀번호 확인
+	public boolean checkPassword(String userId, String password) {
+		boolean isMatch = false;
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+
+		try {
+			con = JdbcUtil.getConnection();
+			String sql = props.getProperty("checkPassword");
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, userId);
+			pstmt.setString(2, password);
+			rs = pstmt.executeQuery();
+
+			if (rs.next() && rs.getInt("cnt") > 0)
+				isMatch = true;
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			JdbcUtil.close(rs);
+			JdbcUtil.close(pstmt);
+			JdbcUtil.close(con);
+		}
+
+		return isMatch;
 	}
 
 	// 비밀번호 업데이트
 	public boolean updatePassword(String userId, String newPw) {
-		int result = 0;
+		boolean isSuccess = false;
 		Connection con = null;
 		PreparedStatement pstmt = null;
+
 		try {
 			con = JdbcUtil.getConnection();
-			pstmt = con.prepareStatement(props.getProperty("updatePassword"));
+			String sql = props.getProperty("updatePassword");
+			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, newPw);
 			pstmt.setString(2, userId);
-			result = pstmt.executeUpdate();
-			if (result > 0)
+
+			int result = pstmt.executeUpdate();
+
+			if (result > 0) {
 				JdbcUtil.commit(con);
+				isSuccess = true;
+			} else {
+				JdbcUtil.rollback(con);
+			}
+
 		} catch (Exception e) {
 			e.printStackTrace();
 			JdbcUtil.rollback(con);
@@ -125,6 +175,75 @@ public class UserDAO {
 			JdbcUtil.close(pstmt);
 			JdbcUtil.close(con);
 		}
-		return result > 0;
+
+		return isSuccess;
+	}
+
+	// 연락처 수정
+	public boolean updateContact(String userId, String email, String phone) {
+		boolean isSuccess = false;
+		Connection con = null;
+		PreparedStatement pstmt = null;
+
+		try {
+			con = JdbcUtil.getConnection();
+			String sql = props.getProperty("updateContact");
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, email);
+			pstmt.setString(2, phone);
+			pstmt.setString(3, userId);
+
+			int result = pstmt.executeUpdate();
+
+			if (result > 0) {
+				JdbcUtil.commit(con);
+				isSuccess = true;
+			} else {
+				JdbcUtil.rollback(con);
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			JdbcUtil.rollback(con);
+		} finally {
+			JdbcUtil.close(pstmt);
+			JdbcUtil.close(con);
+		}
+
+		return isSuccess;
+	}
+
+	// 회원 상태 변경 (탈퇴 포함)
+	public boolean updateStatus(String userId, String status) {
+		boolean isSuccess = false;
+		Connection con = null;
+		PreparedStatement pstmt = null;
+
+		try {
+			con = JdbcUtil.getConnection();
+			String sql = props.getProperty("updateStatus");
+
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, status); // String status
+			pstmt.setString(2, userId);
+
+			int result = pstmt.executeUpdate();
+
+			if (result > 0) {
+				JdbcUtil.commit(con);
+				isSuccess = true;
+			} else {
+				JdbcUtil.rollback(con);
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			JdbcUtil.rollback(con);
+		} finally {
+			JdbcUtil.close(pstmt);
+			JdbcUtil.close(con);
+		}
+
+		return isSuccess;
 	}
 }

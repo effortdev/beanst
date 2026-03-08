@@ -2,6 +2,7 @@ package com.handler;
 
 import java.util.HashMap;
 
+import com.admin.dashboard.AdminDashboardController;
 import com.admin.facility.AdminFacilityDeleteController;
 import com.admin.facility.AdminFacilityInsertController;
 import com.admin.facility.AdminFacilityInsertFormController;
@@ -37,6 +38,7 @@ import com.controller.JoinController;
 import com.controller.LoginController;
 import com.controller.LogoutController;
 import com.controller.MemberMypageController;
+import com.controller.MyPageController;
 import com.controller.ReservationCancelController;
 import com.controller.ReservationCheckController;
 import com.controller.ReservationLocationController;
@@ -45,7 +47,7 @@ import com.controller.ResetCompleteController;
 import com.controller.ResetPwController;
 import com.controller.RoomDetailController;
 import com.controller.RoomListController;
-import com.controller.admin.AdminDashboardController;
+import com.controller.UpdateController;
 import com.controller.admin.AdminLoginController;
 import com.controller.admin.AdminLogoutController;
 import com.controller.admin.AdminRoomAddController;
@@ -75,6 +77,8 @@ public class HandlerMapper {
 		map.put("/logout.do", new LogoutController());
 		map.put("/member/join.do", new JoinController());
 		map.put("/member/joinComplete.do", new JoinCompleteController());
+		map.put("/member/myPage.do", new MyPageController());
+		map.put("/member/update.do", new UpdateController());
 
 		map.put("/member/findId.do", new FindIdController());
 		map.put("/member/findPw.do", new FindPwController());
@@ -116,14 +120,11 @@ public class HandlerMapper {
 		map.put("/admin/roomAdd.do", new AdminRoomAddController());
 		map.put("/admin/roomAdd.do", new AdminRoomAddController());
 		map.put("/admin/roomManage.do", new AdminRoomManageController());
-		
+
 		map.put("/admin/room/detailList.do", new AdminRoomDetailListController());
 		map.put("/admin/room/edit.do", new AdminRoomDetailController());
 		map.put("/admin/room/update.do", new AdminRoomDetailUpdateController());
-		
-		
-		
-		
+
 		map.put("/admin/qna/list.do", new AdminQnaListController());
 		map.put("/admin/qna/detail.do", new AdminQnaDetailController());
 		map.put("/admin/qna/answer.do", new AdminQnaAnswerController());
