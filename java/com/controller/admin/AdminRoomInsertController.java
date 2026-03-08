@@ -18,9 +18,10 @@ public class AdminRoomInsertController implements Action {
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) {
 
+		request.setAttribute("pageCss", "admin_room");
 		try {
 
-			int room_id = Integer.parseInt(request.getParameter("room_id"));
+//			int room_id = Integer.parseInt(request.getParameter("room_id"));
 			String room_name = request.getParameter("room_name");
 			String capacity = request.getParameter("capacity");
 			String room_location = request.getParameter("room_location");
@@ -30,7 +31,7 @@ public class AdminRoomInsertController implements Action {
 			String minibar = request.getParameter("minibar");
 
 			RoomManageVO vo = new RoomManageVO();
-			vo.setRoom_id(room_id);
+//			vo.setRoom_id(room_id);
 			vo.setRoom_name(room_name);
 			vo.setCapacity(capacity);
 			vo.setRoom_location(room_location);
@@ -38,8 +39,6 @@ public class AdminRoomInsertController implements Action {
 			vo.setUsage_time(usage_time);
 			vo.setAmenity(amenity);
 			vo.setMinibar(minibar);
-
-			Part filePart = request.getPart("room_img");
 
 			String uploadPath = "C:/hotelUploads/room";
 
@@ -49,8 +48,8 @@ public class AdminRoomInsertController implements Action {
 			}
 
 			AdminDAO dao = new AdminDAO(request.getServletContext());
-			dao.insertRoom(vo);
-
+			int room_id = dao.insertRoomManage(vo);
+			dao.insertRoom(room_id, vo.getRoom_name());
 			int order = 1;
 
 			for (Part part : request.getParts()) {
@@ -59,8 +58,13 @@ public class AdminRoomInsertController implements Action {
 
 					String originalFileName = part.getSubmittedFileName();
 					String savedFileName = originalFileName;
-
+					String ext = originalFileName.substring(originalFileName.lastIndexOf(".") + 1).toLowerCase();
 					File targetFile = new File(uploadPath, originalFileName);
+
+					if (!(ext.equals("jpg") || ext.equals("jpeg") || ext.equals("png") || ext.equals("gif")
+							|| ext.equals("webp"))) {
+						throw new Exception("이미지 파일만 업로드 가능합니다.");
+					}
 
 					if (targetFile.exists()) {
 
@@ -78,7 +82,6 @@ public class AdminRoomInsertController implements Action {
 					part.write(uploadPath + File.separator + savedFileName);
 
 					String imagePath = "/upload/room/" + savedFileName;
-
 					dao.insertRoomImage(room_id, imagePath, "N", order);
 
 					order++;

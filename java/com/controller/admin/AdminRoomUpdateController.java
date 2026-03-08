@@ -20,6 +20,8 @@ public class AdminRoomUpdateController implements Action {
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) {
 
+		request.setAttribute("pageCss", "admin_room");
+
 		String method = request.getMethod();
 		ServletContext context = request.getServletContext();
 		AdminDAO dao = new AdminDAO(context);

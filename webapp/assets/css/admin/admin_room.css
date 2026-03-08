@@ -1,0 +1,99 @@
+@charset "UTF-8";
+
+/* 객실정보관리 */
+button {
+	color: black;
+}
+
+.admin-room {
+	max-width: 1400px;
+	margin: 40px auto;
+	padding: 0 20px;
+}
+
+.admin-title {
+	font-size: 26px;
+	font-weight: 700;
+	margin-bottom: 25px;
+}
+
+.room-filter {
+	margin-bottom: 20px;
+	display: flex;
+	gap: 10px;
+}
+
+.btn-filter {
+	display: inline-block;
+	padding: 8px 16px;
+	background: #f5f5f5;
+	border-radius: 6px;
+	text-decoration: none;
+	color: #333;
+	font-size: 14px;
+	transition: all 0.2s;
+}
+
+.btn-filter:hover {
+	background: #000;
+	color: #fff;
+}
+
+.admin-table {
+	width: 100%;
+	border-collapse: collapse;
+	background: #fff;
+	border-radius: 6px;
+	overflow: hidden;
+}
+
+.admin-table th {
+	background: #f5f5f5;
+	padding: 14px;
+	font-size: 14px;
+	font-weight: 600;
+	border-bottom: 1px solid #ddd;
+}
+
+.admin-table td {
+	padding: 14px;
+	font-size: 14px;
+	border-bottom: 1px solid #eee;
+	text-align: center;
+}
+
+.admin-table tbody tr:hover {
+	background: #fafafa;
+}
+
+.room-actions {
+	display: flex;
+	justify-content: center;
+	gap: 8px;
+}
+
+.room-btn-edit {
+	display: inline-block;
+	background: #2e7d32;
+	padding: 6px 14px;
+	border-radius: 6px;
+	font-size: 13px;
+	text-decoration: none;
+}
+
+.room-btn-edit:hover {
+	color: #fff;
+}
+
+.room-btn-delete {
+	display: inline-block;
+	background: #e53935;
+	padding: 6px 14px;
+	border-radius: 6px;
+	font-size: 13px;
+	text-decoration: none;
+}
+
+.room-btn-delete:hover {
+	color: #fff;
+}

@@ -173,10 +173,10 @@ WHERE image_id = (
 		WHERE room_id = ?
 	</entry>
 	<entry key="insertRoom">
-		INSERT INTO room_manage(room_id,room_name, capacity,
+		INSERT INTO room_manage(room_name, capacity,
 		room_location,
 		room_description, usage_time,amenity,minibar,created_at)
-		VALUES (?,?, ?, ?, ?,?,?,?, NOW())
+		VALUES (?, ?, ?, ?,?,?,?, NOW())
 	</entry>
 	<entry key="insertRoomImage">
 		INSERT INTO room_image (room_id, image_path, is_main,

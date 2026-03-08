@@ -14,6 +14,8 @@ public class AdminRoomManageController implements Action {
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) {
 
+		request.setAttribute("pageCss", "admin_room");
+
 		ServletContext context = request.getServletContext();
 
 		AdminDAO dao = new AdminDAO(context);
@@ -21,6 +23,6 @@ public class AdminRoomManageController implements Action {
 
 		request.setAttribute("roomList", roomList);
 
-		return "admin/room/roomManage"; // forward
+		return "admin/room/roomManage";
 	}
 }

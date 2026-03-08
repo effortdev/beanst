@@ -6,10 +6,9 @@ import jakarta.servlet.http.HttpServletResponse;
 
 public class AdminRoomAddController implements Action {
 
-    @Override
-    public String execute(HttpServletRequest request,
-                          HttpServletResponse response) {
-
-        return "/admin/room/roomAdd";
-    }
+	@Override
+	public String execute(HttpServletRequest request, HttpServletResponse response) {
+		request.setAttribute("pageCss", "admin_room");
+		return "/admin/room/roomAdd";
+	}
 }

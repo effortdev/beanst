@@ -17,19 +17,16 @@
 		name="amenity" value="${vo.amenity}"><br> 미니바: <input
 		type="text" name="minibar" value="${vo.minibar}"><br>
 	이미지: <input type="file" id="room_img" name="room_img" id="room_img"
-		multiple onchange="previewImages(event)"><br>
+		multiple accept="image/*" onchange="previewImages(event)"><br>
 	<div id="preview"></div>
 	<hr>
+
 	기존이미지<br>
 	<c:forEach var="image" items="${imageVO}">
 		<img src="${image.image_path}" width="200">
 		<input type="radio" name="main_image" value="${image.image_no}"
-			${image.is_main eq 'Y' ? 'checked' : ''}>
-        대표이미지
-        
-        
-	<input type="checkbox" name="delete_images" value="${image.image_no}">
-    	삭제<br>
+			${image.is_main eq 'Y' ? 'checked' : ''}>대표이미지
+		<input type="checkbox" name="delete_images" value="${image.image_no}">삭제<br>
 	</c:forEach>
 
 	<button type="submit">수정</button>
@@ -48,7 +45,17 @@ function previewImages(event) {
     const input = document.getElementById("room_img");
 
     const files = Array.from(event.target.files);
+    for (let i = 0; i < files.length; i++) {
 
+        const file = files[i];
+
+        if(!file.type.startsWith("image/")){
+            alert("이미지 파일만 업로드 가능합니다.");
+            event.target.value = "";
+            return;
+        }
+
+    }
     // 기존 파일 + 새 파일 합치기
     selectedFiles = selectedFiles.concat(files);
 

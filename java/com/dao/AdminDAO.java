@@ -349,33 +349,66 @@ public class AdminDAO {
 		}
 	}
 
-	public void insertRoom(RoomManageVO vo) {
+	public int insertRoomManage(RoomManageVO vo) {
 
 		Connection conn = null;
 		PreparedStatement ps = null;
+		ResultSet rs = null;
+		int room_id = 0;
 
 		try {
 			conn = getConnection();
 
 			String sql = props.getProperty("insertRoom");
-			ps = conn.prepareStatement(sql);
-			ps.setInt(1, vo.getRoom_id());
-			ps.setString(2, vo.getRoom_name());
-			ps.setString(3, vo.getCapacity());
-			ps.setString(4, vo.getRoom_location());
-			ps.setString(5, vo.getRoom_description());
-			ps.setString(6, vo.getUsage_time());
-			ps.setString(7, vo.getAmenity());
-			ps.setString(8, vo.getMinibar());
 
+			ps = conn.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS);
+
+			ps.setString(1, vo.getRoom_name());
+			ps.setString(2, vo.getCapacity());
+			ps.setString(3, vo.getRoom_location());
+			ps.setString(4, vo.getRoom_description());
+			ps.setString(5, vo.getUsage_time());
+			ps.setString(6, vo.getAmenity());
+			ps.setString(7, vo.getMinibar());
+
+			ps.executeUpdate();
+
+			rs = ps.getGeneratedKeys();
+
+			if (rs.next()) {
+				room_id = rs.getInt(1);
+			}
+
+			commit(conn);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			rollback(conn);
+		} finally {
+			close(rs);
+			close(ps);
+			close(conn);
+		}
+
+		return room_id;
+	}
+
+	public void insertRoom(int room_id, String room_name) {
+		Connection conn = null;
+		PreparedStatement ps = null;
+		String sql = "INSERT INTO room (room_id, room_name, base_price) VALUES (?, ?, ?)";
+
+		try {
+			conn = getConnection();
+			ps = conn.prepareStatement(sql);
+			ps.setInt(1, room_id);
+			ps.setString(2, room_name);
+			ps.setInt(3, 0);
 			ps.executeUpdate();
 			commit(conn);
 		} catch (Exception e) {
 			e.printStackTrace();
 			rollback(conn);
-		} finally {
-			close(ps);
-			close(conn);
 		}
 	}
 
