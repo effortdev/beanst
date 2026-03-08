@@ -108,54 +108,7 @@
 	min-height: calc(100vh - 60px);
 }
 
-/* =========================
-   로그인 페이지
-========================= */
-.admin-login-container {
-	width: 400px;
-	margin: 120px auto;
-	padding: 40px;
-	background: #fff;
-	box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-	border-radius: 8px;
-}
 
-.admin-login-container form {
-	margin-bottom: 30px;
-}
-
-.admin-login-container .title {
-	font-size: 24px;
-	margin-bottom: 30px;
-	font-weight: 600;
-}
-
-.admin-login-container .atHome {
-	text-align: center;
-	font-size: 16px;
-}
-
-.admin-login-container .atHome a {
-	display: inline-block;
-	padding: 10px 15px;
-	border: 1px solid #000;
-	text-decoration: none;
-	transition: all 0.2s ease;
-}
-
-.admin-login-container .atHome a:hover {
-	background: #000;
-	color: #fff;
-}
-
-.admin-login-container .error {
-	color: red;
-	margin-top: 20px;
-}
-
-.admin-login-container .logout {
-	margin-bottom: 20px;
-}
 
 /* =========================
    폼
