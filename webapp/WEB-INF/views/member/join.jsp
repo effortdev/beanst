@@ -108,12 +108,12 @@ $(document).ready(function() {
     // 4. 이름 실시간 검사
     $("#name").on("input", function() {
         const val = $(this).val();
-        if (val.length >= 4 && val.length <= 20) {
+        if (val.length >= 2 && val.length <= 20) {
             $("#name-msg").text("적절한 이름입니다.").addClass("text-success").removeClass("text-danger");
         } else if (val.length === 0) {
             $("#name-msg").text("").removeClass("text-success text-danger");
         } else {
-            $("#name-msg").text("4~20자 사이로 입력해주세요.").addClass("text-danger").removeClass("text-success");
+            $("#name-msg").text("2~20자 사이로 입력해주세요.").addClass("text-danger").removeClass("text-success");
         }
     });
 

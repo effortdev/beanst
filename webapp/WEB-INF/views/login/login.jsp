@@ -32,7 +32,7 @@
 
 
 				<div class="text-center mt-20 login-links">
-					<a href="${pageContext.request.contextPath}/findForm.do">아이디/비밀번호
+					<a href="${pageContext.request.contextPath}/member/findId.do">아이디/비밀번호
 						찾기</a> | <a href="${pageContext.request.contextPath}/member/join.do"
 						class="join-link">회원가입</a>
 				</div>

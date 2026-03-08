@@ -41,7 +41,9 @@ public class RoomDAO {
 
 		try {
 			con = JdbcUtil.getConnection();
-			String sql = "SELECT * FROM room ORDER BY room_id ASC";
+
+//			String sql = "SELECT * FROM room ORDER BY room_id ASC";
+			String sql = props.getProperty("getAllRooms");
 			pstmt = con.prepareStatement(sql);
 			rs = pstmt.executeQuery();
 
@@ -53,6 +55,9 @@ public class RoomDAO {
 				vo.setMaxCapacity(rs.getInt("max_capacity"));
 				vo.setBasePrice(rs.getInt("base_price"));
 				vo.setExtraCharge(rs.getInt("extra_charge"));
+
+				vo.setImagePath(rs.getString("image_path"));
+
 				list.add(vo);
 			}
 		} catch (Exception e) {

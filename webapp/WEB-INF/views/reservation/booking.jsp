@@ -37,21 +37,44 @@
 					style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
 					<c:forEach var="room" items="${roomList}">
 						<div class="room-card card"
-							style="border: 2px solid #eee; border-radius: 8px; overflow: hidden; transition: 0.3s;">
-							<div style="padding: 20px;">
-								<h4 style="margin-bottom: 8px; color: #2C1810; font-size: 18px;">${room.roomName}</h4>
-								<p
-									style="font-size: 13px; color: #666; margin-bottom: 15px; line-height: 1.5;">
-									기준 ${room.baseCapacity}인 / 최대 ${room.maxCapacity}인<br> 1박
-									<strong><fmt:formatNumber value="${room.basePrice}"
-											pattern="#,###" /></strong>원
-								</p>
+							style="border: 2px solid #eee; border-radius: 8px; overflow: hidden; transition: 0.3s; display: flex; flex-direction: column;">
+
+							<div class="room-image"
+								style="height: 180px; background: #f5f5f5; overflow: hidden;">
+								<c:choose>
+									<c:when test="${not empty room.imagePath}">
+										<img src="${room.imagePath}?v=${room.roomId}"
+											alt="${room.roomName}"
+											style="width: 100%; height: 100%; object-fit: cover; transition: 0.3s;">
+									</c:when>
+									<c:otherwise>
+										<div
+											style="width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; color: #aaa; font-size: 14px; font-weight: bold; background-color: #eaeaea;">
+											NO IMAGE</div>
+									</c:otherwise>
+								</c:choose>
+							</div>
+
+							<div
+								style="padding: 20px; flex: 1; display: flex; flex-direction: column; justify-content: space-between;">
+								<div>
+									<h4
+										style="margin-bottom: 8px; color: #2C1810; font-size: 18px;">${room.roomName}</h4>
+									<p
+										style="font-size: 13px; color: #666; margin-bottom: 15px; line-height: 1.5;">
+										기준 ${room.baseCapacity}인 / 최대 ${room.maxCapacity}인<br> 1박
+										<strong><fmt:formatNumber value="${room.basePrice}"
+												pattern="#,###" /></strong>원
+									</p>
+								</div>
+
 								<button type="button"
 									class="btn btn-outline btn-block room-select-btn"
 									data-id="${room.roomId}" data-name="${room.roomName}"
 									data-base="${room.baseCapacity}" data-max="${room.maxCapacity}"
 									data-price="${room.basePrice}">선택하기</button>
 							</div>
+
 						</div>
 					</c:forEach>
 				</div>

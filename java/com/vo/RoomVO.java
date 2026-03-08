@@ -7,7 +7,7 @@ public class RoomVO {
 	private int maxCapacity;
 	private int basePrice;
 	private int extraCharge;
-	private String roomImg;
+	private String imagePath;
 
 	// Getter & Setter
 	public int getRoomId() {
@@ -58,11 +58,11 @@ public class RoomVO {
 		this.extraCharge = extraCharge;
 	}
 
-	public String getRoomImg() {
-		return roomImg;
+	public String getImagePath() {
+		return imagePath;
 	}
 
-	public void setRoomImg(String roomImg) {
-		this.roomImg = roomImg;
+	public void setImagePath(String imagePath) {
+		this.imagePath = imagePath;
 	}
 }
