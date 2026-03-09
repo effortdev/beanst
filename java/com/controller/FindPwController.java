@@ -9,7 +9,7 @@ public class FindPwController implements Action {
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) {
 		if (request.getMethod().equals("GET")) {
-			request.setAttribute("pageCss", "join");
+			request.setAttribute("pageCss", "login");
 			return "member/findPw";
 		}
 
@@ -26,7 +26,7 @@ public class FindPwController implements Action {
 			return "redirect:/member/resetPw.do";
 		} else {
 			request.setAttribute("errorMsg", "입력하신 정보와 일치하는 회원이 없습니다.");
-			request.setAttribute("pageCss", "join");
+			request.setAttribute("pageCss", "login");
 			return "member/findPw";
 		}
 	}

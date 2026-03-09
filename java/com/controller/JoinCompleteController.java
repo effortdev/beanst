@@ -9,7 +9,7 @@ public class JoinCompleteController implements Action {
 	public String execute(HttpServletRequest request, HttpServletResponse response) {
 
 		// 예약 완료 화면에서 썼던 complete.css를 재활용합니다!
-		request.setAttribute("pageCss", "complete");
+		request.setAttribute("pageCss", "login");
 
 		return "member/joinComplete";
 	}

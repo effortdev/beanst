@@ -18,8 +18,6 @@ public class MyPageController implements Action {
 		request.setAttribute("pageCss", "myPage");
 		// 로그인 사용자 정보 가져오기
 		UserVO loginMember = (UserVO) request.getSession().getAttribute("loginMember");
-		System.out.println("mypagecontroller 실행!");
-		System.out.println("user id 값" + loginMember);
 
 		if (loginMember == null) {
 			return "redirect:/login/login.do";

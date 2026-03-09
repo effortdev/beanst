@@ -10,10 +10,8 @@ public class ReservationCompleteController implements Action {
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) {
 
-		// CSS 적용 (기존 style.css 사용)
-		request.setAttribute("pageCss", "style");
+		request.setAttribute("pageCss", "login");
 
-		// complete.jsp로 포워딩
 		return "reservation/complete";
 	}
 }

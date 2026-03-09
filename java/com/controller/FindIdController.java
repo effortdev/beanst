@@ -9,7 +9,7 @@ public class FindIdController implements Action {
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) {
 		String method = request.getMethod();
-		request.setAttribute("pageCss", "join"); // 기존 join.css 레이아웃 활용
+		request.setAttribute("pageCss", "login"); 
 
 		// 1. 단순 화면 요청 (GET)
 		if (method.equals("GET")) {

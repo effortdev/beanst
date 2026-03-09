@@ -146,6 +146,7 @@
 }
 
 .edit-input[readonly] {
+	font-size: 12px;
 	background: #f5f5f5;
 	color: #888;
 	border: 1px solid #ddd;

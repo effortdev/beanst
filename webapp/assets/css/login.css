@@ -20,7 +20,7 @@
 	align-items: center;
 	justify-content: center;
 	min-height: calc(100vh - 90px);
-	padding: 60px 20px;
+	padding: 90px 20px;
 }
 
 /* ── common.css .container 의 padding:100px 덮어쓰기 ── */
@@ -37,8 +37,8 @@
 	width: 100%;
 	max-width: 480px;
 	padding: 56px 48px;
-	border: 1px solid rgba(201, 169, 98, 0.18);
-	border-radius: 4px;
+	border: 1px solid var(--line3);
+	border-radius: 10px;
 	box-shadow: 0 2px 8px rgba(44, 24, 16, 0.04), 0 20px 60px
 		rgba(44, 24, 16, 0.08);
 	background: #fff;
@@ -182,7 +182,8 @@ to {
 }
 
 .page-content.login-page .login-links a:hover {
-	color: #C9A962;
+	/* 	color: #C9A962; */
+	color: #000;
 }
 
 .page-content.login-page .login-links .join-link {
@@ -221,6 +222,66 @@ to {
 	border: 1.5px solid #B5402A;
 	font-size: 11px;
 	font-weight: 700;
+}
+
+/* =========================================
+   아이디/비밀번호 찾기 결과 페이지 (.form-box 내부)
+========================================= */
+
+/* 상단 완료(체크) 아이콘 여백 */
+.form-box .complete-icon {
+	margin: 0 auto 20px;
+}
+
+/* 안내 메시지 텍스트 */
+.result-msg {
+	color: #6F4E37;
+	margin-bottom: 15px;
+}
+
+/* 결과(아이디)를 보여주는 점선 박스 */
+.result-box {
+	background: #fdf8f3;
+	padding: 25px;
+	border-radius: 6px;
+	border: 1px dashed #C9A962;
+	margin-bottom: 30px;
+}
+
+/* 결과 텍스트 (아이디) 강조 */
+.result-text {
+	font-size: 24px;
+	color: #2C1810;
+	font-weight: bold;
+	letter-spacing: 1px;
+}
+
+/* 하단 버튼 그룹 반반 분할 */
+.btn-half {
+	flex: 1;
+	padding: 15px;
+	font-size: 16px;
+}
+
+/* 폼 상단 안내/설명 텍스트 */
+.form-box .form-desc {
+	color: #666;
+	font-size: 14px;
+	margin-bottom: 30px;
+}
+
+.text-success {
+	color: #28a745 !important;
+	padding-top: 10px;
+}
+
+.text-danger {
+	color: #dc3545 !important;
+}
+
+.login-page .form-box .btn:hover {
+	background: #C9A962;
+	color: #000;
 }
 
 /* ================================================

@@ -14,7 +14,7 @@ public class JoinController implements Action {
 
         if (method.equals("GET")) {
             // 회원가입 전용 CSS 적용 지시
-            request.setAttribute("pageCss", "join");
+            request.setAttribute("pageCss", "login");
             
             return "member/join"; 
         }

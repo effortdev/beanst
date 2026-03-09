@@ -15,7 +15,7 @@ public class ResetPwController implements Action {
 			return "redirect:/member/findPw.do"; // 비정상 접근 차단
 
 		if (request.getMethod().equals("GET")) {
-			request.setAttribute("pageCss", "join");
+			request.setAttribute("pageCss", "login");
 			return "member/resetPw";
 		}
 

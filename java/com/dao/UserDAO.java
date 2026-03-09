@@ -89,6 +89,47 @@ public class UserDAO {
 		return userId;
 	}
 
+	// 유저 한 사람 가져오기
+	public UserVO selectUser(String id) {
+		UserVO vo = null;
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+
+		try {
+			con = JdbcUtil.getConnection();
+			pstmt = con.prepareStatement(props.getProperty("selectUser"));
+			pstmt.setString(1, id);
+			rs = pstmt.executeQuery();
+
+			if (rs.next()) {
+				vo = new UserVO();
+				vo.setUserId(rs.getString("user_id"));
+				vo.setEmail(rs.getString("email"));
+				vo.setName(rs.getString("name"));
+				vo.setPhone(rs.getString("phone"));
+				vo.setRole(rs.getString("role"));
+				vo.setStatus(rs.getString("status"));
+
+				String dateStr = rs.getString("created_at");
+				SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+				java.util.Date date = formatter.parse(dateStr); // Date로 변환
+				java.sql.Timestamp timestamp = new java.sql.Timestamp(date.getTime());
+				vo.setCreatedAt(timestamp);
+//				vo.setCreatedAt(rs.getTimestamp("created_at"));
+
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			JdbcUtil.close(rs);
+			JdbcUtil.close(pstmt);
+			JdbcUtil.close(con);
+		}
+
+		return vo;
+	}
+
 	// 사용자 존재 여부 확인 (비밀번호 찾기용)
 	public boolean checkUserForPw(String userId, String name, String email) {
 		boolean isExist = false;
@@ -246,46 +287,5 @@ public class UserDAO {
 		}
 
 		return isSuccess;
-	}
-
-	// 유저 한 사람 가져오기
-	public UserVO selectUser(String id) {
-		UserVO vo = null;
-		Connection con = null;
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
-
-		try {
-			con = JdbcUtil.getConnection();
-			pstmt = con.prepareStatement(props.getProperty("selectUser"));
-			pstmt.setString(1, id);
-			rs = pstmt.executeQuery();
-
-			if (rs.next()) {
-				vo = new UserVO();
-				vo.setUserId(rs.getString("user_id"));
-				vo.setEmail(rs.getString("email"));
-				vo.setName(rs.getString("name"));
-				vo.setPhone(rs.getString("phone"));
-				vo.setRole(rs.getString("role"));
-				vo.setStatus(rs.getString("status"));
-
-				String dateStr = rs.getString("created_at");
-				SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
-				java.util.Date date = formatter.parse(dateStr); // Date로 변환
-				java.sql.Timestamp timestamp = new java.sql.Timestamp(date.getTime());
-				vo.setCreatedAt(timestamp);
-//				vo.setCreatedAt(rs.getTimestamp("created_at"));
-
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			JdbcUtil.close(rs);
-			JdbcUtil.close(pstmt);
-			JdbcUtil.close(con);
-		}
-
-		return vo;
 	}
 }

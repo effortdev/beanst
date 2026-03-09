@@ -47,7 +47,7 @@
 
 			<button type="submit" class="btn-save">수정</button>
 
-			<a class="btn-delete"
+			<a class="btn-delete edit"
 				href="${pageContext.request.contextPath}/admin/faq/delete.do?faq_no=${faq.faqNo}"
 				onclick="return confirm('삭제하시겠습니까?')"> 삭제 </a> <a class="btn-list"
 				href="${pageContext.request.contextPath}/admin/faq/list.do"> 목록

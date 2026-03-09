@@ -1,29 +1,36 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
 <%@ taglib prefix="c" uri="jakarta.tags.core"%>
 
-<div class="join-container">
-	<div class="join-wrap">
-		<h2 class="join-title">Find ID</h2>
+<div class="page-content login-page">
+	<div class="container">
+		<div class="form-box">
+			<h2 class="title en">아이디 찾기</h2>
 
-		<c:if test="${not empty errorMsg}">
-			<div class="text-danger"
-				style="text-align: center; margin-bottom: 20px; color: #dc3545;">
-				${errorMsg}</div>
-		</c:if>
+			<c:if test="${not empty errorMsg}">
+				<p class="error-text text-center mb-20">${errorMsg}</p>
+			</c:if>
 
-		<form action="${pageContext.request.contextPath}/member/findId.do"
-			method="post">
-			<div class="form-group">
-				<label>이름</label> <input type="text" name="name"
-					class="form-control" required placeholder="가입 시 입력한 이름">
-			</div>
-			<div class="form-group" style="margin-bottom: 30px;">
-				<label>이메일</label> <input type="email" name="email"
-					class="form-control" required placeholder="가입 시 입력한 이메일">
-			</div>
+			<form action="${pageContext.request.contextPath}/member/findId.do"
+				method="post">
 
-			<button type="submit" class="btn btn-primary join-btn">아이디
-				찾기</button>
-		</form>
+				<div class="form-group">
+					<label>이름</label> <input type="text" name="name"
+						class="form-control" required placeholder="가입 시 입력한 이름">
+				</div>
+
+				<div class="form-group">
+					<label>이메일</label> <input type="email" name="email"
+						class="form-control" required placeholder="가입 시 입력한 이메일">
+				</div>
+
+				<button type="submit" class="btn btn-primary btn-block btn-lg">아이디
+					찾기</button>
+
+				<div class="text-center mt-20 login-links">
+					<a href="${pageContext.request.contextPath}/login/login.do">로그인
+						화면으로 돌아가기</a>
+				</div>
+			</form>
+		</div>
 	</div>
 </div>
