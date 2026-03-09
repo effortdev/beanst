@@ -1,5 +1,6 @@
 package com.service.admin;
 
+import java.sql.Connection;
 import java.util.List;
 import jakarta.servlet.ServletContext;
 
@@ -15,11 +16,11 @@ public class AdminService {
 		this.context = context;
 	}
 
-	// 1. 전체 회원 목록 조회
-	public List<UserVO> getAllUsers() {
-		AdminDAO dao = new AdminDAO(context);
-		return dao.adminUserList();
-	}
+//	// 1. 전체 회원 목록 조회
+//	public List<UserVO> getAllUsers() {
+//		AdminDAO dao = new AdminDAO(context);
+//		return dao.adminUserList();
+//	}
 
 	// 2. 특정 회원 상세 정보 조회
 	public UserVO getUserDetail(String userId) {
@@ -37,5 +38,15 @@ public class AdminService {
 	public boolean approveWithdraw(String userId) {
 		AdminDAO dao = new AdminDAO(context);
 		return dao.adminUserWithdrawApprove(userId);
+	}
+
+	public int selectUserCount(Connection conn) {
+		AdminDAO dao = new AdminDAO(context);
+		return dao.selectUserCount(conn);
+	}
+
+	public List<UserVO> selectUserList(Connection conn, int startRow, int endRow) {
+		AdminDAO dao = new AdminDAO(context);
+		return dao.selectUserList(conn, startRow, endRow);
 	}
 }

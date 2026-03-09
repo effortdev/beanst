@@ -40,7 +40,7 @@
 
 				<tr>
 
-					<td>${status.count}</td>
+					<td>${(pageInfo.currentPage - 1) * pageInfo.boardLimit + status.count}</td>
 
 					<td>${r.name}</td>
 
@@ -94,5 +94,45 @@
 		</tbody>
 
 	</table>
+	<div class="pagination">
+
+		<!-- 이전 -->
+		<c:choose>
+			<c:when test="${pageInfo.currentPage > 1}">
+				<a
+					href="${pageContext.request.contextPath}/admin/reservation/list.do?page=${pageInfo.currentPage - 1}">이전</a>
+			</c:when>
+			<c:otherwise>
+				<a class="disabled">이전</a>
+			</c:otherwise>
+		</c:choose>
+
+		<!-- 페이지 -->
+		<c:forEach var="i" begin="${pageInfo.startPage}"
+			end="${pageInfo.endPage}">
+			<c:choose>
+				<c:when test="${i eq pageInfo.currentPage}">
+					<span class="active">${i}</span>
+				</c:when>
+				<c:otherwise>
+					<a
+						href="${pageContext.request.contextPath}/admin/reservation/list.do?page=${i}">
+						${i} </a>
+				</c:otherwise>
+			</c:choose>
+		</c:forEach>
+
+		<!-- 다음 -->
+		<c:choose>
+			<c:when test="${pageInfo.currentPage < pageInfo.maxPage}">
+				<a
+					href="${pageContext.request.contextPath}/admin/reservation/list.do?page=${pageInfo.currentPage + 1}">다음</a>
+			</c:when>
+			<c:otherwise>
+				<a class="disabled">다음</a>
+			</c:otherwise>
+		</c:choose>
+
+	</div>
 
 </div>

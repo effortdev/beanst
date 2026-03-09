@@ -7,9 +7,10 @@ import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.util.ArrayList;
-import java.util.Properties;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Properties;
 
 import jakarta.servlet.ServletContext;
 
@@ -236,16 +237,16 @@ public class AdminFacilityDAO {
 
 	public void setNewImageMain(Connection conn, int facilityId, int index) throws Exception {
 
-	    String sql = props.getProperty("facilitySetNewMain");
+		String sql = props.getProperty("facilitySetNewMain");
 
-	    PreparedStatement ps = conn.prepareStatement(sql);
+		PreparedStatement ps = conn.prepareStatement(sql);
 
-	    ps.setInt(1, facilityId);
-	    ps.setInt(2, index);
+		ps.setInt(1, facilityId);
+		ps.setInt(2, index);
 
-	    ps.executeUpdate();
+		ps.executeUpdate();
 
-	    ps.close();
+		ps.close();
 	}
 
 	public void setFirstImageMain(Connection conn, int facilityId) throws Exception {
@@ -270,24 +271,94 @@ public class AdminFacilityDAO {
 
 		ps.close();
 	}
+
 	public int insertImageReturnId(Connection conn, int facilityId, String imagePath, String isMain) throws Exception {
 
-	    String sql = props.getProperty("facilityImageInsert");
-	    PreparedStatement ps = conn.prepareStatement(sql, java.sql.Statement.RETURN_GENERATED_KEYS);
+		String sql = props.getProperty("facilityImageInsert");
+		PreparedStatement ps = conn.prepareStatement(sql, java.sql.Statement.RETURN_GENERATED_KEYS);
 
-	    ps.setInt(1, facilityId);
-	    ps.setString(2, imagePath);
-	    ps.setString(3, isMain);
+		ps.setInt(1, facilityId);
+		ps.setString(2, imagePath);
+		ps.setString(3, isMain);
 
-	    ps.executeUpdate();
+		ps.executeUpdate();
 
-	    int newId = 0;
-	    ResultSet rs = ps.getGeneratedKeys();
-	    if (rs.next()) newId = rs.getInt(1);
+		int newId = 0;
+		ResultSet rs = ps.getGeneratedKeys();
+		if (rs.next())
+			newId = rs.getInt(1);
 
-	    rs.close();
-	    ps.close();
+		rs.close();
+		ps.close();
 
-	    return newId;
+		return newId;
 	}
+
+	public int facilitySelectCount(Connection conn) {
+
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+
+		int count = 0;
+
+		try {
+
+			String sql = props.getProperty("facilitySelectCount");
+			ps = conn.prepareStatement(sql);
+			rs = ps.executeQuery();
+
+			if (rs.next()) {
+				count = rs.getInt(1);
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(rs);
+			close(ps);
+		}
+
+		return count;
+	}
+
+	public List<AdminFacilityDTO> facilitySelectList(Connection conn, int startRow, int listLimit) {
+
+		List<AdminFacilityDTO> list = new ArrayList<>();
+
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+
+		try {
+
+			String sql = props.getProperty("facilitySelectList");
+			ps = conn.prepareStatement(sql);
+
+			ps.setInt(1, startRow);
+			ps.setInt(2, listLimit);
+
+			rs = ps.executeQuery();
+
+			while (rs.next()) {
+
+				AdminFacilityDTO f = new AdminFacilityDTO();
+
+				f.setFacilityId(rs.getInt("facility_id"));
+				f.setFacilityType(rs.getString("facility_type"));
+				f.setFacilityName(rs.getString("facility_name"));
+				f.setLocation(rs.getString("location"));
+				f.setOpenTime(rs.getString("open_time"));
+
+				list.add(f);
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(rs);
+			close(ps);
+		}
+
+		return list;
+	}
+
 }

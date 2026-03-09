@@ -29,8 +29,37 @@ public class AdminQnaDAO {
 		}
 	}
 
+	// 전체 Qna 개수
+	public int selectQnaCount(Connection conn) {
+
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+
+		int count = 0;
+
+		try {
+
+			String sql = props.getProperty("adminQnaCount");
+
+			ps = conn.prepareStatement(sql);
+			rs = ps.executeQuery();
+
+			if (rs.next()) {
+				count = rs.getInt(1);
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(rs);
+			close(ps);
+		}
+
+		return count;
+	}
+
 	// 관리자 QNA 목록
-	public List<AdminQnaDTO> selectQnaList(Connection conn) {
+	public List<AdminQnaDTO> selectQnaList(Connection conn, int startRow, int listLimit) {
 
 		List<AdminQnaDTO> list = new ArrayList<>();
 
@@ -42,6 +71,8 @@ public class AdminQnaDAO {
 			String sql = props.getProperty("adminQnaList");
 
 			ps = conn.prepareStatement(sql);
+			ps.setInt(1, startRow);
+			ps.setInt(2, listLimit);
 
 			rs = ps.executeQuery();
 

@@ -22,12 +22,7 @@ public class AdminFaqListController implements Action {
 		Connection conn = null;
 
 		try {
-			int page = 1;
-			int limit = 10;
 
-			if (request.getParameter("page") != null) {
-				page = Integer.parseInt(request.getParameter("page"));
-			}
 			int currentPage = 1;
 
 			if (request.getParameter("page") != null) {
@@ -44,16 +39,16 @@ public class AdminFaqListController implements Action {
 			// 페이지 설정
 			int pageLimit = 10; // 페이지 번호 개수
 			int boardLimit = 10; // 한 페이지 글 개수
-
 			// PageInfo 생성
 			PageInfo pageInfo = new PageInfo(currentPage, listCount, pageLimit, boardLimit);
 
 			// 목록 조회
-			List<AdminFaqDTO> faqList = dao.selectFaqList(conn, pageInfo.getStartRow(), pageInfo.getEndRow());
+			List<AdminFaqDTO> list = dao.selectFaqList(conn, pageInfo.getStartRow(), pageInfo.getEndRow());
 
 			// request 전달
-			request.setAttribute("faqList", faqList);
+			request.setAttribute("faqList", list);
 			request.setAttribute("pageInfo", pageInfo);
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {

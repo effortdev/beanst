@@ -228,10 +228,11 @@
 
 /* 카드 컨트롤 */
 .image-controls {
-	font-size: 12px;
+	font-size: 16px;
 	display: flex;
-	justify-content: center;
-	gap: 6px;
+	justify-content: space-between;
+	align-items: center;
+	gap: 12px;
 	flex-wrap: wrap;
 }
 
@@ -263,7 +264,7 @@
 	color: #333;
 	border-radius: 20px;
 	cursor: pointer;
-	font-size: 11px;
+	font-size: 16px;
 	line-height: 1;
 	position: relative;
 	border: 1px solid #ddd;
@@ -299,7 +300,8 @@
    저장 버튼
 ========================= */
 .btn-save {
-	display: block; margin : 0 auto;
+	display: block;
+	margin: 0 auto;
 	margin-top: 30px;
 	background: var(--bg2);
 	color: #fff;
@@ -310,12 +312,11 @@
 	font-size: 16px;
 	width: 200px;
 	transition: all 0.2s;
-	margin: 0 auto;
+	margin: 18px auto 0;
 }
 
 .btn-save:hover {
 	background: #333;
-	transform: translateY(-1px);
 }
 
 .delBtn {
@@ -369,7 +370,6 @@
 }
 
 #imagePreview .image-card:hover {
-	transform: translateY(-3px);
 	box-shadow: 0 6px 15px rgba(0, 0, 0, 0.08);
 }
 
@@ -389,11 +389,9 @@
 ========================= */
 #imagePreview .image-controls {
 	display: flex;
-	justify-content: center;
-	align-items: center;
 	gap: 8px;
 	flex-wrap: wrap;
-	font-size: 12px;
+	font-size: 16px;
 }
 
 /* 대표 radio */

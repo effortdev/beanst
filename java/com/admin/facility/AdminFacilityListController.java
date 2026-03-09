@@ -1,8 +1,12 @@
 package com.admin.facility;
 
-import java.util.ArrayList;
+import static com.util.JdbcUtil.*;
+
+import java.sql.Connection;
+import java.util.List;
 
 import com.controller.Action;
+import com.util.PageInfo;
 
 import jakarta.servlet.ServletContext;
 import jakarta.servlet.http.HttpServletRequest;
@@ -10,27 +14,43 @@ import jakarta.servlet.http.HttpServletResponse;
 
 public class AdminFacilityListController implements Action {
 
-    @Override
-    public String execute(HttpServletRequest request, HttpServletResponse response) {
+	@Override
+	public String execute(HttpServletRequest request, HttpServletResponse response) {
 
-        try {
+		request.setAttribute("pageCss", "admin-facility");
+		Connection conn = null;
 
-            ServletContext context = request.getServletContext();
+		try {
 
+			conn = getConnection();
 
-            AdminFacilityDAO dao = new AdminFacilityDAO(context);
+			ServletContext context = request.getServletContext();
+			AdminFacilityDAO dao = new AdminFacilityDAO(context);
 
+			int currentPage = 1;
 
-            ArrayList<AdminFacilityDTO> list = dao.selectAll();
+			if (request.getParameter("page") != null) {
+				currentPage = Integer.parseInt(request.getParameter("page"));
+			}
 
+			int listCount = dao.facilitySelectCount(conn);
 
-            request.setAttribute("facilityList", list);
-            request.setAttribute("pageCss", "admin-facility");
+			int pageLimit = 10;
+			int boardLimit = 10;
 
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+			PageInfo pageInfo = new PageInfo(currentPage, listCount, pageLimit, boardLimit);
 
-        return "/admin/facility/facility_list";
-    }
+			List<AdminFacilityDTO> list = dao.facilitySelectList(conn, pageInfo.getStartRow(), pageInfo.getEndRow());
+
+			request.setAttribute("facilityList", list);
+			request.setAttribute("pageInfo", pageInfo);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(conn);
+		}
+
+		return "/admin/facility/facility_list";
+	}
 }

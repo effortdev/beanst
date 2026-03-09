@@ -170,67 +170,108 @@
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
 
-const ctx = document.getElementById('reservationChart');
+document.addEventListener("DOMContentLoaded", function () {
 
-const dataArr = ${chartData};  
 
-const maxValue = Math.max(...dataArr);  
 
-new Chart(ctx, {
-	type: 'line',
-	data: {
-		labels: ${chartLabels},
-		datasets: [{
-			label: '예약 수',
-			data: dataArr,
-			borderColor: '#3498db',
-			backgroundColor: 'rgba(52,152,219,0.2)',
-			tension: 0.4,
-			fill: true
-		}]
-	},
-	options: {
-		responsive: true,
-		plugins: {
-			legend: {
-				display: false
+	const reservationCanvas = document.getElementById("reservationChart");
+
+	if (reservationCanvas) {
+
+		let dataArr = ${chartData};
+		let labelsArr = ${chartLabels};
+
+
+		if (!Array.isArray(dataArr)) dataArr = [];
+		if (!Array.isArray(labelsArr)) labelsArr = [];
+
+		const maxValue = dataArr.length > 0 ? Math.max(...dataArr) : 5;
+
+		new Chart(reservationCanvas, {
+			type: "line",
+			data: {
+				labels: labelsArr,
+				datasets: [{
+					label: "예약 수",
+					data: dataArr,
+					borderColor: "#3498db",
+					backgroundColor: "rgba(52,152,219,0.2)",
+					tension: 0.4,
+					fill: true,
+					pointRadius: 4,
+					pointHoverRadius: 6
+				}]
+			},
+			options: {
+
+				responsive: true,
+				maintainAspectRatio: false,
+
+				animations: {
+					y: {
+						from: 0,
+						duration: 1500,
+						easing: "easeOutQuart"
+					}
+				},
+
+				plugins: {
+					legend: {
+						display: false
+					}
+				},
+
+				scales: {
+					y: {
+						beginAtZero: true,
+						max: maxValue + 3,
+						ticks: {
+							stepSize: 1
+						}
+					}
+				}
 			}
+		});
+	}
+
+
+
+	const roomCtx = document.getElementById('roomChart');
+
+	new Chart(roomCtx, {
+		type: 'doughnut',
+		data: {
+			labels: ${roomChartLabels},
+			datasets: [{
+				data: ${roomChartData},
+				backgroundColor: [
+					'#3498db',
+					'#2ecc71',
+					'#f39c12',
+					'#9b59b6'
+				]
+			}]
 		},
-		scales: {
-			y: {
-				beginAtZero: true,
-				max: maxValue + 3,  
-				ticks: {
-					stepSize: 1
+		options:{
+			responsive:true,
+			maintainAspectRatio:false,
+
+			animations:{
+				animateRotate:{
+					duration:1500
+				},
+				animateScale:{
+					duration:1200
+				}
+			},
+
+			plugins:{
+				legend:{
+					position:'bottom'
 				}
 			}
 		}
-	}
+	});
+
 });
-
-const roomCtx = document.getElementById('roomChart');
-
-new Chart(roomCtx, {
-	type: 'doughnut',
-	data: {
-		labels: ${roomChartLabels},
-		datasets: [{
-			data: ${roomChartData},
-			backgroundColor: [
-				'#3498db',
-				'#2ecc71',
-				'#f39c12',
-				'#9b59b6'
-			]
-		}]
-	},
-	options:{
-		plugins:{
-			legend:{
-				position:'bottom'
-			}
-		}
-	}
-});
-
 </script>

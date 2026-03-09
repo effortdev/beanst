@@ -29,8 +29,6 @@ public class AdminRoomDAO {
 		}
 	}
 
-
-
 	public List<AdminRoomDTO> selectRoomList(Connection conn) {
 
 		List<AdminRoomDTO> list = new ArrayList<>();
@@ -69,8 +67,6 @@ public class AdminRoomDAO {
 
 		return list;
 	}
-
-
 
 	public AdminRoomDTO selectRoomDetail(Connection conn, int roomId) {
 
@@ -111,8 +107,6 @@ public class AdminRoomDAO {
 		return room;
 	}
 
-
-
 	public int updateRoom(Connection conn, AdminRoomDTO room) {
 
 		PreparedStatement ps = null;
@@ -140,6 +134,71 @@ public class AdminRoomDAO {
 		}
 
 		return result;
+	}
+
+	public int roomDetailCount(Connection conn) {
+
+		int count = 0;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+
+		String sql = props.getProperty("roomDetailCount");
+		try {
+
+			pstmt = conn.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+
+			if (rs.next()) {
+				count = rs.getInt(1);
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(rs);
+			close(pstmt);
+		}
+
+		return count;
+	}
+
+	public List<AdminRoomDTO> roomDetailList(Connection conn, int startRow, int limit) {
+
+		List<AdminRoomDTO> list = new ArrayList<>();
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+
+		String sql = props.getProperty("roomDetailList");
+		try {
+
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, startRow);
+			pstmt.setInt(2, limit);
+
+			rs = pstmt.executeQuery();
+
+			while (rs.next()) {
+
+				AdminRoomDTO dto = new AdminRoomDTO();
+
+				dto.setRoomId(rs.getInt("room_id"));
+				dto.setRoomName(rs.getString("room_name"));
+				dto.setBaseCapacity(rs.getInt("base_capacity"));
+				dto.setMaxCapacity(rs.getInt("max_capacity"));
+				dto.setBasePrice(rs.getInt("base_price"));
+				dto.setExtraCharge(rs.getInt("extra_charge"));
+
+				list.add(dto);
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(rs);
+			close(pstmt);
+		}
+
+		return list;
 	}
 
 }

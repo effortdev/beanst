@@ -7,11 +7,9 @@
 		<h2 class="admin-title">회원 관리</h2>
 		<div class="qna-filter">
 			<a href="${pageContext.request.contextPath}/admin/memberManage.do"
-				style="${empty param.filter ? '' : ''}">전체
-				회원보기</a> <a
+				style="${empty param.filter ? '' : ''}">전체 회원보기</a> <a
 				href="${pageContext.request.contextPath}/admin/memberManage.do?filter=withdraw"
-				style="${param.filter == 'withdraw' ? '' : ''}">탈퇴요청
-				회원보기</a>
+				style="${param.filter == 'withdraw' ? '' : ''}">탈퇴요청 회원보기</a>
 		</div>
 	</div>
 
@@ -22,6 +20,7 @@
 	<table class="admin-table">
 		<thead>
 			<tr>
+				<th>번호</th>
 				<th>아이디</th>
 				<th>이름</th>
 				<th>이메일</th>
@@ -32,8 +31,9 @@
 			</tr>
 		</thead>
 		<tbody>
-			<c:forEach var="user" items="${userList}">
+			<c:forEach var="user" items="${userList}" varStatus="status">
 				<tr>
+					<td>${(pageInfo.currentPage - 1) * pageInfo.boardLimit + status.count}</td>
 					<td>${user.userId}</td>
 					<td>${user.name}</td>
 					<td>${user.email}</td>
@@ -56,7 +56,8 @@
 						</c:choose></td>
 
 					<td>
-						<div style="display: flex; gap: 5px; justify-content: center; align-items: center;">
+						<div
+							style="display: flex; gap: 5px; justify-content: center; align-items: center;">
 							<a
 								href="${pageContext.request.contextPath}/admin/memberManage.do?action=edit&userId=${user.userId}"
 								class="btn-list">수정</a>
@@ -77,7 +78,48 @@
 			</c:forEach>
 		</tbody>
 	</table>
+	<div class="pagination">
+		<!-- 이전 -->
+		<c:choose>
+			<c:when test="${pageInfo.currentPage > 1}">
+				<a
+					href="${pageContext.request.contextPath}/admin/memberManage.do?page=${pageInfo.currentPage - 1}">
+					이전 </a>
+			</c:when>
+			<c:otherwise>
+				<span class="disabled">이전</span>
+			</c:otherwise>
+		</c:choose>
 
+		<!-- 페이지 번호 -->
+		<c:forEach var="i" begin="${pageInfo.startPage}"
+			end="${pageInfo.endPage}">
+
+			<c:choose>
+				<c:when test="${i eq pageInfo.currentPage}">
+					<span class="active">${i}</span>
+				</c:when>
+				<c:otherwise>
+					<a
+						href="${pageContext.request.contextPath}/admin/memberManage.do?page=${i}">
+						${i} </a>
+				</c:otherwise>
+			</c:choose>
+		</c:forEach>
+
+		<!-- 다음 -->
+		<c:choose>
+			<c:when test="${pageInfo.currentPage < pageInfo.maxPage}">
+				<a
+					href="${pageContext.request.contextPath}/admin/faq/list.do?page=${pageInfo.currentPage + 1}">
+					다음 </a>
+			</c:when>
+			<c:otherwise>
+				<span class="disabled">다음</span>
+			</c:otherwise>
+		</c:choose>
+
+	</div>
 </div>
 
 <c:if test="${param.msg == 'update'}">

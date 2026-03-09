@@ -9,7 +9,6 @@ import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
@@ -73,19 +72,20 @@ public class AdminDAO {
 	}
 
 	// 객실 목록보기
-	public List<RoomManageVO> selectRoomList() {
+	public List<RoomManageVO> selectRoomList(Connection conn, int startRow, int endRow) {
 		System.out.println("selectRoomList 실행");
 		List<RoomManageVO> list = new ArrayList<>();
-		Connection conn = null;
-		Statement st = null;
+		PreparedStatement ps = null;
 		ResultSet rs = null;
 
-		String sql = props.getProperty("adminRoomManage");
+		String sql = props.getProperty("selectRoomList");
 
 		try {
-			conn = getConnection();
-			st = conn.createStatement();
-			rs = st.executeQuery(sql);
+			ps = conn.prepareStatement(sql);
+			ps.setInt(1, startRow);
+			ps.setInt(2, endRow);
+
+			rs = ps.executeQuery();
 
 			while (rs.next()) {
 				RoomManageVO room = new RoomManageVO();
@@ -100,9 +100,8 @@ public class AdminDAO {
 				list.add(room);
 			}
 
+			ps.close();
 			rs.close();
-			st.close();
-			conn.close();
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -521,6 +520,7 @@ public class AdminDAO {
 			conn = getConnection();
 			String sql = props.getProperty("adminUserList");
 			ps = conn.prepareStatement(sql);
+
 			rs = ps.executeQuery();
 
 			while (rs.next()) {
@@ -643,4 +643,95 @@ public class AdminDAO {
 		return isSuccess;
 	}
 
+	public int selectUserCount(Connection conn) {
+
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+
+		int count = 0;
+
+		try {
+
+			String sql = props.getProperty("selectUserCount");
+
+			ps = conn.prepareStatement(sql);
+			rs = ps.executeQuery();
+
+			if (rs.next()) {
+				count = rs.getInt(1);
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(rs);
+			close(ps);
+		}
+
+		return count;
+	}
+
+	public List<UserVO> selectUserList(Connection conn, int startRow, int listLimit) {
+
+		List<UserVO> list = new ArrayList<>();
+
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+
+		try {
+
+			String sql = props.getProperty("selectUserList");
+
+			ps = conn.prepareStatement(sql);
+			ps.setInt(1, startRow);
+			ps.setInt(2, listLimit);
+			rs = ps.executeQuery();
+
+			while (rs.next()) {
+
+				UserVO vo = new UserVO();
+				vo.setUserId(rs.getString("user_id"));
+				vo.setEmail(rs.getString("email"));
+				vo.setName(rs.getString("name"));
+				vo.setPhone(rs.getString("phone"));
+				vo.setRole(rs.getString("role"));
+				vo.setStatus(rs.getString("status"));
+				list.add(vo);
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(rs);
+			close(ps);
+		}
+
+		return list;
+	}
+
+	public int selectRoomCount(Connection conn) {
+		int count = 0;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+
+		String sql = props.getProperty("selectRoomCount");
+
+		try {
+
+			pstmt = conn.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+
+			if (rs.next()) {
+				count = rs.getInt(1);
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(rs);
+			close(pstmt);
+		}
+
+		return count;
+	}
 }
