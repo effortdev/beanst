@@ -286,10 +286,14 @@ WHERE image_id = (
 
 
 
+	<entry key="adminFaqCount">
+		SELECT COUNT(*) FROM faq
+	</entry>
 	<entry key="adminFaqList">
 		SELECT *
 		FROM faq
 		ORDER BY sort_order ASC, faq_no DESC
+		LIMIT ?, ?
 	</entry>
 
 	<entry key="adminFaqInsert">
@@ -515,7 +519,8 @@ WHERE image_id = (
 		FROM reservation r
 		JOIN room rm ON r.room_id = rm.room_id
 		WHERE r.status = '2'
-		GROUP BY rm.room_name
+		GROUP BY
+		rm.room_name
 
 	</entry>
 

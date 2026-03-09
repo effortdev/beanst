@@ -29,7 +29,36 @@ public class AdminFaqDAO {
 		}
 	}
 
-	public List<AdminFaqDTO> selectFaqList(Connection conn) {
+	// 전체 FAQ 개수
+	public int selectFaqCount(Connection conn) {
+
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+
+		int count = 0;
+
+		try {
+
+			String sql = props.getProperty("adminFaqCount");
+
+			ps = conn.prepareStatement(sql);
+			rs = ps.executeQuery();
+
+			if (rs.next()) {
+				count = rs.getInt(1);
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(rs);
+			close(ps);
+		}
+
+		return count;
+	}
+
+	public List<AdminFaqDTO> selectFaqList(Connection conn, int startRow, int listLimit) {
 
 		List<AdminFaqDTO> list = new ArrayList<>();
 
@@ -41,7 +70,8 @@ public class AdminFaqDAO {
 			String sql = props.getProperty("adminFaqList");
 
 			ps = conn.prepareStatement(sql);
-
+			ps.setInt(1, startRow);
+			ps.setInt(2, listLimit);
 			rs = ps.executeQuery();
 
 			while (rs.next()) {

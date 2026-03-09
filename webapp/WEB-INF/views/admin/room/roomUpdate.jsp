@@ -36,14 +36,7 @@
 			<label>미니바</label> <input type="text" name="minibar"
 				value="${vo.minibar}">
 		</div>
-		<div class="form-group">
-			<label>이미지</label> <input type="file" id="room_img" name="room_img"
-				id="room_img" multiple accept="image/*"
-				onchange="previewImages(event)">
-		</div>
-		<div id="preview"></div>
-		<hr>
-
+		
 		<label class="saveImage">기존이미지</label><br>
 		<c:forEach var="image" items="${imageVO}">
 			<img src="${image.image_path}" width="200">
@@ -51,12 +44,27 @@
 				${image.is_main eq 'Y' ? 'checked' : ''}>대표이미지
 		<input type="checkbox" name="delete_images" value="${image.image_no}">삭제<br>
 		</c:forEach>
+		
+		<div class="form-group">
+			<label>이미지</label> <input type="file" id="room_img" name="room_img"
+				id="room_img" multiple accept="image/*"
+				onchange="previewImages(event)">
+		</div>
+
+		<hr>
+
+
+
+		<div id="preview"></div>
+
 		<div class="form-buttons">
 			<button type="submit" class="btn-save">수정</button>
 			<a class="btn-list"
 				href='${pageContext.request.contextPath}/admin/roomManage.do'">
 				목록</a>
 		</div>
+
+
 	</form>
 </div>
 <script>

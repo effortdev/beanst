@@ -16,27 +16,30 @@
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
-	margin-bottom: 25px;
+	margin-bottom: 10px;
 }
 
 .facility-header h2 {
-	font-size: 28px;
-	font-weight: 700;
+	font-size: var(--titlefs);
+	font-weight: 600;
+	margin-bottom: 30px;
 }
 
 /* 시설 추가 버튼 */
 .facility-add-btn {
+	display: inline-block;
 	padding: 8px 16px;
-	background: #000;
-	color: #fff;
+	background: #f5f5f5;
 	border-radius: 6px;
 	text-decoration: none;
-	font-size: 14px;
-	transition: all 0.2s ease;
+	color: #333;
+	font-size: var(--btnfs);
+	transition: all 0.2s;
 }
 
 .facility-add-btn:hover {
-	background: #333;
+	background: var(--bg2);
+	color: #fff;
 }
 
 /* =========================
@@ -56,19 +59,19 @@
 }
 
 .facility-table th {
-	padding: 14px;
-	font-size: 14px;
+	background: var(--ctbg1);
+	padding: 12px;
+	font-size: var(--thfs);
 	font-weight: 600;
 	border-bottom: 1px solid #ddd;
-	text-align: center;
 }
 
 .facility-table td {
-	padding: 14px;
+	padding: 12px;
+	font-size: var(--tdfs);
+	font-weight: 400;
 	border-bottom: 1px solid #eee;
 	text-align: center;
-	font-size: 14px;
-	color: #333;
 }
 
 .facility-table tbody tr:hover {
@@ -83,30 +86,33 @@
    관리 버튼
 ========================= */
 .facility-btn-edit {
-	background: #000;
-	color: #fff;
-	padding: 6px 12px;
+	display: inline-block;
+	background: var(--bg4);
+	color: var(--color4) !important;
+	padding: 6px 14px;
 	border-radius: 6px;
+	font-size: var(--btnfs);
 	text-decoration: none;
-	font-size: 12px;
-	margin-right: 6px;
 }
 
 .facility-btn-edit:hover {
-	background: #333;
+	background: var(--color4);
+	color: #fff !important;
 }
 
 .facility-btn-delete {
-	background: #e53935;
-	color: #fff;
-	padding: 6px 12px;
+	display: inline-block;
+	background: var(--bg5);
+	color: var(--color5) !important;
+	padding: 6px 14px;
 	border-radius: 6px;
+	font-size: var(--btnfs);
 	text-decoration: none;
-	font-size: 12px;
 }
 
 .facility-btn-delete:hover {
-	background: #c62828;
+	background: var(--color5);
+	color: #fff !important;
 }
 
 /* =========================
@@ -227,33 +233,41 @@
 	background: #c62828;
 }
 
-
-.delete-check {
+/* =========================
+   삭제 버튼 radio 스타일
+========================= */
+.delete-radio {
 	display: inline-flex;
 	align-items: center;
 	justify-content: center;
 	padding: 4px 8px;
-	background: #e53935;
-	color: #fff;
-	border-radius: 4px;
+	background: #eee;
+	color: #333;
+	border-radius: 20px;
 	cursor: pointer;
 	font-size: 11px;
 	line-height: 1;
 	position: relative;
+	border: 1px solid #ddd;
+	transition: all 0.2s ease;
 }
 
-.delete-check:hover {
-	background: #c62828;
+.delete-radio:hover {
+	background: #f44336;
+	color: #fff;
+	border-color: #f44336;
 }
 
-.delete-check input[type="checkbox"] {
+.delete-radio input[type="checkbox"] {
 	position: absolute;
 	opacity: 0;
 	pointer-events: none;
 }
 
-.delete-check:has(input[type="checkbox"]:checked) {
+.delete-radio:has(input:checked) {
 	background: #b71c1c;
+	color: #fff;
+	border-color: #b71c1c;
 }
 /* =========================
    대표 이미지 radio

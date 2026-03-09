@@ -12,11 +12,9 @@
 
 /* 제목 */
 .admin-title {
-	font-size: 30px;
-	font-weight: 700;
-	margin-bottom: 35px;
-	color: #111;
-	letter-spacing: -0.5px;
+	font-size: var(--titlefs);
+	font-weight: 600;
+	margin-bottom: 30px;
 }
 
 /* =========================
