@@ -67,6 +67,7 @@ $(function() {
   const swiper = new Swiper(".roomListSwiper", {
     init: false,
     preloadImages: false,
+    loop: true,
 
     watchSlidesProgress: true,
     centeredSlides: true,
