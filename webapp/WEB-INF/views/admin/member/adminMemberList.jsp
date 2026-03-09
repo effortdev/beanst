@@ -60,7 +60,7 @@
 							style="display: flex; gap: 5px; justify-content: center; align-items: center;">
 							<a
 								href="${pageContext.request.contextPath}/admin/memberManage.do?action=edit&userId=${user.userId}"
-								class="btn-list">수정</a>
+								class="btn-list edit">수정</a>
 
 							<c:if test="${user.status == '2'}">
 								<form

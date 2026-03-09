@@ -2,18 +2,28 @@
 <!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
 <properties>
 	<entry key="findId"> SELECT user_id FROM users WHERE name = ? AND email =
-		? </entry>
-		
+		?
+	</entry>
+
 	<entry key="selectUser"> SELECT * FROM users WHERE user_id = ? </entry>
-	
+
 	<entry key="updateContact"> UPDATE users SET email=?, phone=? WHERE user_id=? </entry>
-	
+
 	<entry key="checkUserForPw"> SELECT COUNT(*) AS cnt FROM users WHERE user_id = ?
-		AND name = ? AND email = ? </entry>
-		
+		AND name = ? AND email = ?
+	</entry>
+
 	<entry key="updatePassword"> UPDATE users SET password = ? WHERE user_id = ? </entry>
-	
+
 	<entry key="checkPassword"> SELECT COUNT(*) AS cnt FROM users WHERE user_id = ?
-		AND password = ? </entry>
+		AND password = ?
+	</entry>
+
+	<entry key="insertUser">        
+        <![CDATA[
+        INSERT INTO users (user_id, password, email, name, phone)
+        VALUES (?, ?, ?, ?, ?)
+        ]]>
+	</entry>
 
 </properties>

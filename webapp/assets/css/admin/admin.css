@@ -15,7 +15,7 @@
    헤더
 ========================= */
 .admin-header {
-	height: 60px;
+	height: 80px;
 	background: var(--bg1);
 	color: #fff;
 	display: flex;
@@ -28,7 +28,7 @@
 }
 
 .admin-header h1 {
-	font-size: 18px;
+	font-size: var(--titlefs);
 	letter-spacing: 0.5px;
 }
 
@@ -38,13 +38,17 @@
 	gap: 15px;
 }
 
+.admin-user {
+	font-size: var(--thfs);
+}
+
 .admin-logout {
 	color: #fff;
 	text-decoration: none;
 	padding: 6px 12px;
 	border: 1px solid #fff;
 	border-radius: 4px;
-	font-size: 13px;
+	font-size: var(--tdfs);
 	transition: all 0.2s ease;
 }
 
@@ -82,7 +86,7 @@
 	text-decoration: none;
 	padding: 12px 20px;
 	display: block;
-	font-size: 14px;
+	font-size: var(--thfs);
 	transition: all 0.2s ease;
 }
 

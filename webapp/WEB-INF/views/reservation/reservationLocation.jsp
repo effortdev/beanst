@@ -48,12 +48,6 @@
 						<img
 							src="${pageContext.request.contextPath}/assets/images/reservation/hotel-Local.png"
 							alt="hotel_Location" class="mapImg">
-
-						<!-- 지도 위 버튼 (지도 보기 / 구글맵 등 연결 가능) -->
-						<div class="overlay">
-							<a href="#" class="viewBtn en">VIEW MAP</a>
-						</div>
-
 					</div>
 
 

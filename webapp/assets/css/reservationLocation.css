@@ -29,8 +29,6 @@
 	display: flex;
 	flex-direction: column;
 	overflow: hidden;
-	box-shadow: -6px 6px 10px rgba(0, 0, 0, 0.05), -14px 14px 10px
-		rgba(0, 0, 0, 0.08);
 }
 
 /* =========================================================
@@ -38,7 +36,7 @@
 ========================================================= */
 .LocationMap {
 	width: 100%;
-	aspect-ratio: 16/9;
+	aspect-ratio: 16/11;
 	position: relative;
 	overflow: hidden;
 }
@@ -85,6 +83,7 @@
 .Locationadress {
 	background: #F4F1EC;
 	padding: 35px 20px;
+	margin-bottom: auto;
 	text-align: center;
 }
 
@@ -109,14 +108,12 @@
    오른쪽 오시는길 박스
 ========================================================= */
 .LocationExtra {
-	width: 340px;
-	background: #F4F1EC;
+	width: 300px;
+	background: #fff;
 	padding: 50px 35px;
 	color: #4B433A;
 	display: flex;
 	flex-direction: column;
-	box-shadow: 6px 6px 15px rgba(0, 0, 0, 0.05), 14px 14px 35px
-		rgba(0, 0, 0, 0.08);
 }
 
 /* =========================================================
@@ -146,8 +143,8 @@
 ========================================================= */
 .LocationExtra h4 {
 	font-size: 20px;
-	margin-top: 25px;
-	margin-bottom: 15px;
+	margin-top: 10px;
+	margin-bottom: 20px;
 	letter-spacing: 1px;
 }
 
@@ -161,7 +158,7 @@
 /* =========================================================
    반응형 (모바일)
 ========================================================= */
-@media ( max-width :1300px) {
+@media ( max-width :1250px) {
 	/* 전체 카드 세로 배치 */
 	.LocationAll {
 		flex-direction: column;
@@ -183,12 +180,13 @@
 	/* 주소 */
 	.Locationadress {
 		width: 100%;
+		padding: 5px 25px;
 	}
 
 	/* 오시는길 */
 	.LocationExtra {
 		width: 100%; /* 여백 제거 */
-		padding: 40px 25px;
+		padding: 5px 25px 20px 25px;
 	}
 }
 /* =========================================================
@@ -198,10 +196,11 @@
 	display: flex;
 	background: #FBF9F6;
 	overflow: hidden;
-	width: 90%;
+	width: 80%;
+	height: 50%;
 	padding: 12px;
 	/* 편지지 느낌 테두리 */
 	border: 1px solid #D6C6A5;
+
 	/* 카드 그림자 */
-	box-shadow: 0 20px 55px rgba(0, 0, 0, 0.08);
 }
