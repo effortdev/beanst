@@ -111,10 +111,10 @@ section.bgImg {
 
 .Gallery {
 	width: 100%;
-	padding: 0 20px 80px;
+	padding: 0 20px 120px;
 }
 
-.facilityGallery {
+.facilityGallery, .roomGallery {
 	max-width: 1400px;
 	margin: 0 auto;
 	display: grid;
@@ -179,7 +179,7 @@ section.bgImg {
 
 /* 반응형 */
 @media ( max-width :1024px) {
-	.facilityGallery {
+	.facilityGallery, .roomGallery {
 		grid-template-columns: repeat(2, 1fr);
 	}
 	.galleryItem img {

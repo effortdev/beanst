@@ -31,8 +31,8 @@
 					</div>
 					<div class="board-actions">
 						<button type="submit" class="btn btn-outline room-select-btn">등록</button>
-						<a href="${pageContext.request.contextPath}/qnaList.do"
-							class="btn btn-primary ">취소</a>
+						<button type="button" class="btn btn-outline"
+							onclick="location.href='${pageContext.request.contextPath}/qnaList.do'">취소</button>
 					</div>
 				</form>
 			</div>

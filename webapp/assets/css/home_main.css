@@ -149,7 +149,7 @@ main .wrap.hero {
 }
 
 #about_Room .swiper-slide .imgBox {
-	height: 100%;
+	height: 380px;
 	overflow: hidden;
 	/* clip 유지 (transition 최소화) */
 	clip-path: inset(18% 18% 18% 18%);

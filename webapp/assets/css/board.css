@@ -21,6 +21,7 @@
 .container {
 	max-width: 1200px;
 	margin: 50px auto 0;
+	padding-bottom: 120px;
 	width: 90%;
 	font-size: 1.6rem;
 }
@@ -538,7 +539,7 @@ table .text-left {
 	border-color: var(--border-hover);
 	z-index: 1;
 	position: relative;
-	background-color: var(--latte);
+	background-color: var(--bg3);
 }
 
 .faq-question .category-badge {
@@ -696,12 +697,12 @@ table .text-left {
 }
 
 .tab-btns a {
-	padding: 8px 20px;
-	border: 1px solid var(--latte);
-	border-radius: 20px;
-	font-size: 14px;
+	padding: 8px 30px;
+	border: 1px solid var(--line3);
+	border-radius: 8px;
+	font-size: 2.0rem;
 	transition: .3s;
-	color: var(--mocha);
+	color: var(--point2);
 }
 
 .tab-btns a:hover, .tab-btns a.active {
