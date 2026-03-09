@@ -24,7 +24,6 @@
 	display: grid;
 	grid-template-columns: repeat(3, 1fr);
 	gap: 20px;
-	margin-bottom: 40px;
 }
 
 .card {
@@ -50,7 +49,6 @@
 
 /* hover */
 .card:hover {
-	transform: translateY(-6px);
 	box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12);
 }
 
@@ -103,18 +101,17 @@
 	display: grid;
 	grid-template-columns: 2fr 1fr;
 	gap: 20px;
-	margin-bottom: 40px;
+	margin: 60px 0;
 }
 
 .dashboard-chart {
 	background: white;
 	border-radius: 14px;
 	box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
-	margin-bottom: 40px;
 }
 
 .dashboard-chart h3 {
-	font-size: 18px;
+	font-size: var(--thfs);
 	font-weight: 600;
 	margin-bottom: 20px;
 	color: #222;
@@ -131,7 +128,7 @@
 	background: white;
 	border-radius: 14px;
 	box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
-	margin-bottom: 40px;
+	margin-bottom: 60px;
 }
 
 .dashboard-table h3 {

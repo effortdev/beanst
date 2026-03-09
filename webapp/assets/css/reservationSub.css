@@ -43,10 +43,15 @@ main {
 	letter-spacing: 2px;
 }
 
+.booking-form.w-100 {
+	flex: 2;
+	margin-top: -52px;
+}
+
 /* ── 객실 그리드 ─────────────────────────────── */
 .room-grid {
 	display: grid;
-	grid-template-columns: 1fr 1fr; /* 기본: 2열 */
+	grid-template-columns: 1fr; /* 기본: 2열 */
 	gap: 15px;
 	margin-bottom: 24px;
 }
@@ -59,6 +64,9 @@ main {
 	transition: border-color 0.3s, box-shadow 0.3s;
 	cursor: pointer;
 	background: #fff;
+	overflow: hidden;
+	display: flex;
+	flex-direction: column;
 }
 
 .room-card:hover {
@@ -72,20 +80,63 @@ main {
 }
 
 .room-card>div {
+	height: 350px;
+	background: #f5f5f5;
+	overflow: hidden;
 	padding: 20px;
 	text-align: center;
 }
 
+.room-card>div+div {
+	padding: 20px;
+	flex: 1;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.room-card>.room-image+div>div {
+	display: flex;
+	justify-content: space-between;
+}
+
+.room-card>.room-image+div>div>h4 {
+	margin-bottom: 8px;
+	color: #2C1810;
+	font-size: 18px;
+}
+
+.room-card>.room-image>img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	transition: 0.3s;
+	border-radius: 16px;
+}
+
+.room-card>.room-image.noimage {
+	width: 100%;
+	height: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	color: #aaa;
+	font-size: 14px;
+	font-weight: bold;
+	background-color: #eaeaea;
+}
+
 .room-card h3, .room-card strong {
-	font-size: 1.05rem;
+	font-size: 1.5rem;
 	color: #2c2c2c;
 	margin-bottom: 8px;
 }
 
 .room-card p, .room-card span {
-	font-size: 0.875rem;
+	font-size: 1.6rem;
 	color: #666;
-	line-height: 1.6;
+	margin-bottom: 15px;
+	line-height: 1.5;
 }
 
 /* 선택하기 버튼 (카드 내부) */
@@ -97,9 +148,10 @@ main {
 	border-radius: 4px;
 	background: transparent;
 	color: #8a6b2e;
-	font-size: 0.9rem;
+	font-size: 1.6rem;
 	cursor: pointer;
 	transition: background 0.25s, color 0.25s;
+	color: #000 !important;
 }
 
 .room-card .select-btn:hover, .room-card button:hover, .room-card.selected .select-btn,
@@ -119,8 +171,8 @@ main {
 	color: #444;
 	margin-bottom: 6px;
 	letter-spacing: 0.02em;
-	font-size: 20px;
-	padding-top: 16px;
+	font-size: 2.5rem;
+	padding: 10px;
 }
 
 /* ── 가로 flex 폼 그룹 (체크인/아웃, 성인/소아) */
@@ -192,16 +244,23 @@ main {
 
 /* ── 오른쪽 : 예약 요약 패널 ────────────────── */
 .booking-summary {
-	flex: 1 1 0%;
+	/* 	flex: 1 1 0%; */
 	min-width: 260px;
 	max-width: 360px;
-	background: rgb(253, 248, 243);
+	/* 	background: rgb(253, 248, 243); */
+	/* 	padding: 30px; */
+	/* 	border-radius: 8px; */
+	/* 	height: fit-content; */
+	/* 	position: sticky; */
+	/* 	top: 100px; */
+	border: 1px solid #e8dfd0;
+	flex: 1;
+	background: #fdf8f3;
 	padding: 30px;
 	border-radius: 8px;
 	height: fit-content;
 	position: sticky;
 	top: 100px;
-	border: 1px solid #e8dfd0;
 }
 
 .booking-summary h3 {
@@ -266,6 +325,80 @@ main {
 	font-weight: 700;
 }
 
+/* 1. 요약 정보 상단 문단들 */
+.booking-summary>p {
+	margin-bottom: 8px;
+}
+
+/* 선택된 객실 이름 강조 (id를 직접 타겟팅) */
+.booking-summary #summaryRoom {
+	color: #6F4E37;
+	font-weight: 600;
+}
+
+/* 2. 구분선 (hr) 제어 - 순서대로 각기 다른 스타일 적용 */
+.booking-summary>hr:nth-of-type(1) {
+	margin: 15px 0;
+	border: 0;
+	border-top: 1px solid #e0d5c1;
+}
+
+.booking-summary>hr:nth-of-type(2) {
+	margin: 20px 0;
+	border: 0;
+	border-top: 1px dashed #d0c5b1;
+}
+
+.booking-summary>hr:nth-of-type(3) {
+	margin: 20px 0;
+	border: 0;
+	border-top: 2px solid #C9A962;
+}
+
+/* 3. 중간 요금 안내 영역 (첫번째, 두번째 div) */
+.booking-summary>div:nth-of-type(1), .booking-summary>div:nth-of-type(2)
+	{
+	display: flex;
+	justify-content: space-between;
+	margin-bottom: 8px;
+}
+
+/* 중간 요금 영역의 왼쪽 글씨(기본 요금, 추가금) 공통 스타일 */
+.booking-summary>div:nth-of-type(1)>span:first-child, .booking-summary>div:nth-of-type(2)>span:first-child
+	{
+	font-size: 14px;
+	color: #666;
+}
+
+/* 기본 요금 오른쪽 금액 색상 */
+.booking-summary>div:nth-of-type(1)>span:last-child {
+	font-size: 14px;
+	color: #333;
+}
+
+/* 인원 추가금 오른쪽 금액 색상 (빨간색 강조) */
+.booking-summary>div:nth-of-type(2)>span:last-child {
+	font-size: 14px;
+	color: #dc3545;
+}
+
+/* 4. 총 결제 예상 금액 영역 (마지막 div) */
+.booking-summary>div:last-of-type {
+	text-align: right;
+}
+
+.booking-summary>div:last-of-type>p {
+	font-size: 14px;
+	color: #888;
+	margin-bottom: 5px;
+}
+
+.booking-summary>div:last-of-type>h2 {
+	color: #2C1810;
+	font-size: 28px;
+	margin: 0;
+}
+
 /* Forms */
 .form-group {
 	margin-bottom: 20px
@@ -273,10 +406,11 @@ main {
 
 .form-group label {
 	display: block;
-	font-size: 14px;
+	font-size: 2.5rem;
 	font-weight: 600;
 	margin-bottom: 6px;
-	color: #444
+	color: #444;
+	padding: 10px;
 }
 
 .form-control {

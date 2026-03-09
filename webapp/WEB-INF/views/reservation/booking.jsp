@@ -7,159 +7,150 @@
 <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 <script src="https://npmcdn.com/flatpickr/dist/l10n/ko.js"></script>
 
+
+
 <c:if test="${not empty errorMsg}">
 	<script>
         alert("${errorMsg}");
     </script>
 </c:if>
+<div class="wrap">
+	<div class="textBox">
+		<div class="top_title fade-up">
+			<h2 class="en">${mode eq 'update' ? '객실 예약 변경' : '객실 예약'}</h2>
+			<p class="text">품격 있는 다이닝, 여유로운 라운지, 피트니스와 스파 등 다양한 부대시설을 통해 완성된
+				객실을 예약해주세요.</p>
+		</div>
+	</div>
+	<div class="booking-container flex">
 
-<div class="booking-container flex" style="gap: 30px; padding: 50px;">
+		<div class="booking-form w-100">
 
-	<div class="booking-form w-100" style="flex: 2;">
-		<h2>${mode eq 'update' ? '객실 예약 변경' : '객실 예약'}</h2>
 
-		<form id="reserveForm"
-			action="${pageContext.request.contextPath}/reservation/booking.do"
-			method="post">
+			<form id="reserveForm"
+				action="${pageContext.request.contextPath}/reservation/booking.do"
+				method="post">
 
-			<input type="hidden" name="mode" value="${mode}">
-			<c:if test="${mode eq 'update'}">
-				<input type="hidden" name="reservation_id"
-					value="${originRes.reservationId}">
-			</c:if>
+				<input type="hidden" name="mode" value="${mode}">
+				<c:if test="${mode eq 'update'}">
+					<input type="hidden" name="reservation_id"
+						value="${originRes.reservationId}">
+				</c:if>
 
-			<div class="form-group">
-				<label>객실 선택</label> <input type="hidden" name="room_id"
-					id="selectedRoomId" required> <input type="hidden"
-					name="room_name" id="selectedRoomName">
+				<div class="form-group">
+					<label>객실 선택</label> <input type="hidden" name="room_id"
+						id="selectedRoomId" required> <input type="hidden"
+						name="room_name" id="selectedRoomName">
 
-				<div class="room-grid"
-					style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
-					<c:forEach var="room" items="${roomList}">
-						<div class="room-card card"
-							style="border: 2px solid #eee; border-radius: 8px; overflow: hidden; transition: 0.3s; display: flex; flex-direction: column;">
+					<div class="room-grid">
+						<c:forEach var="room" items="${roomList}">
+							<div class="room-card card">
 
-							<div class="room-image"
-								style="height: 180px; background: #f5f5f5; overflow: hidden;">
-								<c:choose>
-									<c:when test="${not empty room.imagePath}">
-										<img src="${room.imagePath}?v=${room.roomId}"
-											alt="${room.roomName}"
-											style="width: 100%; height: 100%; object-fit: cover; transition: 0.3s;">
-									</c:when>
-									<c:otherwise>
-										<div
-											style="width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; color: #aaa; font-size: 14px; font-weight: bold; background-color: #eaeaea;">
-											NO IMAGE</div>
-									</c:otherwise>
-								</c:choose>
-							</div>
-
-							<div
-								style="padding: 20px; flex: 1; display: flex; flex-direction: column; justify-content: space-between;">
-								<div>
-									<h4
-										style="margin-bottom: 8px; color: #2C1810; font-size: 18px;">${room.roomName}</h4>
-									<p
-										style="font-size: 13px; color: #666; margin-bottom: 15px; line-height: 1.5;">
-										기준 ${room.baseCapacity}인 / 최대 ${room.maxCapacity}인<br> 1박
-										<strong><fmt:formatNumber value="${room.basePrice}"
-												pattern="#,###" /></strong>원
-									</p>
+								<div class="room-image">
+									<c:choose>
+										<c:when test="${not empty room.imagePath}">
+											<img src="${room.imagePath}?v=${room.roomId}"
+												alt="${room.roomName}">
+										</c:when>
+										<c:otherwise>
+											<div class="noimage">NO IMAGE</div>
+										</c:otherwise>
+									</c:choose>
 								</div>
 
-								<button type="button"
-									class="btn btn-outline btn-block room-select-btn"
-									data-id="${room.roomId}" data-name="${room.roomName}"
-									data-base="${room.baseCapacity}" data-max="${room.maxCapacity}"
-									data-price="${room.basePrice}">선택하기</button>
+								<div>
+									<div>
+										<h4>${room.roomName}</h4>
+										<p>
+											기준 ${room.baseCapacity}인 / 최대 ${room.maxCapacity}인<br>
+											1박 <strong><fmt:formatNumber
+													value="${room.basePrice}" pattern="#,###" /></strong>원
+										</p>
+									</div>
+
+									<button type="button"
+										class="btn btn-outline btn-block room-select-btn"
+										data-id="${room.roomId}" data-name="${room.roomName}"
+										data-base="${room.baseCapacity}"
+										data-max="${room.maxCapacity}" data-price="${room.basePrice}">선택하기</button>
+								</div>
+
 							</div>
-
-						</div>
-					</c:forEach>
+						</c:forEach>
+					</div>
 				</div>
-			</div>
 
-			<div class="form-group flex gap-10 mt-30">
-				<div class="w-100">
-					<label>체크인</label> <input type="text" id="checkIn" name="check_in"
-						class="form-control date-picker" required placeholder="날짜 선택">
+				<div class="form-group flex gap-10 mt-30">
+					<div class="w-100">
+						<label>체크인</label> <input type="text" id="checkIn" name="check_in"
+							class="form-control date-picker" required placeholder="날짜 선택">
+					</div>
+					<div class="w-100">
+						<label>체크아웃</label> <input type="text" id="checkOut"
+							name="check_out" class="form-control date-picker" required
+							placeholder="날짜 선택">
+					</div>
 				</div>
-				<div class="w-100">
-					<label>체크아웃</label> <input type="text" id="checkOut"
-						name="check_out" class="form-control date-picker" required
-						placeholder="날짜 선택">
+
+				<div class="form-group flex gap-10 mt-10">
+					<div class="w-100">
+						<label>성인</label> <input type="number" id="adultCnt"
+							name="adult_count" class="form-control person-calc" value="2"
+							min="1" required>
+					</div>
+					<div class="w-100">
+						<label>소아</label> <input type="number" id="childCnt"
+							name="child_count" class="form-control person-calc" value="0"
+							min="0" required>
+					</div>
 				</div>
-			</div>
 
-			<div class="form-group flex gap-10 mt-10">
-				<div class="w-100">
-					<label>성인</label> <input type="number" id="adultCnt"
-						name="adult_count" class="form-control person-calc" value="2"
-						min="1" required>
-				</div>
-				<div class="w-100">
-					<label>소아</label> <input type="number" id="childCnt"
-						name="child_count" class="form-control person-calc" value="0"
-						min="0" required>
-				</div>
-			</div>
-
-			<input type="hidden" id="totalPriceInput" name="total_price"
-				value="0">
-			<button type="button" id="submitBtn"
-				class="btn btn-primary btn-block mt-30"
-				style="padding: 15px; font-size: 16px;">${mode eq 'update' ? '예약 변경 완료' : '예약하기'}
-			</button>
-		</form>
-	</div>
-
-	<div class="booking-summary"
-		style="flex: 1; background: #fdf8f3; padding: 30px; border-radius: 8px; height: fit-content; position: sticky; top: 100px;">
-		<h3>예약 요약</h3>
-		<hr style="margin: 15px 0; border: 0; border-top: 1px solid #e0d5c1;">
-
-		<p style="margin-bottom: 8px;">
-			<strong>객실:</strong> <span id="summaryRoom"
-				style="color: #6F4E37; font-weight: 600;">선택 안 됨</span>
-		</p>
-		<p style="margin-bottom: 8px;">
-			<strong>일정:</strong> <span id="summaryDate">-</span> (<span
-				id="summaryNights">0</span>박)
-		</p>
-		<p style="margin-bottom: 8px;">
-			<strong>인원:</strong> 성인 <span id="summaryAdult">2</span>명, 소아 <span
-				id="summaryChild">0</span>명
-		</p>
-
-		<hr style="margin: 20px 0; border: 0; border-top: 1px dashed #d0c5b1;">
-
-		<div
-			style="display: flex; justify-content: space-between; margin-bottom: 8px;">
-			<span style="font-size: 14px; color: #666;">기본 요금</span> <span
-				style="font-size: 14px; color: #333;"><span
-				id="summaryBasePrice">0</span>원</span>
-		</div>
-		<div
-			style="display: flex; justify-content: space-between; margin-bottom: 8px;">
-			<span style="font-size: 14px; color: #666;">인원 추가금 (1인 4만원)</span> <span
-				style="font-size: 14px; color: #dc3545;">+ <span
-				id="summaryExtra">0</span>원
-			</span>
+				<input type="hidden" id="totalPriceInput" name="total_price"
+					value="0">
+				<button type="button" id="submitBtn"
+					class="btn btn-primary btn-block mt-30">${mode eq 'update' ? '예약 변경 완료' : '예약하기'}
+				</button>
+			</form>
 		</div>
 
-		<hr style="margin: 20px 0; border: 0; border-top: 2px solid #C9A962;">
 
-		<div style="text-align: right;">
-			<p style="font-size: 14px; color: #888; margin-bottom: 5px;">총 결제
-				예상 금액</p>
-			<h2 style="color: #2C1810; font-size: 28px;">
-				<span id="summaryTotal">0</span>원
-			</h2>
+		<div class="booking-summary">
+			<h3>예약 요약</h3>
+			<hr>
+
+			<p>
+				<strong>객실:</strong> <span id="summaryRoom">선택 안 됨</span>
+			</p>
+			<p>
+				<strong>일정:</strong> <span id="summaryDate">-</span> (<span
+					id="summaryNights">0</span>박)
+			</p>
+			<p>
+				<strong>인원:</strong> 성인 <span id="summaryAdult">2</span>명, 소아 <span
+					id="summaryChild">0</span>명
+			</p>
+
+			<hr>
+
+			<div>
+				<span>기본 요금</span> <span><span id="summaryBasePrice">0</span>원</span>
+			</div>
+			<div>
+				<span>인원 추가금 (1인 4만원)</span> <span>+ <span id="summaryExtra">0</span>원
+				</span>
+			</div>
+
+			<hr>
+
+			<div>
+				<p>총 결제 예상 금액</p>
+				<h2>
+					<span id="summaryTotal">0</span>원
+				</h2>
+			</div>
 		</div>
 	</div>
 </div>
-
 <script>
 // ==========================================
 // 💡 사용자님 원본 로직 (수정 없이 100% 그대로 유지)
@@ -347,4 +338,32 @@ $(document).ready(function() {
     </c:if>
 
 });
+</script>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+
+    const targets = document.querySelectorAll(".fade-up");
+
+    const observer = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+
+            if (entry.isIntersecting) {
+                entry.target.classList.add("show");
+
+
+                observer.unobserve(entry.target);
+            }
+
+        });
+    }, {
+        threshold: 0.3  
+    });
+
+    targets.forEach(target => {
+        observer.observe(target);
+    });
+
+});
+
 </script>

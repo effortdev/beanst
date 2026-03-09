@@ -18,7 +18,8 @@ public class BookingController implements Action {
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) {
 		ServletContext context = request.getServletContext();
-		
+		request.setAttribute("pageCss", "reservationSub");
+
 		String method = request.getMethod();
 		BookingService service = new BookingService(request.getServletContext());
 
@@ -38,6 +39,15 @@ public class BookingController implements Action {
 				request.setAttribute("mode", "update");
 			} else {
 				bookedList = service.getReservedDates();
+			}
+
+			// 🚨 [디버깅] 서버(이클립스 콘솔)에서 예약 데이터가 잘 넘어오는지 확인!
+			System.out.println("🔥 [GET 디버깅] DB에서 가져온 예약 건수: " + (bookedList != null ? bookedList.size() : "null"));
+			if (bookedList != null) {
+				for (ReservationVO vo : bookedList) {
+					System.out.println(
+							" 👉 방번호: " + vo.getRoomId() + ", 체크인: " + vo.getCheckIn() + ", 상태: " + vo.getStatus());
+				}
 			}
 
 			StringBuilder sb = new StringBuilder();
@@ -62,7 +72,6 @@ public class BookingController implements Action {
 
 			request.setAttribute("bookedListJson", sb.toString());
 			request.setAttribute("roomList", roomList);
-			request.setAttribute("pageCss", "style");
 			return "reservation/booking";
 		}
 
@@ -142,7 +151,6 @@ public class BookingController implements Action {
 					}
 					sb.append("]");
 					request.setAttribute("bookedListJson", sb.toString());
-					request.setAttribute("pageCss", "style");
 
 					return "reservation/booking";
 				}

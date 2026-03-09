@@ -134,24 +134,30 @@
 								});
 
 						// 4. 이름 실시간 검사
-						$("#name").on(
-								"input",
-								function() {
-									const val = $(this).val();
-									if (val.length >= 2 && val.length <= 20) {
-										$("#name-msg").text("적절한 이름입니다.")
-												.addClass("text-success")
-												.removeClass("text-danger");
-									} else if (val.length === 0) {
-										$("#name-msg").text("").removeClass(
-												"text-success text-danger");
-									} else {
-										$("#name-msg")
-												.text("2~20자 사이로 입력해주세요.")
-												.addClass("text-danger")
-												.removeClass("text-success");
-									}
-								});
+						$("#name").on("input", function() {
+						    const val = $(this).val();
+						    
+						    // 정규표현식: 한글과 영문 대소문자만 허용 (특수문자, 숫자, 공백 불가)
+						    const nameRegex = /^[가-힣a-zA-Z]+$/;
+						
+						    if (val.length === 0) {
+						        $("#name-msg").text("").removeClass("text-success text-danger");
+						    } else if (val.length < 2 || val.length > 20) {
+						        $("#name-msg").text("2~20자 사이로 입력해주세요.")
+						            .addClass("text-danger")
+						            .removeClass("text-success");
+						    } else if (!nameRegex.test(val)) {
+						        // 정규식 통과 실패 (특수문자, 숫자, 공백 등이 들어간 경우)
+						        $("#name-msg").text("특수문자, 숫자, 공백은 사용할 수 없습니다.")
+						            .addClass("text-danger")
+						            .removeClass("text-success");
+						    } else {
+						        // 길이도 맞고, 특수문자도 없는 경우
+						        $("#name-msg").text("적절한 이름입니다.")
+						            .addClass("text-success")
+						            .removeClass("text-danger");
+						    }
+						});
 
 						// 5. 이메일 실시간 검사
 						$("#email")

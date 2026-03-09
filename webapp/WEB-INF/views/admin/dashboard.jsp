@@ -172,24 +172,37 @@
 
 const ctx = document.getElementById('reservationChart');
 
+const dataArr = ${chartData};  
+
+const maxValue = Math.max(...dataArr);  
+
 new Chart(ctx, {
 	type: 'line',
 	data: {
 		labels: ${chartLabels},
 		datasets: [{
 			label: '예약 수',
-			data: ${chartData},
+			data: dataArr,
 			borderColor: '#3498db',
 			backgroundColor: 'rgba(52,152,219,0.2)',
 			tension: 0.4,
-			fill:true
+			fill: true
 		}]
 	},
 	options: {
 		responsive: true,
 		plugins: {
 			legend: {
-				display:false
+				display: false
+			}
+		},
+		scales: {
+			y: {
+				beginAtZero: true,
+				max: maxValue + 3,  
+				ticks: {
+					stepSize: 1
+				}
 			}
 		}
 	}

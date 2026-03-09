@@ -51,10 +51,7 @@
 	text-align: center;
 }
 
-/* 객실 이름 왼쪽 정렬 */
-.admin-table td.room-name {
-	text-align: left;
-}
+
 
 /* hover 효과 */
 .admin-table tbody tr:hover {
