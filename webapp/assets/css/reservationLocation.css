@@ -113,7 +113,7 @@ p {
 /* 오른쪽 박스 */
 .LocationExtra {
 	width: 340px;
-	background: #E6D3A3;
+	background: #ddd;
 	border-radius: 0 16px 16px 0;
 	padding: 20px 20px;
 	color: #4B433A;
@@ -141,7 +141,6 @@ p {
 	letter-spacing: 1px;
 }
 
-
 /* 골드 포인트 라인 */
 .LocationExtra h4::after {
 	content: "";
@@ -153,41 +152,37 @@ p {
 	background: #B89B5E;
 }
 
+@media ( max-width : 1060px) {
+	/* 전체 세로 배치 */
+	.Locationposition {
+		flex-direction: column;
+		align-items: center;
+	}
 
-@media (max-width: 1060px) {
+	/* 왼쪽 묶음 해체 (자식들을 상위 flex로 끌어올림) */
+	.LocationLeft {
+		display: contents;
+	}
 
-    /* 전체 세로 배치 */
-    .Locationposition {
-        flex-direction: column;
-        align-items: center;
-    }
-
-    /* 왼쪽 묶음 해체 (자식들을 상위 flex로 끌어올림) */
-    .LocationLeft {
-        display: contents;
-    }
-
-    /* 순서 재정렬 */
-    .Locationadress {
-        order: 1;
-        width: 90%;
-        max-width: 600px;
-        border-radius: 12px 12px 0 0;
-/*         margin-bottom: 20px; */
-    }
-
-    .LocationMap {
-        order: 2;
-        width: 90%;
-        max-width: 600px;
-/*         border-radius: 16px; */
-/*         margin-bottom: 20px; */
-    }
-
-    .LocationExtra {
-        order: 3;
-        width: 90%;
-        max-width: 600px;
-        border-radius: 0 0 12px 12px;
-    }
+	/* 순서 재정렬 */
+	.Locationadress {
+		order: 1;
+		width: 90%;
+		max-width: 600px;
+		border-radius: 12px 12px 0 0;
+		/*         margin-bottom: 20px; */
+	}
+	.LocationMap {
+		order: 2;
+		width: 90%;
+		max-width: 600px;
+		/*         border-radius: 16px; */
+		/*         margin-bottom: 20px; */
+	}
+	.LocationExtra {
+		order: 3;
+		width: 90%;
+		max-width: 600px;
+		border-radius: 0 0 12px 12px;
+	}
 }

@@ -94,9 +94,10 @@
 	--color5: #B4A99E; /* 플레이스홀더 / 비활성 텍스트 */
 	/* ── 포인트 색상 (골드 시스템) ─────────────── */
 	--point1: #C9A962; /* 메인 골드 */
-	--point2: #A8833A; /* 딥 골드 (hover, 강조) */
+	--point2: #9b6a09; /* 딥 골드 (hover, 강조) */
 	--point3: #E2C97E; /* 라이트 골드 (밝은 액센트) */
 	--point4: #F5EDD8; /* 페일 골드 (배경 액센트) */
+	--point5: #721c24; /* 진 보라 (밝은 액센트) */
 	/* ── 상태 색상 ─────────────────────────────── */
 	--state-success: #4A8C6F; /* 예약 완료 (포레스트 그린) */
 	--state-error: #B5402A; /* 오류 (딥 레드) */
@@ -118,51 +119,39 @@
 	/* ── 보더 ── */
 	--border: rgba(201, 169, 98, 0.15);
 	--border-hover: rgba(201, 169, 98, 0.40);
-	/* 폰트사이즈 */
 	/* ── Bold (Pretendard 700) ─────────────────── */
-	--font_b_26: 700 2.6rem/3.2rem 'Pretendard', sans-serif;
-	--font_b_18: 700 1.8rem/2.6rem 'Pretendard', sans-serif;
-	--font_b_17: 700 1.7rem/2.4rem 'Pretendard', sans-serif;
-	--font_b_16: 700 1.6rem/2.3rem 'Pretendard', sans-serif;
-	--font_b_13: 700 1.3rem/1.9rem 'Pretendard', sans-serif;
-	--font_b_11: 700 1.1rem/1.7rem 'Pretendard', sans-serif;
+	--font_b_32: 700 2.6rem/3.2rem 'Pretendard', sans-serif;
+	--font_b_26: 700 1.8rem/2.6rem 'Pretendard', sans-serif;
+	--font_b_24: 700 1.7rem/2.4rem 'Pretendard', sans-serif;
+	--font_b_23: 700 1.6rem/2.3rem 'Pretendard', sans-serif;
+	--font_b_22: 700 1.6rem/2.2rem 'Pretendard', sans-serif;
+	--font_b_19: 700 1.3rem/1.9rem 'Pretendard', sans-serif;
+	--font_b_17: 700 1.1rem/1.7rem 'Pretendard', sans-serif;
 	/* ── Medium (Pretendard 400) ───────────────── */
-	--font_m_18: 400 1.8rem/2.6rem 'Pretendard', sans-serif;
-	--font_m_15: 400 1.5rem/2.2rem 'Pretendard', sans-serif;
-	--font_m_14: 400 1.4rem/2.0rem 'Pretendard', sans-serif;
-	--font_m_12: 400 1.2rem/1.6rem 'Pretendard', sans-serif;
+	--font_m_26: 400 1.8rem/2.6rem 'Pretendard', sans-serif;
+	--font_m_22: 400 1.5rem/2.2rem 'Pretendard', sans-serif;
+	--font_m_20: 400 1.4rem/2.0rem 'Pretendard', sans-serif;
+	--font_m_16: 400 1.2rem/1.6rem 'Pretendard', sans-serif;
 	/* ── Regular (Pretendard 300) ──────────────── */
-	--font_r_26: 300 2.6rem/3.2rem 'Pretendard', sans-serif;
-	--font_r_16: 300 1.6rem/2.3rem 'Pretendard', sans-serif;
-	--font_r_14: 300 1.4rem/2.0rem 'Pretendard', sans-serif;
-	--font_r_13: 300 1.3rem/1.9rem 'Pretendard', sans-serif;
+	--font_r_32: 300 2.6rem/3.2rem 'Pretendard', sans-serif;
+	--font_r_23: 300 1.6rem/2.3rem 'Pretendard', sans-serif;
+	--font_r_20: 300 1.4rem/2.0rem 'Pretendard', sans-serif;
+	--font_r_19: 300 1.3rem/1.9rem 'Pretendard', sans-serif;
 	/* ── 영문 제목용 (Poppins) ─────────────────── */
-	--font_poppins_35: 700 3.5rem/4.1rem 'Poppins', sans-serif;
-	--font_poppins_27: 700 2.7rem/3.3rem 'Poppins', sans-serif;
-	--font_poppins_18: 700 1.8rem/2.4rem 'Poppins', sans-serif;
-	--font_poppins_15: 500 1.5rem/2.1rem 'Poppins', sans-serif;
-	--font_poppins_14: 500 1.4rem/2.0rem 'Poppins', sans-serif;
+	--font_poppins_41: 700 3.5rem/4.1rem 'Poppins', sans-serif;
+	--font_poppins_33: 700 2.7rem/3.3rem 'Poppins', sans-serif;
+	--font_poppins_24: 700 1.8rem/2.4rem 'Poppins', sans-serif;
+	--font_poppins_21: 500 1.5rem/2.1rem 'Poppins', sans-serif;
+	--font_poppins_20: 500 1.4rem/2.0rem 'Poppins', sans-serif;
 	--font_poppins_13: 300 1.3rem/1.9rem 'Poppins', sans-serif;
 	/* ── 럭셔리 장식용 영문 (SortsMillGoudy / Trirong) ── */
 	--font_goudy_24: 500 2.4rem/3.2rem 'SortsMillGoudy', serif;
 	--font_trirong_b_22: 700 2.2rem/3.0rem 'Trirong', serif;
 	--font_trirong_22: 500 2.2rem/3.0rem 'Trirong', serif;
 	--font_trirong_16: 300 1.6rem/2.4rem 'Trirong', serif;
-}
-/* ================================================
-   [COMMON] CSS 변수 정의
-   ================================================ */
-.en {
-	font-family: 'Poppins', sans-serif !important;
-	font-weight: 500;
+	--box-effect01: 9px -10px 0px 0px #c9a962, -2px -2px 5px #fff;
 }
 
-.tit_en {
-	font-family: 'Poppins', sans-serif !important;
-	font-weight: 500;
-	font-size: 48px;
-	margin-bottom: 30px;
-}
 /* -----------------------------------------------
 	[COMMON] 초기화
 ------------------------------------------------- */
@@ -291,11 +280,6 @@ select:disabled {
 	background-color: #eee;
 }
 
-input {
-	appearance: none;
-	-webkit-appearance: none;
-}
-
 textarea {
 	border: 1px solid #ebebeb;
 	border-radius: 5px;
@@ -358,65 +342,317 @@ blockquote:before, blockquote:after, q:before, q:after {
 }
 
 /* ================================================
-   [COMMON] 뱃지
+   [COMMON-btn] 버튼
    ================================================ */
-.badge {
+.btn {
 	display: inline-block;
-	padding: 5px 10px 4px;
+	padding: 12px 28px;
 	border-radius: 8px;
-	font-size: 12px;
-	font-weight: 300;
-	border: 1px solid var(--caramel);
+	font-size: 14px;
+	font-weight: 500;
+	cursor: pointer;
+	transition: .3s;
+	border: none;
+	text-align: center;
 }
 
-.badge-pending {
-	background: #fff3cd;
-	color: #856404;
+/* Primary / Secondary — 같은 스타일이므로 공통화 */
+.btn-primary, .btn-secondary {
+	background: linear-gradient(135deg, var(--dark-roast), var(--coffee));
+	color: var(--cream) !important;
+	box-shadow: 0 4px 12px 1px rgba(77, 75, 72, .30);
+	border: 1px solid var(--mocha);
+	font-size: 1.4rem;
 }
 
-.badge-paid {
-	background: #d4edda;
-	color: #155724;
+.btn-primary:hover, .btn-secondary:hover {
+	background: linear-gradient(135deg, #B8954A, var(--caramel));
+	box-shadow: 0 6px 16px rgba(201, 169, 98, .4);
 }
 
-.badge-confirmed {
-	background: #cce5ff;
-	color: #004085;
+.btn-sm {
+	padding: 14px 20px;
+	font-size: 13px;
 }
 
-.badge-cancelled {
-	background: #f8d7da;
-	color: #721c24;
+.btn-lg {
+	padding: 16px 40px;
+	font-size: 16px;
+	border-radius: 8px;
 }
 
-.badge-waiting {
-	background: var(--caramel);
-	color: var(--warm-cream);
+.btn-block {
+	display: block;
+	width: 100%;
 }
 
-.badge-answered {
-	background: var(--dark-roast);
-	color: var(--latte);
+/* Buttons - 카라멜/에스프레소 톤 */
+.btn {
+	display: inline-block;
+	padding: 12px 28px;
+	border-radius: 6px;
+	font-size: 16px;
+	font-weight: 500;
+	cursor: pointer;
+	transition: .3s;
+	border: none;
+	text-align: center
 }
 
-.badge-active {
-	background: #d4edda;
-	color: #155724;
+.btn-primary {
+	background: linear-gradient(135deg, #C9A962, #B8954A);
+	color: #fff;
+	box-shadow: 0 4px 12px rgba(201, 169, 98, .3)
 }
 
-.badge-blocked {
-	background: #f8d7da;
-	color: #721c24;
+.btn-primary:hover {
+	background: linear-gradient(135deg, #B8954A, #A68238);
+	box-shadow: 0 6px 16px rgba(201, 169, 98, .4)
 }
 
-.badge-inactive {
-	background: var(--latte);
-	color: var(--mocha);
+.btn-secondary {
+	background: #5D4037;
+	color: #F5E6D3 !important
 }
 
-.badge-secret {
-	background: var(--latte);
-	color: var(--mocha);
+.btn-secondary:hover {
+	background: #4A3728
+}
+
+.btn-outline {
+	border: 1px solid #C9A962;
+	color: #6F4E37;
+	background: transparent
+}
+
+.btn-outline:hover {
+	background: #C9A962;
+	color: #fff
+}
+
+.btn-danger {
+	background: #8B4513;
+	color: #fff
+}
+
+.btn-danger:hover {
+	background: #6F4E37
+}
+
+.btn-sm {
+	padding: 8px 16px;
+	font-size: 13px
+}
+
+.btn-lg {
+	padding: 16px 40px;
+	font-size: 16px;
+	border-radius: 8px
+}
+
+.btn-block {
+	display: block;
+	width: 100%
+}
+
+/* Cards - 크림 배경, 부드러운 그림자 */
+.card {
+	background: #fff;
+	border-radius: 12px;
+	box-shadow: 0 4px 20px rgba(61, 35, 20, .06);
+	overflow: hidden;
+	transition: .4s;
+	border: 1px solid rgba(232, 213, 183, .5)
+}
+
+.card:hover {
+	transform: translateY(-6px);
+	box-shadow: 0 12px 32px rgba(61, 35, 20, .12);
+	border-color: rgba(201, 169, 98, .3)
+}
+
+.card-img {
+	height: 220px;
+	background: linear-gradient(135deg, #F5E6D3, #E8D5B7);
+	overflow: hidden
+}
+
+.card-img img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover
+}
+
+.card-img .placeholder {
+	height: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background: linear-gradient(135deg, #F5E6D3, #E8D5B7);
+	color: #8B7355;
+	font-size: 48px
+}
+
+.card-body {
+	padding: 24px
+}
+
+.card-title {
+	font-family: 'Cormorant Garamond', serif;
+	font-size: 20px;
+	font-weight: 600;
+	margin-bottom: 8px;
+	color: #2C1810
+}
+
+.card-text {
+	font-size: 14px;
+	color: #5D4037;
+	margin-bottom: 12px
+}
+
+.card-price {
+	font-size: 22px;
+	font-weight: 700;
+	color: #6F4E37
+}
+
+.card-price small {
+	font-size: 13px;
+	color: #8B7355;
+	font-weight: 400
+}
+
+.card-grid {
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+	gap: 28px
+}
+
+/* Section - 커피콩 컬러 */
+.section {
+	padding: 70px 0;
+	background: #FDF8F3
+}
+
+.section-title {
+	text-align: center;
+	margin-bottom: 48px
+}
+
+.section-title h2 {
+	font-family: 'Cormorant Garamond', serif;
+	font-size: 34px;
+	font-weight: 600;
+	color: #2C1810;
+	margin-bottom: 12px;
+	letter-spacing: 2px
+}
+
+.section-title p {
+	color: #6F4E37;
+	font-size: 16px;
+	font-weight: 400
+}
+
+.section-title h2::after {
+	content: '';
+	display: block;
+	width: 60px;
+	height: 3px;
+	background: linear-gradient(90deg, #C9A962, #5d4037);
+	margin: 14px auto 0;
+	border-radius: 2px
+}
+
+/* Forms */
+.form-group {
+	margin-bottom: 20px
+}
+
+.form-group label {
+	display: block;
+	font-size: 14px;
+	font-weight: 600;
+	margin-bottom: 6px;
+	color: #444
+}
+
+.form-control {
+	width: 100%;
+	padding: 10px 14px;
+	border: 1px solid #ddd;
+	border-radius: 4px;
+	font-size: 14px;
+	transition: .3s
+}
+
+.form-control:focus {
+	outline: none;
+	border-color: #C9A962;
+	box-shadow: 0 0 0 3px rgba(201, 169, 98, .2)
+}
+
+textarea.form-control {
+	min-height: 120px;
+	resize: vertical
+}
+
+.input-group {
+	display: flex;
+	gap: 8px
+}
+
+.input-group .form-control {
+	flex: 1
+}
+
+.form-check {
+	display: flex;
+	align-items: center;
+	gap: 8px
+}
+
+.form-check input[type="checkbox"] {
+	width: 18px;
+	height: 18px
+}
+
+.error-text {
+	color: #dc3545;
+	font-size: 13px;
+	margin-top: 4px
+}
+
+.success-text {
+	color: #28a745;
+	font-size: 13px;
+	margin-top: 4px
+}
+
+.form-box {
+	max-width: 500px;
+	margin: 0 auto;
+	background: #fff;
+	padding: 40px;
+	border-radius: 8px;
+	box-shadow: 0 2px 8px rgba(0, 0, 0, .08)
+}
+
+.form-box h2 {
+	text-align: center;
+	margin-bottom: 30px;
+	font-size: 24px;
+	color: #2C1810
+}
+
+.form-box h2::after {
+	content: '';
+	display: block;
+	width: 40px;
+	height: 3px;
+	background: #C9A962;
+	margin: 10px auto 0
 }
 
 /* ================================================
@@ -527,4 +763,92 @@ blockquote:before, blockquote:after, q:before, q:after {
 	display: grid;
 	grid-template-columns: 1fr 1fr;
 	gap: 30px;
+}
+
+/* ================================================
+   [공통 타이틀- contents-layout] 공통 정의
+================================================ */
+main .wrap {
+	padding-top: 120px;
+	background: var(--warm-cream);
+}
+
+.wrap .textBox {
+	max-width: 1600px;
+	margin: 0 auto;
+	width: 95%;
+}
+
+.wrap .titBox {
+	max-width: 1600px;
+	margin: 0 auto;
+	width: 95%;
+}
+
+/* ── 타이틀 영역 ──────────────────────────────── */
+.top_title h2 {
+	font-size: 48px;
+	margin-bottom: 30px;
+}
+
+.top_title p {
+	font-weight: 300;
+	position: relative;
+}
+
+.top_title p::before {
+	position: absolute;
+	content: "";
+	bottom: -10px;
+	left: 0;
+	width: 100%;
+	height: 1px;
+	background: #ccc;
+}
+
+.en {
+	font-family: 'Poppins', sans-serif !important;
+	font-weight: 500;
+}
+
+.tit_en {
+	font-family: 'Poppins', sans-serif !important;
+	font-weight: 500;
+	font-size: 48px;
+	margin-bottom: 30px;
+}
+/* ── 페이드업 애니메이션 ───────────────────────── */
+.fade-up {
+	opacity: 0;
+	transform: translateY(60px);
+	transition: all 1s ease;
+}
+
+.fade-up.show {
+	opacity: 1;
+	transform: translateY(0);
+}
+
+@media ( max-width : 1024px) {
+	.top_title h2 {
+		font-size: 38px;
+		margin-bottom: 22px;
+	}
+}
+
+@media ( max-width : 767px) {
+	.wrap {
+		padding-top: 60px;
+	}
+	.top_title h2 {
+		font-size: clamp(26px, 7vw, 34px);
+		margin-bottom: 16px;
+		line-height: 1.2;
+	}
+}
+
+@media ( max-width : 480px) {
+	.top_title h2 {
+		font-size: 24px;
+	}
 }

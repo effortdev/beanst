@@ -14,6 +14,7 @@ public class AdminLoginController implements Action {
     public String execute(HttpServletRequest request, HttpServletResponse response) {
 
         String method = request.getMethod();
+        request.setAttribute("pageCss", "admin_login");
 
     
         if (method.equals("GET")) {

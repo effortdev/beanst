@@ -17,7 +17,7 @@
 ========================= */
 .admin-header {
 	height: 60px;
-	background: #0e0e0e;
+	background:var(--bg1);
 	color: #fff;
 	display: flex;
 	justify-content: space-between;
@@ -51,7 +51,7 @@
 
 .admin-logout:hover {
 	background: #fff;
-	color: #0e0e0e;
+	color: var(--bg1);
 }
 
 /* =========================
@@ -59,7 +59,7 @@
 ========================= */
 .admin-sidebar {
 	width: 220px;
-	background: #0e0e0e;
+	background: var(--bg2);
 	color: #fff;
 	padding-top: 30px;
 	position: sticky;
@@ -88,13 +88,13 @@
 }
 
 .admin-sidebar a:hover {
-	background: #3a3a55;
+	background: var(--bg3);
 	padding-left: 24px;
 }
 
 /* 현재 메뉴 */
 .admin-sidebar a.active {
-	background: #3a3a55;
+	background: var(--bg3);
 	font-weight: 600;
 }
 
@@ -134,7 +134,7 @@
 button {
 	width: 100%;
 	padding: 10px;
-	background: #0e0e0e;
+	background: var(--bg2);
 	color: #fff;
 	border: none;
 	cursor: pointer;

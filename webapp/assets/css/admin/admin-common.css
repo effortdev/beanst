@@ -5,7 +5,17 @@
 }
 
 :root {
-	--main-color: #2C1F1A;
+	/*헤더,사이드바*/
+	--bg1: #2C1F1A;
+	--bg2: #3A2A22;
+	--bg3: #5A3E31;
+	/*수정, 삭제 버튼*/
+	--bg4: #eef4ff;
+	--bg5: #ffecec;
+	--ctbg1: #efefef;
+	--listbg1: #ddd;
+	--color4: #3b6fd6;
+	--color5: #e53935;
 }
 
 html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p,

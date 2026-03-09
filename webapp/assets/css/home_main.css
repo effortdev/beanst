@@ -270,15 +270,10 @@
 
 #about_Hotel .top_title p {
 	font-weight: 300;
-}
-
-#about_Hotel .top_textBox {
-	display: flex;
-	justify-content: space-between;
 	position: relative;
 }
 
-#about_Hotel .top_textBox::before {
+#about_Hotel .top_title p::before {
 	position: absolute;
 	content: "";
 	bottom: -10px;
@@ -407,39 +402,4 @@
 	text-align: right;
 	padding: 15px;
 	color: #fff;
-}
-
-/* about_Room 섹션 */
-#about_Room {
-	max-width: 1600px;
-	width: 90%;
-	padding: 200px 0;
-	margin: 0 auto;
-	user-select: none;
-	overflow: hidden;
-}
-
-#about_Room .top_title h2 {
-	font-size: 48px;
-	margin-bottom: 30px;
-}
-
-#about_Room .top_title p {
-	font-weight: 300;
-}
-
-#about_Room .top_textBox {
-	display: flex;
-	justify-content: space-between;
-	position: relative;
-}
-
-#about_Room .top_textBox::before {
-	position: absolute;
-	content: "";
-	bottom: -10px;
-	left: 0;
-	width: 100%;
-	height: 1px;
-	background: #ccc;
 }

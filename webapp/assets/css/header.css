@@ -130,6 +130,7 @@ header .hdr_inner .rightItem ul {
 	list-style: none;
 	margin: 0;
 	padding: 0;
+	font: var(--font_b_23);
 }
 
 header .hdr_inner .rightItem ul li {
@@ -137,13 +138,13 @@ header .hdr_inner .rightItem ul li {
 }
 
 /* 구분선 (li 사이) */
-header .hdr_inner .rightItem ul li+li::before {
+header .hdr_inner .rightItem ul li:nth-child(3)::before {
 	content: "";
 	position: absolute;
 	left: -4px;
 	top: 50%;
 	transform: translateY(-50%);
-	width: 1px;
+	width: 2px;
 	height: 12px;
 	background: #ccc;
 }
@@ -153,8 +154,7 @@ header .rightItem ul li .text, header .rightItem ul li a {
 	position: relative;
 	display: inline-block;
 	padding: 6px 14px;
-	font-size: 14px;
-	font-weight: 500;
+	font: var(--font_m_26);
 	color: var(--color2);
 	letter-spacing: 0.06em;
 	text-decoration: none;
@@ -188,10 +188,10 @@ header .rightItem ul li .text:hover, header .rightItem ul li a:not(.btn-reserve)
 /* 예약 버튼 (마지막 li) */
 header .rightItem ul li a.btn-reserve, header .rightItem ul li:last-child a,
 	header .rightItem ul li:last-child .text {
-	background: var(--gold);
+	background: var(--point5);
 	color: #fff;
-	padding: 8px 20px;
-	border-radius: 2px;
+	padding: 10px 32px 8px;
+	border-radius: 8px;
 	font-weight: 600;
 	letter-spacing: 0.08em;
 	transition: background var(--transition), transform 0.2s;

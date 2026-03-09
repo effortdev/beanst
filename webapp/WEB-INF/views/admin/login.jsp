@@ -2,7 +2,7 @@
 <%@ taglib prefix="c" uri="jakarta.tags.core"%>
 
 <div class="admin-login-container">
-	<h2 class="title">Admin Login</h2>
+	<h2 class="title en">Admin Login</h2>
 
 	<form action="${pageContext.request.contextPath}/admin/login.do"
 		method="post">
