@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="jakarta.tags.core"%>
 
-<div class="wrap" style="background: #FAF8F5">
+<div class="wrap hero">
 	<section id="main_hero">
 		<div class="swiper heroSwiper">
 			<div class="swiper-wrapper">
@@ -11,16 +11,15 @@
 
 					<div class="brand-divider fade-up" aria-hidden="true">◆</div>
 
-					<h2 class="brand-subtitle ko fade-up">도심 속에서 만나는 프리미엄 휴식, 당신의
-						하루를 더 특별하게</h2>
+					<h2 class="brand-subtitle ko fade-up">일상을 잠시 내려놓는 곳, 당신만의 완벽한
+						쉼</h2>
 
 					<p class="brand-desc ko fade-up">
-						<span class="title en">VIN'st Hotel</span>는 도시의 중심에서 자연의 여유를 느낄 수
-						있는 프리미엄 호텔입니다.
+						<span class="title en">VIN'st Hotel</span>도심 한복판에서 자연의 고요함을 만나다.
 					</p>
 
-					<p class="brand-desc-sub ko fade-up">감각적인 인테리어와 편안한 침구, 그리고 섬세한
-						서비스로 여행의 피로를 완벽하게 풀어드립니다.</p>
+					<p class="brand-desc-sub ko fade-up">정제된 공간과 세심한 서비스로, 머무는 모든
+						순간이 특별한 기억이 되는 프리미엄 호텔입니다.</p>
 					<p class="brand-desc-sub ko fade-up">다양한 객실 타입과 스위트룸, 라운지 &amp;
 						편의시설까지 머무는 순간이 곧 쉼이 되도록 준비했습니다.</p>
 				</div>

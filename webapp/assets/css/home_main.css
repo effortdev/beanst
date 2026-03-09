@@ -1,15 +1,18 @@
 @charset "UTF-8";
 
-.fade-up {
+/* .fade-up {
 	opacity: 0;
 	transform: translateY(60px);
 	transition: all 1s ease;
 }
 
-/* 실행 상태 */
+실행 상태
 .fade-up.show {
 	opacity: 1;
 	transform: translateY(0);
+} */
+main .wrap.hero {
+	padding-top: 0;
 }
 
 /* hero 섹션 */
@@ -112,10 +115,23 @@
 	background: #ccc;
 }
 
+#about_Room .top_title>.top_textBox>.text+span, #about_Hotel .top_title>.top_textBox>.text+span
+	{
+	position: absolute;
+	right: 2%;
+	bottom: 40%;
+}
+
+#about_Room .top_title>.top_textBox>.text+span>a, #about_Hotel .top_title>.top_textBox>.text+span>a
+	{
+	font: var(--font_m_18);
+	color: var(--point2);
+}
+
 #about_Room .roomListSwiper {
 	padding-top: 100px;
 	width: 100%;
-	height: 550px;
+	height: auto;
 	position: relative;
 }
 
@@ -138,6 +154,7 @@
 	/* clip 유지 (transition 최소화) */
 	clip-path: inset(18% 18% 18% 18%);
 	transition: clip-path 0.6s ease;
+	border-radius: 4px 98px 0 116px;
 }
 
 #about_Room .swiper-slide .imgBox img {
@@ -169,10 +186,11 @@
 	opacity: 0;
 	transition: opacity 0.4s ease, right 0.4s ease;
 	transition-delay: 0.1s;
-	border: none;
-	background-color: #0e0e0e;
-	color: #fff;
 	padding: 20px 30px;
+	background: linear-gradient(to left, rgba(0, 0, 0, 0.85), transparent);
+	border-radius: 0 0 0 100px;
+	box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05), 0 10px 30px
+		rgba(0, 0, 0, 0.1);
 }
 
 #about_Room .swiper-slide .textBox .title {
@@ -184,17 +202,20 @@
 #about_Room .swiper-slide .textBox .text {
 	font-size: 16px;
 	text-align: right;
-	color: #aaa;
+	color: #fff;
 }
 
 #about_Room .swiper-slide.swiper-slide-active .textBox {
 	opacity: 1;
 	right: 0;
-	border-radius: 10px 0 0 0;
 }
 
 #about_Room .swiper-button-next, #about_Room .swiper-button-prev {
 	color: #0e0e0e;
+}
+
+.roomListSwiper .list_item {
+	position: relative;
 }
 
 /* 슬라이드 버튼 */
@@ -207,8 +228,7 @@
 #about_Room .swiper-pagination {
 	width: auto !important;
 	left: auto;
-	right: 60px;
-	bottom: 10px;
+	right: 30px;
 	text-align: right;
 }
 
@@ -242,22 +262,11 @@
 	transform: translateY(-2px);
 }
 
-@media ( max-width : 768px) {
-	#about_Room .swiper-pagination {
-		width: auto !important;
-		position: absolute;
-		top: 50px;
-		right: 20px;
-		bottom: auto;
-		left: auto;
-		text-align: right;
-	}
-}
 /* about_Hotel 섹션 */
 #about_Hotel {
 	max-width: 1600px;
 	width: 90%;
-	padding: 200px 0;
+	padding: 100px 0 200px;
 	margin: 0 auto;
 	user-select: none;
 	overflow: hidden;
@@ -294,33 +303,16 @@
 .experienceSwiper .list_item {
 	width: 500px;
 	height: 400px;
-	background: #0e0e0e;
 	font-size: 20px;
 	font-weight: 500;
-	border-radius: 12px;
 	overflow: hidden;
-}
-
-@media ( max-width : 1024px) {
-	.experienceSwiper .list_item {
-		width: 500px;
-		height: 400px;
-	}
-}
-
-/* 모바일 */
-@media ( max-width : 768px) {
-	.experienceSwiper .list_item {
-		width: 400px;
-		height: 400px;
-		margin: 0 auto;
-	}
 }
 
 .experienceSwiper .list_item .imgBox {
 	overflow: hidden;
 	position: relative;
 	height: 350px;
+	border-radius: 4px 98px 0 115px;
 }
 
 .experienceSwiper .list_item .imgBox img {
@@ -401,5 +393,212 @@
 .experienceSwiper .list_item .textBox {
 	text-align: right;
 	padding: 15px;
+	background: linear-gradient(to left, rgba(0, 0, 0, 0.85), transparent);
+	margin-left: 5%;
 	color: #fff;
+}
+
+/* =============================================
+   반응형 미디어쿼리 - main 영역
+   breakpoint: 1024px / 768px / 480px
+   ============================================= */
+
+/* ── 1024px 이하 (소형 데스크탑 / 태블릿 가로) ── */
+@media ( max-width : 1024px) {
+	/* hero */
+	#main_hero .brand-title {
+		font-size: 42px;
+	}
+	#main_hero .brand-subtitle {
+		font-size: 18px;
+	}
+
+	/* about_Room */
+	#about_Room {
+		width: 92%;
+		padding: 80px 0;
+	}
+	#about_Room .top_title h2 {
+		font-size: 38px;
+	}
+	#about_Room .top_title>.top_textBox>.text+span, #about_Hotel .top_title>.top_textBox>.text+span
+		{
+		position: absolute;
+		right: 0;
+		bottom: 50%;
+	}
+	#about_Room .top_title>.top_textBox>.text+span>a, #about_Hotel .top_title>.top_textBox>.text+span>a
+		{
+		font: var(--font_m_15);
+	}
+	#about_Room .roomListSwiper {
+		height: auto;
+		padding-top: 80px;
+	}
+
+	/* about_Hotel */
+	#about_Hotel {
+		width: 92%;
+		padding: 80px 0 160px;
+	}
+	#about_Hotel .top_title h2 {
+		font-size: 38px;
+	}
+	.experienceSwiper .list_item {
+		width: 420px;
+		height: 380px;
+	}
+	.experienceSwiper .list_item .imgBox {
+		height: 310px;
+	}
+}
+
+/* ── 768px 이하 (태블릿 세로 / 모바일 가로) ── */
+@media ( max-width : 768px) {
+	/* hero */
+	#main_hero .brand-title {
+		font-size: 32px;
+	}
+	#main_hero .brand-divider {
+		font-size: 16px;
+		margin: 10px 0;
+	}
+	#main_hero .brand-subtitle {
+		font-size: 15px;
+		margin-bottom: 30px;
+	}
+	#main_hero .brand-desc {
+		font-size: 13px;
+	}
+
+	/* about_Room */
+	#about_Room {
+		width: 90%;
+		padding: 60px 0;
+	}
+	#about_Room .top_title h2 {
+		font-size: 30px;
+		margin-bottom: 20px;
+	}
+	#about_Room .top_title p {
+		font-size: 14px;
+	}
+	#about_Room .roomListSwiper {
+		height: auto;
+		padding-top: 60px;
+	}
+	#about_Room .swiper-slide .textBox {
+		padding: 14px 20px;
+	}
+	#about_Room .swiper-slide .textBox .title {
+		font-size: 22px;
+		margin-bottom: 0.8rem;
+	}
+	#about_Room .swiper-slide .textBox .text {
+		font-size: 13px;
+	}
+
+	/* about_Hotel */
+	#about_Hotel {
+		width: 90%;
+		padding: 60px 0 100px;
+	}
+	#about_Hotel .top_title h2 {
+		font-size: 30px;
+		margin-bottom: 20px;
+	}
+	#about_Hotel .top_title p {
+		font-size: 14px;
+	}
+	.experienceSwiper {
+		margin-top: 60px;
+	}
+	.experienceSwiper .list_item {
+		width: 340px;
+		height: 360px;
+		margin: 0 auto;
+	}
+	.experienceSwiper .list_item .imgBox {
+		height: 290px;
+		border-radius: 4px 70px 0 80px;
+	}
+	.experienceSwiper .list_item .textBox {
+		padding: 10px 12px;
+		font-size: 16px;
+	}
+}
+
+/* ── 480px 이하 (모바일) ── */
+@media ( max-width : 480px) {
+	/* hero */
+	#main_hero .hero-content {
+		width: 88%;
+	}
+	#main_hero .brand-title {
+		font-size: 26px;
+	}
+	#main_hero .brand-divider {
+		font-size: 14px;
+	}
+	#main_hero .brand-subtitle {
+		font-size: 13px;
+		margin-bottom: 20px;
+	}
+	#main_hero .brand-desc {
+		font-size: 12px;
+		line-height: 1.6;
+	}
+
+	/* about_Room */
+	#about_Room {
+		width: 88%;
+		padding: 50px 0;
+	}
+	#about_Room .top_title h2 {
+		font-size: 24px;
+	}
+	#about_Room .roomListSwiper {
+		height: auto;
+		padding-top: 50px;
+	}
+	#about_Room .swiper-slide .textBox {
+		padding: 10px 14px;
+		border-radius: 0 0 0 60px;
+		width: 87%;
+	}
+	#about_Room .swiper-slide .textBox .title {
+		font-size: 18px;
+	}
+	#about_Room .swiper-slide .textBox .text {
+		font-size: 12px;
+	}
+
+	/* about_Hotel */
+	#about_Hotel {
+		width: 88%;
+		padding: 50px 0 80px;
+	}
+	#about_Hotel .top_title h2 {
+		font-size: 24px;
+	}
+	.experienceSwiper {
+		margin-top: 50px;
+	}
+	.experienceSwiper .list_item {
+		width: 280px;
+		height: 320px;
+	}
+	.experienceSwiper .list_item .imgBox {
+		height: 260px;
+		border-radius: 4px 50px 0 60px;
+	}
+	.experienceSwiper .list_item .textBox {
+		font-size: 14px;
+		padding: 8px 10px;
+	}
+	.experienceSwiper .list_item .viewBtn {
+		font-size: 12px;
+		padding: 10px 20px;
+		letter-spacing: 1px;
+	}
 }

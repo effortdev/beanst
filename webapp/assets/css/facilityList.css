@@ -9,7 +9,7 @@
    ================================================ */
 
 /* ── 시설 그리드 : 기본 3열 ───────────────────── */
-.facilityList {
+.facilityList, .roomList {
 	max-width: 1600px;
 	margin: 0 auto;
 	padding: 100px 40px;
@@ -19,15 +19,14 @@
 }
 
 /* ── 시설 카드 ────────────────────────────────── */
-.facilityCard {
+.facilityCard, .roomCard {
 	background: #fff;
 	border: 1px solid #eee;
 	border-radius: 8px 60px 0 0;
-	background: #ddd;
 	transition: 0.3s;
 }
 
-.facilityCard:hover {
+.facilityCard:hover, .roomCard:hover {
 	transform: translateY(-5px);
 	box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
 }
@@ -48,8 +47,20 @@
 	transition: 0.4s;
 }
 
-.facilityCard:hover img {
+.facilityCard:hover img, .roomCard:hover img {
 	transform: scale(1.05);
+}
+
+.roomList .roomCard {
+	border: 1px solid #eee;
+	border-radius: 8px 60px 0 0;
+	background: #ddd;
+	transition: 0.3s;
+}
+
+.facilityCard .textBox {
+	background: #ddd;
+	width: 100%;
 }
 
 /* ── 텍스트 박스 ──────────────────────────────── */
@@ -94,8 +105,8 @@
 		margin-bottom: 22px;
 	}
 
-	/* 2열로 변경 + 여백/간격 축소 */
-	.facilityList {
+	/* facilityList + roomList : 2열로 변경 */
+	.facilityList, .roomList {
 		grid-template-columns: repeat(2, 1fr);
 		padding: 70px 30px;
 		gap: 40px;
@@ -117,14 +128,14 @@
    MOBILE  767px 이하  →  1열 그리드
    ================================================ */
 @media ( max-width : 767px) {
-	/* 상단 여백 조정 (헤더 높이 고려) */
+	/* 상단 여백 조정 */
 	.wrap {
 		padding-top: 60px;
 	}
 
 	/* 타이틀 폰트 모바일 최적화 */
 	.top_title h2 {
-		font-size: clamp(26px, 7vw, 34px); /* 화면 너비에 따라 유동적으로 */
+		font-size: clamp(26px, 7vw, 34px);
 		margin-bottom: 16px;
 		line-height: 1.2;
 	}
@@ -133,16 +144,22 @@
 		line-height: 1.7;
 	}
 
-	/* 1열로 변경 + 여백/간격 축소 */
-	.facilityList {
+	/* facilityList + roomList : 1열로 변경 */
+	.facilityList, .roomList {
 		grid-template-columns: 1fr;
 		padding: 50px 16px;
 		gap: 28px;
 	}
 
+	/* roomCard border-radius 모바일 축소 */
+	.facilityCard, .roomCard {
+		border-radius: 8px 40px 0 0;
+	}
+
 	/* 이미지 높이 모바일 최적화 */
 	.imgBox {
 		height: 220px;
+		border-radius: 0px 60px 0 0; /* 모바일에서 radius 비례 축소 */
 	}
 
 	/* 텍스트 박스 */
@@ -177,17 +194,26 @@
 	.top_title h2 {
 		font-size: 24px;
 	}
-	.facilityList {
+	.facilityList, .roomList {
 		padding: 36px 12px;
 		gap: 20px;
 	}
+	.facilityCard, .roomCard {
+		border-radius: 8px 28px 0 0;
+	}
 	.imgBox {
 		height: 190px;
+		border-radius: 0px 40px 0 0;
 	}
 	.textBox {
 		padding: 14px 12px;
 	}
 	.textBox h3 {
 		font-size: 16px;
+	}
+	.detailBtn {
+		width: 100%; /* 모바일에서 버튼 풀너비 */
+		text-align: center;
+		box-sizing: border-box;
 	}
 }

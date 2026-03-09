@@ -97,7 +97,7 @@
 	--point2: #9b6a09; /* 딥 골드 (hover, 강조) */
 	--point3: #E2C97E; /* 라이트 골드 (밝은 액센트) */
 	--point4: #F5EDD8; /* 페일 골드 (배경 액센트) */
-	--point5: #721c24; /* 진 보라 (밝은 액센트) */
+	--point5: #5e2f00; /* 가장 강조 (밝은 액센트) */
 	/* ── 상태 색상 ─────────────────────────────── */
 	--state-success: #4A8C6F; /* 예약 완료 (포레스트 그린) */
 	--state-error: #B5402A; /* 오류 (딥 레드) */
@@ -119,39 +119,47 @@
 	/* ── 보더 ── */
 	--border: rgba(201, 169, 98, 0.15);
 	--border-hover: rgba(201, 169, 98, 0.40);
-	/* ── Bold (Pretendard 700) ─────────────────── */
-	--font_b_32: 700 2.6rem/3.2rem 'Pretendard', sans-serif;
-	--font_b_26: 700 1.8rem/2.6rem 'Pretendard', sans-serif;
-	--font_b_24: 700 1.7rem/2.4rem 'Pretendard', sans-serif;
-	--font_b_23: 700 1.6rem/2.3rem 'Pretendard', sans-serif;
-	--font_b_22: 700 1.6rem/2.2rem 'Pretendard', sans-serif;
-	--font_b_19: 700 1.3rem/1.9rem 'Pretendard', sans-serif;
-	--font_b_17: 700 1.1rem/1.7rem 'Pretendard', sans-serif;
-	/* ── Medium (Pretendard 400) ───────────────── */
-	--font_m_26: 400 1.8rem/2.6rem 'Pretendard', sans-serif;
-	--font_m_22: 400 1.5rem/2.2rem 'Pretendard', sans-serif;
-	--font_m_20: 400 1.4rem/2.0rem 'Pretendard', sans-serif;
-	--font_m_16: 400 1.2rem/1.6rem 'Pretendard', sans-serif;
-	/* ── Regular (Pretendard 300) ──────────────── */
-	--font_r_32: 300 2.6rem/3.2rem 'Pretendard', sans-serif;
-	--font_r_23: 300 1.6rem/2.3rem 'Pretendard', sans-serif;
-	--font_r_20: 300 1.4rem/2.0rem 'Pretendard', sans-serif;
-	--font_r_19: 300 1.3rem/1.9rem 'Pretendard', sans-serif;
-	/* ── 영문 제목용 (Poppins) ─────────────────── */
-	--font_poppins_41: 700 3.5rem/4.1rem 'Poppins', sans-serif;
-	--font_poppins_33: 700 2.7rem/3.3rem 'Poppins', sans-serif;
-	--font_poppins_24: 700 1.8rem/2.4rem 'Poppins', sans-serif;
-	--font_poppins_21: 500 1.5rem/2.1rem 'Poppins', sans-serif;
-	--font_poppins_20: 500 1.4rem/2.0rem 'Poppins', sans-serif;
-	--font_poppins_13: 300 1.3rem/1.9rem 'Poppins', sans-serif;
-	/* ── 럭셔리 장식용 영문 (SortsMillGoudy / Trirong) ── */
-	--font_goudy_24: 500 2.4rem/3.2rem 'SortsMillGoudy', serif;
-	--font_trirong_b_22: 700 2.2rem/3.0rem 'Trirong', serif;
-	--font_trirong_22: 500 2.2rem/3.0rem 'Trirong', serif;
-	--font_trirong_16: 300 1.6rem/2.4rem 'Trirong', serif;
-	--box-effect01: 9px -10px 0px 0px #c9a962, -2px -2px 5px #fff;
-}
+	
+	
+	/* 폰트사이즈 */
 
+/* ── Bold (Pretendard 700) ─────────────────── */
+--font_b_26: 700 2.6rem/3.2rem 'Pretendard', sans-serif;
+--font_b_18: 700 1.8rem/2.6rem 'Pretendard', sans-serif;
+--font_b_17: 700 1.7rem/2.4rem 'Pretendard', sans-serif;
+--font_b_16: 700 1.6rem/2.3rem 'Pretendard', sans-serif;
+--font_b_13: 700 1.3rem/1.9rem 'Pretendard', sans-serif;
+--font_b_11: 700 1.1rem/1.7rem 'Pretendard', sans-serif;
+
+/* ── Medium (Pretendard 400) ───────────────── */
+--font_m_18: 400 1.8rem/2.6rem 'Pretendard', sans-serif;
+--font_m_16: 400 1.6rem/2.2rem 'Pretendard', sans-serif;
+--font_m_15: 400 1.5rem/2.2rem 'Pretendard', sans-serif;
+--font_m_14: 400 1.4rem/2.0rem 'Pretendard', sans-serif;
+--font_m_12: 400 1.2rem/1.6rem 'Pretendard', sans-serif;
+
+/* ── Regular (Pretendard 300) ──────────────── */
+--font_r_26: 300 2.6rem/3.2rem 'Pretendard', sans-serif;
+--font_r_16: 300 1.6rem/2.3rem 'Pretendard', sans-serif;
+--font_r_14: 300 1.4rem/2.0rem 'Pretendard', sans-serif;
+--font_r_13: 300 1.3rem/1.9rem 'Pretendard', sans-serif;
+
+/* ── 영문 제목용 (Poppins) ─────────────────── */
+--font_poppins_35: 700 3.5rem/4.1rem 'Poppins', sans-serif;
+--font_poppins_27: 700 2.7rem/3.3rem 'Poppins', sans-serif;
+--font_poppins_18: 700 1.8rem/2.4rem 'Poppins', sans-serif;
+--font_poppins_15: 500 1.5rem/2.1rem 'Poppins', sans-serif;
+--font_poppins_14: 500 1.4rem/2.0rem 'Poppins', sans-serif;
+--font_poppins_13: 300 1.3rem/1.9rem 'Poppins', sans-serif;
+
+/* ── 럭셔리 장식용 영문 (SortsMillGoudy / Trirong) ── */
+--font_goudy_24:   500 2.4rem/3.2rem 'SortsMillGoudy', serif;
+--font_trirong_b_22: 700 2.2rem/3.0rem 'Trirong', serif;
+--font_trirong_22: 500 2.2rem/3.0rem 'Trirong', serif;
+--font_trirong_16: 300 1.6rem/2.4rem 'Trirong', serif;
+
+--box-effect01: 9px -10px 0px 0px #c9a962, -2px -2px 5px #fff;
+}
 /* -----------------------------------------------
 	[COMMON] 초기화
 ------------------------------------------------- */
@@ -455,6 +463,23 @@ blockquote:before, blockquote:after, q:before, q:after {
 	width: 100%
 }
 
+/* ── VIEW DETAIL 버튼 ─────────────────────────── */
+.detailBtn {
+	display: inline-block;
+	margin-top: 15px;
+	padding: 8px 20px;
+	border: 1px solid #000;
+	font-size: 14px;
+	transition: 0.3s;
+	background: #efefef;
+}
+
+.detailBtn:hover {
+	background: #000;
+	color: #fff;
+}
+
+
 /* Cards - 크림 배경, 부드러운 그림자 */
 .card {
 	background: #fff;
@@ -631,7 +656,6 @@ textarea.form-control {
 }
 
 .form-box {
-	max-width: 500px;
 	margin: 0 auto;
 	background: #fff;
 	padding: 40px;
@@ -769,8 +793,7 @@ textarea.form-control {
    [공통 타이틀- contents-layout] 공통 정의
 ================================================ */
 main .wrap {
-	padding-top: 120px;
-	background: var(--warm-cream);
+	padding-top: 120px;	
 }
 
 .wrap .textBox {
@@ -794,6 +817,7 @@ main .wrap {
 .top_title p {
 	font-weight: 300;
 	position: relative;
+	font-size: 16px;
 }
 
 .top_title p::before {
