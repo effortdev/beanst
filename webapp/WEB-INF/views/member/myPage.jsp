@@ -1,13 +1,20 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="jakarta.tags.fmt"%>
 
 <body>
 	<div class="wrap">
-		<section class="firstSection">
+		<div class="textBox">
+			<div class="top_title fade-up">
+				<h2 class="en">My Reservation</h2>
+				<p class="text">고객님의 소중한 예약 정보입니다.</p>
+			</div>
+		</div>
+		<section class="titBox">
 			<div class="mypage-container">
 				<c:choose>
-					<c:when test="${not empty loginMember}">
+					<c:when test="${not empty selectMember}">
 
 						<c:if test="${not empty sessionScope.msg}">
 							<script>
@@ -21,20 +28,20 @@
 							method="post">
 
 							<!-- 회원 정보 -->
-							<div class="mypage-section">
-								<h3>
-									회원 정보
-									<button type="button" class="delete-btn"
-										onclick="withdrawMember()">회원탈퇴요청</button>
-								</h3>
+							<div class="mypage-section-f">
+
+								<button type="button" class="delete-btn"
+									onclick="withdrawMember()">회원탈퇴요청</button>
+								<h3>회원 정보</h3>
 								<div class="info-row">
-									<label>이름</label> <span>${loginMember.name}</span>
+									<label>이름</label> <span>${selectMember.name}</span>
 								</div>
 								<div class="info-row">
-									<label>아이디</label> <span>${loginMember.userId}</span>
+									<label>아이디</label> <span>${selectMember.userId}</span>
 								</div>
 								<div class="info-row">
-									<label>가입일</label> <span>${loginMember.createdAt}</span>
+									<label>가입일</label> <span><fmt:formatDate
+											value="${selectMember.createdAt}" pattern="yyyy년 MM월 dd일" /></span>
 								</div>
 								<div class="info-row">
 									<button type="button" class="reservation-btn"
@@ -45,7 +52,7 @@
 							<!-- 비밀번호 변경 -->
 							<div class="mypage-section">
 								<h3>
-									비밀번호 변경
+									비밀번호
 									<button type="button" class="pw-toggle-btn"
 										onclick="togglePassword()">비밀번호 변경하기</button>
 								</h3>
@@ -66,22 +73,22 @@
 							</div>
 
 							<!-- 연락처 정보 -->
-							<div class="mypage-section">
+							<div class="mypage-section-s">
 								<h3>연락처 정보</h3>
 								<div class="info-row">
 									<label>이메일</label> <input type="text" id="email" name="email"
 										class="edit-input"
-										value="${empty loginMember.email ? '' : loginMember.email}"
+										value="${empty selectMember.email ? '' : selectMember.email}"
 										readonly>
-									<button type="button" class="edit-btn"
+									<button type="button" class="edit-btn-f"
 										onclick="toggleInput(this)">수정</button>
 								</div>
 								<div class="info-row">
 									<label>전화번호</label> <input type="text" id="phone" name="phone"
 										class="edit-input"
-										value="${empty loginMember.phone ? '' : loginMember.phone}"
+										value="${empty selectMember.phone ? '' : selectMember.phone}"
 										readonly>
-									<button type="button" class="edit-btn"
+									<button type="button" class="edit-btn-f"
 										onclick="toggleInput(this)">수정</button>
 								</div>
 							</div>
@@ -123,6 +130,7 @@
 			</div>
 		</section>
 	</div>
+	<script src="${pageContext.request.contextPath}/assets/js/main.js"></script>
 
 	<script>
 		const CONTEXT_PATH = "${pageContext.request.contextPath}";

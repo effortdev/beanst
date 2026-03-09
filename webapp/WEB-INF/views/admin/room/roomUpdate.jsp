@@ -36,24 +36,27 @@
 			<label>미니바</label> <input type="text" name="minibar"
 				value="${vo.minibar}">
 		</div>
-		
-		<label class="saveImage">기존이미지</label><br>
-		<c:forEach var="image" items="${imageVO}">
-			<img src="${image.image_path}" width="200">
-			<input type="radio" name="main_image" value="${image.image_no}"
-				${image.is_main eq 'Y' ? 'checked' : ''}>대표이미지
-		<input type="checkbox" name="delete_images" value="${image.image_no}">삭제<br>
-		</c:forEach>
-		
+		<div id="save">
+			<label class="saveImage">기존이미지</label><br>
+			<c:forEach var="image" items="${imageVO}">
+				<div class="saveImgBox">
+					<img src="${image.image_path}" width="200">
+					<div class="inputBox">
+						<input type="radio" name="main_image" value="${image.image_no}"
+							${image.is_main eq 'Y' ? 'checked' : ''}>대표이미지 <input
+							type="checkbox" name="delete_images" value="${image.image_no}">삭제
+					</div>
+				</div>
+			</c:forEach>
+		</div>
+
+
+
 		<div class="form-group">
 			<label>이미지</label> <input type="file" id="room_img" name="room_img"
 				id="room_img" multiple accept="image/*"
 				onchange="previewImages(event)">
 		</div>
-
-		<hr>
-
-
 
 		<div id="preview"></div>
 

@@ -3,6 +3,7 @@ package com.controller;
 import java.util.List;
 
 import com.dao.ReservationDAO;
+import com.service.UserService;
 import com.vo.ReservationVO;
 import com.vo.UserVO;
 
@@ -17,6 +18,8 @@ public class MyPageController implements Action {
 		request.setAttribute("pageCss", "myPage");
 		// 로그인 사용자 정보 가져오기
 		UserVO loginMember = (UserVO) request.getSession().getAttribute("loginMember");
+		System.out.println("mypagecontroller 실행!");
+		System.out.println("user id 값" + loginMember);
 
 		if (loginMember == null) {
 			return "redirect:/login/login.do";
@@ -27,9 +30,12 @@ public class MyPageController implements Action {
 		List<ReservationVO> reservationList = reservationDAO.getReservationsByUserId(loginMember.getUserId());
 
 		// JSP로 데이터 전달
-		request.setAttribute("loginMember", loginMember);
+		UserService svc = new UserService(request.getServletContext());
+
+		request.setAttribute("selectMember", svc.selectUser(loginMember.getUserId()));
 		request.setAttribute("reservationList", reservationList);
 
 		return "member/myPage";
 	}
+
 }

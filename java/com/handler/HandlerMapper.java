@@ -37,7 +37,6 @@ import com.controller.JoinCompleteController;
 import com.controller.JoinController;
 import com.controller.LoginController;
 import com.controller.LogoutController;
-import com.controller.MemberMypageController;
 import com.controller.MyPageController;
 import com.controller.ReservationCancelController;
 import com.controller.ReservationCheckController;
@@ -72,7 +71,6 @@ public class HandlerMapper {
 	public HandlerMapper() {
 
 		map.put("/main.do", new HomeController()); // 메인
-		map.put("/member/mypage.do", new MemberMypageController());
 
 		map.put("/login/login.do", new LoginController()); // 로그인
 		map.put("/logout.do", new LogoutController());

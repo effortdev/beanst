@@ -13,13 +13,13 @@ public class UpdateController implements Action {
 	public String execute(HttpServletRequest request, HttpServletResponse response) {
 
 		HttpSession session = request.getSession();
-		UserVO loginMember = (UserVO) session.getAttribute("loginMember");
+		UserVO selectMember = (UserVO) session.getAttribute("loginMember");
 
-		if (loginMember == null) {
+		if (selectMember == null) {
 			return "redirect:/login/login.do";
 		}
 
-		String userId = loginMember.getUserId();
+		String userId = selectMember.getUserId();
 
 		String currentPw = request.getParameter("currentPw");
 		String newPw = request.getParameter("newPw");
@@ -49,8 +49,8 @@ public class UpdateController implements Action {
 
 		// 회원탈퇴
 		if ("2".equals(statusParam)) {
-			loginMember.setStatus("2");
-			userService.updateMemberStatus(loginMember);
+			selectMember.setStatus("2");
+			userService.updateMemberStatus(selectMember);
 
 			session.invalidate();
 			session = request.getSession();
@@ -66,8 +66,8 @@ public class UpdateController implements Action {
 			}
 			userService.resetPassword(userId, newPw);
 			// 세션 객체도 갱신
-			loginMember.setPassword(newPw);
-			session.setAttribute("loginMember", loginMember);
+			selectMember.setPassword(newPw);
+			session.setAttribute("loginMember", selectMember);
 		}
 
 		// 이메일/전화번호 변경
@@ -76,10 +76,10 @@ public class UpdateController implements Action {
 
 			// 세션 객체도 갱신
 			if (email != null && !email.trim().isEmpty())
-				loginMember.setEmail(email);
+				selectMember.setEmail(email);
 			if (phone != null && !phone.trim().isEmpty())
-				loginMember.setPhone(phone);
-			session.setAttribute("loginMember", loginMember);
+				selectMember.setPhone(phone);
+			session.setAttribute("selectMember", selectMember);
 		}
 
 		session.setAttribute("msg", "정보가 정상적으로 수정되었습니다.");

@@ -28,24 +28,23 @@
 
 	<entry key="getReservationsByUserId">
 		SELECT * FROM reservation
-		WHERE user_id = ? AND status != '4'
+		WHERE user_id = ? AND status
+		!= '4'
 		ORDER BY reservation_id DESC
 	</entry>
 
 	<entry key="cancelReservation">
-		UPDATE reservation SET status = '3' WHERE reservation_id = ?
+		UPDATE reservation SET status = '3' WHERE
+		reservation_id = ?
 	</entry>
 
-	<entry key="checkPassword"> SELECT COUNT(*) FROM users WHERE user_id=? AND
-		password=? </entry>
-	<entry key="updateContact"> UPDATE users SET email=?, phone=? WHERE user_id=? </entry>
-	<entry key="updatePassword"> UPDATE users SET password=? WHERE user_id=? </entry>
 
 	<entry key="getReservedDatesExcludingSelf">
 		SELECT room_id, check_in, check_out FROM reservation
 		WHERE status IN ('1', '2')
 		AND check_out >= CURDATE()
-		AND reservation_id != ?
+		AND reservation_id
+		!= ?
 	</entry>
 
 	<entry key="isRoomAvailableForUpdate">
@@ -60,8 +59,10 @@
 
 	<entry key="updateReservation">
 		UPDATE reservation
-		SET room_id = ?, room_name = ?, check_in = ?, check_out = ?,
-		adult_count = ?, child_count = ?, total_price = ?
+		SET room_id = ?, room_name = ?,
+		check_in = ?, check_out = ?,
+		adult_count = ?, child_count = ?,
+		total_price = ?
 		WHERE reservation_id = ?
 	</entry>
 </properties>

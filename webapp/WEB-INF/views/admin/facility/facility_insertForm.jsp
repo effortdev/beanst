@@ -89,12 +89,14 @@ function renderPreview(){
 
             const img = document.createElement("img");
             img.src = e.target.result;
-            img.width = 120;
+            img.width = 180;
+            img.style.margin = "0 0 10px 0";
 
             const radio = document.createElement("input");
             radio.type = "radio";
             radio.name = "mainImageIndex";
             radio.value = index;
+            radio.style.margin = "0 10px 10px 10px";
 
             if(index === 0){
                 radio.checked = true;
@@ -102,6 +104,7 @@ function renderPreview(){
 
             const delBtn = document.createElement("button");
             delBtn.type = "button";
+            delBtn.className = "delBtn";
             delBtn.innerText = "삭제";
 
             delBtn.onclick = function(){
