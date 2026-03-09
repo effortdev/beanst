@@ -4,14 +4,16 @@
 <%@ taglib prefix="fmt" uri="jakarta.tags.fmt"%>
 
 <div class="admin-room">
+	<div class="titleBox">
+		<h2 class="admin-title">객실 상세 관리</h2>
+	</div>
 
-	<h2 class="admin-title">객실 상세 관리</h2>
 
 	<table class="admin-table">
 
 		<thead>
 			<tr>
-				<th>객실번호</th>
+				<th>번호</th>
 				<th>객실명</th>
 				<th>기본인원</th>
 				<th>최대인원</th>
@@ -38,8 +40,8 @@
 					<td><fmt:formatNumber value="${r.basePrice}" pattern="#,###" />원
 						/ 1박</td>
 
-					<td><fmt:formatNumber value="${r.extraCharge}" pattern="#,###" />원 / 명
-					</td>
+					<td><fmt:formatNumber value="${r.extraCharge}" pattern="#,###" />원
+						/ 명</td>
 
 					<td><a class="btn-edit"
 						href="${pageContext.request.contextPath}/admin/room/edit.do?room_id=${r.roomId}">

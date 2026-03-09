@@ -1,23 +1,28 @@
 @charset "UTF-8";
 
-
 .admin-reservation {
 	max-width: 1400px;
 	margin: 40px auto;
 	padding: 0 20px;
 }
 
-.admin-title {
-	font-size: 26px;
-	font-weight: 700;
-	margin-bottom: 25px;
+.admin-reservation .titleBox {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin-bottom: 10px;
 }
 
+.admin-title {
+   font-size: var(--titlefs);
+   font-weight: 600;
+   margin-bottom: 30px;
+}
 
 .reservation-filter {
-	margin-bottom: 20px;
 	display: flex;
 	gap: 10px;
+	justify-content: end;
 }
 
 .btn-filter {
@@ -32,10 +37,9 @@
 }
 
 .btn-filter:hover {
-	background: #000;
+	background: var(--bg2);
 	color: #fff;
 }
-
 
 .admin-table {
 	width: 100%;
@@ -46,16 +50,17 @@
 }
 
 .admin-table th {
-	background: #f5f5f5;
-	padding: 14px;
-	font-size: 14px;
+	background: var(--ctbg1);
+	padding: 12px;
+	font-size: var(--thfs);
 	font-weight: 600;
 	border-bottom: 1px solid #ddd;
 }
 
 .admin-table td {
-	padding: 14px;
-	font-size: 14px;
+	padding: 12px;
+	font-size: var(--tdfs);
+	font-weight: 400;
 	border-bottom: 1px solid #eee;
 	text-align: center;
 }
@@ -86,19 +91,17 @@
 	color: #ef6c00;
 }
 
-
 .status.cancel {
 	background: #ffecec;
 	color: #e53935;
 }
 
-
 .btn-confirm {
 	display: inline-block;
-	background: #2e7d32;
+	background: var(--bg6);
 	padding: 6px 14px;
 	border-radius: 6px;
-	font-size: 13px;
+	font-size: var(--btnfs);
 	text-decoration: none;
 }
 
@@ -108,11 +111,10 @@
 
 .btn-cancel {
 	display: inline-block;
-	background: #e53935;
-	color: #fff;
+	background: var(--color5);
 	padding: 6px 14px;
 	border-radius: 6px;
-	font-size: 13px;
+	font-size: var(--btnfs);
 	text-decoration: none;
 }
 

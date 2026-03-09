@@ -6,14 +6,17 @@
 	padding: 0 20px;
 }
 
-.admin-title {
-	font-size: 28px;
-	font-weight: 700;
-	margin-bottom: 25px;
+.admin-qna .titleBox {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin-bottom: 10px;
 }
 
-.qna-filter {
-	margin-bottom: 20px;
+.admin-title {
+	font-size: var(--titlefs);
+	font-weight: 600;
+	margin-bottom: 30px;
 }
 
 .qna-filter a {
@@ -23,15 +26,13 @@
 	border: 1px solid #ddd;
 	border-radius: 6px;
 	text-decoration: none;
-	color: #333;
-	font-size: 14px;
+	font-size: var(--btnfs);
 	transition: all 0.2s;
 }
 
 .qna-filter a:hover {
-	background: #000;
+	background: var(--bg2);
 	color: #fff;
-	border-color: #000;
 }
 
 .admin-table {
@@ -45,18 +46,19 @@
 }
 
 .admin-table th {
-	padding: 14px;
-	font-size: 14px;
+	background: var(--ctbg1);
+	padding: 12px;
+	font-size: var(--thfs);
 	font-weight: 600;
 	border-bottom: 1px solid #ddd;
-	text-align: center;
 }
 
 .admin-table td {
-	padding: 14px;
+	padding: 12px;
+	font-size: var(--tdfs);
+	font-weight: 400;
 	border-bottom: 1px solid #eee;
 	text-align: center;
-	font-size: 14px;
 }
 
 .admin-table td.title {
@@ -98,12 +100,6 @@
 	max-width: 1000px;
 	margin: 40px auto;
 	padding: 0 20px;
-}
-
-.admin-title {
-	font-size: 28px;
-	font-weight: 700;
-	margin-bottom: 25px;
 }
 
 .qna-meta {
@@ -165,10 +161,11 @@
 }
 
 .btn-delete {
-	background: #e53935;
-	color: #fff;
-	padding: 10px 18px;
+	display: inline-block;
+	background: var(--color5);
+	padding: 6px 14px;
 	border-radius: 6px;
+	font-size: var(--btnfs);
 	text-decoration: none;
 }
 
@@ -177,13 +174,16 @@
 }
 
 .btn-list {
-	background: #f1f1f1;
-	padding: 10px 18px;
+	display: inline-block;
+	background: var(--bg4);
+	color: var(--color4) !important;
+	padding: 6px 14px;
 	border-radius: 6px;
+	font-size: var(--btnfs);
 	text-decoration: none;
-	color: #333;
 }
 
 .btn-list:hover {
-	background: #ddd;
+	background: var(--color4);
+	color: #fff !important;
 }

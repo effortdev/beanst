@@ -7,14 +7,21 @@
 	padding: 0 20px;
 }
 
+.titleBox {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin-bottom: 10px;
+}
+
 .admin-title {
-	font-size: 32px;
+	font-size: var(--titlefs);
 	font-weight: 600;
-	margin-bottom: 32px;
+	margin-bottom: 30px;
 }
 
 .room-filter {
-	margin-bottom: 20px;
+	/*    margin-bottom: 20px; */
 	display: flex;
 	gap: 10px;
 	justify-content: end;
@@ -27,7 +34,7 @@
 	border-radius: 6px;
 	text-decoration: none;
 	color: #333;
-	font-size: 14px;
+	font-size: var(--btnfs);
 	transition: all 0.2s;
 }
 
@@ -46,14 +53,14 @@
 .admin-table th {
 	background: var(--ctbg1);
 	padding: 12px;
-	font-size: 18px;
+	font-size: var(--thfs);
 	font-weight: 600;
 	border-bottom: 1px solid #ddd;
 }
 
 .admin-table td {
 	padding: 12px;
-	font-size: 16px;
+	font-size: var(--tdfs);
 	font-weight: 400;
 	border-bottom: 1px solid #eee;
 	text-align: center;
@@ -75,7 +82,7 @@
 	color: var(--color4);
 	padding: 6px 14px;
 	border-radius: 6px;
-	font-size: 13px;
+	font-size: var(--btnfs);
 	text-decoration: none;
 }
 
@@ -90,7 +97,7 @@
 	color: var(--color5);
 	padding: 6px 14px;
 	border-radius: 6px;
-	font-size: 13px;
+	font-size: var(--btnfs);
 	text-decoration: none;
 }
 
@@ -175,23 +182,22 @@
 	width: 250px;
 }
 
-
 .btn-save:hover {
 	background: var(--bg3);
 }
 
 /* 목록 */
 .btn-list {
-    background: var(--listbg1);
-    color: #fff;
-    border: none;
-    padding: 10px 18px;
-    border-radius: 6px;
-    display:flex;
-    align-items: center;
+	background: var(--listbg1);
+	color: #fff;
+	border: none;
+	padding: 10px 18px;
+	border-radius: 6px;
+	display: flex;
+	align-items: center;
 	justify-content: center;
-    font-size: 16px;
-    width: 250px;
+	font-size: 16px;
+	width: 250px;
 }
 
 .btn-list:hover {

@@ -2,25 +2,22 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/assets/css/admin/admin.css">
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/assets/css/main.css">
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/assets/css/admin/admin-faq.css">
-
 <div class="admin-qna">
-
-	<h2 class="admin-title">회원 관리</h2>
-
-	<div class="qna-filter">
-		<a href="${pageContext.request.contextPath}/admin/memberManage.do"
-			style="${empty param.filter ? 'background:#000; color:#fff;' : ''}">전체
-			회원보기</a> <a
-			href="${pageContext.request.contextPath}/admin/memberManage.do?filter=withdraw"
-			style="${param.filter == 'withdraw' ? 'background:#000; color:#fff;' : ''}">탈퇴요청
-			회원보기</a>
+	<div class="titleBox">
+		<h2 class="admin-title">회원 관리</h2>
+		<div class="qna-filter">
+			<a href="${pageContext.request.contextPath}/admin/memberManage.do"
+				style="${empty param.filter ? '' : ''}">전체
+				회원보기</a> <a
+				href="${pageContext.request.contextPath}/admin/memberManage.do?filter=withdraw"
+				style="${param.filter == 'withdraw' ? '' : ''}">탈퇴요청
+				회원보기</a>
+		</div>
 	</div>
+
+
+
+
 
 	<table class="admin-table">
 		<thead>
@@ -59,10 +56,10 @@
 						</c:choose></td>
 
 					<td>
-						<div style="display: flex; gap: 5px; justify-content: center;">
+						<div style="display: flex; gap: 5px; justify-content: center; align-items: center;">
 							<a
 								href="${pageContext.request.contextPath}/admin/memberManage.do?action=edit&userId=${user.userId}"
-								class="btn-list" style="padding: 6px 12px; font-size: 13px;">수정</a>
+								class="btn-list">수정</a>
 
 							<c:if test="${user.status == '2'}">
 								<form
@@ -71,7 +68,7 @@
 									onsubmit="return confirm('정말 탈퇴 승인하시겠습니까?');">
 									<input type="hidden" name="userId" value="${user.userId}">
 									<button type="submit" class="btn-delete"
-										style="padding: 6px 12px; font-size: 13px; border: none; cursor: pointer;">탈퇴승인</button>
+										style="padding: 6px 12px; font-size: 14px; border: none; cursor: pointer;">탈퇴승인</button>
 								</form>
 							</c:if>
 						</div>

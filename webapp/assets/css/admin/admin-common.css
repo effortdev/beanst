@@ -12,10 +12,15 @@
 	/*수정, 삭제 버튼*/
 	--bg4: #eef4ff;
 	--bg5: #ffecec;
+	--bg6: #52b957;
 	--ctbg1: #efefef;
 	--listbg1: #ddd;
 	--color4: #3b6fd6;
 	--color5: #e53935;
+	--titlefs: 32px;
+	--btnfs: 14px;
+	--thfs: 18px;
+	--tdfs: 16px;
 }
 
 html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p,

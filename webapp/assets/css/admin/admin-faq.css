@@ -3,45 +3,43 @@
 /* =========================
    FAQ LIST
 ========================= */
-
 .admin-faq {
 	max-width: 1400px;
 	margin: 40px auto;
 	padding: 0 20px;
 }
 
-.admin-title {
-	font-size: 26px;
-	font-weight: 700;
-	margin-bottom: 25px;
+.admin-faq .titleBox {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin-bottom: 10px;
 }
 
-.faq-top-bar {
-	margin-bottom: 20px;
-	text-align: right;
+.admin-title {
+	font-size: var(--titlefs);
+	font-weight: 600;
+	margin-bottom: 30px;
 }
 
 /* 등록 버튼 */
-
 .btn-add {
 	display: inline-block;
-	background: #000;
 	padding: 8px 16px;
+	background: #f5f5f5;
 	border-radius: 6px;
 	text-decoration: none;
+	color: #333;
 	font-size: 14px;
-}
-
-.btn-add span {
-	color: #fff;
+	transition: all 0.2s;
 }
 
 .btn-add:hover {
-	background: #333;
+	background: var(--bg2);
+	color: #fff;
 }
 
 /* 테이블 */
-
 .admin-table {
 	width: 100%;
 	border-collapse: collapse;
@@ -49,13 +47,17 @@
 }
 
 .admin-table th {
-	background: #f5f5f5;
+	background: var(--ctbg1);
 	padding: 12px;
+	font-size: var(--thfs);
+	font-weight: 600;
 	border-bottom: 1px solid #ddd;
 }
 
 .admin-table td {
 	padding: 12px;
+	font-size: var(--tdfs);
+	font-weight: 400;
 	border-bottom: 1px solid #eee;
 	text-align: center;
 }
@@ -64,8 +66,22 @@
 	background: #fafafa;
 }
 
-/* 질문 */
+.btn-delete {
+	display: inline-block;
+	background: var(--bg5);
+	color: var(--color5) !important;
+	padding: 6px 14px;
+	border-radius: 6px;
+	font-size: var(--btnfs);
+	text-decoration: none;
+}
 
+.btn-delete:hover {
+	background: var(--color5);
+	color: var(--bg5) !important;
+}
+
+/* 질문 */
 .faq-title {
 	text-align: left;
 }
@@ -81,7 +97,6 @@
 }
 
 /* 상태 */
-
 .status {
 	padding: 4px 10px;
 	border-radius: 12px;
@@ -102,19 +117,16 @@
 /* =========================
    FAQ WRITE / EDIT
 ========================= */
-
-.admin-faq-write,
-.admin-faq-edit {
+.admin-faq-write, .admin-faq-edit {
 	max-width: 900px;
 	margin: 40px auto;
 	background: #fff;
 	padding: 35px 40px;
 	border-radius: 8px;
-	box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+	box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
 }
 
 /* form */
-
 .faq-form {
 	display: flex;
 	flex-direction: column;
@@ -132,9 +144,7 @@
 }
 
 /* input */
-
-.form-group input,
-.form-group select {
+.form-group input, .form-group select {
 	width: 100%;
 	padding: 10px 12px;
 	border: 1px solid #ddd;
@@ -144,7 +154,6 @@
 }
 
 /* textarea */
-
 .form-group textarea {
 	width: 100%;
 	border: 1px solid #ddd;
@@ -156,7 +165,6 @@
 }
 
 /* textarea height */
-
 .question-box {
 	min-height: 80px;
 }
@@ -166,16 +174,13 @@
 }
 
 /* focus */
-
-.form-group input:focus,
-.form-group textarea:focus,
-.form-group select:focus {
+.form-group input:focus, .form-group textarea:focus, .form-group select:focus
+	{
 	outline: none;
 	border-color: #000;
 }
 
 /* 버튼 영역 */
-
 .form-buttons {
 	margin-top: 25px;
 	display: flex;
@@ -183,7 +188,6 @@
 }
 
 /* 저장 */
-
 .btn-save {
 	background: #000;
 	color: #fff;
@@ -198,23 +202,11 @@
 	background: #333;
 }
 
-/* 삭제 */
 
-.btn-delete {
-	background: #e53935;
-	color: #fff;
-	padding: 10px 18px;
-	border-radius: 6px;
-	text-decoration: none;
-	font-size: 14px;
-}
 
-.btn-delete:hover {
-	background: #c62828;
-}
+
 
 /* 목록 */
-
 .btn-list {
 	background: #eee;
 	color: #333;

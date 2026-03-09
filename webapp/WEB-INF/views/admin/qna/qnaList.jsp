@@ -2,8 +2,8 @@
 <%@ taglib prefix="c" uri="jakarta.tags.core"%>
 
 <div class="admin-qna">
-
-	<h2 class="admin-title">1:1 문의 관리</h2>
+	<div class="titleBox">
+		<h2 class="admin-title">1:1 문의 관리</h2>
 
 	<div class="qna-filter">
 
@@ -13,6 +13,8 @@
 			답변대기만 보기 </a>
 
 	</div>
+	</div>
+
 
 	<table class="admin-table">
 

@@ -7,20 +7,24 @@
 
 
 <div class="admin-room">
-	<h2 class="admin-title">객실 정보 관리</h2>
-	<div class="room-filter">
-		<a href="${pageContext.request.contextPath}/admin/roomAdd.do"
-			class="btn-filter">객실 추가</a>
+	<div class="titleBox">
+		<h2 class="admin-title">객실 정보 관리</h2>
+		<div class="room-filter">
+			<a href="${pageContext.request.contextPath}/admin/roomAdd.do"
+				class="btn-filter">객실 추가</a>
+		</div>
 	</div>
+
 	<table class="admin-table">
-		<tr>
-			<th>번호</th>
-			<th>객실명</th>
-			<th>정원</th>
-			<th>위치</th>
-			<!-- 		<th>룸구성</th> -->
-			<th>관리</th>
-		</tr>
+		<thead>
+			<tr>
+				<th>번호</th>
+				<th>객실명</th>
+				<th>정원</th>
+				<th>위치</th>
+				<th>관리</th>
+			</tr>
+		</thead>
 		<tbody>
 			<c:forEach var="room" items="${roomList}" varStatus="status">
 				<tr>

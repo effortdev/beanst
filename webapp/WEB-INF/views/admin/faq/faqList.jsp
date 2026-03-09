@@ -2,17 +2,19 @@
 <%@ taglib prefix="c" uri="jakarta.tags.core"%>
 
 <div class="admin-faq">
+	<div class="titleBox">
+		<h2 class="admin-title">FAQ 관리</h2>
 
-	<h2 class="admin-title">FAQ 관리</h2>
+		<div class="faq-top-bar">
 
-	<div class="faq-top-bar">
+			<a class="btn-add"
+				href="${pageContext.request.contextPath}/admin/faq/write.do"> <span
+				class="text">FAQ 등록</span>
+			</a>
 
-		<a class="btn-add"
-			href="${pageContext.request.contextPath}/admin/faq/write.do">
-			<span class="text">FAQ 등록</span>
-		</a>
-
+		</div>
 	</div>
+
 
 	<table class="admin-table">
 
@@ -25,6 +27,7 @@
 				<th>상태</th>
 				<th>정렬</th>
 				<th>등록일</th>
+				<th>관리</th>
 			</tr>
 
 		</thead>
@@ -61,7 +64,7 @@
 
 					<td><a
 						href="${pageContext.request.contextPath}/admin/faq/delete.do?faq_no=${f.faqNo}"
-						onclick="return confirm('삭제하시겠습니까?')"> 삭제 </a></td>
+						onclick="return confirm('삭제하시겠습니까?')" class="btn-delete"> 삭제 </a></td>
 
 				</tr>
 

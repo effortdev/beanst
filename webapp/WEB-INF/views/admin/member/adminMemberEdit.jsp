@@ -2,13 +2,6 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/assets/css/admin/admin.css">
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/assets/css/main.css">
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/assets/css/admin/admin-faq.css">
-
 <div class="admin-qna-detail">
 
 	<h2 class="admin-title">회원 정보 수정</h2>

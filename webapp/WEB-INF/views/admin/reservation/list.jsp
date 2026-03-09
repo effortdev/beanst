@@ -1,18 +1,22 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
 <%@ taglib prefix="c" uri="jakarta.tags.core"%>
+<%@ taglib prefix="fmt" uri="jakarta.tags.fmt"%>
 
 <div class="admin-reservation">
+	<div class="titleBox">
+		<h2 class="admin-title">예약 관리</h2>
 
-	<h2 class="admin-title">예약 관리</h2>
+		<div class="reservation-filter">
 
-	<div class="reservation-filter">
+			<a
+				href="${pageContext.request.contextPath}/admin/reservation/list.do"
+				class="btn-filter"> 전체보기 </a> <a
+				href="${pageContext.request.contextPath}/admin/reservation/active.do"
+				class="btn-filter"> 예약취소 제외 </a>
 
-		<a href="${pageContext.request.contextPath}/admin/reservation/list.do"
-			class="btn-filter"> 전체보기 </a> <a
-			href="${pageContext.request.contextPath}/admin/reservation/active.do"
-			class="btn-filter"> 예약취소 제외 </a>
-
+		</div>
 	</div>
+
 
 	<table class="admin-table">
 
@@ -48,8 +52,7 @@
 
 					<td>성인 ${r.adultCount} / 아동 ${r.childCount}</td>
 
-					<td>${r.totalPrice}</td>
-
+					<td><fmt:formatNumber value="${r.totalPrice}" pattern="#,###" />원</td>
 					<td><c:choose>
 
 							<c:when test="${r.status eq '1'}">
