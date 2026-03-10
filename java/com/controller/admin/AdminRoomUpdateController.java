@@ -123,7 +123,6 @@ public class AdminRoomUpdateController implements Action {
 				}
 
 				String mainImage = request.getParameter("main_image");
-				System.out.println("main_image = " + mainImage);
 
 				if (mainImage != null) {
 					int imageId = Integer.parseInt(mainImage);
