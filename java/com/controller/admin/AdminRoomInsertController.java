@@ -21,7 +21,6 @@ public class AdminRoomInsertController implements Action {
 		request.setAttribute("pageCss", "admin_room");
 		try {
 
-//			int room_id = Integer.parseInt(request.getParameter("room_id"));
 			String room_name = request.getParameter("room_name");
 			String capacity = request.getParameter("capacity");
 			String room_location = request.getParameter("room_location");
@@ -31,7 +30,6 @@ public class AdminRoomInsertController implements Action {
 			String minibar = request.getParameter("minibar");
 
 			RoomManageVO vo = new RoomManageVO();
-//			vo.setRoom_id(room_id);
 			vo.setRoom_name(room_name);
 			vo.setCapacity(capacity);
 			vo.setRoom_location(room_location);

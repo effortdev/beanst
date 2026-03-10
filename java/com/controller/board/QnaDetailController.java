@@ -32,7 +32,6 @@ public class QnaDetailController implements Action {
 			return "redirect:/qnaList.do";
 		}
 
-		// qna 테이블에는 is_secret 컬럼 없음 (users 테이블 연동만 사용)
 		request.setAttribute("qna", qna);
 		request.setAttribute("pageTitle", "Q&A 상세");
 		request.setAttribute("pageCss", "board");

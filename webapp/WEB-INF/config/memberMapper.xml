@@ -35,4 +35,16 @@ AND user_id != ?
 ]]>
 	</entry>
 
+	<entry key="updateContact">
+		UPDATE users
+		SET email = ?, phone = ?
+		WHERE user_id = ?
+	</entry>
+
+	<entry key="updateStatus">
+		UPDATE users
+		SET status = ?
+		WHERE user_id = ?
+	</entry>
+
 </properties>

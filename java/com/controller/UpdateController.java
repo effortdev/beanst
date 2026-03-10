@@ -30,7 +30,6 @@ public class UpdateController implements Action {
 
 		UserService userService = new UserService(request.getServletContext());
 
-		// 변경 사항 있으면 비밀번호 확인 필요
 		boolean needPwCheck = (newPw != null && !newPw.trim().isEmpty()) || (email != null && !email.trim().isEmpty())
 				|| (phone != null && !phone.trim().isEmpty()) || ("2".equals(statusParam));
 

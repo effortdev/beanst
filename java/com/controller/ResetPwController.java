@@ -12,7 +12,7 @@ public class ResetPwController implements Action {
 		String userId = (String) session.getAttribute("resetId");
 
 		if (userId == null)
-			return "redirect:/member/findPw.do"; // 비정상 접근 차단
+			return "redirect:/member/findPw.do"; 
 
 		if (request.getMethod().equals("GET")) {
 			request.setAttribute("pageCss", "login");
@@ -23,8 +23,8 @@ public class ResetPwController implements Action {
 		UserService service = new UserService(request.getServletContext());
 
 		if (service.resetPassword(userId, newPw)) {
-			session.removeAttribute("resetId"); // 세션 정리
-			return "redirect:/member/resetComplete.do"; // 완료 페이지로!
+			session.removeAttribute("resetId"); 
+			return "redirect:/member/resetComplete.do"; 
 		}
 		return "member/resetPw";
 	}

@@ -1,6 +1,8 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
 <%@ taglib prefix="c" uri="jakarta.tags.core"%>
-
+<script>
+let existingImageCount = ${imageList.size()};
+</script>
 <div class="admin-facility-form">
 
 	<h2>시설 수정</h2>
@@ -62,7 +64,8 @@
 							value="old-${img.imageId}" ${img.isMain == 'Y' ? 'checked' : ''}>
 							대표
 						</label> <label class="delete-radio"> <input type="checkbox"
-							name="deleteImageIds" value="${img.imageId}"> 삭제
+							name="deleteImageIds" value="${img.imageId}"
+							onclick="toggleDelete(this)"> 삭제
 						</label>
 
 					</div>
@@ -97,10 +100,32 @@ let fileList = [];
 
 input.addEventListener("change", function(){
 
-	fileList = Array.from(this.files);
+	const files = Array.from(this.files);
+
+	if(existingImageCount + fileList.length + files.length > 5){
+		alert("이미지는 최대 5개까지 등록 가능합니다.");
+		this.value = "";
+		return;
+	}
+
+	fileList = fileList.concat(files);
+
+	updateInputFiles();
 	renderPreview();
 
 });
+
+function updateInputFiles(){
+
+	const dataTransfer = new DataTransfer();
+
+	fileList.forEach(file=>{
+		dataTransfer.items.add(file);
+	});
+
+	input.files = dataTransfer.files;
+
+}
 
 
 function renderPreview(){
@@ -159,18 +184,20 @@ function removeImage(index){
 
 	fileList.splice(index,1);
 
-	const dataTransfer = new DataTransfer();
-
-	fileList.forEach(file=>{
-		dataTransfer.items.add(file);
-	});
-
-	input.files = dataTransfer.files;
+	updateInputFiles();
 
 	renderPreview();
 
 }
 
+function toggleDelete(cb){
 
+	if(cb.checked){
+		existingImageCount--;
+	}else{
+		existingImageCount++;
+	}
+
+}
 
 </script>

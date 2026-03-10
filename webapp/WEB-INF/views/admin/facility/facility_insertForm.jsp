@@ -14,48 +14,43 @@
 
 			<datalist id="facilityTypes">
 				<option value="Pool">
-
-					<option value="Spa"><option value="Gym">
-			
+				<option value="Spa">
+				<option value="Gym">
 				<option value="Restaurant">
-			
 				<option value="Lounge">
-		
 			</datalist>
-	</div>
+		</div>
 
-	<div class="facility-form-group">
-		<label>시설 이름</label>
-		<input type="text" name="facilityName" required>
-	</div>
+		<div class="facility-form-group">
+			<label>시설 이름</label> <input type="text" name="facilityName" required>
+		</div>
 
-	<div class="facility-form-group">
-		<label>위치</label>
-		<input type="text" name="location">
-	</div>
+		<div class="facility-form-group">
+			<label>위치</label> <input type="text" name="location">
+		</div>
 
-	<div class="facility-form-group">
-		<label>운영시간</label>
-		<input type="text" name="openTime" placeholder="예: 06:00 - 22:00">
-	</div>
+		<div class="facility-form-group">
+			<label>운영시간</label> <input type="text" name="openTime"
+				placeholder="예: 06:00 - 22:00">
+		</div>
 
-	<div class="facility-form-group">
-		<label>설명</label>
-		<textarea name="description"></textarea>
-	</div>
+		<div class="facility-form-group">
+			<label>설명</label>
+			<textarea name="description"></textarea>
+		</div>
 
-	<hr>
+		<hr>
 
-	<h3 class="facility-image-title">시설 이미지</h3>
+		<h3 class="facility-image-title">시설 이미지</h3>
 
-	<input type="file" id="imageInput" name="images" multiple
+		<input type="file" id="imageInput" name="images" multiple
 			accept="image/*">
 
-	<div id="previewContainer"></div>
+		<div id="previewContainer"></div>
 
-	<button type="submit" class="btn-save">시설 등록</button>
+		<button type="submit" class="btn-save">시설 등록</button>
 
-</form>
+	</form>
 
 </div>
 
@@ -68,10 +63,34 @@ let fileList = [];
 
 input.addEventListener("change", function(){
 
-    fileList = Array.from(this.files);
-    renderPreview();
+	const files = Array.from(this.files);
+
+	// 추가 전에 검사
+	if(fileList.length + files.length > 5){
+		alert("이미지는 최대 5개까지 업로드 가능합니다.");
+		this.value = "";   // input 초기화
+		return;
+	}
+
+	// 통과하면 추가
+	fileList = fileList.concat(files);
+
+	updateInputFiles();
+	renderPreview();
 
 });
+
+function updateInputFiles(){
+
+    const dataTransfer = new DataTransfer();
+
+    fileList.forEach(file=>{
+        dataTransfer.items.add(file);
+    });
+
+    input.files = dataTransfer.files;
+
+}
 
 function renderPreview(){
 

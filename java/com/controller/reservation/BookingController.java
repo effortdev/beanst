@@ -41,12 +41,8 @@ public class BookingController implements Action {
 				bookedList = service.getReservedDates();
 			}
 
-			// 🚨 [디버깅] 서버(이클립스 콘솔)에서 예약 데이터가 잘 넘어오는지 확인!
-			System.out.println("🔥 [GET 디버깅] DB에서 가져온 예약 건수: " + (bookedList != null ? bookedList.size() : "null"));
 			if (bookedList != null) {
 				for (ReservationVO vo : bookedList) {
-					System.out.println(
-							" 👉 방번호: " + vo.getRoomId() + ", 체크인: " + vo.getCheckIn() + ", 상태: " + vo.getStatus());
 				}
 			}
 
@@ -55,7 +51,6 @@ public class BookingController implements Action {
 			for (int i = 0; i < bookedList.size(); i++) {
 				ReservationVO r = bookedList.get(i);
 
-				// 🌟 추가된 부분: 달력이 뻗지 않도록 날짜(YYYY-MM-DD)만 깔끔하게 추출
 				String cIn = r.getCheckIn();
 				String cOut = r.getCheckOut();
 				if (cIn != null && cIn.length() >= 10)
@@ -76,7 +71,6 @@ public class BookingController implements Action {
 		}
 
 		if (method.equals("POST")) {
-			System.out.println("==== [예약/변경] POST 요청 도착 ====");
 
 			try {
 				HttpSession session = request.getSession();
@@ -118,7 +112,6 @@ public class BookingController implements Action {
 				}
 
 				if (!isAvailable) {
-					System.out.println("==== 예약/변경 실패: 이미 예약된 날짜입니다 ====");
 					request.setAttribute("errorMsg", "선택하신 날짜에 이미 예약된 객실입니다. 다른 날짜나 객실을 선택해 주세요.");
 
 					request.setAttribute("roomList", service.getAllRooms(context));
@@ -136,7 +129,6 @@ public class BookingController implements Action {
 					for (int i = 0; i < bookedList.size(); i++) {
 						ReservationVO r = bookedList.get(i);
 
-						// 🌟 추가된 부분: POST 실패 시에도 똑같이 날짜 깔끔하게 처리
 						String cIn = r.getCheckIn();
 						String cOut = r.getCheckOut();
 						if (cIn != null && cIn.length() >= 10)
@@ -170,7 +162,6 @@ public class BookingController implements Action {
 				}
 
 			} catch (Exception e) {
-				System.out.println("==== 컨트롤러 에러 발생 ====");
 				e.printStackTrace();
 				return "redirect:/reservation/booking.do";
 			}

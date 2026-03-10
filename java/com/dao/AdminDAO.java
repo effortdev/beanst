@@ -26,7 +26,6 @@ public class AdminDAO {
 
 	public AdminDAO(ServletContext context) {
 		try {
-			System.out.println("AdminDAO 생성자 실행");
 			InputStream input = context.getResourceAsStream("/WEB-INF/config/adminMapper.xml");
 			props.loadFromXML(input);
 		} catch (Exception e) {
@@ -45,8 +44,6 @@ public class AdminDAO {
 
 			String sql = props.getProperty("adminLogin");
 			ps = conn.prepareStatement(sql);
-
-			System.out.println("sql = " + sql);
 
 			ps.setString(1, userId);
 			ps.setString(2, password);
@@ -71,9 +68,7 @@ public class AdminDAO {
 		return null;
 	}
 
-	// 객실 목록보기
 	public List<RoomManageVO> selectRoomList(Connection conn, int startRow, int endRow) {
-		System.out.println("selectRoomList 실행");
 		List<RoomManageVO> list = new ArrayList<>();
 		PreparedStatement ps = null;
 		ResultSet rs = null;
@@ -110,9 +105,7 @@ public class AdminDAO {
 		return list;
 	}
 
-	// 객실 상세보기
 	public RoomManageVO selectRoomByNo(int roomId) {
-		System.out.println("selectRoomByNo 실행");
 		RoomManageVO vo = null;
 		Connection conn = null;
 		PreparedStatement ps = null;
@@ -152,9 +145,7 @@ public class AdminDAO {
 		return vo;
 	}
 
-	// 객실 정보 변경
 	public void updateRoom(RoomManageVO vo) {
-		System.out.println("updateRoom 실행");
 		Connection conn = null;
 		PreparedStatement ps = null;
 
@@ -162,7 +153,6 @@ public class AdminDAO {
 			conn = getConnection();
 
 			String sql = props.getProperty("updateRoom");
-			System.out.println("updateRoom sql : " + sql);
 			ps = conn.prepareStatement(sql);
 
 			ps.setString(1, vo.getRoom_name());
@@ -175,7 +165,6 @@ public class AdminDAO {
 			ps.setInt(8, vo.getRoom_id());
 
 			int result = ps.executeUpdate();
-			System.out.println("updateRoom result : " + result);
 			commit(conn);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -215,7 +204,6 @@ public class AdminDAO {
 	}
 
 	public void deleteRoom(int room_id) {
-		System.out.println("deleteRoom실행");
 		Connection conn = null;
 		PreparedStatement ps = null;
 
@@ -238,7 +226,6 @@ public class AdminDAO {
 	}
 
 	public void deleteRoomImages(int roomNo) {
-		System.out.println("deleteRoomImages실행");
 		Connection conn = null;
 		PreparedStatement ps = null;
 
@@ -261,7 +248,6 @@ public class AdminDAO {
 		}
 	}
 
-	// DB이미지삭제
 	public void deleteRoomImageDB(int imageNo) {
 
 		Connection conn = null;
@@ -322,7 +308,6 @@ public class AdminDAO {
 		return path;
 	}
 
-	// 서버 이미지 삭제
 	public void deleteRoomImage(String imagePath) {
 
 		Connection conn = null;

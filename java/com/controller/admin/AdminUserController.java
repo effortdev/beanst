@@ -17,11 +17,10 @@ public class AdminUserController implements Action {
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) {
-		System.out.println("AdminUserController실행");
 		request.setAttribute("pageCss", "admin-member");
 		Connection conn = null;
 		String method = request.getMethod();
-		String action = request.getParameter("action"); // 어떤 작업을 할지 구분
+		String action = request.getParameter("action");
 		AdminService service = new AdminService(request.getServletContext());
 
 		int currentPage = 1;
@@ -32,39 +31,30 @@ public class AdminUserController implements Action {
 
 		conn = getConnection();
 
-		// 전체 글 수
 		int listCount = service.selectUserCount(conn);
 
-		// 페이지 설정
-		int pageLimit = 10; // 페이지 번호 개수
-		int boardLimit = 10; // 한 페이지 글 개수
+		int pageLimit = 10;
+		int boardLimit = 10;
 
-		// PageInfo 생성
 		int totalPage = (int) Math.ceil((double) listCount / boardLimit);
 
 		PageInfo pageInfo = new PageInfo(currentPage, listCount, pageLimit, boardLimit);
 
-		// 목록 조회
 		List<UserVO> list = service.selectUserList(conn, pageInfo.getStartRow(), pageInfo.getEndRow());
 
-		// request 전달
 		request.setAttribute("userList", list);
 		request.setAttribute("pageInfo", pageInfo);
 
-		// [GET] 화면 보여주기
 		if (method.equals("GET")) {
-			// 1. 회원 정보 수정 폼 보여주기
+
 			if ("edit".equals(action)) {
 				String userId = request.getParameter("userId");
-				UserVO user = service.getUserDetail(userId); // DAO 연결 필요
+				UserVO user = service.getUserDetail(userId);
 				request.setAttribute("user", user);
-				return "admin/member/adminMemberEdit"; // 수정 JSP로 이동
+				return "admin/member/adminMemberEdit";
 			}
 
-//			// 2. (기본) 회원 전체 목록 보여주기
-//			List<UserVO> userList = service.getAllUsers(); // DAO 연결 필요
-
-			String filter = request.getParameter("filter"); // 주소창의 ?filter= 값을 확인합니다.
+			String filter = request.getParameter("filter");
 
 			if ("withdraw".equals(filter)) {
 				List<UserVO> allUsers = service.getAllUsers();
@@ -79,30 +69,27 @@ public class AdminUserController implements Action {
 				}
 				request.setAttribute("userList", filteredList);
 
-				// 페이징 에러를 막기 위해 임시 PageInfo 세팅 (탈퇴 요청 리스트는 보통 한 페이지에 다 보여줌)
 				request.setAttribute("pageInfo",
 						new PageInfo(1, filteredList.size(), 10, filteredList.size() > 0 ? filteredList.size() : 1));
 
 			} else {
-				// [전체 회원 탭] 기존의 10명씩 가져오는 페이징 리스트 유지
+
 				request.setAttribute("userList", list);
 			}
-			return "admin/member/adminMemberList"; // 목록 JSP로 이동
+			return "admin/member/adminMemberList";
 		}
 
-		// [POST] 데이터 변경 처리
 		if (method.equals("POST")) {
-			// 1. 탈퇴 승인 처리
+
 			if ("approveWithdraw".equals(action)) {
 				String userId = request.getParameter("userId");
-				boolean result = service.approveWithdraw(userId); // DAO 연결 (status='3'으로 업데이트)
+				boolean result = service.approveWithdraw(userId);
 				if (result) {
 					request.setAttribute("msg", "탈퇴 처리가 완료되었습니다.");
 				}
-				return "redirect:/admin/memberManage.do?msg=withdraw"; // 본인의 목록 URL로 변경
+				return "redirect:/admin/memberManage.do?msg=withdraw";
 			}
 
-			// 2. 회원 정보 수정 완료 처리
 			if ("update".equals(action)) {
 				UserVO vo = new UserVO();
 				vo.setUserId(request.getParameter("user_id"));
@@ -112,7 +99,7 @@ public class AdminUserController implements Action {
 				vo.setRole(request.getParameter("role"));
 				vo.setStatus(request.getParameter("status"));
 
-				boolean result = service.updateUser(vo); // DAO 연결
+				boolean result = service.updateUser(vo);
 				return "redirect:/admin/memberManage.do?msg=update";
 			}
 		}
