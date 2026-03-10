@@ -38,13 +38,17 @@
 		</div>
 		<div id="save">
 			<label class="saveImage">기존이미지</label><br>
+			<script>
+				let existingImageCount = ${imageVO.size()};
+			</script>
 			<c:forEach var="image" items="${imageVO}">
 				<div class="saveImgBox">
 					<img src="${image.image_path}" width="200">
 					<div class="inputBox">
 						<input type="radio" name="main_image" value="${image.image_no}"
 							${image.is_main eq 'Y' ? 'checked' : ''}>대표이미지 <input
-							type="checkbox" name="delete_images" value="${image.image_no}">삭제
+							type="checkbox" name="delete_images" value="${image.image_no}"
+							onclick="toggleDelete(this)">삭제
 					</div>
 				</div>
 			</c:forEach>
@@ -54,8 +58,7 @@
 
 		<div class="form-group">
 			<label>이미지</label> <input type="file" id="room_img" name="room_img"
-				id="room_img" multiple accept="image/*"
-				onchange="previewImages(event)">
+				multiple accept="image/*" onchange="previewImages(event)">
 		</div>
 
 		<div id="preview"></div>
@@ -80,18 +83,26 @@ function previewImages(event) {
     const input = document.getElementById("room_img");
 
     const files = Array.from(event.target.files);
+
+    // 기존 이미지 + 새 이미지 제한
+    if (existingImageCount + selectedFiles.length + files.length > 5) {
+        alert("이미지는 최대 5개까지 등록 가능합니다.");
+        event.target.value = "";
+        return;
+    }
+
     for (let i = 0; i < files.length; i++) {
 
         const file = files[i];
 
-        if(!file.type.startsWith("image/")){
+        if (!file.type.startsWith("image/")) {
             alert("이미지 파일만 업로드 가능합니다.");
             event.target.value = "";
             return;
         }
 
     }
-    // 기존 파일 + 새 파일 합치기
+
     selectedFiles = selectedFiles.concat(files);
 
     renderPreview();
@@ -153,5 +164,12 @@ function updateInputFiles() {
 
     input.files = dataTransfer.files;
 }
+function toggleDelete(checkbox){
 
+    if(checkbox.checked){
+        existingImageCount--;
+    }else{
+        existingImageCount++;
+    }
+}
 </script>

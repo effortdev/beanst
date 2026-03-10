@@ -26,9 +26,6 @@ public class ReservationCheckController implements Action {
 		request.setAttribute("reservationList", reservationList);
 		request.setAttribute("userId", userId);
 
-		System.out.println("세션 userId = " + userId);
-		System.out.println("DAO 조회 결과 = " + reservationList.size() + "건");
-
 		return "reservation/reservationCheck";
 
 	}

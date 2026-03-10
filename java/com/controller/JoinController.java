@@ -36,9 +36,8 @@ public class JoinController implements Action {
             boolean isSuccess = service.joinUser(userVO);
 
             if (isSuccess) {
-            	return "redirect:/member/joinComplete.do"; // 완료 페이지로 리다이렉트
+            	return "redirect:/member/joinComplete.do"; 
             } else {
-                // 실패 시 에러 메시지와 함께 다시 가입 페이지로 (예: 이메일 중복 등)
                 request.setAttribute("errorMsg", "회원가입 처리 중 오류가 발생했습니다. (중복된 아이디나 이메일일 수 있습니다.)");
                 request.setAttribute("pageCss", "join");
                 return "member/join";

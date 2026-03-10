@@ -29,8 +29,7 @@
 		</div>
 		<div class="form-group">
 			<label>이미지</label> <input type="file" id="room_img" name="room_img"
-				id="room_img" multiple accept="image/*"
-				onchange="previewImages(event)">
+				multiple accept="image/*" onchange="previewImages(event)">
 		</div>
 		<div id="preview"></div>
 		<div class="form-buttons">
@@ -51,17 +50,26 @@ function previewImages(event) {
     const input = document.getElementById("room_img");
 
     const files = Array.from(event.target.files);
+
+    // 🔹 업로드 개수 제한 (5개)
+    if (selectedFiles.length + files.length > 5) {
+        alert("이미지는 최대 5개까지 업로드 가능합니다.");
+        event.target.value = "";
+        return;
+    }
+
     for (let i = 0; i < files.length; i++) {
 
         const file = files[i];
 
-        if(!file.type.startsWith("image/")){
+        if (!file.type.startsWith("image/")) {
             alert("이미지 파일만 업로드 가능합니다.");
             event.target.value = "";
             return;
         }
 
     }
+
     // 기존 파일 + 새 파일 합치기
     selectedFiles = selectedFiles.concat(files);
 

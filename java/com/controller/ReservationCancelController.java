@@ -40,7 +40,6 @@ public class ReservationCancelController implements Action {
 
 			if (result) {
 
-				// 여기 핵심
 				response.sendRedirect(request.getContextPath() + "/reservation/check.do");
 
 			} else {
