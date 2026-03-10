@@ -16,7 +16,8 @@
 			<div class="facilityCard">
 
 				<div class="imgBox">
-					<img src="${f.imagePath}" alt="${f.facilityName}">
+					<img src="${f.imagePath}" alt="${f.facilityName}"
+						onerror="this.src='${pageContext.request.contextPath}/assets/images/default/no_image.png'">
 				</div>
 
 				<div class="textBox">

@@ -70,6 +70,17 @@ public class UpdateController implements Action {
 			session.setAttribute("loginMember", selectMember);
 		}
 
+		// 이메일 중복 체크
+		if (email != null && !email.trim().isEmpty()) {
+
+			boolean emailExists = userService.isEmailDuplicate(email, userId);
+
+			if (emailExists) {
+				session.setAttribute("msg", "이미 사용중인 이메일입니다. 다시 입력해주세요.");
+				return "redirect:/member/myPage.do";
+			}
+		}
+
 		// 이메일/전화번호 변경
 		if ((email != null && !email.trim().isEmpty()) || (phone != null && !phone.trim().isEmpty())) {
 			userService.updateContact(userId, email, phone);

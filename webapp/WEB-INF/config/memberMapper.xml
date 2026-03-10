@@ -26,4 +26,13 @@
         ]]>
 	</entry>
 
+	<entry key="checkEmailDuplicate">
+<![CDATA[
+SELECT COUNT(*)
+FROM users
+WHERE email = ?
+AND user_id != ?
+]]>
+	</entry>
+
 </properties>

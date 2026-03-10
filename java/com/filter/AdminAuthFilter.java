@@ -13,36 +13,42 @@ import jakarta.servlet.http.HttpSession;
 @WebFilter("/admin/*")
 public class AdminAuthFilter implements Filter {
 
-    @Override
-    public void doFilter(ServletRequest request, ServletResponse response,
-                         FilterChain chain)
-            throws IOException, ServletException {
+	@Override
+	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
+			throws IOException, ServletException {
 
-        HttpServletRequest req = (HttpServletRequest) request;
-        HttpServletResponse res = (HttpServletResponse) response;
+		HttpServletRequest req = (HttpServletRequest) request;
+		HttpServletResponse res = (HttpServletResponse) response;
 
-        String uri = req.getRequestURI();
+		String uri = req.getRequestURI();
 
-        // 로그인 페이지는 통과
-        if (uri.contains("/admin/login.do")) {
-            chain.doFilter(request, response);
-            return;
-        }
 
-        HttpSession session = req.getSession(false);
+		if (uri.contains("/admin/login.do")) {
+			chain.doFilter(request, response);
+			return;
+		}
 
-        if (session == null || session.getAttribute("admin") == null) {
-            res.sendRedirect(req.getContextPath() + "/admin/login.do");
-            return;
-        }
+		HttpSession session = req.getSession(false);
 
-        AdminDTO admin = (AdminDTO) session.getAttribute("admin");
+		if (session == null || session.getAttribute("admin") == null) {
+			res.sendRedirect(req.getContextPath() + "/admin/login.do");
+			return;
+		}
 
-        if (!"admin".equals(admin.getRole())) {
-            res.sendError(HttpServletResponse.SC_FORBIDDEN);
-            return;
-        }
+		AdminDTO admin = (AdminDTO) session.getAttribute("admin");
 
-        chain.doFilter(request, response);
-    }
+		if (!"admin".equals(admin.getRole())) {
+			res.setContentType("text/html; charset=UTF-8"); 
+			java.io.PrintWriter out = res.getWriter();
+			out.println("<script>");
+			out.println("alert('관리자 권한이 없습니다. 메인 페이지로 이동합니다.');");
+
+			out.println("location.href='" + req.getContextPath() + "/';");
+			out.println("</script>");
+			out.flush();
+			return;
+		}
+
+		chain.doFilter(request, response);
+	}
 }

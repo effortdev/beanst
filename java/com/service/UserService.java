@@ -51,4 +51,9 @@ public class UserService {
 	public UserVO selectUser(String id) {
 		return dao.selectUser(id);
 	}
+
+	// 9 이메일 중복검사
+	public boolean isEmailDuplicate(String email, String userId) {
+		return dao.isEmailDuplicate(email, userId);
+	}
 }

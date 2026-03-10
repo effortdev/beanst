@@ -288,4 +288,39 @@ public class UserDAO {
 
 		return isSuccess;
 	}
+
+//  이메일 중복검사 -- 0310 추가 
+
+	public boolean isEmailDuplicate(String email, String userId) {
+
+		boolean isDuplicate = false;
+
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+
+		try {
+			con = JdbcUtil.getConnection();
+			String sql = props.getProperty("checkEmailDuplicate");
+
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, email);
+			pstmt.setString(2, userId);
+
+			rs = pstmt.executeQuery();
+
+			if (rs.next() && rs.getInt(1) > 0) {
+				isDuplicate = true;
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			JdbcUtil.close(rs);
+			JdbcUtil.close(pstmt);
+			JdbcUtil.close(con);
+		}
+
+		return isDuplicate;
+	}
 }

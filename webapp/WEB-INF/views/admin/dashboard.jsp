@@ -19,10 +19,10 @@
 			<p>${todayCheckOut}</p>
 		</div>
 
-		<div class="card">
+<%-- 		<div class="card">
 			<h3>현재 투숙</h3>
 			<p>${currentStay}</p>
-		</div>
+		</div> --%>
 
 		<div class="card">
 			<h3>예약 요청</h3>

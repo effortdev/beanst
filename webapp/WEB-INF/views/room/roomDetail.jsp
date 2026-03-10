@@ -18,29 +18,45 @@
 	</div>
 
 	<section class="bgImg">
+		<c:set var="heroImg" value="" />
+
 		<c:forEach var="img" items="${images}">
 			<c:if test="${img.is_main eq 'Y'}">
-
-				<div class="facilityHero">
-					<img src="${img.image_path}">
-				</div>
-
+				<c:set var="heroImg" value="${img.image_path}" />
 			</c:if>
 		</c:forEach>
+
+		<div class="facilityHero">
+
+			<c:choose>
+
+				<c:when test="${not empty heroImg}">
+					<img src="${heroImg}"
+						onerror="this.src='${pageContext.request.contextPath}/assets/images/default/no_image.png'">
+				</c:when>
+
+				<c:otherwise>
+					<img
+						src="${pageContext.request.contextPath}/assets/images/default/no_image.png">
+				</c:otherwise>
+
+			</c:choose>
+
+		</div>
 	</section>
 
 	<section class="hotelInfo">
 		<table class="facilityInfoTable">
 			<tr>
-				<th>시설 이름</th>
+				<th>객실 이름</th>
 				<td>${room.room_name}</td>
 			</tr>
 			<tr>
-				<th>운영 시간</th>
+				<th>체크인</th>
 				<td>${room.usage_time}</td>
 			</tr>
 			<tr>
-				<th>시설 위치</th>
+				<th>위치</th>
 				<td>${room.room_location}</td>
 			</tr>
 		</table>
