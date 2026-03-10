@@ -194,6 +194,11 @@ main .wrap.hero {
 	color: #fff;
 }
 
+#about_Room .swiper-slide .textBox .text.en {
+	font-size: 24px;
+	margin-bottom: 5px;
+}
+
 #about_Room .swiper-slide.swiper-slide-active .textBox {
 	opacity: 1;
 	right: 0;
@@ -435,6 +440,12 @@ main .wrap.hero {
 	}
 	.experienceSwiper .list_item .imgBox {
 		height: 310px;
+	}
+}
+
+@media ( max-width : 901px) {
+	#about_Room .swiper-pagination {
+		display: none;
 	}
 }
 

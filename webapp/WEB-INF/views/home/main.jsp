@@ -77,7 +77,7 @@
 
 							<div class="textBox">
 								<p class="text en">${room.room_name}</p>
-								<p class="text">${room.room_location}</p>
+								<p class="text">${room.room_description}</p>
 							</div>
 
 						</div>
