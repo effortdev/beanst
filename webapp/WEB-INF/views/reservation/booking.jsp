@@ -50,10 +50,14 @@
 									<c:choose>
 										<c:when test="${not empty room.imagePath}">
 											<img src="${room.imagePath}?v=${room.roomId}"
-												alt="${room.roomName}">
+												alt="${room.roomName}"
+												onerror="this.src='${pageContext.request.contextPath}/assets/images/default/no_image.png'">
 										</c:when>
+
 										<c:otherwise>
-											<div class="noimage">NO IMAGE</div>
+											<img
+												src="${pageContext.request.contextPath}/assets/images/default/no_image.png"
+												alt="no image">
 										</c:otherwise>
 									</c:choose>
 								</div>

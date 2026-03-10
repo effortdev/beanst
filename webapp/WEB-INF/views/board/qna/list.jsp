@@ -61,7 +61,7 @@
 							<c:otherwise>
 								<c:forEach items="${list}" varStatus="status">
 									<tr>
-										<td>${status.count}</td>
+										<td>${(pi.currentPage - 1) * pi.boardLimit + status.count}</td>
 										<td class="text-left"><a
 											href="${pageContext.request.contextPath}/qnaDetail.do?no=${status.current.qnaNo}">${status.current.title}</a>
 										</td>

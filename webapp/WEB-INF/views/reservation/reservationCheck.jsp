@@ -3,7 +3,7 @@
 <%@ page import="java.time.LocalDate"%>
 <%@ page import="java.time.temporal.ChronoUnit"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <body>
 
 	<div class="wrap">
@@ -26,7 +26,6 @@
 
 					<c:forEach var="reservation" items="${reservationList}">
 						<div class="checkTop">
-
 							<c:if
 								test="${reservation.status == '1' or reservation.status == '2'}">
 								<input type="checkbox" name="reservationIds"
@@ -103,7 +102,8 @@
 								</tr>
 								<tr>
 									<th class="checkLabel">총 금액</th>
-									<td class="checkvalue">${reservation.totalPrice}원</td>
+									<td class="checkvalue"><fmt:formatNumber
+											value="${reservation.totalPrice}" type="number" />원</td>
 								</tr>
 							</table>
 

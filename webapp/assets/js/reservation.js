@@ -1,6 +1,4 @@
-// =========================
-// 예약 취소 확인
-// =========================
+
 function cancelCheck() {
 	const checked = document.querySelectorAll("input[name='reservationIds']:checked");
 	if (checked.length === 0) {
@@ -13,22 +11,20 @@ function cancelCheck() {
 		const id = box.value;
 		const name = document.querySelector("input[name='name_" + id + "']").value;
 		const price = document.querySelector("input[name='price_" + id + "']").value;
-		message += "\n예약자: " + name + "\n예약번호: " + id + "\n총 금액: " + price + "\n------------------------";
+		const formattedPrice = Number(price).toLocaleString();
+		message += "\n예약자: " + name + "\n예약번호: " + id + "\n총 금액: " + formattedPrice + "원" + "\n------------------------";
 	});
 	message += "\n선택하신 예약을 취소하시겠습니까?";
 	return confirm(message);
 }
 
-// =========================
-// 카드 드래그 슬라이더
-// =========================
+
 document.addEventListener("DOMContentLoaded", function() {
 	const slider = document.querySelector(".reservationContainer");
 	if (!slider) return;
 
 	let isDown = false, startX, scrollLeft;
 
-	// 마우스 이벤트
 	slider.addEventListener("mousedown", e => {
 		isDown = true;
 		startX = e.pageX - slider.offsetLeft;
@@ -41,11 +37,11 @@ document.addEventListener("DOMContentLoaded", function() {
 		if (!isDown) return;
 		e.preventDefault();
 		const x = e.pageX - slider.offsetLeft;
-		const walk = (x - startX) * 2; // 속도 완화
+		const walk = (x - startX) * 2; 
 		slider.scrollLeft = scrollLeft - walk;
 	});
 
-	// 터치 이벤트
+
 	slider.addEventListener("touchstart", e => {
 		startX = e.touches[0].pageX - slider.offsetLeft;
 		scrollLeft = slider.scrollLeft;
