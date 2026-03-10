@@ -21,7 +21,6 @@ public class QnaDAO {
 
 	public QnaDAO(ServletContext context) {
 		try {
-			System.out.println("QnaDAO 생성자 실행");
 			InputStream input = context.getResourceAsStream("/WEB-INF/config/qnaMapper.xml");
 			props.loadFromXML(input);
 		} catch (Exception e) {
@@ -40,7 +39,6 @@ public class QnaDAO {
 
 			StringBuilder sql = new StringBuilder(props.getProperty("qnaCountBase"));
 
-			// 로그인한 사용자 글만 카운트
 			sql.append(" AND q.user_id = ? ");
 
 			if (keyword != null && !keyword.isEmpty()) {
@@ -87,7 +85,6 @@ public class QnaDAO {
 
 			StringBuilder sql = new StringBuilder(props.getProperty("qnaListBase"));
 
-			// 로그인한 사용자 글만 조회
 			sql.append(" AND q.user_id = ? ");
 
 			if (keyword != null && !keyword.isEmpty()) {
@@ -150,7 +147,6 @@ public class QnaDAO {
 		try {
 			conn = getConnection();
 
-			// 조회수 증가 쿼리도 XML에서 관리
 			try {
 				String updateSql = props.getProperty("qnaUpdateViewCount");
 				ps = conn.prepareStatement(updateSql);

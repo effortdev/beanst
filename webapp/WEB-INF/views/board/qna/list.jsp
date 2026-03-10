@@ -24,7 +24,7 @@
 				</form>
 			</div>
 
-			<%-- 페이징: 검색어 유지용 쿼리 스트링 --%>
+
 			<c:set var="queryKeyword" value="" />
 			<c:if test="${not empty keyword}">
 				<c:set var="queryKeyword" value="&keyword=${fn:escapeXml(keyword)}" />
@@ -81,7 +81,7 @@
 
 			<c:if test="${pi.maxPage > 1}">
 				<div class="pagination">
-					<%-- 이전: 1페이지면 비활성(링크 없음), 아니면 활성 링크 --%>
+
 					<c:choose>
 						<c:when test="${pi.currentPage > 1}">
 							<a
@@ -103,7 +103,7 @@
 							</c:otherwise>
 						</c:choose>
 					</c:forEach>
-					<%-- 다음: 마지막 페이지면 비활성(링크 없음), 아니면 활성 링크 --%>
+
 					<c:choose>
 						<c:when test="${pi.currentPage < pi.maxPage}">
 							<a

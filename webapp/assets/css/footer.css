@@ -1,13 +1,5 @@
 @charset "UTF-8";
 
-/* ================================================
-   VIN'st Hotel — Footer 반응형 CSS
-   Breakpoints:
-     - Desktop  : 1025px 이상
-     - Tablet   : 768px ~ 1024px
-     - Mobile   : ~ 767px
-     - Small    : ~ 480px
-   ================================================ */
 #footer {
 	--f-bg: #0e0e0e; /* 푸터 배경 */
 	--f-border: #222; /* 구분선 */
@@ -21,7 +13,7 @@
 	--f-gold: var(--point1); /* ← common.css --point1 (#C9A962) 참조 */
 }
 
-/* ── 푸터 기본 ───────────────────────────────── */
+
 #footer {
 	background-color: var(--f-bg);
 	color: var(--f-text);
@@ -30,7 +22,7 @@
 	border-top: 1px solid var(--f-border);
 }
 
-/* ── 상단 영역 ───────────────────────────────── */
+
 .footer-top {
 	max-width: 1600px;
 	width: 90%;
@@ -61,7 +53,7 @@
 	word-break: keep-all;
 }
 
-/* ── RIGHT ───────────────────────────────────── */
+
 .footer-right {
 	display: flex;
 	flex-direction: column;
@@ -70,7 +62,7 @@
 	flex-shrink: 0;
 }
 
-/* ── 네비게이션 ──────────────────────────────── */
+
 .footer-nav ul {
 	display: flex;
 	gap: 35px;
@@ -109,7 +101,7 @@
 	width: 100%;
 }
 
-/* ── 팀 정보 ─────────────────────────────────── */
+
 .footer-team h3 {
 	font-size: 15px;
 	letter-spacing: 2px;
@@ -128,7 +120,7 @@
 	color: var(--f-dim);
 }
 
-/* ── 관리자 로그인 ───────────────────────────── */
+
 .admin_login {
 	margin-top: 20px;
 }
@@ -146,7 +138,7 @@
 	color: var(--f-white);
 }
 
-/* ── 하단 카피라이트 ─────────────────────────── */
+
 .footer-bottom {
 	border-top: 1px solid var(--f-border);
 	margin-top: 60px;
@@ -156,9 +148,6 @@
 	color: var(--f-copy);
 }
 
-/* ================================================
-   TABLET  768px ~ 1024px
-   ================================================ */
 @media ( min-width : 768px) and (max-width: 1024px) {
 	#footer {
 		padding: 60px 0 28px;
@@ -179,9 +168,6 @@
 	}
 }
 
-/* ================================================
-   MOBILE  ~ 767px
-   ================================================ */
 @media ( max-width : 767px) {
 	#footer {
 		padding: 48px 0 24px;
@@ -233,9 +219,6 @@
 	}
 }
 
-/* ================================================
-   SMALL  ~ 480px
-   ================================================ */
 @media ( max-width : 480px) {
 	.footer-top {
 		width: 86%;

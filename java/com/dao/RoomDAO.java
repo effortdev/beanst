@@ -25,7 +25,6 @@ public class RoomDAO {
 
 	public RoomDAO(ServletContext context) {
 		try {
-			System.out.println("RoomDAO 생성자 실행");
 			InputStream input = context.getResourceAsStream("/WEB-INF/config/mainMapper.xml");
 			props.loadFromXML(input);
 		} catch (Exception e) {
@@ -42,7 +41,6 @@ public class RoomDAO {
 		try {
 			con = JdbcUtil.getConnection();
 
-//			String sql = "SELECT * FROM room ORDER BY room_id ASC";
 			String sql = props.getProperty("getAllRooms");
 			pstmt = con.prepareStatement(sql);
 			rs = pstmt.executeQuery();
@@ -70,7 +68,6 @@ public class RoomDAO {
 		return list;
 	}
 
-	// 객실 목록보기 수정중
 	public List<RoomMainDTO> selectRoomList() {
 
 		List<RoomMainDTO> list = new ArrayList<>();
@@ -114,7 +111,6 @@ public class RoomDAO {
 		return list;
 	}
 
-	// 객실 목록 보기
 	public List<RoomMainDTO> selectMainRoom() {
 
 		List<RoomMainDTO> list = new ArrayList<>();
@@ -160,9 +156,7 @@ public class RoomDAO {
 		return list;
 	}
 
-	// 객실 상세보기
 	public RoomManageVO selectRoom(int roomId) {
-		System.out.println("selectRoom 실행");
 		RoomManageVO vo = null;
 		Connection conn = null;
 		PreparedStatement ps = null;
@@ -202,9 +196,7 @@ public class RoomDAO {
 		return vo;
 	}
 
-	// 객실이미지보기
 	public List<RoomImageVO> selectRoomImages(int roomId) {
-		System.out.println("selectRoomImages실행");
 		Connection conn = null;
 		PreparedStatement ps = null;
 		ResultSet rs = null;

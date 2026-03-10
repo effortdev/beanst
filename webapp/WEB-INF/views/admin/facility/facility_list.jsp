@@ -48,7 +48,7 @@
 	</table>
 	<div class="pagination">
 
-		<!-- 이전 -->
+	
 		<c:choose>
 			<c:when test="${pageInfo.currentPage > 1}">
 				<a
@@ -59,7 +59,7 @@
 			</c:otherwise>
 		</c:choose>
 
-		<!-- 페이지 -->
+	
 		<c:forEach var="i" begin="${pageInfo.startPage}"
 			end="${pageInfo.endPage}">
 			<c:choose>
@@ -74,7 +74,7 @@
 			</c:choose>
 		</c:forEach>
 
-		<!-- 다음 -->
+
 		<c:choose>
 			<c:when test="${pageInfo.currentPage < pageInfo.maxPage}">
 				<a

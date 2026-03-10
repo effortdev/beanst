@@ -15,7 +15,6 @@ public class AdminLoginService {
     }
 
     public AdminDTO login(String userId, String password) {
-    	System.out.println("Service login 실행");
         AdminDAO dao = new AdminDAO(context);
         return dao.login(userId, password);
     }

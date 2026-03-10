@@ -19,10 +19,6 @@
 			<h3>오늘 체크아웃</h3>
 			<p>${todayCheckOut}</p>
 		</a>
-		<%-- 		<div class="card">
-			<h3>현재 투숙</h3>
-			<p>${currentStay}</p>
-		</div> --%>
 
 		<a href="${pageContext.request.contextPath}/admin/reservation/list.do"
 			class="card">
@@ -45,7 +41,7 @@
 
 	<div class="dashboard-charts">
 
-		<!-- 예약 그래프 -->
+
 		<div class="dashboard-chart">
 
 			<h3>최근 7일 예약 현황</h3>
@@ -55,7 +51,7 @@
 		</div>
 
 
-		<!-- 객실 점유율 -->
+
 		<div class="dashboard-chart">
 
 			<h3>객실 점유율</h3>
@@ -67,7 +63,7 @@
 	</div>
 
 
-	<!-- 최근 예약 -->
+
 
 	<div class="dashboard-table">
 
@@ -122,7 +118,7 @@
 	</div>
 
 
-	<!-- 최근 문의 -->
+
 
 	<div class="dashboard-table">
 

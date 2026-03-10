@@ -13,15 +13,12 @@ public class BookingService {
 
 	private ServletContext context;
 
-	// 생성자에서 context를 받아옵니다.
 	public BookingService(ServletContext context) {
 		this.context = context;
 	}
 
-	// 객실 목록 가져오기
 	public List<RoomVO> getAllRooms(ServletContext context) {
-		// 기존 패턴과 동일하게 DAO를 생성하여 호출합니다.
-		// (만약 RoomDAO에서도 context가 필요하다면 넘겨줄 수 있도록 구조를 맞췄습니다)
+
 		RoomDAO dao = new RoomDAO(context);
 		return dao.getAllRooms();
 	}
@@ -41,19 +38,16 @@ public class BookingService {
 		return dao.getReservedDates();
 	}
 
-	// 1
 	public List<ReservationVO> getReservedDatesExcludingSelf(int resId) {
 		ReservationDAO dao = new ReservationDAO(context);
 		return dao.getReservedDatesExcludingSelf(resId);
 	}
 
-	// 2
 	public boolean checkRoomAvailabilityForUpdate(int roomId, String checkIn, String checkOut, int resId) {
 		ReservationDAO dao = new ReservationDAO(context);
 		return dao.isRoomAvailableForUpdate(roomId, checkIn, checkOut, resId);
 	}
 
-	// 3
 	public boolean modifyReservation(ReservationVO reserveVO) {
 		ReservationDAO dao = new ReservationDAO(context);
 		return dao.updateReservation(reserveVO);

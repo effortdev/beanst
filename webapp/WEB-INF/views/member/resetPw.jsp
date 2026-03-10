@@ -35,7 +35,7 @@
 	$(document)
 			.ready(
 					function() {
-						// 비밀번호 실시간 검사 (회원가입 로직 재활용)
+
 						$("#password")
 								.on(
 										"input",
@@ -66,7 +66,6 @@
 											$("#password_re").trigger("input");
 										});
 
-						// 비밀번호 일치 실시간 검사
 						$("#password_re").on(
 								"input",
 								function() {
@@ -88,7 +87,7 @@
 									}
 								});
 
-						// 최종 전송 전 체크
+
 						$("#resetForm")
 								.on(
 										"submit",

@@ -1,3 +1,5 @@
+@charset "UTF-8";
+
 .reservationContainer {
 	display: flex;
 	flex-direction: row;

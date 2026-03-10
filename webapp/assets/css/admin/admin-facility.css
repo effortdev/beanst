@@ -1,17 +1,12 @@
 @charset "UTF-8";
 
-/* =========================
-   시설 페이지 공통 레이아웃
-========================= */
+
 .admin-facility {
 	max-width: 1400px;
 	margin: 40px auto;
 	padding: 0 20px;
 }
 
-/* =========================
-   상단 헤더
-========================= */
 .facility-header {
 	display: flex;
 	justify-content: space-between;
@@ -25,7 +20,6 @@
 	margin-bottom: 30px;
 }
 
-/* 시설 추가 버튼 */
 .facility-add-btn {
 	display: inline-block;
 	padding: 8px 16px;
@@ -42,9 +36,6 @@
 	color: #fff;
 }
 
-/* =========================
-   시설 목록 테이블
-========================= */
 .facility-table {
 	width: 100%;
 	border-collapse: collapse;
@@ -82,9 +73,6 @@
 	border-bottom: none;
 }
 
-/* =========================
-   관리 버튼
-========================= */
 .facility-btn-edit {
 	display: inline-block;
 	background: var(--bg4);
@@ -115,9 +103,6 @@
 	color: #fff !important;
 }
 
-/* =========================
-   빈 데이터
-========================= */
 .empty {
 	text-align: center;
 	padding: 30px;
@@ -125,9 +110,6 @@
 	font-size: 14px;
 }
 
-/* =========================
-   시설 등록 / 수정 폼
-========================= */
 .admin-facility-form {
 	max-width: 1400px;
 	margin: 40px auto;
@@ -143,9 +125,6 @@
 	margin-bottom: 30px;
 }
 
-/* =========================
-   입력 폼
-========================= */
 .facility-form-group {
 	display: flex;
 	align-items: center;
@@ -182,9 +161,6 @@
 	box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.05);
 }
 
-/* =========================
-   이미지 영역
-========================= */
 .facility-image-title {
 	margin: 30px 0 15px 0;
 	font-size: 16px;
@@ -192,9 +168,6 @@
 	color: #333;
 }
 
-/* =========================
-   이미지 카드 레이아웃
-========================= */
 .image-grid {
 	display: grid;
 	grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
@@ -202,7 +175,6 @@
 	margin-top: 10px;
 }
 
-/* 이미지 카드 */
 .image-card {
 	background: #fafafa;
 	border: 1px solid #eee;
@@ -217,7 +189,6 @@
 	box-shadow: 0 6px 15px rgba(0, 0, 0, 0.08);
 }
 
-/* 이미지 */
 .image-card img {
 	width: 100%;
 	height: 150px;
@@ -226,7 +197,6 @@
 	margin-bottom: 8px;
 }
 
-/* 카드 컨트롤 */
 .image-controls {
 	font-size: 16px;
 	display: flex;
@@ -236,7 +206,6 @@
 	flex-wrap: wrap;
 }
 
-/* 삭제 버튼 */
 .image-controls button {
 	background: #000;
 	color: #fff;
@@ -252,9 +221,6 @@
 	background: #333;
 }
 
-/* =========================
-   삭제 체크 스타일
-========================= */
 .delete-radio {
 	display: inline-flex;
 	align-items: center;
@@ -289,16 +255,10 @@
 	border-color: #c62828;
 }
 
-/* =========================
-   대표 이미지 radio
-========================= */
 .image-controls input[type="radio"] {
 	margin-right: 4px;
 }
 
-/* =========================
-   저장 버튼
-========================= */
 .btn-save {
 	display: block;
 	margin: 0 auto;
@@ -340,9 +300,6 @@
 	align-items: end;
 }
 
-/* =========================
-   새 이미지 업로드 input
-========================= */
 #newImages {
 	width: 100%;
 	padding: 12px;
@@ -358,9 +315,6 @@
 	background: #f5f5f5;
 }
 
-/* =========================
-   새 이미지 카드 hover
-========================= */
 #imagePreview .image-card {
 	background: #fafafa;
 	border: 1px solid #eee;
@@ -373,9 +327,6 @@
 	box-shadow: 0 6px 15px rgba(0, 0, 0, 0.08);
 }
 
-/* =========================
-   이미지 스타일 통일
-========================= */
 #imagePreview img {
 	width: 100%;
 	height: 120px;
@@ -384,9 +335,6 @@
 	margin-bottom: 8px;
 }
 
-/* =========================
-   이미지 컨트롤
-========================= */
 #imagePreview .image-controls {
 	display: flex;
 	gap: 8px;
@@ -394,15 +342,11 @@
 	font-size: 16px;
 }
 
-/* 대표 radio */
 #imagePreview input[type="radio"] {
 	margin-right: 4px;
 	cursor: pointer;
 }
 
-/* =========================
-   삭제 버튼 (새 이미지)
-========================= */
 #imagePreview button {
 	display: inline-block;
 	background: var(--bg5);
@@ -418,9 +362,6 @@
 	color: #fff !important;
 }
 
-/* =========================
-   기존 이미지 카드 hover
-========================= */
 .image-card img:hover {
 	box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
 }

@@ -1,8 +1,6 @@
 @charset "UTF-8";
 
-/* =========================
-   기본 레이아웃
-========================= */
+
 .admin-body {
 	background: #FAF8F5;
 }
@@ -11,9 +9,7 @@
 	display: flex;
 }
 
-/* =========================
-   헤더
-========================= */
+
 .admin-header {
 	height: 80px;
 	background: var(--bg1);
@@ -57,9 +53,7 @@
 	color: var(--bg1);
 }
 
-/* =========================
-   사이드바
-========================= */
+
 .admin-sidebar {
 	width: 220px;
 	background: var(--bg2);
@@ -106,9 +100,7 @@
 	font-weight: 600;
 }
 
-/* =========================
-   콘텐츠 영역
-========================= */
+
 .admin-content {
 	flex: 1;
 	padding: 40px 40px 0 40px;
@@ -116,9 +108,7 @@
 	min-height: calc(100vh - 60px);
 }
 
-/* =========================
-   폼
-========================= */
+
 .admin-table td {
 	height: 40px !important;
 	line-height: 20px !important;
@@ -162,7 +152,6 @@ button:hover {
 	background: #333;
 }
 
-/* 페이징네이션 */
 .pagination {
 	margin-top: 30px;
 	text-align: center;

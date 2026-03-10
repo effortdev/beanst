@@ -1,24 +1,7 @@
-/* ================================================
-   VIN'st Hotel - booking.jsp 반응형 CSS
-   Breakpoints:
-     - Desktop  : 1024px 이상
-     - Tablet   : 768px ~ 1023px
-     - Mobile   : 767px 이하
-   ================================================ */
-@import url("");
+@charset "UTF-8";
 
-/* ── 기본 리셋 & 공통 ──────────────────────────── */
-*, *::before, *::after {
-	box-sizing: border-box;
-}
 
-/* ── 페이지 전체 래퍼 ──────────────────────────── */
-main {
-	width: 100%;
-	padding: 0 16px;
-}
 
-/* ── booking-container : 폼 + 요약 패널 나란히 ── */
 .booking-container {
 	display: flex;
 	flex-direction: row; /* 기본: 가로 배치 */
@@ -29,7 +12,7 @@ main {
 	padding: 120px 20px;
 }
 
-/* ── 왼쪽 : 예약 폼 영역 ─────────────────────── */
+
 .booking-form {
 	flex: 2;
 	min-width: 0; /* flex shrink 버그 방지 */
@@ -48,7 +31,7 @@ main {
 	margin-top: -52px;
 }
 
-/* ── 객실 그리드 ─────────────────────────────── */
+
 .room-grid {
 	display: grid;
 	grid-template-columns: 1fr; /* 기본: 2열 */
@@ -56,7 +39,7 @@ main {
 	margin-bottom: 24px;
 }
 
-/* ── 객실 카드 ───────────────────────────────── */
+
 .room-card {
 	border: 2px solid #eee;
 	border-radius: 8px;
@@ -195,13 +178,11 @@ main {
 	margin-top: 10px;
 }
 
-/* ── w-100 : flex 내 동등 분할 아이템 ─────────── */
 .form-group.flex .w-100 {
 	flex: 1 1 calc(50% - 5px); /* 기본: 2열 */
 	min-width: 140px;
 }
 
-/* ── 입력 공통 ───────────────────────────────── */
 .form-control {
 	width: 100%;
 	padding: 12px 14px;
@@ -225,7 +206,7 @@ main {
 	color: #aaa;
 }
 
-/* 날짜 picker */
+
 .date-picker {
 	cursor: pointer;
 	background-image:
@@ -235,24 +216,18 @@ main {
 	padding-right: 40px;
 }
 
-/* 인원수 입력 */
+
 .person-calc {
 	text-align: center;
 	font-size: 1.05rem;
 	font-weight: 600;
 }
 
-/* ── 오른쪽 : 예약 요약 패널 ────────────────── */
+
 .booking-summary {
 	/*    flex: 1 1 0%; */
 	min-width: 260px;
 	max-width: 360px;
-	/*    background: rgb(253, 248, 243); */
-	/*    padding: 30px; */
-	/*    border-radius: 8px; */
-	/*    height: fit-content; */
-	/*    position: sticky; */
-	/*    top: 100px; */
 	border: 1px solid #e8dfd0;
 	flex: 1;
 	background: #fdf8f3;
@@ -288,7 +263,7 @@ main {
 	font-weight: 600;
 }
 
-/* 요약 - 요금 행 */
+
 .booking-summary .price-row {
 	display: flex;
 	justify-content: space-between;
@@ -307,7 +282,7 @@ main {
 	color: #dc3545;
 }
 
-/* 총 금액 */
+
 .booking-summary .total-section {
 	text-align: right;
 	margin-top: 8px;
@@ -490,9 +465,7 @@ textarea.form-control {
 	margin: 10px auto 0
 }
 
-/* ================================================
-   TABLET  768px ~ 1023px
-   ================================================ */
+
 @media ( max-width : 1023px) {
 	.booking-container {
 		padding: 130px 16px;
@@ -578,9 +551,6 @@ textarea.form-control {
 	}
 }
 
-/* ================================================
-   MOBILE  767px 이하
-   ================================================ */
 @media ( max-width : 767px) {
 	main {
 		padding: 0;
@@ -643,9 +613,7 @@ textarea.form-control {
 	}
 }
 
-/* ================================================
-   SMALL MOBILE  480px 이하
-   ================================================ */
+
 @media ( max-width : 480px) {
 	.booking-container {
 		padding: 116px 12px;
@@ -670,7 +638,7 @@ textarea.form-control {
 	}
 }
 
-/* Utilities */
+
 .text-center {
 	text-align: center
 }

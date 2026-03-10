@@ -24,7 +24,6 @@ public class UserDAO {
 		}
 	}
 
-	// 회원 가입
 	public boolean insertUser(UserVO vo) {
 		boolean isSuccess = false;
 		Connection con = null;
@@ -61,7 +60,6 @@ public class UserDAO {
 		return isSuccess;
 	}
 
-	// 아이디 찾기
 	public String findId(String name, String email) {
 		String userId = null;
 		Connection con = null;
@@ -89,7 +87,6 @@ public class UserDAO {
 		return userId;
 	}
 
-	// 유저 한 사람 가져오기
 	public UserVO selectUser(String id) {
 		UserVO vo = null;
 		Connection con = null;
@@ -113,10 +110,9 @@ public class UserDAO {
 
 				String dateStr = rs.getString("created_at");
 				SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
-				java.util.Date date = formatter.parse(dateStr); // Date로 변환
+				java.util.Date date = formatter.parse(dateStr);
 				java.sql.Timestamp timestamp = new java.sql.Timestamp(date.getTime());
 				vo.setCreatedAt(timestamp);
-//				vo.setCreatedAt(rs.getTimestamp("created_at"));
 
 			}
 		} catch (Exception e) {
@@ -130,7 +126,6 @@ public class UserDAO {
 		return vo;
 	}
 
-	// 사용자 존재 여부 확인 (비밀번호 찾기용)
 	public boolean checkUserForPw(String userId, String name, String email) {
 		boolean isExist = false;
 		Connection con = null;
@@ -159,7 +154,6 @@ public class UserDAO {
 		return isExist;
 	}
 
-	// 비밀번호 확인
 	public boolean checkPassword(String userId, String password) {
 		boolean isMatch = false;
 		Connection con = null;
@@ -188,7 +182,6 @@ public class UserDAO {
 		return isMatch;
 	}
 
-	// 비밀번호 업데이트
 	public boolean updatePassword(String userId, String newPw) {
 		boolean isSuccess = false;
 		Connection con = null;
@@ -221,7 +214,6 @@ public class UserDAO {
 		return isSuccess;
 	}
 
-	// 연락처 수정
 	public boolean updateContact(String userId, String email, String phone) {
 		boolean isSuccess = false;
 		Connection con = null;
@@ -255,7 +247,6 @@ public class UserDAO {
 		return isSuccess;
 	}
 
-	// 회원 상태 변경 (탈퇴 포함)
 	public boolean updateStatus(String userId, String status) {
 		boolean isSuccess = false;
 		Connection con = null;
@@ -266,7 +257,7 @@ public class UserDAO {
 			String sql = props.getProperty("updateStatus");
 
 			pstmt = con.prepareStatement(sql);
-			pstmt.setString(1, status); // String status
+			pstmt.setString(1, status); 
 			pstmt.setString(2, userId);
 
 			int result = pstmt.executeUpdate();
@@ -289,7 +280,6 @@ public class UserDAO {
 		return isSuccess;
 	}
 
-//  이메일 중복검사 -- 0310 추가 
 
 	public boolean isEmailDuplicate(String email, String userId) {
 

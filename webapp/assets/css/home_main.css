@@ -1,16 +1,5 @@
 @charset "UTF-8";
 
-/* .fade-up {
-	opacity: 0;
-	transform: translateY(60px);
-	transition: all 1s ease;
-}
-
-실행 상태
-.fade-up.show {
-	opacity: 1;
-	transform: translateY(0);
-} */
 main .wrap.hero {
 	padding-top: 0;
 }
@@ -398,10 +387,6 @@ main .wrap.hero {
 	color: #fff;
 }
 
-/* =============================================
-   반응형 미디어쿼리 - main 영역
-   breakpoint: 1024px / 768px / 480px
-   ============================================= */
 
 /* ── 1024px 이하 (소형 데스크탑 / 태블릿 가로) ── */
 @media ( max-width : 1024px) {

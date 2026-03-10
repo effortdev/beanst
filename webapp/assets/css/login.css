@@ -1,20 +1,6 @@
 @charset "UTF-8";
 
-/* ================================================
-   VIN'st Hotel — login.css
-   로그인 페이지 전용 스타일
-   기준 선택자 : .page-content.login-page
 
-   Breakpoints:
-     - Desktop  : 1025px 이상
-     - Tablet   : 768px ~ 1024px
-     - Mobile   : ~ 767px
-     - Small    : ~ 480px
-   ================================================ */
-
-/* ── 1. 페이지 전체 레이아웃 ─────────────────────
-   common.css .page-content 덮어쓰기
-   ─────────────────────────────────────────────── */
 .page-content.login-page {
 	display: flex;
 	align-items: center;
@@ -23,7 +9,7 @@
 	padding: 90px 20px;
 }
 
-/* ── common.css .container 의 padding:100px 덮어쓰기 ── */
+
 .page-content.login-page .container {
 	padding: 0;
 	max-width: 480px; /* form-box 너비에 맞춤 */
@@ -32,7 +18,6 @@
 	display: block; /* flex 해제 — 내부 요소 수축 방지 */
 }
 
-/* ── 2. form-box ─────────────────────────────── */
 .page-content.login-page .form-box {
 	width: 100%;
 	max-width: 480px;
@@ -56,7 +41,6 @@ to {
 
 }
 
-/* ── 3. 제목 ─────────────────────────────────── */
 .page-content.login-page .form-box .title {
 	font-size: 28px;
 	font-weight: 600;
@@ -66,7 +50,6 @@ to {
 	margin-bottom: 36px;
 }
 
-/* common.css h2::after 덮어쓰기 */
 .page-content.login-page .form-box .title::after {
 	content: '';
 	display: block;
@@ -77,13 +60,11 @@ to {
 	border-radius: 1px;
 }
 
-/* ── 4. form 태그 ────────────────────────────── */
 .page-content.login-page .form-box form {
 	width: 100%; /* ← 핵심: form 너비 명시 */
 	display: block;
 }
 
-/* ── 5. form-group ───────────────────────────── */
 .page-content.login-page .form-group {
 	width: 100%;
 	margin-bottom: 20px;
@@ -100,7 +81,6 @@ to {
 	margin-bottom: 8px;
 }
 
-/* ── 6. 인풋 ─────────────────────────────────── */
 .page-content.login-page .form-control {
 	display: block; /* ← inline 요소 수축 방지 */
 	width: 100% !important; /* ← 강제 전체 너비 */
@@ -128,12 +108,10 @@ to {
 	box-shadow: 0 0 0 3px rgba(201, 169, 98, 0.12);
 }
 
-/* 마지막 form-group 여백 */
 .page-content.login-page .form-group:last-of-type {
 	margin-bottom: 28px;
 }
 
-/* ── 7. 로그인 버튼 ──────────────────────────── */
 .page-content.login-page .btn.btn-primary.btn-block, .page-content.login-page button.btn-primary
 	{
 	display: block !important; /* ← block 강제 */
@@ -167,7 +145,6 @@ to {
 	box-shadow: 0 2px 8px rgba(201, 169, 98, 0.30);
 }
 
-/* ── 8. 하단 링크 ────────────────────────────── */
 .page-content.login-page .login-links {
 	margin-top: 20px;
 	text-align: center;
@@ -182,7 +159,7 @@ to {
 }
 
 .page-content.login-page .login-links a:hover {
-	/* 	color: #C9A962; */
+
 	color: #000;
 }
 
@@ -195,7 +172,7 @@ to {
 	color: #A8833A;
 }
 
-/* ── 9. 에러 메시지 ──────────────────────────── */
+
 .page-content.login-page .login-error {
 	display: flex;
 	align-items: center;
@@ -224,22 +201,18 @@ to {
 	font-weight: 700;
 }
 
-/* =========================================
-   아이디/비밀번호 찾기 결과 페이지 (.form-box 내부)
-========================================= */
 
-/* 상단 완료(체크) 아이콘 여백 */
+
 .form-box .complete-icon {
 	margin: 0 auto 20px;
 }
 
-/* 안내 메시지 텍스트 */
+
 .result-msg {
 	color: #6F4E37;
 	margin-bottom: 15px;
 }
 
-/* 결과(아이디)를 보여주는 점선 박스 */
 .result-box {
 	background: #fdf8f3;
 	padding: 25px;
@@ -248,7 +221,6 @@ to {
 	margin-bottom: 30px;
 }
 
-/* 결과 텍스트 (아이디) 강조 */
 .result-text {
 	font-size: 24px;
 	color: #2C1810;
@@ -256,14 +228,12 @@ to {
 	letter-spacing: 1px;
 }
 
-/* 하단 버튼 그룹 반반 분할 */
 .btn-half {
 	flex: 1;
 	padding: 15px;
 	font-size: 16px;
 }
 
-/* 폼 상단 안내/설명 텍스트 */
 .form-box .form-desc {
 	color: #666;
 	font-size: 14px;
@@ -284,9 +254,6 @@ to {
 	color: #000;
 }
 
-/* ================================================
-   TABLET  768px ~ 1024px
-   ================================================ */
 @media ( min-width : 768px) and (max-width: 1024px) {
 	.page-content.login-page .container {
 		max-width: 440px;
@@ -297,9 +264,6 @@ to {
 	}
 }
 
-/* ================================================
-   MOBILE  ~ 767px
-   ================================================ */
 @media ( max-width : 767px) {
 	.page-content.login-page .form-box {
 		max-width: 100%;
@@ -321,9 +285,6 @@ to {
 	}
 }
 
-/* ================================================
-   SMALL  ~ 480px
-   ================================================ */
 @media ( max-width : 480px) {
 	.page-content.login-page {
 		padding: 24px 12px;

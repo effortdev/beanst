@@ -119,11 +119,9 @@ public class HandlerMapper {
 		map.put("/admin/roomAdd.do", new AdminRoomAddController());
 		map.put("/admin/roomAdd.do", new AdminRoomAddController());
 		map.put("/admin/roomManage.do", new AdminRoomManageController());
-
 		map.put("/admin/room/detailList.do", new AdminRoomDetailListController());
 		map.put("/admin/room/edit.do", new AdminRoomDetailController());
 		map.put("/admin/room/update.do", new AdminRoomDetailUpdateController());
-
 		map.put("/admin/qna/list.do", new AdminQnaListController());
 		map.put("/admin/qna/detail.do", new AdminQnaDetailController());
 		map.put("/admin/qna/answer.do", new AdminQnaAnswerController());

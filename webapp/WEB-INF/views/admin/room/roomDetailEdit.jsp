@@ -75,13 +75,13 @@
 
 		}
 
-		// 기본요금
+
 		formatPrice(priceInput);
 
-		// 추가요금
+
 		formatPrice(extraInput);
 
-		// 서버 전송 전 콤마 제거
+
 		form.addEventListener("submit", function() {
 
 			priceInput.value = priceInput.value.replace(/,/g, "");

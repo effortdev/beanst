@@ -12,7 +12,7 @@
 <link rel="icon" type="image/x-icon"
 	href="${pageContext.request.contextPath}/assets/images/favicon_io/favicon-32x32.png">
 
-<!-- 공통 CSS -->
+
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/assets/css/common.css">
 <link rel="stylesheet"
@@ -22,13 +22,13 @@
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/assets/css/footer.css">
 
-<!-- 페이지별 CSS -->
+
 <c:if test="${pageCss != null}">
 	<link rel="stylesheet"
 		href="${pageContext.request.contextPath}/assets/css/${pageCss}.css">
 </c:if>
 
-<!-- 공통 JS -->
+
 <script
 	src="${pageContext.request.contextPath}/assets/js/jquery-3.3.1.min.js"></script>
 <script
@@ -37,15 +37,15 @@
 
 <body>
 
-	<!-- HEADER -->
+	
 	<jsp:include page="/WEB-INF/views/common/header.jsp" />
 
-	<!-- MAIN CONTENT -->
+	
 	<main>
 		<jsp:include page="${contentPage}" />
 	</main>
 
-	<!-- FOOTER -->
+	
 	<jsp:include page="/WEB-INF/views/common/footer.jsp" />
 
 

@@ -84,7 +84,7 @@ function previewImages(event) {
 
     const files = Array.from(event.target.files);
 
-    // 기존 이미지 + 새 이미지 제한
+
     if (existingImageCount + selectedFiles.length + files.length > 5) {
         alert("이미지는 최대 5개까지 등록 가능합니다.");
         event.target.value = "";
@@ -127,7 +127,7 @@ function renderPreview() {
             img.src = e.target.result;
             img.width = 200;
 
-         // 삭제 체크박스
+
             const removeCheck = document.createElement("input");
             removeCheck.type = "checkbox";
 

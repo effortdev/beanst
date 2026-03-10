@@ -380,10 +380,10 @@ public class AdminDAO {
 	public void insertRoom(int room_id, String room_name) {
 		Connection conn = null;
 		PreparedStatement ps = null;
-		String sql = "INSERT INTO room (room_id, room_name, base_price) VALUES (?, ?, ?)";
 
 		try {
 			conn = getConnection();
+			String sql = props.getProperty("insertRoomType");
 			ps = conn.prepareStatement(sql);
 			ps.setInt(1, room_id);
 			ps.setString(2, room_name);
@@ -426,7 +426,6 @@ public class AdminDAO {
 	}
 
 	public List<RoomImageVO> selectRoomImages(int roomId) {
-		System.out.println("selectRoomImages실행");
 		Connection conn = null;
 		PreparedStatement ps = null;
 		ResultSet rs = null;
@@ -473,7 +472,7 @@ public class AdminDAO {
 
 			conn = getConnection();
 
-			String sql = "SELECT COALESCE(MAX(display_order),0) + 1 FROM room_image WHERE room_id=?";
+			String sql = props.getProperty("selectNextRoomImageOrder");
 			ps = conn.prepareStatement(sql);
 			ps.setInt(1, roomId);
 
@@ -495,7 +494,6 @@ public class AdminDAO {
 	}
 
 	public List<UserVO> adminUserList() {
-		System.out.println("adminUserList 실행");
 		List<UserVO> list = new ArrayList<>();
 		Connection conn = null;
 		PreparedStatement ps = null;
@@ -528,9 +526,7 @@ public class AdminDAO {
 		return list;
 	}
 
-	// 2. 특정 회원 상세 정보 조회 (수정 폼 데이터 바인딩용)
 	public UserVO adminUserDetail(String userId) {
-		System.out.println("adminUserDetail 실행");
 		UserVO vo = null;
 		Connection conn = null;
 		PreparedStatement ps = null;
@@ -562,9 +558,8 @@ public class AdminDAO {
 		return vo;
 	}
 
-	// 3. 회원 정보 수정 (업데이트)
 	public boolean adminUserUpdate(UserVO vo) {
-		System.out.println("adminUserUpdate 실행");
+
 		boolean isSuccess = false;
 		Connection conn = null;
 		PreparedStatement ps = null;
@@ -598,9 +593,9 @@ public class AdminDAO {
 		return isSuccess;
 	}
 
-	// 4. 회원 탈퇴 승인 (status 값을 '3'으로 변경)
+
 	public boolean adminUserWithdrawApprove(String userId) {
-		System.out.println("adminUserWithdrawApprove 실행");
+
 		boolean isSuccess = false;
 		Connection conn = null;
 		PreparedStatement ps = null;

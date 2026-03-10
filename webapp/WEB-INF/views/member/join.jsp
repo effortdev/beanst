@@ -63,7 +63,7 @@
 </div>
 <script>
 	$(document).ready(function() {
-		// 공통 검증 함수
+
 		function checkValid(id, regex, msgId, successMsg, failMsg) {
 			const value = $(id).val();
 			const $msgArea = $(msgId);
@@ -82,18 +82,18 @@
 			}
 		}
 
-		// 1. 아이디 실시간 검사
+
 		$("#user_id").on("input", function() {
 			checkValid("#user_id", /^[a-zA-Z][a-zA-Z0-9]{3,19}$/, "#id-msg", "사용 가능한 형식입니다.", "영문으로 시작하는 영문, 숫자 4~20자로 입력해주세요.");
 		});
 
-		// 2. 비밀번호 실시간 검사
+
 		$("#password").on("input", function() {
 			checkValid("#password", /^(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,20}$/, "#pw-msg", "안전한 비밀번호입니다.", "대문자, 숫자, 특수문자 포함 8~20자여야 합니다.");
 			$("#password_re").trigger("input");
 		});
 
-		// 3. 비밀번호 확인 실시간 검사
+
 		$("#password_re").on("input", function() {
 			const pw = $("#password").val();
 			const pwRe = $(this).val();
@@ -108,11 +108,10 @@
 			}
 		});
 
-		// 4. 이름 실시간 검사
 		$("#name").on("input", function() {
 			const val = $(this).val();
 			
-			// 정규표현식: 한글과 영문 대소문자만 허용 (특수문자, 숫자, 공백 불가)
+
 			const nameRegex = /^[가-힣a-zA-Z]+$/;
 		
 			if (val.length === 0) {
@@ -122,24 +121,23 @@
 					.addClass("text-danger")
 					.removeClass("text-success");
 			} else if (!nameRegex.test(val)) {
-				// 정규식 통과 실패 (특수문자, 숫자, 공백 등이 들어간 경우)
+
 				$("#name-msg").text("특수문자, 숫자, 공백은 사용할 수 없습니다.")
 					.addClass("text-danger")
 					.removeClass("text-success");
 			} else {
-				// 길이도 맞고, 특수문자도 없는 경우
+		
 				$("#name-msg").text("적절한 이름입니다.")
 					.addClass("text-success")
 					.removeClass("text-danger");
 			}
 		});
 
-		// 5. 이메일 실시간 검사
+
 		$("#email").on("input", function() {
 			checkValid("#email", /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/, "#email-msg", "올바른 이메일 형식입니다.", "형식이 올바르지 않습니다.");
 		});
 
-		// 6. 핸드폰 실시간 검사
 		$("#phone").on("input", function() {
 			checkValid("#phone", /^010-\d{3,4}-\d{4}$/, "#phone-msg", "올바른 번호 형식입니다.", "010-0000-0000 형식으로 입력해주세요.");
 		});

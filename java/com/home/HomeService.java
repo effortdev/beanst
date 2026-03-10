@@ -18,7 +18,6 @@ public class HomeService {
 		return dao.selectMainFacility();
 	}
 
-	// 객실목록
 	public List<RoomMainDTO> getRoomList(ServletContext context) {
 
 		RoomDAO dao = new RoomDAO(context);

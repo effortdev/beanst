@@ -17,9 +17,6 @@ public class ReservationDAO {
 
 	private Properties props = new Properties();
 
-	// =============================
-	// DAO 생성자 - reservationMapper.xml 읽어서 SQL 가져오기
-	// =============================
 	public ReservationDAO(ServletContext context) {
 		try {
 			InputStream input = context.getResourceAsStream("/WEB-INF/config/reservationMapper.xml");
@@ -29,9 +26,6 @@ public class ReservationDAO {
 		}
 	}
 
-	// =============================
-	// 1. 예약 등록
-	// =============================
 	public boolean insertReservation(ReservationVO vo) {
 		boolean isSuccess = false;
 		Connection con = null;
@@ -71,9 +65,6 @@ public class ReservationDAO {
 		return isSuccess;
 	}
 
-	// =============================
-	// 2. 단일 예약 조회 (reservation_id 기준)
-	// =============================
 	public ReservationVO getReservation(int reservationId) {
 		ReservationVO vo = null;
 		Connection con = null;
@@ -103,9 +94,6 @@ public class ReservationDAO {
 		return vo;
 	}
 
-	// =============================
-	// 3. 객실 예약 가능 여부 확인
-	// =============================
 	public boolean isRoomAvailable(int roomId, String checkIn, String checkOut) {
 		boolean available = true;
 		Connection con = null;
@@ -124,7 +112,7 @@ public class ReservationDAO {
 			rs = pstmt.executeQuery();
 			if (rs.next()) {
 				int count = rs.getInt(1);
-				available = count == 0; // 0이면 예약 가능
+				available = count == 0; 
 			}
 
 		} catch (Exception e) {
@@ -138,9 +126,7 @@ public class ReservationDAO {
 		return available;
 	}
 
-	// =============================
-	// 4. 예약된 날짜 목록 조회 (모든 객실)
-	// =============================
+
 	public List<ReservationVO> getReservedDates() {
 		List<ReservationVO> list = new ArrayList<>();
 		Connection con = null;
@@ -173,9 +159,6 @@ public class ReservationDAO {
 		return list;
 	}
 
-	// =============================
-	// 5. 유저 예약 전체 조회 (스와이프용)
-	// =============================
 	public List<ReservationVO> getReservationsByUserId(String userId) {
 		List<ReservationVO> list = new ArrayList<>();
 		Connection con = null;
@@ -205,9 +188,6 @@ public class ReservationDAO {
 		return list;
 	}
 
-	// =============================
-	// 공통: ResultSet → VO 변환
-	// =============================
 	private ReservationVO mapResultSetToVO(ResultSet rs) throws Exception {
 		ReservationVO vo = new ReservationVO();
 		vo.setReservationId(rs.getInt("reservation_id"));
@@ -224,7 +204,7 @@ public class ReservationDAO {
 		return vo;
 	}
 
-	// 예약 취소 (여러 개)
+
 	public boolean cancelReservations(List<Integer> reservationIds) {
 
 		Connection con = null;
@@ -276,7 +256,6 @@ public class ReservationDAO {
 		return success;
 	}
 
-	// 1. 달력용: 내 예약 제외하고 날짜 가져오기
 	public List<ReservationVO> getReservedDatesExcludingSelf(int resId) {
 		List<ReservationVO> list = new ArrayList<>();
 		Connection con = null;
@@ -304,7 +283,6 @@ public class ReservationDAO {
 		return list;
 	}
 
-	// 2. 중복 방지용: 수정 시 겹치는 예약이 있는지 확인
 	public boolean isRoomAvailableForUpdate(int roomId, String checkIn, String checkOut, int resId) {
 		boolean isAvailable = false;
 		Connection con = null;
@@ -314,12 +292,12 @@ public class ReservationDAO {
 			con = JdbcUtil.getConnection();
 			pstmt = con.prepareStatement(props.getProperty("isRoomAvailableForUpdate"));
 			pstmt.setInt(1, roomId);
-			pstmt.setInt(2, resId); // 내 예약번호 제외
-			pstmt.setString(3, checkOut); // (check_in < checkOut)
-			pstmt.setString(4, checkIn); // (check_out > checkIn)
+			pstmt.setInt(2, resId); 
+			pstmt.setString(3, checkOut); 
+			pstmt.setString(4, checkIn); 
 			rs = pstmt.executeQuery();
 			if (rs.next() && rs.getInt(1) == 0) {
-				isAvailable = true; // 겹치는 예약이 0개면 예약 가능!
+				isAvailable = true;
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -331,7 +309,6 @@ public class ReservationDAO {
 		return isAvailable;
 	}
 
-	// 3. 진짜 업데이트 실행
 	public boolean updateReservation(ReservationVO vo) {
 		int result = 0;
 		Connection con = null;

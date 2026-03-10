@@ -1,6 +1,6 @@
 @charset "UTF-8";
 
-/* ── CSS 변수 ────────────────────────────────── */
+
 :root {
 	--gold: #C9A962;
 	--gold-dark: #a8833a;
@@ -11,7 +11,7 @@
 	--transition: 0.45s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* ── 헤더 기본 ───────────────────────────────── */
+
 header#hdr {
 	width: 100%;
 	height: var(--hdr-h);
@@ -68,7 +68,7 @@ header#hdr.show {
 	opacity: 1;
 }
 
-/* 스크롤 내려가면 JS로 .scrolled 클래스 추가 */
+
 header#hdr.scrolled {
 	background: rgba(255, 255, 255, 0.97);
 	border-bottom-color: #e8e0d4;
@@ -76,7 +76,7 @@ header#hdr.scrolled {
 	transition: all 0.3s ease-out;
 }
 
-/* 숨김 (스크롤 다운 시) */
+
 header#hdr.hide {
 	transform: translateY(-100%);
 }
@@ -85,7 +85,7 @@ header#hdr.active {
 	transform: translateY(0);
 }
 
-/* ── 내부 래퍼 ───────────────────────────────── */
+
 header .hdr_inner {
 	max-width: 1600px;
 	width: 90%;
@@ -97,7 +97,6 @@ header .hdr_inner {
 	position: relative;
 }
 
-/* ── 로고 ────────────────────────────────────── */
 header .hdr_inner .logo {
 	width: 110px;
 	flex-shrink: 0;
@@ -117,7 +116,6 @@ header .hdr_inner .logo img:hover {
 	filter: brightness(45%);
 }
 
-/* ── 오른쪽 메뉴 ─────────────────────────────── */
 header .hdr_inner .rightItem {
 	display: flex;
 	align-items: center;
@@ -141,7 +139,7 @@ header .hdr_inner .rightItem ul li:nth-child(1) {
 	font: var(--font_b_18);
 }
 
-/* 구분선 (li 사이) */
+
 header .hdr_inner .rightItem ul li:nth-child(3)::before {
 	content: "";
 	position: absolute;
@@ -153,7 +151,7 @@ header .hdr_inner .rightItem ul li:nth-child(3)::before {
 	background: #ccc;
 }
 
-/* 텍스트 링크 */
+
 header .rightItem ul li .text, header .rightItem ul li a {
 	position: relative;
 	display: inline-block;
@@ -166,7 +164,7 @@ header .rightItem ul li .text, header .rightItem ul li a {
 	transition: color var(--transition);
 }
 
-/* 골드 슬라이딩 언더라인 */
+
 header .rightItem ul li .text::after, header .rightItem ul li a:not(.btn-reserve)::after
 	{
 	content: "";
@@ -189,7 +187,7 @@ header .rightItem ul li .text:hover, header .rightItem ul li a:not(.btn-reserve)
 	color: var(--point5)
 }
 
-/* 예약 버튼 (마지막 li) */
+
 header .rightItem ul li a.btn-reserve, header .rightItem ul li:last-child a,
 	header .rightItem ul li:last-child .text {
 	background: var(--point5);
@@ -210,15 +208,15 @@ header .rightItem ul li a.btn-reserve:hover, header .rightItem ul li:last-child 
 
 header .rightItem ul li a.btn-reserve::after, header .rightItem ul li:last-child a::after,
 	header .rightItem ul li:last-child .text::after {
-	display: none; /* 예약 버튼엔 언더라인 없음 */
+	display: none; 
 }
 
-/* 구분선도 예약 버튼 바로 앞 li에서 숨김 */
+
 header .rightItem ul li:last-child::before {
 	display: none;
 }
 
-/* ── 사용자 인사말 (로그인 시) ───────────────── */
+
 header .rightItem ul li .greeting, header .rightItem ul li span.user-name
 	{
 	font-size: 13px;
@@ -228,7 +226,7 @@ header .rightItem ul li .greeting, header .rightItem ul li span.user-name
 	padding: 6px 14px;
 }
 
-/* ── 햄버거 버튼 (모바일 전용) ───────────────── */
+
 .hamburger {
 	display: none;
 	flex-direction: column;
@@ -253,7 +251,7 @@ header .rightItem ul li .greeting, header .rightItem ul li span.user-name
 	transform-origin: center;
 }
 
-/* 열린 상태 (X) */
+
 .hamburger.open span:nth-child(1) {
 	transform: translateY(6.5px) rotate(45deg);
 }
@@ -267,7 +265,7 @@ header .rightItem ul li .greeting, header .rightItem ul li span.user-name
 	transform: translateY(-6.5px) rotate(-45deg);
 }
 
-/* ── 모바일 드로어 메뉴 ───────────────────────── */
+
 .mobile-nav {
 	display: none;
 	position: fixed;
@@ -374,9 +372,6 @@ header .rightItem ul li .greeting, header .rightItem ul li span.user-name
 	margin-bottom: 48px;
 }
 
-/* ================================================
-   TABLET  768px ~ 1024px
-   ================================================ */
 @media ( max-width : 1024px) {
 	:root {
 		--hdr-h: 80px;
@@ -396,9 +391,6 @@ header .rightItem ul li .greeting, header .rightItem ul li span.user-name
 	}
 }
 
-/* ================================================
-   MOBILE  767px 이하  →  햄버거 메뉴
-   ================================================ */
 @media ( max-width : 767px) {
 	:root {
 		--hdr-h: var(--hdr-h-mob);
@@ -432,9 +424,6 @@ header .rightItem ul li .greeting, header .rightItem ul li span.user-name
 	}
 }
 
-/* ================================================
-   SMALL MOBILE  480px 이하
-   ================================================ */
 @media ( max-width : 480px) {
 	header .hdr_inner {
 		width: 88%;

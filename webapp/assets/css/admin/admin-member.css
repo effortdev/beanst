@@ -96,9 +96,6 @@
 	color: #2e7d32;
 }
 
-/* =========================
-   MEMBER EDIT (QNA DETAIL 재사용)
-========================= */
 .admin-qna-detail {
 	max-width: 1400px;
 	margin: 40px auto;
@@ -108,7 +105,6 @@
 	box-shadow: 0 6px 20px rgba(0, 0, 0, 0.06);
 }
 
-/* 상단 회원 정보 */
 .qna-meta {
 	background: #f7f7f7;
 	padding: 16px 20px 16px 0px;
@@ -124,9 +120,6 @@
 	font-weight: 600;
 }
 
-/* =========================
-   입력 영역
-========================= */
 .question-box {
 	border: none;
 	padding: 0;
@@ -136,13 +129,11 @@
 	gap: 20px;
 }
 
-/* input wrapper */
 .question-box>div {
 	display: flex;
 	flex-direction: column;
 }
 
-/* label */
 .question-box h3 {
 	font-size: 15px;
 	font-weight: 600;
@@ -150,7 +141,6 @@
 	color: #333;
 }
 
-/* input */
 .question-box input, .question-box select {
 	width: 100%;
 	padding: 12px 14px;
@@ -161,22 +151,17 @@
 	transition: all .25s ease;
 }
 
-/* focus */
 .question-box input:focus, .question-box select:focus {
 	outline: none;
 	border-color: #000;
 	box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.05);
 }
 
-/* role + status 영역 */
 .question-box>div:last-child {
 	display: flex;
 	gap: 20px;
 }
 
-/* =========================
-   버튼 영역
-========================= */
 .answer-buttons {
 	margin-top: 30px;
 	display: flex;
@@ -184,7 +169,6 @@
 	justify-content: center;
 }
 
-/* 저장 버튼 */
 .btn-save {
 	background: var(--bg2);
 	color: #fff;
@@ -203,7 +187,6 @@
 	transform: translateY(-1px);
 }
 
-/* 목록 버튼 */
 .btn-list {
 	background: #f5f5f5;
 	color: #333 !important;

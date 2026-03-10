@@ -152,9 +152,7 @@
 	</div>
 </div>
 <script>
-// ==========================================
-// 💡 사용자님 원본 로직 (수정 없이 100% 그대로 유지)
-// ==========================================
+
 $(document).ready(function() {
     let currentRoom = { id: '', name: '선택 안 됨', base: 0, max: 0, price: 0 };
 
@@ -311,21 +309,18 @@ $(document).ready(function() {
         $('#reserveForm').submit();
     });
 
-    // ==========================================
-    // 🌟 예약 변경일 때 기존 데이터 세팅 (살짝 딜레이 줌)
-    // ==========================================
+
     <c:if test="${mode eq 'update' and not empty originRes}">
         setTimeout(function() {
             const originRoomId = "${originRes.roomId}";
             if (originRoomId) {
-                // 1. 기존 방 선택 (달력 비활성화 로직 발동!)
+
                 $(".room-select-btn[data-id='" + originRoomId + "']").trigger("click");
                 
-                // 2. 인원수 채우기
+
                 $("#adultCnt").val("${originRes.adultCount}");
                 $("#childCnt").val("${originRes.childCount}");
-                
-                // 3. 기존 날짜 채우기
+
                 let inDate = "${originRes.checkIn}".substring(0, 10);
                 let outDate = "${originRes.checkOut}".substring(0, 10);
                 
@@ -334,7 +329,7 @@ $(document).ready(function() {
                 
                 calculateTotal();
             }
-        }, 300); // 넉넉히 0.3초 뒤에 실행되게 하여 안전하게 처리
+        }, 300); 
     </c:if>
 
 });

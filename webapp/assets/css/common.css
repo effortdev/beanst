@@ -1,8 +1,5 @@
 @charset "UTF-8";
 
-/* -----------------------------------------------
-	[COMMON] 폰트
-------------------------------------------------- */
 @font-face {
 	font-family: 'Pretendard';
 	src: url('../font/Pretendard-Light.otf') format('opentype');
@@ -70,9 +67,6 @@
 	font-style: normal;
 }
 
-/* -----------------------------------------------
-	[COMMON] 공통 변수
-------------------------------------------------- */
 :root {
 	/* ── 배경 색상 ─────────────────────────────── */
 	--bg1: #FAF8F5; /* 기본 배경 (따뜻한 크림 화이트) */
@@ -160,9 +154,7 @@
 
 --box-effect01: 9px -10px 0px 0px #c9a962, -2px -2px 5px #fff;
 }
-/* -----------------------------------------------
-	[COMMON] 초기화
-------------------------------------------------- */
+
 body, button, dd, dl, dt, fieldset, form, h1, h2, h3, h4, h5, h6, input,
 	legend, li, ol, p, select, table, td, textarea, th, ul {
 	margin: 0;
@@ -349,9 +341,6 @@ blockquote:before, blockquote:after, q:before, q:after {
 	content: none;
 }
 
-/* ================================================
-   [COMMON-btn] 버튼
-   ================================================ */
 .btn {
 	display: inline-block;
 	padding: 12px 28px;
@@ -364,7 +353,7 @@ blockquote:before, blockquote:after, q:before, q:after {
 	text-align: center;
 }
 
-/* Primary / Secondary — 같은 스타일이므로 공통화 */
+
 .btn-primary, .btn-secondary {
 	background: linear-gradient(135deg, var(--dark-roast), var(--coffee));
 	color: var(--cream) !important;
@@ -394,7 +383,7 @@ blockquote:before, blockquote:after, q:before, q:after {
 	width: 100%;
 }
 
-/* Buttons - 카라멜/에스프레소 톤 */
+
 .btn {
 	display: inline-block;
 	padding: 12px 28px;
@@ -463,7 +452,6 @@ blockquote:before, blockquote:after, q:before, q:after {
 	width: 100%
 }
 
-/* ── VIEW DETAIL 버튼 ─────────────────────────── */
 .detailBtn {
 	display: inline-block;
 	margin-top: 15px;
@@ -480,7 +468,6 @@ blockquote:before, blockquote:after, q:before, q:after {
 }
 
 
-/* Cards - 크림 배경, 부드러운 그림자 */
 .card {
 	background: #fff;
 	border-radius: 12px;
@@ -554,7 +541,6 @@ blockquote:before, blockquote:after, q:before, q:after {
 	gap: 28px
 }
 
-/* Section - 커피콩 컬러 */
 .section {
 	padding: 70px 0;
 	background: #FDF8F3
@@ -590,7 +576,6 @@ blockquote:before, blockquote:after, q:before, q:after {
 	border-radius: 2px
 }
 
-/* Forms */
 .form-group {
 	margin-bottom: 20px
 }
@@ -679,9 +664,6 @@ textarea.form-control {
 	margin: 10px auto 0
 }
 
-/* ================================================
-   [COMMON] 유틸리티
-   ================================================ */
 .text-center {
 	text-align: center;
 }
@@ -789,9 +771,6 @@ textarea.form-control {
 	gap: 30px;
 }
 
-/* ================================================
-   [공통 타이틀- contents-layout] 공통 정의
-================================================ */
 main .wrap {
 	padding-top: 120px;	
 }
@@ -808,7 +787,6 @@ main .wrap {
 	width: 95%;
 }
 
-/* ── 타이틀 영역 ──────────────────────────────── */
 .top_title h2 {
 	font-size: 48px;
 	margin-bottom: 30px;
@@ -841,7 +819,7 @@ main .wrap {
 	font-size: 48px;
 	margin-bottom: 30px;
 }
-/* ── 페이드업 애니메이션 ───────────────────────── */
+
 .fade-up {
 	opacity: 0;
 	transform: translateY(60px);

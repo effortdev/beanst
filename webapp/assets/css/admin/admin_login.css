@@ -1,6 +1,6 @@
 @charset "UTF-8";
 
-/* 전체 화면 가운데 정렬 */
+
 .admin-login-container {
 	width: 400px;
 	margin: 120px auto;
@@ -11,21 +11,21 @@
 	text-align: center;
 }
 
-/* 제목 */
+
 .admin-login-container .title {
 	font-size: 26px;
 	font-weight: 700;
 	margin-bottom: 30px;
 }
 
-/* form 영역 */
+
 .admin-login-container form {
 	display: flex;
 	flex-direction: column;
 	gap: 10px;
 }
 
-/* 입력 그룹 */
+
 .form-group {
 	text-align: left;
 }
@@ -37,7 +37,7 @@
 	font-weight: 600;
 }
 
-/* input 스타일 */
+
 .form-group input {
 	width: 100%;
 	padding: 10px;
@@ -52,7 +52,7 @@
 	border-color: #000;
 }
 
-/* 로그인 버튼 */
+
 .admin-login-container button {
 	padding: 12px;
 	background: var(--bg2);
@@ -69,21 +69,21 @@
 	background: var(--bg3);
 }
 
-/* 에러 메시지 */
+
 .error {
 	margin-top: 10px;
 	color: #e53935;
 	font-size: 14px;
 }
 
-/* 로그아웃 메시지 */
+
 .logout {
 	margin-top: 15px;
 	color: #2e7d32;
 	font-size: 14px;
 }
 
-/* 메인홈 이동 */
+
 .atHome {
 	margin-top: 20px;
 }

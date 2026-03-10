@@ -5,7 +5,7 @@
 
 	<form action="${pageContext.request.contextPath}/admin/roomInsert.do"
 		method="post" enctype="multipart/form-data">
-		<!--       객실번호: <input type="text" name="room_id"><br>  -->
+
 		<div class="form-group">
 			<label>객실명</label> <input type="text" name="room_name">
 		</div>
@@ -51,7 +51,7 @@ function previewImages(event) {
 
     const files = Array.from(event.target.files);
 
-    // 🔹 업로드 개수 제한 (5개)
+
     if (selectedFiles.length + files.length > 5) {
         alert("이미지는 최대 5개까지 업로드 가능합니다.");
         event.target.value = "";
@@ -70,7 +70,7 @@ function previewImages(event) {
 
     }
 
-    // 기존 파일 + 새 파일 합치기
+
     selectedFiles = selectedFiles.concat(files);
 
     renderPreview();
@@ -95,7 +95,7 @@ function renderPreview() {
             img.src = e.target.result;
             img.width = 200;
 
-         // 삭제 체크박스
+ 
             const removeCheck = document.createElement("input");
             removeCheck.type = "checkbox";
 

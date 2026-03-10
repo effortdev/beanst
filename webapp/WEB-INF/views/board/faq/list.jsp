@@ -16,7 +16,7 @@
 		<div class="container">
 
 
-			<!-- FAQ 카테고리 탭 (전체/예약/시설/기타) -->
+
 			<div class="tab-btns text-center mb-20">
 				<a href="${pageContext.request.contextPath}/faqList.do"
 					class="${empty category ? 'active' : ''}">전체</a> <a
@@ -28,8 +28,7 @@
 					class="${category == '기타' ? 'active' : ''}">기타</a>
 			</div>
 
-			<!-- FAQ 목록/없음 처리 -->
-			<!-- 조회된 FAQ가 없을 때 -->
+
 			<c:choose>
 				<c:when test="${empty faqList}">
 					<div class="no-data">
@@ -37,11 +36,11 @@
 					</div>
 				</c:when>
 
-				<%-- FAQ 목록 반복 출력 --%>
+
 				<c:otherwise>
 					<c:forEach var="f" items="${faqList}">
 						<div class="faq-item">
-							<%-- 질문 영역: 클릭 시 toggleFaq로 답변 영역 열고 닫기 --%>
+
 							<div class="faq-question" onclick="toggleFaq(this)">
 								<span> <span class="category-badge">${f.category}</span>
 									${f.question}

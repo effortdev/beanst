@@ -24,7 +24,7 @@
 				</div>
 				<div class="view-content">${qna.content}</div>
 
-				<%-- 답변 영역: 답변완료 상태일 때만 표시 --%>
+
 				<c:if test="${qna.status == 'ANSWERED' && not empty qna.answer}">
 					<div class="qna-answer-section">
 						<div class="qna-answer-header">

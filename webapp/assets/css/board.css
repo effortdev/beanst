@@ -1,8 +1,5 @@
 @charset "UTF-8";
 
-/* ================================================
-   [COMMON] CSS 변수 정의
-   ================================================ */
 :root {
 	/* ── 브랜드 컬러 팔레트 ── */
 	--espresso: #2C1810; /* 가장 어두운 브라운 (메인 텍스트, 제목) */
@@ -30,9 +27,6 @@
 	min-height: calc(100vh - 200px);
 }
 
-/* ================================================
-   [COMMON] 버튼
-   ================================================ */
 .btn {
 	display: inline-block;
 	padding: 12px 28px;
@@ -44,8 +38,6 @@
 	border: none;
 	text-align: center;
 }
-
-/* Primary / Secondary — 같은 스타일이므로 공통화 */
 
 /* Buttons - 카라멜/에스프레소 톤 */
 .btn {
@@ -143,9 +135,6 @@
 	color: #fff;
 }
 
-/* ================================================
-   [COMMON] 섹션
-   ================================================ */
 .section {
 	padding: 70px 0;
 	background: var(--warm-cream);
@@ -180,9 +169,6 @@
 	font-weight: 400;
 }
 
-/* ================================================
-   [COMMON] 폼
-   ================================================ */
 .form-group {
 	margin-bottom: 20px;
 }
@@ -271,9 +257,6 @@ textarea.form-control {
 	margin: 10px auto 0;
 }
 
-/* ================================================
-   [COMMON] 테이블
-   ================================================ */
 .table-wrap {
 	overflow-x: auto;
 	border-radius: 8px 8px 0 0;
@@ -306,7 +289,6 @@ table .text-left {
 	text-align: left;
 }
 
-/* QnA 테이블 열 너비 */
 .qna-table th:nth-child(1) {
 	width: 80px;
 }
@@ -327,7 +309,6 @@ table .text-left {
 	padding: 40px;
 }
 
-/* 목록 건수 표시 */
 .paging-info {
 	margin-top: 20px;
 	text-align: right;
@@ -340,9 +321,6 @@ table .text-left {
 	color: var(--espresso);
 }
 
-/* ================================================
-   [COMMON] 페이지네이션
-   ================================================ */
 .pagination {
 	display: flex;
 	justify-content: center;
@@ -385,9 +363,6 @@ table .text-left {
 	pointer-events: none;
 }
 
-/* ================================================
-   [COMMON] 게시판
-   ================================================ */
 .board-header {
 	display: flex;
 	justify-content: end;
@@ -470,9 +445,6 @@ table .text-left {
 	margin-top: 30px;
 }
 
-/* ================================================
-   [COMMON] QnA 답변 영역
-   ================================================ */
 .qna-answer-section {
 	margin-top: 25px;
 	border: 2px solid var(--caramel);
@@ -509,9 +481,6 @@ table .text-left {
 	color: var(--dark-roast);
 }
 
-/* ================================================
-   [COMMON] FAQ
-   ================================================ */
 .faq-item {
 	border: 1px solid var(--border);
 	border-radius: 8px;
@@ -578,9 +547,6 @@ table .text-left {
 	border-left: 3px solid var(--dark-roast);
 }
 
-/* ================================================
-   [COMMON] 뱃지
-   ================================================ */
 .rsv-grid {
 	display: grid;
 	grid-template-columns: 1fr 1fr;
@@ -607,9 +573,6 @@ table .text-left {
 	border: 1px solid rgba(58, 28, 11, 0.15);
 }
 
-/* ================================================
-   [COMMON] 유틸리티
-   ================================================ */
 .text-center {
 	text-align: center;
 }
@@ -717,9 +680,6 @@ table .text-left {
 	gap: 30px;
 }
 
-/* ================================================
-   [RESPONSIVE] 768px 이하
-   ================================================ */
 @media ( max-width : 768px) {
 	.header .container {
 		flex-wrap: wrap;
@@ -760,29 +720,20 @@ table .text-left {
 	}
 }
 
-/* ================================================
-   TABLET  768px ~ 1024px
-   ================================================ */
 @media ( min-width : 768px) and (max-width: 1024px) {
 	.page-content .search-box .form-control {
 		width: 180px;
 	}
 }
 
-/* ================================================
-   MOBILE  ~ 767px
-   ================================================ */
 @media ( max-width : 767px) {
 	.badge {
 		font-size: 9px;
 	}
-	/* board-header 세로 스택 */
 	.page-content .board-header {
 		flex-direction: column;
 		align-items: flex-start;
 	}
-
-	/* 검색박스 전체 너비 */
 	.page-content .search-box {
 		width: 100%;
 	}
@@ -790,25 +741,18 @@ table .text-left {
 		flex: 1;
 		width: auto;
 	}
-
-	/* 번호 · 작성자 · 등록일 숨김 → 제목 + 상태만 표시 */
 	.page-content .qna-table th:nth-child(1), .page-content .qna-table td:nth-child(1),
 		.page-content .qna-table th:nth-child(3), .page-content .qna-table td:nth-child(3),
 		.page-content .qna-table th:nth-child(5), .page-content .qna-table td:nth-child(5)
 		{
 		display: none;
 	}
-
-	/* 상태 열 너비 축소 */
 	.page-content .qna-table th:nth-child(4), .page-content .qna-table td:nth-child(4)
 		{
 		width: 88px;
 	}
 }
 
-/* ================================================
-   SMALL  ~ 480px
-   ================================================ */
 @media ( max-width : 480px) {
 	/* 문의작성 버튼 전체 너비 */
 	.page-content .text-right.mb-10 .btn {

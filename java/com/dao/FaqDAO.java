@@ -20,8 +20,6 @@ public class FaqDAO {
 
 	public FaqDAO(ServletContext context) {
 		try {
-			System.out.println("FaqDAO 생성자 실행");
-			// AdminDAO와 동일한 방식으로 Mapper XML을 로드
 			InputStream input = context.getResourceAsStream("/WEB-INF/config/faqMapper.xml");
 			props.loadFromXML(input);
 		} catch (Exception e) {
@@ -40,7 +38,6 @@ public class FaqDAO {
 		try {
 			conn = getConnection();
 
-			// 기본 SELECT 문은 faqMapper.xml에 정의
 			String sql = props.getProperty("faqlist");
 
 			if (category != null && !category.isEmpty()) {

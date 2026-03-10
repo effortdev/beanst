@@ -49,7 +49,7 @@
 								</div>
 							</div>
 
-							<!-- 비밀번호 변경 -->
+
 							<div class="mypage-section">
 								<h3>
 									비밀번호
@@ -72,7 +72,7 @@
 								</div>
 							</div>
 
-							<!-- 연락처 정보 -->
+
 							<div class="mypage-section-s">
 								<h3>연락처 정보</h3>
 								<div class="info-row">
@@ -93,7 +93,7 @@
 								</div>
 							</div>
 
-							<!-- 비밀번호 확인 -->
+
 							<div class="info-row password-confirm-row">
 								<label>현재 비밀번호</label> <input type="password" id="confirmPw"
 									placeholder="비밀번호 입력">
@@ -112,7 +112,7 @@
 				</c:choose>
 			</div>
 
-			<!-- 회원탈퇴 모달 -->
+
 			<div id="modalOverlay"
 				style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.5); z-index: 999;"></div>
 			<div id="withdrawModal"
@@ -135,6 +135,6 @@
 	<script>
 		const CONTEXT_PATH = "${pageContext.request.contextPath}";
 	</script>
-	<!-- JSP 상단이나 body 끝에 -->
+
 	<script src="${pageContext.request.contextPath}/assets/js/my-page.js"></script>
 </body>

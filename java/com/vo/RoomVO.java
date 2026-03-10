@@ -9,7 +9,7 @@ public class RoomVO {
 	private int extraCharge;
 	private String imagePath;
 
-	// Getter & Setter
+
 	public int getRoomId() {
 		return roomId;
 	}

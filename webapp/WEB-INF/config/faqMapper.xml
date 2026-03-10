@@ -3,7 +3,7 @@
 
 <properties>
 
-	<!-- FAQ 목록 조회 (카테고리 조건은 DAO에서 동적으로 추가) -->
+
 	<entry key="faqlist">
 		SELECT faq_no,
 		category,
