@@ -9,10 +9,12 @@
 
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/assets/css/admin/admin-common.css">
-	
-	
+
+
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/assets/css/admin/admin.css">
+<link rel="icon" type="image/x-icon"
+	href="${pageContext.request.contextPath}/assets/images/favicon_io/admin-favicon-32x32.png">
 
 
 

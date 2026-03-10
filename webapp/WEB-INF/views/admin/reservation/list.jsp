@@ -23,8 +23,9 @@
 
 		<thead>
 			<tr>
-				<th>번호</th>
+				<th>순번</th>
 				<th>예약자</th>
+				<th>예약번호</th>
 				<th>객실</th>
 				<th>체크인</th>
 				<th>체크아웃</th>
@@ -44,6 +45,8 @@
 					<td>${(pageInfo.currentPage - 1) * pageInfo.boardLimit + status.count}</td>
 
 					<td>${r.name}</td>
+					
+					<td>${r.reservationId}</td>
 
 					<td>${r.roomName}</td>
 

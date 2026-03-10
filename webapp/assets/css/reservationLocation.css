@@ -149,6 +149,28 @@
 	color: #7A6F67;
 }
 
+.LocationAll {
+	display: flex;
+	background: #FBF9F6;
+	overflow: hidden;
+	width: 55%;
+	height: 50%;
+	padding: 12px;
+	/* 편지지 느낌 테두리 */
+	border: 1px solid #D6C6A5;
+
+	/* 카드 그림자 */
+}
+
+p {
+	font-size: 16px;
+}
+
+.LocationExtra .localh4 {
+	font-size: 30px;
+	margin-bottom: 30px;
+	font-weight: bolder;
+}
 /* =========================================================
    반응형 (모바일)
 ========================================================= */
@@ -176,6 +198,12 @@
 		width: 100%;
 		padding: 5px 25px;
 	}
+	.Locationadress p {
+		width: 100%;
+		padding: 2px 10px;
+		font-size: 16px;
+		margin: 0;
+	}
 
 	/* 오시는길 */
 	.LocationExtra {
@@ -186,25 +214,3 @@
 /* =========================================================
    지도 + 오시는길 전체를 감싸는 큰 카드 (편지지 느낌)
 ========================================================= */
-.LocationAll {
-	display: flex;
-	background: #FBF9F6;
-	overflow: hidden;
-	width: 55%;
-	height: 50%;
-	padding: 12px;
-	/* 편지지 느낌 테두리 */
-	border: 1px solid #D6C6A5;
-
-	/* 카드 그림자 */
-}
-
-p {
-	font-size: 16px;
-}
-
-.LocationExtra .localh4 {
-	font-size: 30px;
-	margin-bottom: 30px;
-	font-weight: bolder;
-}
