@@ -3,7 +3,11 @@
 
 <header class="admin-header">
 	<div class="admin-header-left">
-		<h1>Vinst Hotel Admin</h1>
+		<a href="${pageContext.request.contextPath}/admin/login.do"> <img
+			src="${pageContext.request.contextPath}/assets/images/beanstAdminLogo.png"
+			alt="logo">
+		</a>
+		<h1>Admin Page</h1>
 	</div>
 
 	<div class="admin-header-right">
