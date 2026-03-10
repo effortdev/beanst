@@ -288,6 +288,12 @@ WHERE image_id = (
 		FROM qna
 		WHERE status = 'WAITING'
 		ORDER BY qna_no DESC
+		LIMIT ?, ?
+	</entry>
+	<entry key="adminQnaWaitingCount">
+		SELECT COUNT(*)
+		FROM qna
+		WHERE status = 'WAITING'
 	</entry>
 
 

@@ -58,6 +58,35 @@ public class AdminQnaDAO {
 		return count;
 	}
 
+	// 답변대기 전체 개수 조회
+	public int selectWaitingCount(Connection conn) {
+
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+
+		int count = 0;
+
+		try {
+
+			String sql = props.getProperty("adminQnaWaitingCount");
+
+			ps = conn.prepareStatement(sql);
+			rs = ps.executeQuery();
+
+			if (rs.next()) {
+				count = rs.getInt(1);
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(rs);
+			close(ps);
+		}
+
+		return count;
+	}
+
 	// 관리자 QNA 목록
 	public List<AdminQnaDTO> selectQnaList(Connection conn, int startRow, int listLimit) {
 
@@ -190,7 +219,7 @@ public class AdminQnaDAO {
 		return result;
 	}
 
-	public List<AdminQnaDTO> selectWaitingList(Connection conn) {
+	public List<AdminQnaDTO> selectWaitingList(Connection conn, int startRow, int listLimit) {
 
 		List<AdminQnaDTO> list = new ArrayList<>();
 
@@ -202,6 +231,9 @@ public class AdminQnaDAO {
 			String sql = props.getProperty("adminQnaWaitingList");
 
 			ps = conn.prepareStatement(sql);
+
+			ps.setInt(1, startRow);
+			ps.setInt(2, listLimit);
 
 			rs = ps.executeQuery();
 

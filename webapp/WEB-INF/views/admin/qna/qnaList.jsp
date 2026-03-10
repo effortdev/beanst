@@ -1,5 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
 <%@ taglib prefix="c" uri="jakarta.tags.core"%>
+<c:set var="pageUrl" value="${pageContext.request.requestURI}" />
 
 <div class="admin-qna">
 	<div class="titleBox">
@@ -73,7 +74,7 @@
 		<c:choose>
 			<c:when test="${pageInfo.currentPage > 1}">
 				<a
-					href="${pageContext.request.contextPath}/admin/qna/list.do?page=${pageInfo.currentPage - 1}">이전</a>
+					href="${pageContext.request.contextPath}${pageUrl}?page=${pageInfo.currentPage - 1}">이전</a>
 			</c:when>
 			<c:otherwise>
 				<a class="disabled">이전</a>
@@ -88,9 +89,7 @@
 					<span class="active">${i}</span>
 				</c:when>
 				<c:otherwise>
-					<a
-						href="${pageContext.request.contextPath}/admin/qna/list.do?page=${i}">
-						${i} </a>
+					<a href="${pageContext.request.contextPath}${pageUrl}?page=${i}">${i}</a>
 				</c:otherwise>
 			</c:choose>
 		</c:forEach>
@@ -99,7 +98,7 @@
 		<c:choose>
 			<c:when test="${pageInfo.currentPage < pageInfo.maxPage}">
 				<a
-					href="${pageContext.request.contextPath}/admin/qna/list.do?page=${pageInfo.currentPage + 1}">다음</a>
+					href="${pageContext.request.contextPath}${pageUrl}?page=${pageInfo.currentPage + 1}">다음</a>
 			</c:when>
 			<c:otherwise>
 				<a class="disabled">다음</a>

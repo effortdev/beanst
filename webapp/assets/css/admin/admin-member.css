@@ -238,3 +238,18 @@
 	background: var(--color4);
 	color: #fff !important;
 }
+
+.btn-delete {
+	display: inline-block;
+	background: var(--color5);
+	padding: 6px 14px;
+	border-radius: 6px;
+	font-size: var(--btnfs);
+	text-decoration: none;
+	color: #333;
+}
+
+.btn-delete:hover {
+	color: #fff;
+	background: var(--color5);
+}
