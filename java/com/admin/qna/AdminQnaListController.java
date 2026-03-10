@@ -33,10 +33,10 @@ public class AdminQnaListController implements Action {
 			AdminQnaDAO dao = new AdminQnaDAO(context);
 			int listCount = dao.selectQnaCount(conn);
 
-			// 페이지 설정
-			int pageLimit = 10; // 페이지 번호 개수
-			int boardLimit = 10; // 한 페이지 글 개수
-			// PageInfo 생성
+
+			int pageLimit = 10;
+			int boardLimit = 10;
+
 			PageInfo pageInfo = new PageInfo(currentPage, listCount, pageLimit, boardLimit);
 
 			List<AdminQnaDTO> list = dao.selectQnaList(conn, pageInfo.getStartRow(), pageInfo.getEndRow());

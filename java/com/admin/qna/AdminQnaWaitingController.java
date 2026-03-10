@@ -29,23 +29,19 @@ public class AdminQnaWaitingController implements Action {
 
 			AdminQnaDAO dao = new AdminQnaDAO(context);
 
-			/* 현재 페이지 */
 			int currentPage = 1;
 
 			if (request.getParameter("page") != null) {
 				currentPage = Integer.parseInt(request.getParameter("page"));
 			}
 
-			/* 전체 게시글 수 (답변대기만) */
 			int listCount = dao.selectWaitingCount(conn);
 
-			/* 페이징 설정 */
-			int pageLimit = 10; // 페이지 번호 개수
-			int boardLimit = 10; // 한 페이지 게시글 수
+			int pageLimit = 10;
+			int boardLimit = 10;
 
 			PageInfo pageInfo = new PageInfo(currentPage, listCount, pageLimit, boardLimit);
 
-			/* 목록 조회 */
 			List<AdminQnaDTO> list = dao.selectWaitingList(conn, pageInfo.getStartRow(), pageInfo.getEndRow());
 
 			request.setAttribute("qnaList", list);

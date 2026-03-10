@@ -48,8 +48,6 @@ public class AdminFacilityDeleteController implements Action {
 
 					File file = new File(uploadPath, fileName);
 
-					System.out.println("삭제 대상 파일: " + file.getAbsolutePath());
-
 					if (file.exists()) {
 						file.delete();
 					}

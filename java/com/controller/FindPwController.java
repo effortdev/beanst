@@ -13,14 +13,13 @@ public class FindPwController implements Action {
 			return "member/findPw";
 		}
 
-		// POST: 본인 확인 처리
+
 		String userId = request.getParameter("user_id");
 		String name = request.getParameter("name");
 		String email = request.getParameter("email");
 
 		UserService service = new UserService(request.getServletContext());
 		if (service.isUserValid(userId, name, email)) {
-			// 확인 성공 시, 비밀번호 변경 페이지에서 쓸 아이디를 세션에 임시 저장
 			HttpSession session = request.getSession();
 			session.setAttribute("resetId", userId);
 			return "redirect:/member/resetPw.do";

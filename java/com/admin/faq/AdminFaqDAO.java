@@ -29,7 +29,7 @@ public class AdminFaqDAO {
 		}
 	}
 
-	// 전체 FAQ 개수
+
 	public int selectFaqCount(Connection conn) {
 
 		PreparedStatement ps = null;

@@ -29,7 +29,7 @@ public class AdminQnaDAO {
 		}
 	}
 
-	// 전체 Qna 개수
+
 	public int selectQnaCount(Connection conn) {
 
 		PreparedStatement ps = null;
@@ -58,7 +58,7 @@ public class AdminQnaDAO {
 		return count;
 	}
 
-	// 답변대기 전체 개수 조회
+
 	public int selectWaitingCount(Connection conn) {
 
 		PreparedStatement ps = null;
@@ -87,7 +87,7 @@ public class AdminQnaDAO {
 		return count;
 	}
 
-	// 관리자 QNA 목록
+
 	public List<AdminQnaDTO> selectQnaList(Connection conn, int startRow, int listLimit) {
 
 		List<AdminQnaDTO> list = new ArrayList<>();

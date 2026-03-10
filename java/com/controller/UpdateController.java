@@ -52,10 +52,9 @@ public class UpdateController implements Action {
 			selectMember.setStatus("2");
 			userService.updateMemberStatus(selectMember);
 
-			session.invalidate();
-			session = request.getSession();
-			session.setAttribute("msg", "회원탈퇴요청이 정상적으로 처리되었습니다.");
-			return "redirect:/";
+			session.setAttribute("loginMember", selectMember);
+			session.setAttribute("msg", "회원탈퇴 요청이 접수되었습니다. 관리자 승인 전까지 정상 이용 가능합니다.");
+			return "redirect:/member/myPage.do";
 		}
 
 		// 새 비밀번호 변경
@@ -68,17 +67,6 @@ public class UpdateController implements Action {
 			// 세션 객체도 갱신
 			selectMember.setPassword(newPw);
 			session.setAttribute("loginMember", selectMember);
-		}
-
-		// 이메일 중복 체크
-		if (email != null && !email.trim().isEmpty()) {
-
-			boolean emailExists = userService.isEmailDuplicate(email, userId);
-
-			if (emailExists) {
-				session.setAttribute("msg", "이미 사용중인 이메일입니다. 다시 입력해주세요.");
-				return "redirect:/member/myPage.do";
-			}
 		}
 
 		// 이메일/전화번호 변경

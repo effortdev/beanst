@@ -31,10 +31,6 @@ public class AdminDashboardDAO {
 
 	}
 
-	// ===============================
-	// 통계 COUNT
-	// ===============================
-
 	public int getCount(Connection conn, String key) {
 
 		int count = 0;
@@ -61,10 +57,6 @@ public class AdminDashboardDAO {
 		return count;
 
 	}
-
-	// ===============================
-	// 최근 예약
-	// ===============================
 
 	public List<AdminReservationDTO> getRecentReservations(Connection conn) {
 
@@ -103,10 +95,6 @@ public class AdminDashboardDAO {
 
 	}
 
-	// ===============================
-	// 최근 문의
-	// ===============================
-
 	public List<AdminQnaDTO> getRecentQna(Connection conn) {
 
 		List<AdminQnaDTO> list = new ArrayList<>();
@@ -143,10 +131,6 @@ public class AdminDashboardDAO {
 
 	}
 
-	// ===============================
-	// 차트 Labels
-	// ===============================
-
 	public List<String> getReservationChartLabels(Connection conn) {
 
 		List<String> labels = new ArrayList<>();
@@ -176,9 +160,6 @@ public class AdminDashboardDAO {
 
 	}
 
-	// ===============================
-	// 차트 Data
-	// ===============================
 
 	public List<Integer> getReservationChartData(Connection conn) {
 
@@ -209,10 +190,6 @@ public class AdminDashboardDAO {
 
 	}
 
-	// ===============================
-	// 객실 점유율 Labels
-	// ===============================
-
 	public List<String> getRoomChartLabels(Connection conn) {
 
 		List<String> labels = new ArrayList<>();
@@ -242,9 +219,6 @@ public class AdminDashboardDAO {
 
 	}
 
-	// ===============================
-	// 객실 점유율 Data
-	// ===============================
 
 	public List<Integer> getRoomChartData(Connection conn) {
 

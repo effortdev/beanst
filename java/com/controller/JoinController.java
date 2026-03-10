@@ -13,14 +13,12 @@ public class JoinController implements Action {
         String method = request.getMethod();
 
         if (method.equals("GET")) {
-            // 회원가입 전용 CSS 적용 지시
             request.setAttribute("pageCss", "login");
             
             return "member/join"; 
         }
 
         if (method.equals("POST")) {
-            // 폼 데이터 파싱
             String userId = request.getParameter("user_id");
             String password = request.getParameter("password");
             String email = request.getParameter("email");
