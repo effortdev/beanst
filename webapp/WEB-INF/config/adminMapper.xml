@@ -347,7 +347,13 @@ WHERE image_id = (
 
 
 
-
+	<entry key="selectReservationActiveCount">
+		SELECT *
+		FROM reservation
+		ORDER BY reservation_id
+		WHERE
+		status = '1'
+	</entry>
 
 
 
@@ -380,16 +386,23 @@ WHERE image_id = (
 		reservation_id
 		= ?
 	</entry>
-
+	<entry key="adminReservationActiveCount">
+		SELECT COUNT(*)
+		FROM reservation
+		WHERE status != 4
+	</entry>
 	<entry key="adminReservationActiveList">
 		SELECT *
 		FROM reservation
 		WHERE status != '4'
 		ORDER BY
 		reservation_id DESC
+		LIMIT ?,?
 	</entry>
-
-
+	<entry key="selectReservationCount">
+		SELECT COUNT(*)
+		FROM reservation
+	</entry>
 
 
 	<entry key="adminRoomList">

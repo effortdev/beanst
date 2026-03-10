@@ -43,7 +43,7 @@ public class AdminQnaListController implements Action {
 
 			request.setAttribute("qnaList", list);
 			request.setAttribute("pageInfo", pageInfo);
-
+			request.setAttribute("pageUrl", "/admin/qna/list.do");
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {

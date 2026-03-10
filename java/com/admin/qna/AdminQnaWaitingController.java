@@ -50,7 +50,7 @@ public class AdminQnaWaitingController implements Action {
 
 			request.setAttribute("qnaList", list);
 			request.setAttribute("pageInfo", pageInfo);
-
+			request.setAttribute("pageUrl", "/admin/qna/waiting.do");
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {

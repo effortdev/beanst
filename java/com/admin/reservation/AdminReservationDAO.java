@@ -132,7 +132,7 @@ public class AdminReservationDAO {
 
 		try {
 
-			String sql = props.getProperty("selectUserCount");
+			String sql = props.getProperty("selectReservationCount");
 
 			ps = conn.prepareStatement(sql);
 			rs = ps.executeQuery();
@@ -151,7 +151,7 @@ public class AdminReservationDAO {
 		return count;
 	}
 
-	public List<AdminReservationDTO> selectActiveReservationList(Connection conn) {
+	public List<AdminReservationDTO> selectActiveReservationList(Connection conn, int startRow, int listLimit) {
 
 		List<AdminReservationDTO> list = new ArrayList<>();
 
@@ -163,6 +163,9 @@ public class AdminReservationDAO {
 			String sql = props.getProperty("adminReservationActiveList");
 
 			ps = conn.prepareStatement(sql);
+
+			ps.setInt(1, startRow);
+			ps.setInt(2, listLimit);
 
 			rs = ps.executeQuery();
 
@@ -191,6 +194,35 @@ public class AdminReservationDAO {
 		}
 
 		return list;
+	}
+
+	public int selectActiveReservationCount(Connection conn) {
+
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+
+		int count = 0;
+
+		try {
+
+			String sql = props.getProperty("adminReservationActiveCount");
+
+			ps = conn.prepareStatement(sql);
+
+			rs = ps.executeQuery();
+
+			if (rs.next()) {
+				count = rs.getInt(1);
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(rs);
+			close(ps);
+		}
+
+		return count;
 	}
 
 }

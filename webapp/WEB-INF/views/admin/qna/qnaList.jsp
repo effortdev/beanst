@@ -1,7 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
 <%@ taglib prefix="c" uri="jakarta.tags.core"%>
-<c:set var="pageUrl" value="${pageContext.request.requestURI}" />
-
+<c:set var="pageUrl" value="${requestScope.pageUrl}" />
 <div class="admin-qna">
 	<div class="titleBox">
 		<h2 class="admin-title">1:1 문의 관리</h2>

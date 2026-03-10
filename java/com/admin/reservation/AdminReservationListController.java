@@ -46,6 +46,7 @@ public class AdminReservationListController implements Action {
 					pageInfo.getEndRow());
 			request.setAttribute("reservationList", list);
 			request.setAttribute("pageInfo", pageInfo);
+			request.setAttribute("pageUrl", "/admin/reservation/list.do");
 
 		} catch (Exception e) {
 			e.printStackTrace();
