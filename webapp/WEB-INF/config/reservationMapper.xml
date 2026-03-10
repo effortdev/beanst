@@ -29,7 +29,7 @@
 	<entry key="getReservationsByUserId">
 		SELECT * FROM reservation
 		WHERE user_id = ? AND status
-		!= '4'
+		!= '3'
 		ORDER BY reservation_id DESC
 	</entry>
 
