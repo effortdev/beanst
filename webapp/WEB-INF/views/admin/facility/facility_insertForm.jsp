@@ -15,7 +15,7 @@
 			<datalist id="facilityTypes">
 				<option value="Pool">
 
-					<option value="Spa"><opti on value="Gym">
+					<option value="Spa"><option value="Gym">
 			
 				<option value="Restaurant">
 			

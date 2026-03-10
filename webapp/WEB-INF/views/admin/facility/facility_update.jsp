@@ -13,7 +13,16 @@
 
 		<div class="facility-form-group">
 			<label>시설 타입</label> <input type="text" name="facilityType"
-				value="${facility.facilityType}">
+				list="facilityTypes" placeholder="예: Pool, Spa, KidsZone"
+				value="${facility.facilityType}" required>
+
+			<datalist id="facilityTypes">
+				<option value="Pool">
+				<option value="Spa">
+				<option value="Gym">
+				<option value="Restaurant">
+				<option value="Lounge">
+			</datalist>
 		</div>
 
 		<div class="facility-form-group">

@@ -9,7 +9,13 @@
 		method="post" class="faq-form">
 
 		<div class="form-group">
-			<label>카테고리</label> <input type="text" name="category" value="일반">
+			<label>카테고리</label> <input type="text" name="category"
+				list="faqTypes" placeholder="예약, 시설, 기타" required>
+			<datalist id="faqTypes">
+				<option value="예약">
+				<option value="시설">
+				<option value="기타">
+			</datalist>
 		</div>
 
 		<div class="form-group">

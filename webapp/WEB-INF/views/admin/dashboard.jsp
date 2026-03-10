@@ -9,35 +9,36 @@
 	<!-- 카드 -->
 	<div class="dashboard-cards">
 
-		<div class="card">
+		<a href="${pageContext.request.contextPath}/admin/reservation/list.do"
+			class="card">
 			<h3>오늘 체크인</h3>
 			<p>${todayCheckIn}</p>
-		</div>
-
-		<div class="card">
+		</a> <a
+			href="${pageContext.request.contextPath}/admin/reservation/list.do"
+			class="card">
 			<h3>오늘 체크아웃</h3>
 			<p>${todayCheckOut}</p>
-		</div>
-
-<%-- 		<div class="card">
+		</a>
+		<%-- 		<div class="card">
 			<h3>현재 투숙</h3>
 			<p>${currentStay}</p>
 		</div> --%>
 
-		<div class="card">
+		<a href="${pageContext.request.contextPath}/admin/reservation/list.do"
+			class="card">
 			<h3>예약 요청</h3>
 			<p>${reservationRequest}</p>
-		</div>
-
-		<div class="card">
+		</a> <a
+			href="${pageContext.request.contextPath}/admin/reservation/list.do?status=3"
+			class="card">
 			<h3>취소 요청</h3>
 			<p>${cancelRequest}</p>
-		</div>
-
-		<div class="card">
+		</a> <a
+			href="${pageContext.request.contextPath}/admin/qna/list.do?status=WAITING"
+			class="card">
 			<h3>미답변 문의</h3>
 			<p>${qnaWaiting}</p>
-		</div>
+		</a>
 
 	</div>
 
