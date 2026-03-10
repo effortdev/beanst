@@ -59,6 +59,14 @@
 				<th>위치</th>
 				<td>${room.room_location}</td>
 			</tr>
+			<tr>
+				<th>편의시설</th>
+				<td>${room.amenity}</td>
+			</tr>
+			<tr>
+				<th>미니바</th>
+				<td>${room.minibar}</td>
+			</tr>
 		</table>
 	</section>
 

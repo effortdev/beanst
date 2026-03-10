@@ -4,9 +4,10 @@
 <properties>
 
 	<entry key="Login">
-		SELECT user_id,name,role
+		SELECT user_id,name,role,status
 		FROM users
-		WHERE user_id = ?
+		WHERE user_id
+		= ?
 		AND password = ?
 	</entry>
 

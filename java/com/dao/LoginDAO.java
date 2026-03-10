@@ -47,6 +47,7 @@ public class LoginDAO {
 				dto.setUserId(rs.getString("user_id"));
 				dto.setName(rs.getString("name"));
 				dto.setRole(rs.getString("role"));
+				dto.setStatus(rs.getString("status"));
 				return dto;
 			}
 

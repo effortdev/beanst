@@ -18,15 +18,31 @@
 	</div>
 
 	<section class="bgImg">
+		<c:set var="heroImg" value="" />
+
 		<c:forEach var="img" items="${images}">
 			<c:if test="${img.isMain eq 'Y'}">
-
-				<div class="facilityHero">
-					<img src="${img.imagePath}">
-				</div>
-
+				<c:set var="heroImg" value="${img.imagePath}" />
 			</c:if>
 		</c:forEach>
+
+		<div class="facilityHero">
+
+			<c:choose>
+
+				<c:when test="${not empty heroImg}">
+					<img src="${heroImg}"
+						onerror="this.src='${pageContext.request.contextPath}/assets/images/default/no_image.png'">
+				</c:when>
+
+				<c:otherwise>
+					<img
+						src="${pageContext.request.contextPath}/assets/images/default/no_image.png">
+				</c:otherwise>
+
+			</c:choose>
+
+		</div>
 	</section>
 
 	<section class="hotelInfo">
