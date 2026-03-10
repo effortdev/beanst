@@ -47,4 +47,8 @@ AND user_id != ?
 		WHERE user_id = ?
 	</entry>
 
+	<entry key="checkPhoneForJoin">
+		SELECT COUNT(*) FROM users WHERE phone = ?
+	</entry>
+
 </properties>

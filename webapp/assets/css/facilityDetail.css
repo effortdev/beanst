@@ -24,7 +24,7 @@
 }
 
 .facilityHeader .breadcrumb {
-	font-size: 16px;
+	font-size: 20px;
 	font-weight: 300;
 	margin-bottom: 80px;
 }
@@ -48,6 +48,7 @@
 	color: #666;
 	white-space: pre-line;
 	width: 90%;
+	font-size: 18px;
 }
 
 section.bgImg {

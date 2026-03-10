@@ -248,6 +248,62 @@ public class AdminDAO {
 		}
 	}
 
+	public int getReservationCountByRoom(int room_id) {
+
+		int count = 0;
+
+		try {
+
+			String sql = props.getProperty("getReservationCountByRoom");
+
+			Connection conn = getConnection();
+			PreparedStatement ps = conn.prepareStatement(sql);
+
+			ps.setInt(1, room_id);
+
+			ResultSet rs = ps.executeQuery();
+
+			if (rs.next()) {
+				count = rs.getInt(1);
+			}
+
+			rs.close();
+			ps.close();
+			conn.close();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return count;
+	}
+
+	public int deleteRoomDetail(int room_id) {
+
+		Connection conn = null;
+		PreparedStatement ps = null;
+		int result = 0;
+
+		try {
+
+			String sql = props.getProperty("deleteRoomDetail");
+
+			conn = getConnection();
+			ps = conn.prepareStatement(sql);
+			ps.setInt(1, room_id);
+
+			result = ps.executeUpdate();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(ps);
+			close(conn);
+		}
+
+		return result;
+	}
+
 	public void deleteRoomImageDB(int imageNo) {
 
 		Connection conn = null;
@@ -272,6 +328,32 @@ public class AdminDAO {
 			close(ps);
 			close(conn);
 		}
+	}
+
+	public int deleteReservationByRoom(int room_id) {
+
+		Connection conn = null;
+		PreparedStatement ps = null;
+		int result = 0;
+
+		try {
+
+			String sql = props.getProperty("deleteReservationByRoom");
+
+			conn = getConnection();
+			ps = conn.prepareStatement(sql);
+			ps.setInt(1, room_id);
+
+			result = ps.executeUpdate();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(ps);
+			close(conn);
+		}
+
+		return result;
 	}
 
 	public String getImagePath(int imageNo) {
@@ -592,7 +674,6 @@ public class AdminDAO {
 		}
 		return isSuccess;
 	}
-
 
 	public boolean adminUserWithdrawApprove(String userId) {
 

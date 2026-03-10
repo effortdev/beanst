@@ -4,8 +4,12 @@ import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Properties;
 
 import com.admin.qna.AdminQnaDTO;
@@ -135,48 +139,30 @@ public class AdminDashboardDAO {
 
 		List<String> labels = new ArrayList<>();
 
-		try {
+		for (int i = 6; i >= 0; i--) {
 
-			String sql = props.getProperty("adminReservationChart");
+			LocalDate date = LocalDate.now().minusDays(i);
 
-			PreparedStatement ps = conn.prepareStatement(sql);
-
-			ResultSet rs = ps.executeQuery();
-
-			while (rs.next()) {
-
-				labels.add("'" + rs.getString("day") + "'");
-
-			}
-
-			rs.close();
-			ps.close();
-
-		} catch (Exception e) {
-			e.printStackTrace();
+			labels.add("'" + date.format(DateTimeFormatter.ofPattern("MM-dd")) + "'");
 		}
 
 		return labels;
-
 	}
-
 
 	public List<Integer> getReservationChartData(Connection conn) {
 
-		List<Integer> data = new ArrayList<>();
+		Map<String, Integer> map = new HashMap<>();
+		List<Integer> result = new ArrayList<>();
 
 		try {
 
 			String sql = props.getProperty("adminReservationChart");
 
 			PreparedStatement ps = conn.prepareStatement(sql);
-
 			ResultSet rs = ps.executeQuery();
 
 			while (rs.next()) {
-
-				data.add(rs.getInt("count"));
-
+				map.put(rs.getString("day"), rs.getInt("count"));
 			}
 
 			rs.close();
@@ -186,8 +172,15 @@ public class AdminDashboardDAO {
 			e.printStackTrace();
 		}
 
-		return data;
+		for (int i = 6; i >= 0; i--) {
 
+			LocalDate date = LocalDate.now().minusDays(i);
+			String key = date.format(DateTimeFormatter.ofPattern("MM-dd"));
+
+			result.add(map.getOrDefault(key, 0));
+		}
+
+		return result;
 	}
 
 	public List<String> getRoomChartLabels(Connection conn) {
@@ -218,7 +211,6 @@ public class AdminDashboardDAO {
 		return labels;
 
 	}
-
 
 	public List<Integer> getRoomChartData(Connection conn) {
 

@@ -143,7 +143,8 @@ WHERE image_id = (
 
 	<entry key="selectNextRoomImageOrder">
 		SELECT COALESCE(MAX(display_order),0) + 1
-		FROM room_image
+		FROM
+		room_image
 		WHERE room_id = ?
 	</entry>
 
@@ -184,6 +185,14 @@ WHERE image_id = (
 		DELETE FROM room_image
 		WHERE room_id = ?
 	</entry>
+	<entry key="deleteRoomDetail">
+		DELETE FROM room
+		WHERE room_id = ?
+	</entry>
+	<entry key="deleteReservationByRoom">
+		DELETE FROM reservation
+		WHERE room_id = ?
+	</entry>
 	<entry key="insertRoom">
 		INSERT INTO room_manage(room_name, capacity,
 		room_location,
@@ -206,6 +215,11 @@ WHERE image_id = (
 	</entry>
 	<entry key="selectRoomImages">
 		SELECT * FROM room_image WHERE room_id = ?
+	</entry>
+	<entry key="getReservationCountByRoom">
+		SELECT COUNT(*)
+		FROM reservation
+		WHERE room_id = ?
 	</entry>
 
 	<entry key="updateRoomMainImage">
@@ -526,7 +540,6 @@ WHERE image_id = (
 
 
 	<entry key="adminRecentReservations">
-
 		SELECT r.reservation_id,
 		r.user_id,
 		rm.room_name,
@@ -537,12 +550,10 @@ WHERE image_id = (
 		rm.room_id
 		ORDER BY r.reservation_id DESC
 		LIMIT 5
-
 	</entry>
 
 
 	<entry key="adminRecentQna">
-
 		SELECT qna_no,
 		user_id,
 		title,
@@ -551,24 +562,22 @@ WHERE image_id = (
 		ORDER BY
 		qna_no DESC
 		LIMIT 5
-
 	</entry>
 
 
 	<entry key="adminReservationChart">
-
-		SELECT DATE_FORMAT(check_in,'%m-%d') day,
-		COUNT(*)
+		SELECT
+		DATE_FORMAT(check_in,'%m-%d') AS day,
+		COUNT(*) AS
 		count
 		FROM reservation
-		WHERE check_in >= DATE_SUB(CURDATE(),INTERVAL 7
-		DAY)
-		GROUP BY day
-
+		WHERE DATE(check_in) >= DATE_SUB(CURDATE(),
+		INTERVAL 6 DAY)
+		GROUP BY DATE(check_in)
+		ORDER BY DATE(check_in)
 	</entry>
 
 	<entry key="adminRoomOccupancy">
-
 		SELECT rm.room_name,
 		COUNT(*) AS cnt
 		FROM reservation r
@@ -576,7 +585,6 @@ WHERE image_id = (
 		WHERE r.status = '2'
 		GROUP BY
 		rm.room_name
-
 	</entry>
 
 	<entry key="selectRoomCount">

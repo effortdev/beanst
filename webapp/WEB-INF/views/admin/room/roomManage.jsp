@@ -44,9 +44,12 @@
 							<form
 								action="${pageContext.request.contextPath}/admin/roomDelete.do"
 								method="post" style="display: inline;"
-								onsubmit="return confirm('정말 삭제하시겠습니까?');">
+								onsubmit="return confirm('이 객실을 삭제하시겠습니까?\n예약 데이터가 있을 경우 삭제되지 않습니다.');">
+
 								<input type="hidden" name="room_id" value="${room.room_id}">
+
 								<button type="submit" class="room-btn-delete">삭제</button>
+
 							</form>
 						</div>
 					</td>

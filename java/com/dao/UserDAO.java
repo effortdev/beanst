@@ -24,6 +24,7 @@ public class UserDAO {
 		}
 	}
 
+
 	public boolean insertUser(UserVO vo) {
 		boolean isSuccess = false;
 		Connection con = null;
@@ -60,6 +61,7 @@ public class UserDAO {
 		return isSuccess;
 	}
 
+
 	public String findId(String name, String email) {
 		String userId = null;
 		Connection con = null;
@@ -87,6 +89,7 @@ public class UserDAO {
 		return userId;
 	}
 
+
 	public UserVO selectUser(String id) {
 		UserVO vo = null;
 		Connection con = null;
@@ -110,9 +113,10 @@ public class UserDAO {
 
 				String dateStr = rs.getString("created_at");
 				SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
-				java.util.Date date = formatter.parse(dateStr);
+				java.util.Date date = formatter.parse(dateStr); 
 				java.sql.Timestamp timestamp = new java.sql.Timestamp(date.getTime());
 				vo.setCreatedAt(timestamp);
+
 
 			}
 		} catch (Exception e) {
@@ -125,6 +129,7 @@ public class UserDAO {
 
 		return vo;
 	}
+
 
 	public boolean checkUserForPw(String userId, String name, String email) {
 		boolean isExist = false;
@@ -154,6 +159,7 @@ public class UserDAO {
 		return isExist;
 	}
 
+
 	public boolean checkPassword(String userId, String password) {
 		boolean isMatch = false;
 		Connection con = null;
@@ -181,6 +187,7 @@ public class UserDAO {
 
 		return isMatch;
 	}
+
 
 	public boolean updatePassword(String userId, String newPw) {
 		boolean isSuccess = false;
@@ -213,6 +220,7 @@ public class UserDAO {
 
 		return isSuccess;
 	}
+
 
 	public boolean updateContact(String userId, String email, String phone) {
 		boolean isSuccess = false;
@@ -247,6 +255,7 @@ public class UserDAO {
 		return isSuccess;
 	}
 
+
 	public boolean updateStatus(String userId, String status) {
 		boolean isSuccess = false;
 		Connection con = null;
@@ -257,7 +266,7 @@ public class UserDAO {
 			String sql = props.getProperty("updateStatus");
 
 			pstmt = con.prepareStatement(sql);
-			pstmt.setString(1, status); 
+			pstmt.setString(1, status);
 			pstmt.setString(2, userId);
 
 			int result = pstmt.executeUpdate();
@@ -279,7 +288,6 @@ public class UserDAO {
 
 		return isSuccess;
 	}
-
 
 	public boolean isEmailDuplicate(String email, String userId) {
 
@@ -313,4 +321,36 @@ public class UserDAO {
 
 		return isDuplicate;
 	}
+
+	public boolean isPhoneDuplicateForJoin(String phone) {
+		boolean isDuplicate = false;
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+
+		try {
+			con = JdbcUtil.getConnection();
+
+			String sql = props.getProperty("checkPhoneForJoin");
+
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, phone);
+
+			rs = pstmt.executeQuery();
+
+			if (rs.next() && rs.getInt(1) > 0) {
+				isDuplicate = true; 
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			JdbcUtil.close(rs);
+			JdbcUtil.close(pstmt);
+			JdbcUtil.close(con);
+		}
+
+		return isDuplicate;
+	}
+
 }

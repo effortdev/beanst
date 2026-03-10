@@ -177,6 +177,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
 		let dataArr = ${chartData};
 		let labelsArr = ${chartLabels};
+		
+		console.log(dataArr);
+		console.log(labelsArr);
 
 
 		if (!Array.isArray(dataArr)) dataArr = [];

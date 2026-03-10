@@ -247,11 +247,16 @@ to {
 
 .text-danger {
 	color: #dc3545 !important;
+	padding-top: 10px;
 }
 
 .login-page .form-box .btn:hover {
 	background: #C9A962;
 	color: #000;
+}
+
+.topupd{
+	margin-top : 50px;
 }
 
 @media ( min-width : 768px) and (max-width: 1024px) {

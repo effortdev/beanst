@@ -46,7 +46,6 @@ import com.controller.ResetCompleteController;
 import com.controller.ResetPwController;
 import com.controller.RoomDetailController;
 import com.controller.RoomListController;
-import com.controller.UpdateController;
 import com.controller.admin.AdminLoginController;
 import com.controller.admin.AdminLogoutController;
 import com.controller.admin.AdminRoomAddController;
@@ -77,7 +76,9 @@ public class HandlerMapper {
 		map.put("/member/join.do", new JoinController());
 		map.put("/member/joinComplete.do", new JoinCompleteController());
 		map.put("/member/myPage.do", new MyPageController());
-		map.put("/member/update.do", new UpdateController());
+		map.put("/member/update.do", new MyPageController());	
+		
+
 
 		map.put("/member/findId.do", new FindIdController());
 		map.put("/member/findPw.do", new FindPwController());
