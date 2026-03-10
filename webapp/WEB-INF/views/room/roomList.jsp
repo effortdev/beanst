@@ -15,7 +15,23 @@
 			<div class="roomCard">
 
 				<div class="imgBox">
-					<img src="${room.image_path}" alt="${room.room_name}" width="200px">
+
+					<c:choose>
+
+						<c:when test="${not empty room.image_path}">
+							<img src="${room.image_path}" alt="${room.room_name}"
+								width="200px"
+								onerror="this.src='${pageContext.request.contextPath}/assets/images/default/no_image.png'">
+						</c:when>
+
+						<c:otherwise>
+							<img
+								src="${pageContext.request.contextPath}/assets/images/default/no_image.png"
+								alt="no image" width="200px">
+						</c:otherwise>
+
+					</c:choose>
+
 				</div>
 
 				<div class="textBox">
@@ -23,11 +39,12 @@
 
 					<p class="location">위치 : ${room.room_location}</p>
 
-					<p class="time">이용시간 : ${room.usage_time}</p>
+					<p class="time">${room.usage_time}</p>
 
 					<a
 						href="${pageContext.request.contextPath}/roomDetail.do?id=${room.room_id}"
 						class="detailBtn"> VIEW DETAIL </a>
+
 				</div>
 
 			</div>

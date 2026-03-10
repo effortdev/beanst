@@ -51,11 +51,28 @@
 				<c:forEach var="room" items="${roomList}">
 					<div class="swiper-slide">
 						<div class="list_item">
+
 							<div class="imgBox">
+
 								<a href="roomDetail.do?id=${room.room_id}" class="viewBtn en">
-									<img src="${room.image_path}?v=${room.room_id}"
-									alt="${room.room_name}">
+
+									<c:choose>
+
+										<c:when test="${not empty room.image_path}">
+											<img src="${room.image_path}" alt="${room.room_name}"
+												onerror="this.src='${pageContext.request.contextPath}/assets/images/default/no_image.png'">
+										</c:when>
+
+										<c:otherwise>
+											<img
+												src="${pageContext.request.contextPath}/assets/images/default/no_image.png"
+												alt="no image">
+										</c:otherwise>
+
+									</c:choose>
+
 								</a>
+
 							</div>
 
 							<div class="textBox">
@@ -95,8 +112,21 @@
 
 							<div class="imgBox">
 
-								<img src="${f.imagePath}?v=${f.facilityId}"
-									alt="${f.facilityName}">
+								<c:choose>
+
+									<c:when test="${not empty f.imagePath}">
+										<img src="${f.imagePath}?v=${f.facilityId}"
+											alt="${f.facilityName}"
+											onerror="this.src='${pageContext.request.contextPath}/assets/images/default/no_image.png'">
+									</c:when>
+
+									<c:otherwise>
+										<img
+											src="${pageContext.request.contextPath}/assets/images/default/no_image.png"
+											alt="no image">
+									</c:otherwise>
+
+								</c:choose>
 
 								<div class="overlay">
 									<a href="facilityDetail.do?id=${f.facilityId}"

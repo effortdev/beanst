@@ -126,3 +126,10 @@
 		gap: 20px;
 	}
 }
+
+.no-reservation-message {
+	font-size: 60px;
+	margin: 70px;
+	text-align: center;
+	padding: 100px;
+}

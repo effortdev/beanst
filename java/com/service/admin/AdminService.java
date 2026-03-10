@@ -17,10 +17,10 @@ public class AdminService {
 	}
 
 //	// 1. 전체 회원 목록 조회
-//	public List<UserVO> getAllUsers() {
-//		AdminDAO dao = new AdminDAO(context);
-//		return dao.adminUserList();
-//	}
+	public List<UserVO> getAllUsers() {
+		AdminDAO dao = new AdminDAO(context);
+		return dao.adminUserList();
+	}
 
 	// 2. 특정 회원 상세 정보 조회
 	public UserVO getUserDetail(String userId) {

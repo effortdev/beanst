@@ -95,6 +95,11 @@
 	padding-left: 24px;
 }
 
+.admin-sidebar ul li.active a {
+	background: var(--bg3);
+	padding-left: 24px;
+}
+
 /* 현재 메뉴 */
 .admin-sidebar a.active {
 	background: var(--bg3);

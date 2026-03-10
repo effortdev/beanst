@@ -66,18 +66,27 @@ public class AdminUserController implements Action {
 
 			String filter = request.getParameter("filter"); // 주소창의 ?filter= 값을 확인합니다.
 
-			// 만약 '탈퇴요청 회원보기' 탭을 눌렀다면
 			if ("withdraw".equals(filter)) {
+				List<UserVO> allUsers = service.getAllUsers();
 				List<UserVO> filteredList = new java.util.ArrayList<>();
-				for (UserVO user : list) {
-					if ("2".equals(user.getStatus())) { // 상태가 2(탈퇴요청)인 사람만 담습니다.
-						filteredList.add(user);
+
+				if (allUsers != null) {
+					for (UserVO user : allUsers) {
+						if ("2".equals(user.getStatus())) {
+							filteredList.add(user);
+						}
 					}
 				}
-				list = filteredList; // 걸러낸 리스트로 덮어씁니다.
-			}
+				request.setAttribute("userList", filteredList);
 
-			request.setAttribute("userList", list);
+				// 페이징 에러를 막기 위해 임시 PageInfo 세팅 (탈퇴 요청 리스트는 보통 한 페이지에 다 보여줌)
+				request.setAttribute("pageInfo",
+						new PageInfo(1, filteredList.size(), 10, filteredList.size() > 0 ? filteredList.size() : 1));
+
+			} else {
+				// [전체 회원 탭] 기존의 10명씩 가져오는 페이징 리스트 유지
+				request.setAttribute("userList", list);
+			}
 			return "admin/member/adminMemberList"; // 목록 JSP로 이동
 		}
 
