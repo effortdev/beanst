@@ -48,7 +48,7 @@
 	<ul>
 		<li><a href="${pageContext.request.contextPath}/main.do"
 			class="text">HOME</a></li>
-		<li><a href="${pageContext.request.contextPath}/facility/list.do"
+		<li><a href="${pageContext.request.contextPath}/facilityList.do"
 			class="text">시설 안내</a></li>
 		<li><a
 			href="${pageContext.request.contextPath}/reservation/booking.do"

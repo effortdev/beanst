@@ -76,7 +76,8 @@
 										class="btn btn-outline btn-block room-select-btn"
 										data-id="${room.roomId}" data-name="${room.roomName}"
 										data-base="${room.baseCapacity}"
-										data-max="${room.maxCapacity}" data-price="${room.basePrice}">선택하기</button>
+										data-max="${room.maxCapacity}" data-price="${room.basePrice}"
+										data-extra="${room.extraCharge}">선택하기</button>
 								</div>
 
 							</div>
@@ -140,7 +141,7 @@
 				<span>기본 요금</span> <span><span id="summaryBasePrice">0</span>원</span>
 			</div>
 			<div>
-				<span>인원 추가금 (1인 4만원)</span> <span>+ <span id="summaryExtra">0</span>원
+				<span>인원 추가금</span> <span>+ <span id="summaryExtra">0</span>원
 				</span>
 			</div>
 
@@ -158,7 +159,7 @@
 <script>
 
 $(document).ready(function() {
-    let currentRoom = { id: '', name: '선택 안 됨', base: 0, max: 0, price: 0 };
+    let currentRoom = { id: '', name: '선택 안 됨', base: 0, max: 0, price: 0, extra: 0 };
 
     let allBookedDates = ${bookedListJson != null ? bookedListJson : '[]'};
     let currentRoomBookings = []; 
@@ -213,6 +214,7 @@ $(document).ready(function() {
         currentRoom.base = parseInt($(this).data('base')) || 0;
         currentRoom.max = parseInt($(this).data('max')) || 0;
         currentRoom.price = parseInt($(this).data('price')) || 0;
+        currentRoom.extra = parseInt($(this).data('extra')) || 0;
 
         $('#selectedRoomId').val(currentRoom.id);
         $('#selectedRoomName').val(currentRoom.name);
@@ -288,15 +290,18 @@ $(document).ready(function() {
 
         let effectiveNights = nights > 0 ? nights : 1;
 
-        let extraCharge = 0;
-        if (totalGuests > currentRoom.base && currentRoom.base > 0) {
-            extraCharge = (totalGuests - currentRoom.base) * 40000;
+        let extraChargePerNight = 0;
+
+        if (totalGuests > currentRoom.base) {
+            extraChargePerNight = (totalGuests - currentRoom.base) * currentRoom.extra;
         }
 
-        let totalAmount = (currentRoom.price + extraCharge) * effectiveNights;
+        let extraTotal = extraChargePerNight * effectiveNights;
+
+        let totalAmount = (currentRoom.price * effectiveNights) + extraTotal;
 
         $('#summaryBasePrice').text((currentRoom.price * effectiveNights).toLocaleString());
-        $('#summaryExtra').text((extraCharge * effectiveNights).toLocaleString());
+        $('#summaryExtra').text(extraTotal.toLocaleString());
         $('#summaryTotal').text(totalAmount.toLocaleString());
         $('#totalPriceInput').val(totalAmount);
     }
@@ -363,6 +368,18 @@ document.addEventListener("DOMContentLoaded", function () {
         observer.observe(target);
     });
 
+});
+
+document.querySelectorAll(".room-card").forEach(card => {
+	card.addEventListener("click", function () {
+
+		document.querySelectorAll(".room-card").forEach(c => {
+			c.classList.remove("selected");
+		});
+
+		this.classList.add("selected");
+
+	});
 });
 
 </script>

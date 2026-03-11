@@ -3,7 +3,7 @@
 
 <header class="admin-header">
 	<div class="admin-header-left">
-		<a href="${pageContext.request.contextPath}/admin/login.do"> <img
+		<a href="${pageContext.request.contextPath}/admin/dashboard.do"> <img
 			src="${pageContext.request.contextPath}/assets/images/beanstAdminLogo.png"
 			alt="logo">
 		</a>

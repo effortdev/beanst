@@ -1,7 +1,5 @@
 @charset "UTF-8";
 
-
-
 .booking-container {
 	display: flex;
 	flex-direction: row; /* 기본: 가로 배치 */
@@ -11,7 +9,6 @@
 	margin: 0 auto;
 	padding: 120px 20px;
 }
-
 
 .booking-form {
 	flex: 2;
@@ -31,14 +28,12 @@
 	margin-top: -52px;
 }
 
-
 .room-grid {
 	display: grid;
 	grid-template-columns: 1fr; /* 기본: 2열 */
 	gap: 15px;
 	margin-bottom: 24px;
 }
-
 
 .room-card {
 	border: 2px solid #eee;
@@ -143,6 +138,11 @@
 	color: #fff;
 }
 
+.room-card.selected button {
+	background: #C9A962;
+	color: #fff !important;
+}
+
 /* ── 폼 그룹 공통 ────────────────────────────── */
 .form-group {
 	margin-bottom: 0;
@@ -206,7 +206,6 @@
 	color: #aaa;
 }
 
-
 .date-picker {
 	cursor: pointer;
 	background-image:
@@ -216,13 +215,11 @@
 	padding-right: 40px;
 }
 
-
 .person-calc {
 	text-align: center;
 	font-size: 1.05rem;
 	font-weight: 600;
 }
-
 
 .booking-summary {
 	/*    flex: 1 1 0%; */
@@ -263,7 +260,6 @@
 	font-weight: 600;
 }
 
-
 .booking-summary .price-row {
 	display: flex;
 	justify-content: space-between;
@@ -281,7 +277,6 @@
 .booking-summary .price-extra {
 	color: #dc3545;
 }
-
 
 .booking-summary .total-section {
 	text-align: right;
@@ -465,7 +460,6 @@ textarea.form-control {
 	margin: 10px auto 0
 }
 
-
 @media ( max-width : 1023px) {
 	.booking-container {
 		padding: 130px 16px;
@@ -613,7 +607,6 @@ textarea.form-control {
 	}
 }
 
-
 @media ( max-width : 480px) {
 	.booking-container {
 		padding: 116px 12px;
@@ -637,7 +630,6 @@ textarea.form-control {
 		font-size: 1.5rem;
 	}
 }
-
 
 .text-center {
 	text-align: center
