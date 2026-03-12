@@ -3,6 +3,7 @@ package com.controller.admin;
 import java.io.File;
 import java.util.UUID;
 
+import com.config.UploadPath;
 import com.controller.Action;
 import com.dao.AdminDAO;
 import com.vo.RoomManageVO;
@@ -19,6 +20,7 @@ public class AdminRoomInsertController implements Action {
 	public String execute(HttpServletRequest request, HttpServletResponse response) {
 
 		request.setAttribute("pageCss", "admin_room");
+
 		try {
 
 			String room_name = request.getParameter("room_name");
@@ -38,7 +40,8 @@ public class AdminRoomInsertController implements Action {
 			vo.setAmenity(amenity);
 			vo.setMinibar(minibar);
 
-			String uploadPath = "C:/hotelUploads/room";
+			// 업로드 경로
+			String uploadPath = UploadPath.ROOM;
 
 			File uploadDir = new File(uploadPath);
 			if (!uploadDir.exists()) {
@@ -46,8 +49,10 @@ public class AdminRoomInsertController implements Action {
 			}
 
 			AdminDAO dao = new AdminDAO(request.getServletContext());
+
 			int room_id = dao.insertRoomManage(vo);
 			dao.insertRoom(room_id, vo.getRoom_name());
+
 			int order = 1;
 
 			for (Part part : request.getParts()) {
@@ -55,39 +60,37 @@ public class AdminRoomInsertController implements Action {
 				if ("room_img".equals(part.getName()) && part.getSize() > 0) {
 
 					String originalFileName = part.getSubmittedFileName();
-					String savedFileName = originalFileName;
-					String ext = originalFileName.substring(originalFileName.lastIndexOf(".") + 1).toLowerCase();
-					File targetFile = new File(uploadPath, originalFileName);
 
-					if (!(ext.equals("jpg") || ext.equals("jpeg") || ext.equals("png") || ext.equals("gif")
-							|| ext.equals("webp"))) {
+					String ext = originalFileName.substring(originalFileName.lastIndexOf(".")).toLowerCase();
+
+					if (!(ext.equals(".jpg") || ext.equals(".jpeg") || ext.equals(".png") || ext.equals(".gif")
+							|| ext.equals(".webp"))) {
+
 						throw new Exception("이미지 파일만 업로드 가능합니다.");
 					}
 
-					if (targetFile.exists()) {
+					// UUID 파일명
+					String savedFileName = UUID.randomUUID() + ext;
 
-						String extension = "";
-						int dotIndex = originalFileName.lastIndexOf(".");
+					File file = new File(uploadPath, savedFileName);
 
-						if (dotIndex != -1) {
-							extension = originalFileName.substring(dotIndex);
-							originalFileName = originalFileName.substring(0, dotIndex);
-						}
+					part.write(file.getAbsolutePath());
 
-						savedFileName = originalFileName + "_" + UUID.randomUUID() + extension;
-					}
+					// DB 저장 경로
+					String imagePath = "/uploads/room/" + savedFileName;
 
-					part.write(uploadPath + File.separator + savedFileName);
-
-					String imagePath = "/upload/room/" + savedFileName;
 					dao.insertRoomImage(room_id, imagePath, "N", order);
 
 					order++;
 				}
 			}
+
 		} catch (Exception e) {
+
 			e.printStackTrace();
 		}
+
 		return "redirect:/admin/roomManage.do";
 	}
+
 }

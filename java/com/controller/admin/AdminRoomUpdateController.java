@@ -5,6 +5,7 @@ import java.util.Collection;
 import java.util.List;
 import java.util.UUID;
 
+import com.config.UploadPath;
 import com.controller.Action;
 import com.dao.AdminDAO;
 import com.vo.RoomImageVO;
@@ -23,21 +24,17 @@ public class AdminRoomUpdateController implements Action {
 		request.setAttribute("pageCss", "admin_room");
 
 		String method = request.getMethod();
+
 		ServletContext context = request.getServletContext();
 		AdminDAO dao = new AdminDAO(context);
 
 		int roomId = Integer.parseInt(request.getParameter("room_id"));
-		String roomName = request.getParameter("room_name");
-		String capacity = request.getParameter("capacity");
-		String location = request.getParameter("room_location");
-		String description = request.getParameter("room_description");
-		String usage_time = request.getParameter("usage_time");
-		String amenity = request.getParameter("amenity");
-		String minibar = request.getParameter("minibar");
+
 		if (method.equals("GET")) {
 
 			RoomManageVO vo = dao.selectRoomByNo(roomId);
 			List<RoomImageVO> imageVO = dao.selectRoomImages(roomId);
+
 			request.setAttribute("vo", vo);
 			request.setAttribute("imageVO", imageVO);
 
@@ -47,6 +44,14 @@ public class AdminRoomUpdateController implements Action {
 		if (method.equals("POST")) {
 
 			try {
+
+				String roomName = request.getParameter("room_name");
+				String capacity = request.getParameter("capacity");
+				String location = request.getParameter("room_location");
+				String description = request.getParameter("room_description");
+				String usage_time = request.getParameter("usage_time");
+				String amenity = request.getParameter("amenity");
+				String minibar = request.getParameter("minibar");
 
 				RoomManageVO vo = new RoomManageVO();
 				vo.setRoom_id(roomId);
@@ -60,6 +65,12 @@ public class AdminRoomUpdateController implements Action {
 
 				dao.updateRoom(vo);
 
+				String uploadPath = UploadPath.ROOM;
+
+				// -------------------------
+				// 이미지 삭제
+				// -------------------------
+
 				String[] deleteImages = request.getParameterValues("delete_images");
 
 				if (deleteImages != null) {
@@ -72,11 +83,11 @@ public class AdminRoomUpdateController implements Action {
 
 						if (imagePath != null) {
 
-							String uploadPath = "C:/hotelUploads/room";
+							String fileName = new File(imagePath).getName();
 
-							File file = new File(uploadPath, new File(imagePath).getName());
+							File file = new File(uploadPath, fileName);
 
-							if (file.exists()) {
+							if (file.exists() && file.isFile()) {
 								file.delete();
 							}
 						}
@@ -85,9 +96,10 @@ public class AdminRoomUpdateController implements Action {
 					}
 				}
 
-				Collection<Part> parts = request.getParts();
+				// -------------------------
+				// 새 이미지 업로드
+				// -------------------------
 
-				String uploadPath = "C:/hotelUploads/room";
 				int order = dao.getNextDisplayOrder(roomId);
 
 				for (Part part : request.getParts()) {
@@ -95,26 +107,22 @@ public class AdminRoomUpdateController implements Action {
 					if ("room_img".equals(part.getName()) && part.getSize() > 0) {
 
 						String originalFileName = part.getSubmittedFileName();
-						String savedFileName = originalFileName;
 
-						File targetFile = new File(uploadPath, originalFileName);
+						String ext = originalFileName.substring(originalFileName.lastIndexOf(".")).toLowerCase();
 
-						if (targetFile.exists()) {
+						if (!(ext.equals(".jpg") || ext.equals(".jpeg") || ext.equals(".png") || ext.equals(".gif")
+								|| ext.equals(".webp"))) {
 
-							String extension = "";
-							int dotIndex = originalFileName.lastIndexOf(".");
-
-							if (dotIndex != -1) {
-								extension = originalFileName.substring(dotIndex);
-								originalFileName = originalFileName.substring(0, dotIndex);
-							}
-
-							savedFileName = originalFileName + "_" + UUID.randomUUID() + extension;
+							throw new Exception("이미지 파일만 업로드 가능합니다.");
 						}
 
-						part.write(uploadPath + File.separator + savedFileName);
+						String savedFileName = UUID.randomUUID() + ext;
 
-						String imagePath = "/upload/room/" + savedFileName;
+						File file = new File(uploadPath, savedFileName);
+
+						part.write(file.getAbsolutePath());
+
+						String imagePath = "/uploads/room/" + savedFileName;
 
 						dao.insertRoomImage(roomId, imagePath, "N", order);
 
@@ -122,15 +130,21 @@ public class AdminRoomUpdateController implements Action {
 					}
 				}
 
+				// -------------------------
+				// 대표 이미지 설정
+				// -------------------------
+
 				String mainImage = request.getParameter("main_image");
 
 				if (mainImage != null) {
+
 					int imageId = Integer.parseInt(mainImage);
 
 					dao.updateMainImage(roomId, imageId);
 				}
 
 			} catch (Exception e) {
+
 				e.printStackTrace();
 			}
 
@@ -139,4 +153,5 @@ public class AdminRoomUpdateController implements Action {
 
 		return null;
 	}
+
 }

@@ -1,6 +1,7 @@
 package com.admin.facility;
 
 import com.controller.Action;
+import com.config.UploadPath;
 
 import jakarta.servlet.ServletContext;
 import jakarta.servlet.http.HttpServletRequest;
@@ -10,6 +11,7 @@ import jakarta.servlet.http.Part;
 import java.io.File;
 import java.sql.Connection;
 import java.util.Collection;
+import java.util.UUID;
 
 import static com.util.JdbcUtil.getConnection;
 import static com.util.JdbcUtil.commit;
@@ -18,93 +20,96 @@ import static com.util.JdbcUtil.close;
 
 public class AdminFacilityInsertController implements Action {
 
-	@Override
-	public String execute(HttpServletRequest request, HttpServletResponse response) {
 
-		Connection conn = null;
+@Override
+public String execute(HttpServletRequest request, HttpServletResponse response) {
 
-		try {
+    Connection conn = null;
 
-			String facilityType = request.getParameter("facilityType");
-			String facilityName = request.getParameter("facilityName");
-			String location = request.getParameter("location");
-			String openTime = request.getParameter("openTime");
-			String description = request.getParameter("description");
+    try {
 
-			AdminFacilityDTO dto = new AdminFacilityDTO();
-			dto.setFacilityType(facilityType);
-			dto.setFacilityName(facilityName);
-			dto.setLocation(location);
-			dto.setOpenTime(openTime);
-			dto.setDescription(description);
+        String facilityType = request.getParameter("facilityType");
+        String facilityName = request.getParameter("facilityName");
+        String location = request.getParameter("location");
+        String openTime = request.getParameter("openTime");
+        String description = request.getParameter("description");
 
-			ServletContext context = request.getServletContext();
-			AdminFacilityDAO dao = new AdminFacilityDAO(context);
+        AdminFacilityDTO dto = new AdminFacilityDTO();
+        dto.setFacilityType(facilityType);
+        dto.setFacilityName(facilityName);
+        dto.setLocation(location);
+        dto.setOpenTime(openTime);
+        dto.setDescription(description);
 
-			conn = getConnection();
+        ServletContext context = request.getServletContext();
+        AdminFacilityDAO dao = new AdminFacilityDAO(context);
 
-			int facilityId = dao.insertFacility(conn, dto);
+        conn = getConnection();
 
-			final String uploadPath = "C:/hotelUploads/facility";
-
-			File dir = new File(uploadPath);
-			if (!dir.exists()) {
-				dir.mkdirs();
-			}
-
-			String mainIndexParam = request.getParameter("mainImageIndex");
-
-			int mainIndex = 0;
-
-			if (mainIndexParam != null && !mainIndexParam.isEmpty()) {
-				mainIndex = Integer.parseInt(mainIndexParam);
-			}
-
-			Collection<Part> parts = request.getParts();
-
-			int index = 0;
-
-			for (Part part : parts) {
-
-				if (!"images".equals(part.getName()))
-					continue;
-
-				String fileName = part.getSubmittedFileName();
-
-				if (fileName == null || fileName.isEmpty())
-					continue;
+        int facilityId = dao.insertFacility(conn, dto);
 
 
-				fileName = java.util.UUID.randomUUID() + "_" + fileName;
+        String uploadPath = UploadPath.FACILITY;
 
-				String savePath = uploadPath + "/" + fileName;
+        File dir = new File(uploadPath);
+        if (!dir.exists()) {
+            dir.mkdirs();
+        }
 
-				part.write(savePath);
+        String mainIndexParam = request.getParameter("mainImageIndex");
 
-				String dbPath = "/upload/facility/" + fileName;
+        int mainIndex = 0;
 
-				String isMain = (index == mainIndex) ? "Y" : "N";
+        if (mainIndexParam != null && !mainIndexParam.isEmpty()) {
+            mainIndex = Integer.parseInt(mainIndexParam);
+        }
 
-				dao.insertImage(conn, facilityId, dbPath, isMain);
+        Collection<Part> parts = request.getParts();
 
-				index++;
-			}
+        int index = 0;
 
-			commit(conn);
+        for (Part part : parts) {
 
-			return "redirect:/admin/facility/list.do";
+            if (!"images".equals(part.getName()))
+                continue;
 
-		} catch (Exception e) {
+            String fileName = part.getSubmittedFileName();
 
-			e.printStackTrace();
+            if (fileName == null || fileName.isEmpty())
+                continue;
 
-			rollback(conn);
+            fileName = UUID.randomUUID() + "_" + fileName;
 
-		} finally {
+            File file = new File(uploadPath, fileName);
 
-			close(conn);
-		}
+            part.write(file.getAbsolutePath());
 
-		return null;
-	}
+
+            String dbPath = "/uploads/facility/" + fileName;
+
+            String isMain = (index == mainIndex) ? "Y" : "N";
+
+            dao.insertImage(conn, facilityId, dbPath, isMain);
+
+            index++;
+        }
+
+        commit(conn);
+
+        return "redirect:/admin/facility/list.do";
+
+    } catch (Exception e) {
+
+        e.printStackTrace();
+
+        rollback(conn);
+
+    } finally {
+
+        close(conn);
+    }
+
+    return null;
+}
+
 }

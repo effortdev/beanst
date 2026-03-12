@@ -9,6 +9,7 @@ import java.io.File;
 import java.sql.Connection;
 import java.util.ArrayList;
 
+import com.config.UploadPath;
 import com.controller.Action;
 
 import jakarta.servlet.ServletContext;
@@ -17,59 +18,59 @@ import jakarta.servlet.http.HttpServletResponse;
 
 public class AdminFacilityDeleteController implements Action {
 
-	@Override
-	public String execute(HttpServletRequest request, HttpServletResponse response) {
 
-		Connection conn = null;
+@Override
+public String execute(HttpServletRequest request, HttpServletResponse response) {
 
-		try {
+    Connection conn = null;
 
-			int id = Integer.parseInt(request.getParameter("id"));
+    try {
 
-			conn = getConnection();
+        int id = Integer.parseInt(request.getParameter("id"));
 
-			ServletContext context = request.getServletContext();
-			AdminFacilityDAO dao = new AdminFacilityDAO(context);
+        conn = getConnection();
 
+        ServletContext context = request.getServletContext();
+        AdminFacilityDAO dao = new AdminFacilityDAO(context);
 
-			String uploadPath = "C:/hotelUploads/facility";
+        // 업로드 경로
+        String uploadPath = UploadPath.FACILITY;
 
+        ArrayList<FacilityImageDTO> images = dao.selectImages(id);
 
-			ArrayList<FacilityImageDTO> images = dao.selectImages(id);
+        for (FacilityImageDTO img : images) {
 
+            String imagePath = img.getImagePath();
 
-			for (FacilityImageDTO img : images) {
+            if (imagePath != null && !imagePath.isBlank()) {
 
-				String imagePath = img.getImagePath();
+                String fileName = imagePath.substring(imagePath.lastIndexOf("/") + 1);
 
-				if (imagePath != null) {
+                File file = new File(uploadPath, fileName);
 
-					String fileName = imagePath.substring(imagePath.lastIndexOf("/") + 1);
+                if (file.exists() && file.isFile()) {
+                    file.delete();
+                }
+            }
+        }
 
-					File file = new File(uploadPath, fileName);
+        dao.deleteFacility(conn, id);
 
-					if (file.exists()) {
-						file.delete();
-					}
-				}
-			}
+        commit(conn);
 
+        return "redirect:/admin/facility/list.do";
 
-			dao.deleteFacility(conn, id);
+    } catch (Exception e) {
 
-			commit(conn);
+        e.printStackTrace();
+        rollback(conn);
 
-			return "redirect:/admin/facility/list.do";
+    } finally {
 
-		} catch (Exception e) {
+        close(conn);
+    }
 
-			e.printStackTrace();
-			rollback(conn);
+    return null;
+}
 
-		} finally {
-			close(conn);
-		}
-
-		return null;
-	}
 }

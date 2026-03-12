@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.PrintWriter;
 import java.util.List;
 
+import com.config.UploadPath;
 import com.controller.Action;
 import com.dao.AdminDAO;
 import com.vo.RoomImageVO;
@@ -13,56 +14,56 @@ import jakarta.servlet.http.HttpServletResponse;
 
 public class AdminRoomDeleteController implements Action {
 
-	@Override
-	public String execute(HttpServletRequest request, HttpServletResponse response) {
 
-		try {
+@Override
+public String execute(HttpServletRequest request, HttpServletResponse response) {
 
-			int room_id = Integer.parseInt(request.getParameter("room_id"));
+    try {
 
-			AdminDAO dao = new AdminDAO(request.getServletContext());
+        int room_id = Integer.parseInt(request.getParameter("room_id"));
 
+        AdminDAO dao = new AdminDAO(request.getServletContext());
 
-			int reservationCount = dao.getReservationCountByRoom(room_id);
+        int reservationCount = dao.getReservationCountByRoom(room_id);
 
-			if (reservationCount > 0) {
+        if (reservationCount > 0) {
 
-				response.setContentType("text/html;charset=UTF-8");
-				PrintWriter out = response.getWriter();
+            response.setContentType("text/html;charset=UTF-8");
+            PrintWriter out = response.getWriter();
 
-				out.println("<script>");
-				out.println("alert('이 객실에는 예약 데이터가 있어 삭제할 수 없습니다.');");
-				out.println("history.back();");
-				out.println("</script>");
+            out.println("<script>");
+            out.println("alert('이 객실에는 예약 데이터가 있어 삭제할 수 없습니다.');");
+            out.println("history.back();");
+            out.println("</script>");
 
-				return null;
-			}
+            return null;
+        }
 
-			List<RoomImageVO> imagePaths = dao.selectRoomImages(room_id);
+        List<RoomImageVO> imagePaths = dao.selectRoomImages(room_id);
 
-			String uploadPath = "C:/hotelUploads/room";
+        // 업로드 경로
+        String uploadPath = UploadPath.ROOM;
 
+        for (RoomImageVO img : imagePaths) {
 
-			for (RoomImageVO img : imagePaths) {
+            String fileName = new File(img.getImage_path()).getName();
 
-				String fileName = new File(img.getImage_path()).getName();
+            File file = new File(uploadPath, fileName);
 
-				File file = new File(uploadPath, fileName);
+            if (file.exists() && file.isFile()) {
+                file.delete();
+            }
+        }
 
-				if (file.exists()) {
-					file.delete();
-				}
-			}
+        dao.deleteRoomImages(room_id);
+        dao.deleteRoomDetail(room_id);
+        dao.deleteRoom(room_id);
 
+    } catch (Exception e) {
+        e.printStackTrace();
+    }
 
-			dao.deleteRoomImages(room_id);
-			dao.deleteRoomDetail(room_id);
-			dao.deleteRoom(room_id);
+    return "redirect:/admin/roomManage.do";
+}
 
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-
-		return "redirect:/admin/roomManage.do";
-	}
 }

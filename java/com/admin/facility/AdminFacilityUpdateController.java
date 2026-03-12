@@ -6,7 +6,6 @@ import static com.util.JdbcUtil.rollback;
 
 import java.io.File;
 import java.nio.charset.StandardCharsets;
-import java.nio.file.Path;
 import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.List;
@@ -18,6 +17,7 @@ import org.apache.commons.fileupload2.core.FileItem;
 import org.apache.commons.fileupload2.core.FileItemFactory;
 import org.apache.commons.fileupload2.jakarta.JakartaServletFileUpload;
 
+import com.config.UploadPath;
 import com.controller.Action;
 
 import jakarta.servlet.ServletContext;
@@ -39,11 +39,13 @@ public class AdminFacilityUpdateController implements Action {
 
 			ServletContext context = request.getServletContext();
 
-			String uploadPath = "C:/hotelUploads/facility";
+			String uploadPath = UploadPath.FACILITY;
+
 			File uploadDir = new File(uploadPath);
 
-			if (!uploadDir.exists())
+			if (!uploadDir.exists()) {
 				uploadDir.mkdirs();
+			}
 
 			if (!JakartaServletFileUpload.isMultipartContent(request)) {
 				return "redirect:/admin/facility/list.do";
@@ -71,6 +73,9 @@ public class AdminFacilityUpdateController implements Action {
 
 			AdminFacilityDAO dao = new AdminFacilityDAO(context);
 
+			// -----------------------------
+			// 폼 데이터 읽기
+			// -----------------------------
 
 			for (FileItem item : items) {
 
@@ -93,11 +98,11 @@ public class AdminFacilityUpdateController implements Action {
 				}
 			}
 
-
-
 			dao.updateFacility(conn, facilityId, facilityName, facilityType, location, openTime, description);
 
-
+			// -----------------------------
+			// 이미지 삭제 처리
+			// -----------------------------
 
 			for (FileItem item : items) {
 
@@ -114,14 +119,17 @@ public class AdminFacilityUpdateController implements Action {
 
 					String fileName = imagePath.substring(imagePath.lastIndexOf("/") + 1);
 
-					File file = new File(uploadPath + "/" + fileName);
+					File file = new File(uploadDir, fileName);
 
-					if (file.exists())
+					if (file.exists() && file.isFile()) {
 						file.delete();
+					}
 				}
 			}
 
-
+			// -----------------------------
+			// 새 이미지 업로드
+			// -----------------------------
 
 			List<Integer> newImageIds = new ArrayList<>();
 
@@ -133,12 +141,19 @@ public class AdminFacilityUpdateController implements Action {
 				if (!"newImages".equals(item.getFieldName()))
 					continue;
 
-				String originalName = new File(item.getName()).getName();
+				String originalName = item.getName();
 
 				if (originalName == null || originalName.isBlank())
 					continue;
 
-				String ext = originalName.substring(originalName.lastIndexOf(".")).toLowerCase();
+				originalName = new File(originalName).getName();
+
+				int dotIndex = originalName.lastIndexOf(".");
+
+				if (dotIndex == -1)
+					continue;
+
+				String ext = originalName.substring(dotIndex).toLowerCase();
 
 				if (!ALLOWED_EXT.contains(ext))
 					continue;
@@ -150,13 +165,18 @@ public class AdminFacilityUpdateController implements Action {
 
 				File file = new File(uploadDir, newName);
 
-				item.write(Path.of(file.getAbsolutePath()));
+				item.write(file.toPath());
 
-				int newId = dao.insertImageReturnId(conn, facilityId, "/upload/facility/" + newName, "N");
+				String webPath = "/uploads/facility/" + newName;
+
+				int newId = dao.insertImageReturnId(conn, facilityId, webPath, "N");
 
 				newImageIds.add(newId);
 			}
 
+			// -----------------------------
+			// 대표 이미지 설정
+			// -----------------------------
 
 			dao.resetMainImage(conn, facilityId);
 
@@ -169,13 +189,13 @@ public class AdminFacilityUpdateController implements Action {
 					dao.setMainImage(conn, imageId);
 				}
 
-	
 				else if (mainImage.startsWith("new-") && !newImageIds.isEmpty()) {
 
 					int idx = Integer.parseInt(mainImage.replace("new-", ""));
 
 					if (idx < 0)
 						idx = 0;
+
 					if (idx >= newImageIds.size())
 						idx = 0;
 
@@ -185,7 +205,6 @@ public class AdminFacilityUpdateController implements Action {
 				}
 
 			} else {
-
 
 				dao.setFirstImageMain(conn, facilityId);
 			}
@@ -201,6 +220,7 @@ public class AdminFacilityUpdateController implements Action {
 			e.printStackTrace();
 
 			return "redirect:/admin/facility/list.do";
+
 		} finally {
 
 			close(conn);
