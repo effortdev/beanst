@@ -122,7 +122,7 @@ public class AdminRoomUpdateController implements Action {
 
 						part.write(file.getAbsolutePath());
 
-						String imagePath = "/uploads/room/" + savedFileName;
+						String imagePath = "/upload/room/" + savedFileName;
 
 						dao.insertRoomImage(roomId, imagePath, "N", order);
 

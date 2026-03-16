@@ -77,7 +77,7 @@ public class AdminRoomInsertController implements Action {
 					part.write(file.getAbsolutePath());
 
 					// DB 저장 경로
-					String imagePath = "/uploads/room/" + savedFileName;
+					String imagePath = "/upload/room/" + savedFileName;
 
 					dao.insertRoomImage(room_id, imagePath, "N", order);
 

@@ -85,7 +85,7 @@ public String execute(HttpServletRequest request, HttpServletResponse response) 
             part.write(file.getAbsolutePath());
 
 
-            String dbPath = "/uploads/facility/" + fileName;
+            String dbPath = "/upload/facility/" + fileName;
 
             String isMain = (index == mainIndex) ? "Y" : "N";
 

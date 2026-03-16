@@ -167,7 +167,7 @@ public class AdminFacilityUpdateController implements Action {
 
 				item.write(file.toPath());
 
-				String webPath = "/uploads/facility/" + newName;
+				String webPath = "/upload/facility/" + newName;
 
 				int newId = dao.insertImageReturnId(conn, facilityId, webPath, "N");
 
