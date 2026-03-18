@@ -10,7 +10,7 @@ Vinst Hotel은 Java MVC 아키텍처를 기반으로 개발된 호텔 예약 웹
 
 # 🌐 Live Demo
 
-http://158.179.169.253:8080/vinsthotel/
+https://vinsthotel.duckdns.org
 
 ---
 
@@ -194,22 +194,13 @@ username=your_id
 password=your_password
 ```
 
-### 4. Tomcat 실행
 
-```
-[http://localhost:8080/vinsthotel](http://158.179.169.253:8080/vinsthotel/main.do)
-```
-
----
-
-# 👨‍💻 팀원
+# 👨‍💻 프로젝트에서의 역할
 
 | 이름 | 역할 |
 |---|---|
 | 김영훈 | 관리자 페이지 전역 / 프론트 layout 구조 설계 / 메인페이지 구조 설계 |
-| 팀원 | 객실 관리 |
-| 팀원 | 시설 관리 |
-| 팀원 | Q&A |
+
 
 ---
 
